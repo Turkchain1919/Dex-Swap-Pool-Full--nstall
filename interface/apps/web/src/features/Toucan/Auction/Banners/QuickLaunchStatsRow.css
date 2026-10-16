@@ -1,0 +1,13 @@
+/* Opacity only — animating theme-token colors flashes on light/dark toggle. */
+@keyframes quick-launch-stat-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.quick-launch-stat-fade-in {
+  animation: quick-launch-stat-fade-in 200ms ease-in-out;
+}

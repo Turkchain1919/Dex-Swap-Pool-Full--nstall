@@ -1,0 +1,201 @@
+import { TransactionTypeFilter } from '@uniswap/client-data-api/dist/data/v1/types_pb'
+import { Box } from 'ui/src/components/icons/Box'
+import { Coin } from 'ui/src/components/icons/Coin'
+import { CoinConvert } from 'ui/src/components/icons/CoinConvert'
+import { Lock } from 'ui/src/components/icons/Lock'
+import { Minus } from 'ui/src/components/icons/Minus'
+import { MoneyHand } from 'ui/src/components/icons/MoneyHand'
+import { Plus } from 'ui/src/components/icons/Plus'
+import { Pools } from 'ui/src/components/icons/Pools'
+import { ReceiveAlt } from 'ui/src/components/icons/ReceiveAlt'
+import { SendAction } from 'ui/src/components/icons/SendAction'
+import type { ActivityItem } from 'uniswap/src/components/activity/generateActivityItemRenderer'
+import { isLoadingItem, isSectionHeader } from 'uniswap/src/components/activity/utils'
+import { getEarnPlanTransactionType } from 'uniswap/src/features/earn/planActivityTitles'
+import { NFTTradeType, TransactionType } from 'uniswap/src/features/transactions/types/transactionDetails'
+import type { TransactionDetails } from 'uniswap/src/features/transactions/types/transactionDetails'
+import type { AppTFunction } from 'utilities/src/i18n/types'
+import type { SelectOption } from '~/components/Dropdowns/DropdownSelector'
+import { ActivityFilterType } from '~/pages/Portfolio/Activity/Filters/activityFilterTypes'
+
+/**
+ * Type guard to check if an ActivityItem is a TransactionDetails
+ * @param item ActivityItem to check
+ * @returns true if the item is a TransactionDetails
+ */
+function isTransactionDetails(item: ActivityItem): item is TransactionDetails {
+  // Validate that the item has required TransactionDetails properties
+  return (
+    'typeInfo' in item && 'addedTime' in item && typeof item.typeInfo === 'object' && typeof item.addedTime === 'number'
+  )
+}
+
+/**
+ * Filters out loading items and section headers, leaving only TransactionDetails
+ * @param transactions ActivityItems to filter
+ * @returns only TransactionDetails items
+ */
+export function filterTransactionDetailsFromActivityItems(transactions: ActivityItem[]): TransactionDetails[] {
+  return transactions.filter(
+    (item): item is TransactionDetails => !isLoadingItem(item) && !isSectionHeader(item) && isTransactionDetails(item),
+  )
+}
+
+export function getTransactionTypeForActivityFilter({
+  transaction,
+}: {
+  transaction: TransactionDetails
+}): TransactionType {
+  if (transaction.typeInfo.type === TransactionType.Plan && transaction.typeInfo.earnAction) {
+    return getEarnPlanTransactionType(transaction.typeInfo.earnAction)
+  }
+
+  // NFT purchases are grouped under receives, sales under sends
+  if (transaction.typeInfo.type === TransactionType.NFTTrade) {
+    return transaction.typeInfo.tradeType === NFTTradeType.BUY ? TransactionType.Receive : TransactionType.Send
+  }
+
+  return transaction.typeInfo.type
+}
+
+export function getTransactionTypeFilterOptions(t: AppTFunction): Record<string, SelectOption> {
+  return {
+    [ActivityFilterType.All]: {
+      label: t('portfolio.activity.filters.transactionType.all'),
+      icon: null,
+    },
+    [ActivityFilterType.Swaps]: {
+      label: t('portfolio.activity.filters.transactionType.swaps'),
+      icon: CoinConvert,
+    },
+    [ActivityFilterType.Sends]: {
+      label: t('portfolio.activity.filters.transactionType.sends'),
+      icon: SendAction,
+    },
+    [ActivityFilterType.Receives]: {
+      label: t('portfolio.activity.filters.transactionType.receives'),
+      icon: ReceiveAlt,
+    },
+    [ActivityFilterType.Wraps]: {
+      label: t('portfolio.activity.filters.transactionType.wraps'),
+      icon: Box,
+    },
+    [ActivityFilterType.Withdrawals]: {
+      label: t('portfolio.activity.filters.transactionType.withdrawals'),
+      icon: MoneyHand,
+    },
+    [ActivityFilterType.Approvals]: {
+      label: t('portfolio.activity.filters.transactionType.approvals'),
+      icon: Lock,
+    },
+    [ActivityFilterType.CreatePool]: {
+      label: t('portfolio.activity.filters.transactionType.createPool'),
+      icon: Pools,
+    },
+    [ActivityFilterType.AddLiquidity]: {
+      label: t('portfolio.activity.filters.transactionType.addLiquidity'),
+      icon: Plus,
+    },
+    [ActivityFilterType.RemoveLiquidity]: {
+      label: t('portfolio.activity.filters.transactionType.removeLiquidity'),
+      icon: Minus,
+    },
+    [ActivityFilterType.ClaimFees]: {
+      label: t('portfolio.activity.filters.transactionType.claimFees'),
+      icon: MoneyHand,
+    },
+    [ActivityFilterType.Mints]: {
+      label: t('portfolio.activity.filters.transactionType.mints'),
+      icon: Coin,
+    },
+  }
+}
+
+/**
+ * Maps filter type to transaction types that should be included (client-side filtering)
+ */
+export function getTransactionTypesForFilter(filterType: string): TransactionType[] | 'all' {
+  switch (filterType) {
+    case ActivityFilterType.Sends:
+      return [TransactionType.Send, TransactionType.Deposit, TransactionType.ToucanBid]
+    case ActivityFilterType.Receives:
+      return [TransactionType.Receive]
+    case ActivityFilterType.Swaps:
+      return [TransactionType.Swap, TransactionType.Bridge, TransactionType.Plan]
+    case ActivityFilterType.Wraps:
+      return [TransactionType.Wrap]
+    case ActivityFilterType.Approvals:
+      return [TransactionType.Approve]
+    case ActivityFilterType.CreatePool:
+      return [TransactionType.CreatePool, TransactionType.CreatePair]
+    case ActivityFilterType.AddLiquidity:
+      return [TransactionType.LiquidityIncrease]
+    case ActivityFilterType.RemoveLiquidity:
+      return [TransactionType.LiquidityDecrease]
+    case ActivityFilterType.Mints:
+      return [TransactionType.NFTMint]
+    case ActivityFilterType.ClaimFees:
+      return [TransactionType.CollectFees, TransactionType.LPIncentivesClaimRewards, TransactionType.ClaimUni]
+    case ActivityFilterType.Withdrawals:
+      return [TransactionType.Withdraw]
+    case ActivityFilterType.All:
+    default:
+      return 'all'
+  }
+}
+
+/**
+ * Maps ActivityFilterType to server-side TransactionTypeFilter for API requests.
+ * Returns undefined for 'All' filter (no server-side filtering needed).
+ * This is used when connected to an EVM-only wallet for server-side filtering.
+ */
+export const SERVER_FILTER_MAP: Record<ActivityFilterType, TransactionTypeFilter[] | undefined> = {
+  [ActivityFilterType.All]: undefined,
+  // Sends/Receives include SWAP because NFT trades are categorized as SWAP server-side
+  [ActivityFilterType.Sends]: [
+    TransactionTypeFilter.SEND,
+    TransactionTypeFilter.VAULT_DEPOSIT,
+    TransactionTypeFilter.VAULT_TRANSFER,
+    TransactionTypeFilter.SWAP,
+  ],
+  [ActivityFilterType.Receives]: [
+    TransactionTypeFilter.RECEIVE,
+    TransactionTypeFilter.VAULT_TRANSFER,
+    TransactionTypeFilter.SWAP,
+  ],
+  [ActivityFilterType.Swaps]: [TransactionTypeFilter.SWAP],
+  [ActivityFilterType.Wraps]: [TransactionTypeFilter.WRAP],
+  [ActivityFilterType.Approvals]: [TransactionTypeFilter.APPROVE],
+  [ActivityFilterType.CreatePool]: [TransactionTypeFilter.CREATE_POOL],
+  [ActivityFilterType.AddLiquidity]: [TransactionTypeFilter.INCREASE_LIQUIDITY],
+  [ActivityFilterType.RemoveLiquidity]: [TransactionTypeFilter.DECREASE_LIQUIDITY],
+  [ActivityFilterType.Mints]: [TransactionTypeFilter.MINT],
+  [ActivityFilterType.ClaimFees]: [TransactionTypeFilter.CLAIM],
+  [ActivityFilterType.Withdrawals]: [TransactionTypeFilter.WITHDRAW, TransactionTypeFilter.VAULT_WITHDRAW],
+}
+
+export function getServerTransactionTypesForFilter(filterType: string): TransactionTypeFilter[] | undefined {
+  const serverFilterTypes = SERVER_FILTER_MAP[filterType as ActivityFilterType]
+
+  return serverFilterTypes?.length === 1 ? serverFilterTypes : undefined
+}
+
+export enum TimePeriod {
+  All = 'all',
+  Last24Hours = '24h',
+  Last7Days = '7d',
+  Last30Days = '30d',
+}
+
+export function getTimePeriodFilterOptions(t: AppTFunction): Record<string, SelectOption> {
+  return {
+    [TimePeriod.All]: { label: t('portfolio.activity.filters.timePeriod.all') },
+    [TimePeriod.Last24Hours]: {
+      label: t('common.time.past.hours', { hours: 24 }),
+    },
+    [TimePeriod.Last7Days]: { label: t('common.time.past.days', { days: 7 }) },
+    [TimePeriod.Last30Days]: {
+      label: t('common.time.past.days', { days: 30 }),
+    },
+  }
+}

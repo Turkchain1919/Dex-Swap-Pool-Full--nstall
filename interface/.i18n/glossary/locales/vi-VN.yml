@@ -1,0 +1,451 @@
+# Vietnamese (vi-VN) glossary.
+#
+# DRAFT — no Notion "i18n style guide: Vietnamese" exists. Generated from
+# authoritative platform term bases (Apple HIG / Apple Wallet VI, Google
+# Android VI, Microsoft Terminology VI) + established Vietnamese crypto-exchange
+# usage (Binance Vietnam, OKX Vietnam, VNDC). Needs ratification by a native
+# Vietnamese speaker before promoting to production.
+#
+# Strategy: TRANSLATE-LEANING (confirmed by apple.com/vn, Microsoft Terminology VI,
+# and Binance Vietnam). Vietnamese has strong native equivalents for most financial
+# and product terms; translate them. Crypto-community loanwords kept in English:
+# token (near-universal in VI crypto), TVL, NFT. No grammatical gender; no
+# grammatical plural (CLDR "other" only).
+#
+# Diacritics are non-negotiable in Vietnamese — incorrect tone marks change
+# meaning. The translator MUST produce fully marked Vietnamese; bare ASCII
+# transcription is a hard fail.
+#
+# Voice (informal "bạn") lives in ../../style/locales/vi-VN.md.
+# Core DNT brand terms (Uniswap, Unichain, Ethereum, NFT, calldata, gas) are
+# inherited from ../core/crypto.yml — not repeated here.
+
+# --- Core product nouns: translate ---
+
+- term: wallet
+  preferred: { vi-VN: "ví" }
+  partOfSpeech: noun
+  description: >
+    Apple Wallet Vietnam ships "Ví Apple"; Microsoft Terminology VI lists "ví" for
+    wallet. Binance VN uses "ví" consistently. Translate-leaning strategy: use "ví".
+    Do not keep English "wallet" — there is a single, unambiguous Vietnamese term.
+
+- term: smart wallet
+  preferred: { vi-VN: "ví thông minh" }
+  partOfSpeech: noun
+  description: >
+    Compound of "ví" (wallet, above) + "thông minh" (smart/intelligent — the same
+    modifier used in "hợp đồng thông minh"). Consistent with the translate-leaning root.
+
+- term: token
+  doNotTranslate: true
+  description: >
+    Keep English "token". Vietnamese crypto exchanges (Binance VN, OKX VN, VNDC) all
+    use "token" in English — it is the universal community norm. No credible native
+    rendering exists; inventing one would produce a false-friend. DRAFT: flag for
+    native review to confirm.
+
+- term: swap
+  preferred: { vi-VN: "hoán đổi" }
+  partOfSpeech: verb
+  description: >
+    Binance Vietnam uses "Hoán đổi" for the swap action. Microsoft Terminology VI
+    supports "hoán đổi" for exchange/swap operations. Translate-leaning: use
+    "hoán đổi". Do not use the loanverb "swap" as a verb in UI copy.
+  forbidden: { vi-VN: ["swap"] }
+
+- term: wrap
+  preferred: { vi-VN: "bọc" }
+  partOfSpeech: verb
+  description: >
+    "Bọc" means to wrap/enclose — the same conceptual meaning as DeFi wrapping
+    (enclosing a token in a wrapper contract). Microsoft Terminology VI uses "bọc"
+    for packaging/wrapping. No established VI crypto norm exists for the DeFi
+    sense; "bọc" is the most defensible rendering. DRAFT: native review recommended.
+
+- term: wrapped
+  preferred: { vi-VN: "đã bọc" }
+  partOfSpeech: adjective
+  description: >
+    Past-participle form using the Vietnamese perfective marker "đã". wBTC →
+    "Bitcoin đã bọc". Consistent with the "bọc" root.
+
+- term: unwrap
+  preferred: { vi-VN: "gỡ bọc" }
+  partOfSpeech: verb
+  description: >
+    "Gỡ" (to remove/detach) + "bọc" (the wrap root). The compound "gỡ bọc" is the
+    natural inverse of "bọc". DRAFT: native review recommended.
+  forbidden: { vi-VN: ["tháo bọc"] }
+
+- term: mint
+  preferred: { vi-VN: "đúc" }
+  partOfSpeech: verb
+  description: >
+    "Đúc" is the established Vietnamese verb for minting coins/casting metal — the
+    same root used in traditional Vietnamese currency production ("đúc tiền"). Used
+    by Vietnamese crypto communities for NFT minting. Do not use the loanverb
+    "mint" as a verb.
+
+- term: slippage
+  preferred: { vi-VN: "trượt giá" }
+  partOfSpeech: noun
+  description: >
+    "Trượt giá" (price slide/slippage) is the established Vietnamese finance term
+    for price movement/slippage, used by Binance Vietnam and OKX Vietnam in their
+    swap interfaces. Do not use "slippage" in English.
+  forbidden: { vi-VN: ["slippage"] }
+
+- term: max slippage
+  preferred: { vi-VN: "trượt giá tối đa" }
+  partOfSpeech: noun
+  description: >
+    "Tối đa" is the standard Vietnamese superlative modifier (maximum). Consistent
+    with the "trượt giá" root.
+
+# --- UI/finance terms: translate ---
+
+- term: network cost
+  preferred: { vi-VN: "phí mạng" }
+  partOfSpeech: noun
+  description: >
+    "Phí" (fee/cost) + "mạng" (network). Binance VN uses "phí mạng" for network
+    fees. Shorter and more natural than "chi phí mạng".
+
+- term: fee
+  preferred: { vi-VN: "phí" }
+  partOfSpeech: noun
+  description: >
+    "Phí" is the standard Vietnamese word for fee/charge (bank fees, service fees,
+    government fees). Used consistently by all Vietnamese crypto exchanges.
+
+- term: crypto
+  preferred: { vi-VN: "tiền mã hóa" }
+  partOfSpeech: noun
+  description: >
+    Short form in UI contexts. "Tiền mã hóa" is Vietnamese for cryptocurrency
+    (literally "encoded/encrypted currency"). Used by Vietnamese media and exchanges.
+    In informal crypto contexts Vietnamese users also say "crypto" in English — flag
+    for native review on preferred short-form. DRAFT.
+
+- term: cryptocurrency
+  preferred: { vi-VN: "tiền mã hóa" }
+  partOfSpeech: noun
+  description: >
+    Full term: "tiền mã hóa" or "tiền điện tử mã hóa". Shorter "tiền mã hóa" is
+    standard in product UI. "Tiền ảo" (virtual currency) is acceptable but slightly
+    less precise — prefer "tiền mã hóa".
+  forbidden: { vi-VN: ["tiền ảo"] }
+
+- term: market cap
+  preferred: { vi-VN: "vốn hóa thị trường" }
+  partOfSpeech: noun
+  description: >
+    Standard Vietnamese finance term. Used by Vietnamese stock market portals
+    (CafeF, Vietstock) and crypto exchanges. Abbreviated "vốn hóa" in space-
+    constrained UI. Microsoft Terminology VI confirms "vốn hóa thị trường".
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym (total value locked). Universal in VI crypto.
+
+- term: seed phrase
+  preferred: { vi-VN: "cụm từ khôi phục" }
+  partOfSpeech: noun
+  description: >
+    Collapsed to the same rendering as "recovery phrase" — one concept, one target.
+    "Cụm từ" (phrase/cluster of words) + "khôi phục" (to recover/restore). Used by
+    Vietnamese wallet documentation. The English passthrough "seed phrase" is a
+    hard-fail on security-critical strings.
+  forbidden: { vi-VN: ["seed phrase"] }
+
+- term: recovery phrase
+  preferred: { vi-VN: "cụm từ khôi phục" }
+  partOfSpeech: noun
+  description: >
+    Security-critical. Same rendering as "seed phrase" (synonyms collapsed). Never
+    leave in English on wallet setup, backup, or lock-screen strings.
+  forbidden: { vi-VN: ["recovery phrase"] }
+
+- term: private keys
+  preferred: { vi-VN: "khóa riêng tư" }
+  partOfSpeech: noun
+  description: >
+    "Khóa" (key/lock) + "riêng tư" (private). Microsoft Terminology VI uses
+    "khóa riêng" or "khóa riêng tư" for private key in security contexts.
+    Plural is unmarked in Vietnamese (no morphological plural).
+
+- term: backup
+  preferred: { vi-VN: "sao lưu" }
+  partOfSpeech: noun
+  description: >
+    "Sao lưu" is the standard Vietnamese term for backup (data/file backup).
+    Used by Microsoft Terminology VI, Apple Vietnamese UI, and Google Android VI.
+    Do not keep "backup" in English.
+  forbidden: { vi-VN: ["backup"] }
+
+- term: smart contract
+  preferred: { vi-VN: "hợp đồng thông minh" }
+  partOfSpeech: noun
+  description: >
+    "Hợp đồng" (contract/agreement) + "thông minh" (smart/intelligent). This is
+    the universally accepted Vietnamese rendering — used in Vietnamese legal tech,
+    academic papers, and all major crypto exchanges. No variation in the community.
+
+- term: passkey
+  preferred: { vi-VN: "mật khẩu passkey" }
+  partOfSpeech: noun
+  description: >
+    DRAFT: Apple Vietnam keeps "Passkey" in English in system UI (as of iOS 17/18
+    Vietnamese). For body-text explanation, "mật khẩu passkey" pairs the English
+    term with Vietnamese context. Flagged for native review — if Apple Vietnam has
+    standardized a translated term, defer to it. Do not use bare "passkey" in
+    isolation without the "mật khẩu" prefix unless confirmed by a native reviewer.
+
+- term: passcode
+  preferred: { vi-VN: "mã PIN" }
+  partOfSpeech: noun
+  description: >
+    "Mã PIN" is the standard Apple Vietnamese / Microsoft Terminology VI term for
+    device passcode/PIN. Distinct from mật khẩu (password). Apple Vietnamese UI
+    says "Mã PIN" for the 6-digit passcode.
+  forbidden: { vi-VN: ["mật khẩu"] }
+
+- term: approve
+  preferred: { vi-VN: "phê duyệt" }
+  partOfSpeech: verb
+  description: >
+    ERC-20 approve — "phê duyệt". Distinct from "xác nhận" (confirm). "Phê duyệt"
+    maps to the act of granting permission/authorization, consistent with Vietnamese
+    administrative/legal usage and Binance VN.
+
+- term: permit
+  preferred: { vi-VN: "cho phép" }
+  partOfSpeech: verb
+  description: >
+    EIP-2612 permit (gasless approve variant). "Cho phép" (to permit/allow) — kept
+    distinct from "phê duyệt" (approve). Both terms should remain separate in UI to
+    maintain the EIP-2612 distinction. DRAFT: native review recommended.
+
+- term: pool
+  preferred: { vi-VN: "pool" }
+  doNotTranslate: true
+  description: >
+    Vietnamese crypto exchanges (Binance VN, OKX VN) use "pool" in English for
+    liquidity pools. "Hồ thanh khoản" exists but is not the community norm. Keeping
+    "pool" avoids ambiguity in DeFi context. DRAFT: flag for native review.
+
+- term: trade
+  preferred: { vi-VN: "giao dịch" }
+  partOfSpeech: verb
+  description: >
+    "Giao dịch" covers both the noun (a transaction/trade) and verb (to trade).
+    Used by Vietnamese financial institutions and exchanges. Distinct from
+    "hoán đổi" (swap) — "giao dịch" is the broader trade/transaction concept.
+
+- term: transaction
+  preferred: { vi-VN: "giao dịch" }
+  partOfSpeech: noun
+  description: >
+    "Giao dịch" is the standard Vietnamese for transaction (financial context).
+    Covers more than just trades (also approve, permit, etc.). Microsoft
+    Terminology VI and Binance VN both use "giao dịch".
+
+- term: transaction history
+  preferred: { vi-VN: "lịch sử giao dịch" }
+  partOfSpeech: noun
+  description: >
+    "Lịch sử" (history) + "giao dịch" (transaction). Standard compound used in
+    Vietnamese banking and crypto exchange apps.
+
+- term: explore
+  preferred: { vi-VN: "khám phá" }
+  partOfSpeech: verb
+  description: >
+    "Khám phá" (to discover/explore) — used in Apple Vietnamese and Google VI
+    for exploration/discovery features. Natural navigation label.
+
+- term: extension
+  preferred: { vi-VN: "tiện ích mở rộng" }
+  partOfSpeech: noun
+  description: >
+    Google Chrome Vietnamese uses "tiện ích mở rộng" for browser extensions.
+    This is the canonical platform term in Vietnamese.
+
+- term: revoke
+  preferred: { vi-VN: "thu hồi" }
+  partOfSpeech: verb
+  description: >
+    "Thu hồi" (to revoke/reclaim permission) — standard Vietnamese legal/admin
+    term for revoking authorization. Consistent with Vietnamese financial regulation
+    vocabulary.
+
+- term: approval
+  preferred: { vi-VN: "phê duyệt" }
+  partOfSpeech: noun
+  description: >
+    Noun form of "approve" — "sự phê duyệt" in full, shortened to "phê duyệt"
+    in UI contexts. Consistent with the verb form.
+
+- term: confirm
+  preferred: { vi-VN: "xác nhận" }
+  partOfSpeech: verb
+  description: >
+    "Xác nhận" (to confirm/verify). Standard Vietnamese for confirm actions in
+    apps. Used by Apple Vietnamese and Google Android VI. Distinct from
+    "phê duyệt" (approve — granting permission).
+
+- term: rate
+  preferred: { vi-VN: "tỷ giá" }
+  partOfSpeech: noun
+  description: >
+    "Tỷ giá" (exchange rate) is the standard Vietnamese financial term for
+    rate in an exchange context. Used by Vietnamese banks and crypto exchanges.
+
+- term: pair
+  preferred: { vi-VN: "cặp" }
+  partOfSpeech: noun
+  description: >
+    "Cặp" (pair/couple) — standard Vietnamese for trading pair (e.g., ETH/USDC →
+    "cặp ETH/USDC"). Used by Binance VN and OKX VN.
+
+- term: activity
+  preferred: { vi-VN: "hoạt động" }
+  partOfSpeech: noun
+  description: >
+    "Hoạt động" (activity/operations). Standard Vietnamese UI term for an
+    activity feed or history section. Used by Google Android VI and Apple VI.
+
+- term: limits
+  preferred: { vi-VN: "giới hạn" }
+  partOfSpeech: noun
+  description: >
+    "Giới hạn" (limit/boundary). Standard Vietnamese for limits in financial
+    and UI contexts. Microsoft Terminology VI confirms.
+
+- term: sweep
+  preferred: { vi-VN: "quét" }
+  partOfSpeech: verb
+  description: >
+    "Quét" (to sweep/scan). The DeFi sweep action (collect all tokens/NFTs from
+    a collection). "Quét" is the closest Vietnamese equivalent. DRAFT: native
+    review recommended.
+
+- term: trustless
+  preferred: { vi-VN: "không cần tin cậy" }
+  partOfSpeech: adjective
+  description: >
+    "Không cần tin cậy" (does not require trust). This is the standard Vietnamese
+    explanation of "trustless" used in Vietnamese blockchain academic and media
+    contexts. For space-constrained UI prefer the DeFi explanation in tooltip.
+    DRAFT: native review recommended.
+
+- term: Disclosures
+  preferred: { vi-VN: "Công bố" }
+  partOfSpeech: noun
+  description: >
+    Legal/regulatory disclosures. "Công bố" (disclosure/announcement) is the
+    standard Vietnamese legal term. "Tiết lộ" is informal disclosure (a secret)
+    and would be a false friend in legal context.
+  forbidden: { vi-VN: ["Tiết lộ"] }
+
+- term: onchain
+  preferred: { vi-VN: "trên chuỗi" }
+  partOfSpeech: adjective
+  description: >
+    "Trên chuỗi" (on the chain). Emerging standard in Vietnamese crypto media.
+    Off-chain → "ngoài chuỗi". Do not use the English passthrough "onchain" or
+    "on-chain".
+  forbidden: { vi-VN: ["onchain", "on-chain"] }
+
+- term: all time
+  preferred: { vi-VN: "Mọi thời điểm" }
+  partOfSpeech: phrase
+  description: >
+    Time-range filter label (all-time high, all-time data). "Mọi thời điểm"
+    (at all times / throughout all time) is the correct financial label.
+    Do NOT use "mọi lúc" (always/constantly — a temporal adverb, not a range).
+  forbidden: { vi-VN: ["mọi lúc"] }
+
+- term: clearing price
+  preferred: { vi-VN: "giá thanh toán" }
+  partOfSpeech: noun
+  description: >
+    "Giá thanh toán" (settlement/clearing price). Vietnamese financial term
+    used in auction and exchange contexts. "Giá bù trừ" is a back-office
+    accounting term and too narrow. DRAFT: native review recommended.
+
+- term: bid
+  preferred: { vi-VN: "giá thầu" }
+  partOfSpeech: noun
+  description: >
+    Auction bid. "Giá thầu" (bid price) — standard Vietnamese procurement and
+    auction term. Do not use "đặt giá" (to place a price) as a noun. Distinct
+    from "giá chào bán" (ask/offer).
+
+- term: order filled
+  preferred: { vi-VN: "lệnh được thực hiện" }
+  partOfSpeech: phrase
+  description: >
+    "Lệnh" (order) + "được thực hiện" (has been executed/fulfilled). Standard
+    Vietnamese securities trading term for a filled order. Do NOT use "lệnh được
+    điền đầy" (physically filled — false friend from literal "fill").
+  forbidden: { vi-VN: ["lệnh được điền đầy"] }
+
+- term: out of range
+  preferred: { vi-VN: "ngoài phạm vi" }
+  partOfSpeech: phrase
+  description: >
+    "Ngoài phạm vi" (outside the range/scope). Standard Vietnamese for out-of-range.
+    In range → "trong phạm vi".
+
+- term: in range
+  preferred: { vi-VN: "trong phạm vi" }
+  partOfSpeech: phrase
+  description: Consistent with the "ngoài phạm vi" root.
+
+- term: front-run
+  preferred: { vi-VN: "chạy trước" }
+  partOfSpeech: verb
+  description: >
+    "Chạy trước" (to run ahead of). Vietnamese crypto media uses this term for
+    front-running in MEV/sandwich attack contexts. DRAFT: native review recommended.
+
+- term: spread
+  doNotTranslate: true
+  description: >
+    "Spread" is used in English in Vietnamese financial contexts (Binance VN,
+    Vietnamese forex brokers). Keeping English is defensible; "chênh lệch" is
+    the Vietnamese equivalent but less established in crypto UI.
+
+# --- Earn / yield domain (TLM ruling 2026-07-30; supersedes the r3 candidate ranking) ---
+
+- term: yield
+  preferred: { vi-VN: "lợi suất" }
+  partOfSpeech: noun
+  termType: rate
+  status: draft
+  description: >
+    Split by register — "lợi suất" is the precise METRIC noun (APY, quoted
+    rates, comparisons, tables, disclosures): "APY ước tính" for Estimated
+    APY. Consumer marketing about putting assets to work uses the natural
+    verb/adjectival framing "sinh lời": "Sinh lời từ USDC" for "Earn yield
+    on USDC"; the literal "nhận lợi suất" is the stiffer compliance-forward
+    fallback. AVOID "kiếm lãi" as the canonical/default term (promotional;
+    can imply straightforward interest/profit — r3 had ranked it first, this
+    ruling reverses that) and "kiếm lợi nhuận" (too strong a profit claim).
+    No forbidden scans — register-dependent, not hard-fails. TLM ruling
+    (2026-07-30); pending native + legal confirmation.
+
+- term: Limit
+  preferred: { vi-VN: "Giới hạn" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — the conventional
+    compact label. Full form where ambiguous: "lệnh giới hạn". TLM ruling
+    (2026-07-30); pending native confirmation.

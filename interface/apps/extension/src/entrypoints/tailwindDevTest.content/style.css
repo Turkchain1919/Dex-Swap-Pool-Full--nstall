@@ -1,0 +1,29 @@
+/*
+ * Tailwind v4 + shared Universe design tokens for content-script shadow-root UIs.
+ *
+ * Loaded via WXT `cssInjectionMode: 'ui'`: the compiled stylesheet is fetched at
+ * runtime and injected inside the shadow root (WXT rewrites `:root` selectors to
+ * `:host` and hoists `@property`/`@font-face` rules into the host document), so
+ * the isolated world never leaks styles into — or inherits styles from — the page.
+ *
+ * The explicit `.css` extension is required: WXT's getTsconfigAliases() turns the
+ * `@universe/tailwind/*` tsconfig path into a hard Vite alias with no extension
+ * resolution or package-exports mapping (see src/app/tailwind.css).
+ *
+ * No preflight and no fonts: preflight is unnecessary inside our own shadow root,
+ * and licensed font files aren't web-accessible from content scripts — text falls
+ * back to the system stacks declared by the token values.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "@universe/tailwind/tailwind.css";
+/* Shared @source registration for @universe/mycelium (see src/app/tailwindSources.css). */
+@import "../../app/tailwindSources.css";
+/* Mycelium compat side-car stylesheets (see src/app/tailwind.css): the safelist
+ * registered above emits rules that dereference --stext- and --sbtn- custom
+ * properties only these define. WXT rewrites their :root selectors to :host,
+ * so the definitions stay scoped to the shadow root. */
+@import "@universe/mycelium/text-compat.css";
+@import "@universe/mycelium/shimmer.css";
+@import "@universe/mycelium/button-compat.css";

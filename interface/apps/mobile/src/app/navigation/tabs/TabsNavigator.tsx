@@ -1,0 +1,30 @@
+import type { BottomTabBarProps } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { CustomTabBar } from 'src/app/navigation/tabs/CustomTabBar/CustomTabBar'
+import type { TabsParamList } from 'src/app/navigation/types'
+import { ActivityScreen } from 'src/screens/ActivityScreen'
+import { ExploreScreen } from 'src/screens/ExploreScreen'
+import { WrappedHomeScreen } from 'src/screens/HomeScreen/HomeScreen'
+import { MobileScreens } from 'uniswap/src/types/screens/mobile'
+
+const Tab = createBottomTabNavigator<TabsParamList>()
+
+const WrappedCustomTabBar = (props: BottomTabBarProps): JSX.Element => <CustomTabBar {...props} />
+
+export const TabsNavigator = (): JSX.Element => {
+  return (
+    <Tab.Navigator
+      tabBar={WrappedCustomTabBar}
+      screenOptions={{
+        headerShown: false,
+        lazy: false, // Mount all tabs on first render
+        // freezeOnBlur off: under Fabric the freeze/thaw work stalls the main thread on tab switch.
+        freezeOnBlur: false,
+      }}
+    >
+      <Tab.Screen name={MobileScreens.Home} component={WrappedHomeScreen} />
+      <Tab.Screen name={MobileScreens.Explore} component={ExploreScreen} />
+      <Tab.Screen name={MobileScreens.Activity} component={ActivityScreen} />
+    </Tab.Navigator>
+  )
+}

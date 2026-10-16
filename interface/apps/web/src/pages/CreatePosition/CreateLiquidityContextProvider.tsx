@@ -1,0 +1,368 @@
+import { ProtocolVersion } from '@uniswap/client-data-api/dist/data/v1/poolTypes_pb'
+import type { HookEntry } from '@uniswap/client-liquidity/dist/uniswap/liquidity/v2/types_pb'
+import { Currency, Price, Token } from '@uniswap/sdk-core'
+import { Pair } from '@uniswap/v2-sdk'
+import { Pool as V3Pool } from '@uniswap/v3-sdk'
+import { Pool as V4Pool } from '@uniswap/v4-sdk'
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from 'react'
+import type { FeeBreakdown } from 'uniswap/src/features/fees/types'
+import { TransactionStep } from 'uniswap/src/features/transactions/steps/types'
+import { useEvent, usePrevious } from 'utilities/src/react/hooks'
+import { useDerivedPositionInfo } from '~/features/Liquidity/Create/hooks/useDerivedPositionInfo'
+import { useLiquidityUrlState } from '~/features/Liquidity/Create/hooks/useLiquidityUrlState'
+import {
+  type DynamicFeeTierSpeedbumpData,
+  PositionFlowStep,
+  type PositionState,
+  type PriceRangeState,
+  RangeAmountInputPriceMode,
+} from '~/features/Liquidity/Create/types'
+import { useSelectedFeeBreakdown } from '~/features/Liquidity/hooks/useSelectedFeeBreakdown'
+import { getPriceRangeInfo } from '~/features/Liquidity/utils/priceRangeInfo'
+import type { DepositState } from '~/types/liquidity'
+import { PositionField } from '~/types/position'
+
+export const DEFAULT_PRICE_RANGE_STATE: PriceRangeState = {
+  priceInverted: false,
+  fullRange: false,
+  minTick: undefined,
+  maxTick: undefined,
+  initialPrice: '',
+  inputMode: RangeAmountInputPriceMode.PRICE,
+}
+
+export const DEFAULT_DEPOSIT_STATE: DepositState = {
+  exactField: PositionField.TOKEN0,
+  exactAmounts: {},
+}
+
+const DEFAULT_POSITION_STATE: PositionState = {
+  fee: undefined,
+  hook: undefined,
+  userApprovedHook: undefined,
+  protocolVersion: ProtocolVersion.V4,
+}
+
+// Combined state interface
+interface BaseCreateLiquidityState {
+  protocolVersion: ProtocolVersion
+  creatingPoolOrPair?: boolean
+  poolId?: string
+  // Protocol fee (integer pips) for the selected tier's pool, carried on the poolInfo response so every
+  // create surface reads the same value; undefined for a not-yet-created pool.
+  protocolFee?: number
+  // See `useDerivedPositionInfo`.
+  poolHasNoActiveLiquidity?: boolean
+  // LP/protocol/all-in breakdown for the currently selected tier, computed once here so every surface
+  // (selector header, review modal, edit summary) shares it; undefined for a dynamic tier.
+  selectedFeeBreakdown?: FeeBreakdown
+  poolOrPairLoading?: boolean
+  poolOrPair: V4Pool | V3Pool | Pair | undefined
+  price: Price<Currency, Currency> | undefined
+  ticks: [Maybe<number>, Maybe<number>]
+
+  // From CreatePositionContext
+  isNativeTokenAOnly: boolean
+  positionState: PositionState
+  step: PositionFlowStep
+  currentTransactionStep?: { step: TransactionStep; accepted: boolean }
+  feeTierSearchModalOpen: boolean
+  hookSearchModalOpen: boolean
+  selectedHookEntry?: HookEntry
+  dynamicFeeTierSpeedbumpData: DynamicFeeTierSpeedbumpData
+
+  // From PriceRangeContext
+  priceRangeState: PriceRangeState
+
+  // From DepositContext
+  depositState: DepositState
+}
+
+interface CreateV2LiquidityState extends BaseCreateLiquidityState {
+  protocolVersion: ProtocolVersion.V2
+  poolOrPair: Pair | undefined
+  currencies: {
+    // sorted
+    display: { [key in PositionField]: Maybe<Currency> }
+    sdk: { [key in PositionField]: Maybe<Token> } // wrapped
+  }
+}
+
+interface CreateV3LiquidityState extends BaseCreateLiquidityState {
+  protocolVersion: ProtocolVersion.V3
+  poolOrPair: V3Pool | undefined
+  currencies: {
+    // sorted
+    display: { [key in PositionField]: Maybe<Currency> }
+    sdk: { [key in PositionField]: Maybe<Token> } // wrapped
+  }
+}
+
+interface CreateV4LiquidityState extends BaseCreateLiquidityState {
+  protocolVersion: ProtocolVersion.V4
+  poolOrPair: V4Pool | undefined
+  currencies: {
+    // sorted and both of these are equal for v4
+    display: { [key in PositionField]: Maybe<Currency> }
+    sdk: { [key in PositionField]: Maybe<Currency> }
+  }
+}
+
+type CreateLiquidityState = CreateV2LiquidityState | CreateV3LiquidityState | CreateV4LiquidityState
+
+// Combined context value interface
+type CreateLiquidityContextType = CreateLiquidityState & {
+  // Setters
+  setPositionState: React.Dispatch<React.SetStateAction<PositionState>>
+  setCurrencyInputs: React.Dispatch<React.SetStateAction<{ tokenA: Maybe<Currency>; tokenB: Maybe<Currency> }>>
+  setStep: (step: PositionFlowStep | null) => void
+  setCurrentTransactionStep: React.Dispatch<
+    React.SetStateAction<{ step: TransactionStep; accepted: boolean } | undefined>
+  >
+  setFeeTierSearchModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setHookSearchModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setSelectedHookEntry: React.Dispatch<React.SetStateAction<HookEntry | undefined>>
+  setDynamicFeeTierSpeedbumpData: React.Dispatch<React.SetStateAction<DynamicFeeTierSpeedbumpData>>
+  setPriceRangeState: React.Dispatch<React.SetStateAction<PriceRangeState>>
+  setDepositState: React.Dispatch<React.SetStateAction<DepositState>>
+  setRefetch: React.Dispatch<React.SetStateAction<(() => void) | undefined>>
+
+  // Transaction info
+  refetch?: () => void
+  refetchPoolData: () => void
+
+  // Reset functions
+  reset: () => void
+  resetPriceRange: () => void
+  resetDeposit: () => void
+}
+
+const CreateLiquidityContext = createContext<CreateLiquidityContextType | undefined>(undefined)
+
+export function CreateLiquidityContextProvider({
+  children,
+  currencyInputs,
+  setCurrencyInputs,
+  defaultInitialToken,
+  initialPositionState,
+  initialPriceRangeState,
+  initialDepositState,
+  initialFlowStep,
+}: {
+  children: React.ReactNode
+  currencyInputs: { tokenA: Maybe<Currency>; tokenB: Maybe<Currency> }
+  setCurrencyInputs: Dispatch<SetStateAction<{ tokenA: Maybe<Currency>; tokenB: Maybe<Currency> }>>
+  defaultInitialToken?: Maybe<Currency>
+  initialPositionState?: Partial<PositionState>
+  initialPriceRangeState?: Partial<PriceRangeState>
+  initialDepositState?: Partial<DepositState>
+  initialFlowStep: PositionFlowStep
+}) {
+  const [positionState, setPositionState] = useState<PositionState>(() => ({
+    ...DEFAULT_POSITION_STATE,
+    ...initialPositionState,
+  }))
+  // Use URL step as source of truth (always defined now with default)
+  const step = initialFlowStep
+  const [currentTransactionStep, setCurrentTransactionStep] = useState<
+    { step: TransactionStep; accepted: boolean } | undefined
+  >()
+
+  const [feeTierSearchModalOpen, setFeeTierSearchModalOpen] = useState(false)
+  const [hookSearchModalOpen, setHookSearchModalOpen] = useState(false)
+  const [selectedHookEntry, setSelectedHookEntry] = useState<HookEntry | undefined>()
+  const [dynamicFeeTierSpeedbumpData, setDynamicFeeTierSpeedbumpData] = useState<DynamicFeeTierSpeedbumpData>({
+    open: false,
+    wishFeeData: undefined,
+  })
+  const [refetch, setRefetch] = useState<() => void>()
+
+  // Initialize price range state
+  const initialFullRange = initialPriceRangeState?.fullRange ?? false
+  const [priceRangeState, setPriceRangeState] = useState<PriceRangeState>(() => ({
+    ...DEFAULT_PRICE_RANGE_STATE,
+    fullRange: initialFullRange,
+    ...initialPriceRangeState,
+  }))
+
+  // Initialize deposit state
+  const [depositState, setDepositState] = useState<DepositState>({
+    ...DEFAULT_DEPOSIT_STATE,
+    ...initialDepositState,
+  })
+
+  // Hooks are chain-specific: clear any selected hook when the selected tokens move to a different chain
+  const tokenChainId = currencyInputs.tokenA?.chainId ?? currencyInputs.tokenB?.chainId
+  const previousTokenChainId = usePrevious(tokenChainId)
+  useEffect(() => {
+    if (!tokenChainId || !previousTokenChainId || tokenChainId === previousTokenChainId) {
+      return
+    }
+    setSelectedHookEntry(undefined)
+    setPositionState((prevState) =>
+      prevState.hook ? { ...prevState, hook: undefined, userApprovedHook: undefined, fee: undefined } : prevState,
+    )
+  }, [tokenChainId, previousTokenChainId, setSelectedHookEntry, setPositionState])
+
+  // Derived info — the poolInfo response carries the pool's protocol fee (integer pips), so the flow no
+  // longer fetches it separately; it's undefined for a not-yet-created pool.
+  const derivedPositionInfo = useDerivedPositionInfo(currencyInputs, positionState)
+
+  // Get URL sync function from consolidated hook
+  const { setHistoryState, syncToUrl } = useLiquidityUrlState()
+
+  // Single sync effect with batched updates
+  useEffect(() => {
+    syncToUrl({
+      currencyInputs,
+      positionState,
+      priceRangeState,
+      depositState,
+    })
+  }, [currencyInputs, positionState, priceRangeState, depositState, syncToUrl])
+
+  // Derived price range info
+  const derivedPriceRangeInfo = useMemo(() => {
+    return getPriceRangeInfo({ derivedPositionInfo, state: priceRangeState, positionState })
+  }, [derivedPositionInfo, priceRangeState, positionState])
+
+  const poolOrPair = useMemo(() => {
+    if (!derivedPriceRangeInfo) {
+      return undefined
+    }
+
+    if (
+      derivedPositionInfo.protocolVersion === ProtocolVersion.V2 &&
+      derivedPriceRangeInfo.protocolVersion === ProtocolVersion.V2
+    ) {
+      return derivedPositionInfo.pair ?? derivedPriceRangeInfo.mockPair
+    }
+
+    if (
+      derivedPositionInfo.protocolVersion === ProtocolVersion.V3 &&
+      derivedPriceRangeInfo.protocolVersion === ProtocolVersion.V3
+    ) {
+      return derivedPositionInfo.pool ?? derivedPriceRangeInfo.mockPool
+    }
+
+    if (
+      derivedPositionInfo.protocolVersion === ProtocolVersion.V4 &&
+      derivedPriceRangeInfo.protocolVersion === ProtocolVersion.V4
+    ) {
+      return derivedPositionInfo.pool ?? derivedPriceRangeInfo.mockPool
+    }
+
+    return undefined
+  }, [derivedPositionInfo, derivedPriceRangeInfo])
+
+  // Reset functions
+  const reset = useEvent(() => {
+    setPositionState({
+      ...DEFAULT_POSITION_STATE,
+      protocolVersion: positionState.protocolVersion,
+    })
+    setCurrencyInputs({
+      tokenA: defaultInitialToken,
+      tokenB: undefined,
+    })
+    setHistoryState(PositionFlowStep.SELECT_TOKENS_AND_FEE_TIER)
+  })
+
+  const resetPriceRange = useEvent(() => {
+    setPriceRangeState(DEFAULT_PRICE_RANGE_STATE)
+  })
+
+  const resetDeposit = useEvent(() => {
+    setDepositState(DEFAULT_DEPOSIT_STATE)
+  })
+
+  const protocolSpecificValues = useMemo(() => {
+    if (derivedPositionInfo.protocolVersion === ProtocolVersion.V2) {
+      return {
+        protocolVersion: ProtocolVersion.V2 as const,
+        poolOrPair: poolOrPair as Pair,
+        currencies: derivedPositionInfo.currencies,
+      }
+    }
+
+    if (derivedPositionInfo.protocolVersion === ProtocolVersion.V3) {
+      return {
+        protocolVersion: ProtocolVersion.V3 as const,
+        poolOrPair: poolOrPair as V3Pool,
+        currencies: derivedPositionInfo.currencies,
+      }
+    }
+
+    return {
+      protocolVersion: ProtocolVersion.V4 as const,
+      poolOrPair: poolOrPair as V4Pool,
+      currencies: derivedPositionInfo.currencies,
+    }
+  }, [derivedPositionInfo.protocolVersion, poolOrPair, derivedPositionInfo.currencies])
+
+  const isNativeTokenAOnly = Boolean(currencyInputs.tokenA?.isNative && !currencyInputs.tokenB)
+
+  // Computed once here and shared via context so the selector header, review modal, and edit summary
+  // don't each recompute the same breakdown from the same inputs.
+  const selectedFeeBreakdown = useSelectedFeeBreakdown({
+    protocolVersion: protocolSpecificValues.protocolVersion,
+    fee: positionState.fee,
+    servedProtocolFee: derivedPositionInfo.protocolFee,
+    hook: positionState.hook,
+  })
+
+  const value: CreateLiquidityContextType = {
+    // State
+    ...protocolSpecificValues,
+    poolId: derivedPositionInfo.poolId,
+    protocolFee: derivedPositionInfo.protocolFee,
+    poolHasNoActiveLiquidity: derivedPositionInfo.poolHasNoActiveLiquidity,
+    selectedFeeBreakdown,
+    poolOrPairLoading: derivedPositionInfo.poolOrPairLoading,
+    creatingPoolOrPair: derivedPositionInfo.creatingPoolOrPair,
+    price: derivedPriceRangeInfo?.price,
+    ticks:
+      derivedPriceRangeInfo?.protocolVersion === ProtocolVersion.V2 || !derivedPriceRangeInfo
+        ? [undefined, undefined]
+        : derivedPriceRangeInfo.ticks,
+    isNativeTokenAOnly,
+    positionState,
+    step,
+    currentTransactionStep,
+    feeTierSearchModalOpen,
+    hookSearchModalOpen,
+    selectedHookEntry,
+    dynamicFeeTierSpeedbumpData,
+    priceRangeState,
+    depositState,
+    // Transaction info
+    refetch,
+    // Setters
+    setPositionState,
+    setStep: setHistoryState,
+    setCurrentTransactionStep,
+    setFeeTierSearchModalOpen,
+    setHookSearchModalOpen,
+    setSelectedHookEntry,
+    setDynamicFeeTierSpeedbumpData,
+    setPriceRangeState,
+    setDepositState,
+    setCurrencyInputs,
+    setRefetch,
+    refetchPoolData: derivedPositionInfo.refetchPoolData,
+    // Reset functions
+    reset,
+    resetPriceRange,
+    resetDeposit,
+  }
+
+  return <CreateLiquidityContext.Provider value={value}>{children}</CreateLiquidityContext.Provider>
+}
+
+export function useCreateLiquidityContext(): CreateLiquidityContextType {
+  const context = useContext(CreateLiquidityContext)
+  if (!context) {
+    throw new Error('useCreateLiquidityContext must be used within a CreateLiquidityContextProvider')
+  }
+  return context
+}

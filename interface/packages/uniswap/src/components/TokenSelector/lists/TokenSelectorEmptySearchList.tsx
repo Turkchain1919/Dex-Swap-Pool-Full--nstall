@@ -1,0 +1,53 @@
+import { UniverseChainId } from '@universe/chains'
+import { memo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useTokenSectionsForEmptySearch } from 'uniswap/src/components/TokenSelector/hooks/useTokenSectionsForEmptySearch'
+import { TokenSelectorList } from 'uniswap/src/components/TokenSelector/TokenSelectorList'
+import { OnSelectCurrency } from 'uniswap/src/components/TokenSelector/types'
+import type { AddressGroup } from 'uniswap/src/features/accounts/store/types/AccountsState'
+
+function TokenSelectorEmptySearchListInner({
+  addresses,
+  chainFilter,
+  chainIds,
+  onSelectCurrency,
+  renderedInModal,
+}: {
+  addresses: AddressGroup
+  onSelectCurrency: OnSelectCurrency
+  chainFilter: UniverseChainId | null
+  chainIds: UniverseChainId[]
+  renderedInModal: boolean
+}): JSX.Element {
+  const { t } = useTranslation()
+
+  const {
+    data: sections,
+    isLoading,
+    error,
+    refetch,
+  } = useTokenSectionsForEmptySearch({
+    addresses,
+    chainFilter,
+    chainIds,
+  })
+
+  // Recent searches are local, so a failed trending fetch shouldn't replace them with the error pane.
+  const hasError = Boolean(error) && !sections?.length
+
+  return (
+    <TokenSelectorList
+      showTokenAddress
+      errorText={t('token.selector.search.error')}
+      hasError={hasError}
+      loading={isLoading}
+      refetch={refetch}
+      sections={sections}
+      showTokenWarnings={true}
+      renderedInModal={renderedInModal}
+      onSelectCurrency={onSelectCurrency}
+    />
+  )
+}
+
+export const TokenSelectorEmptySearchList = memo(TokenSelectorEmptySearchListInner)

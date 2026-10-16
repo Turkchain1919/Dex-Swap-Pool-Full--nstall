@@ -1,0 +1,137 @@
+# Portuguese, Portugal (pt-PT) glossary.
+#
+# SEEDED from the Notion "i18n style guide: Portuguese (Português)" term table,
+# which is flagged 🇧🇷 (Brazil). The crypto term set is largely shared across
+# pt-BR and pt-PT, so these values are a strong starting point — but European
+# Portuguese diverges in spelling, verb forms, and some UI vocabulary.
+#
+# ⚠️ NEEDS EUROPEAN-PORTUGUESE NATIVE REVIEW before it is treated as ratified.
+# Until then this is a pt-BR-derived draft. Core DNT brand terms are inherited
+# from ../core/crypto.yml.
+
+- term: wallet
+  preferred: { pt-PT: "carteira" }
+
+- term: token
+  doNotTranslate: true
+  description: Keep English.
+
+- term: network cost
+  preferred: { pt-PT: "taxa de rede" }
+
+- term: fee
+  preferred: { pt-PT: "tarifa" }
+
+- term: crypto
+  preferred: { pt-PT: "cripto" }
+
+- term: cryptocurrency
+  preferred: { pt-PT: "criptomoeda" }
+
+- term: market cap
+  preferred: { pt-PT: "valor de mercado" }
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym. Spelled-out phrase is "valor total bloqueado".
+
+- term: seed phrase
+  preferred: { pt-PT: "frase de recuperação" }
+
+- term: recovery phrase
+  preferred: { pt-PT: "frase de recuperação" }
+
+- term: backup
+  doNotTranslate: true
+  description: Used as a noun ("backup"). The verb "to back up" is "Fazer backup".
+
+- term: private keys
+  preferred: { pt-PT: "chaves privadas" }
+
+- term: smart contract
+  preferred: { pt-PT: "contrato inteligente" }
+
+- term: wrapped
+  preferred: { pt-PT: "embrulhado" }
+
+- term: wrap
+  preferred: { pt-PT: "embrulhar" }
+  partOfSpeech: verb
+
+- term: unwrap
+  preferred: { pt-PT: "desembrulhar" }
+  partOfSpeech: verb
+
+- term: swap
+  preferred: { pt-PT: "trocar" }
+  partOfSpeech: verb
+
+- term: mint
+  preferred: { pt-PT: "cunhar" }
+  partOfSpeech: verb
+
+- term: slippage
+  preferred: { pt-PT: "deslizamento" }
+
+- term: smart wallet
+  doNotTranslate: true
+  description: Keep English.
+
+- term: passkey
+  preferred: { pt-PT: "chave de acesso" }
+  gender: feminine
+  forbidden: { pt-PT: ["passkey"] }
+  description: Apple's Portuguese term for passkey (draft — pt-PT needs native review).
+
+- term: onchain
+  doNotTranslate: true
+  description: >
+    Keep English "onchain". The literal calque "em cadeia" is a false friend —
+    it reads as "in a row / in a chain (sequence)", not "on the blockchain".
+    Re-scoped from core (2026-07-01): the core DNT rule wrongly forced English
+    into CJK locales where native terms are correct; pt-PT is one of the Latin
+    locales where keeping English is actually right.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: auctions
+  preferred: { pt-PT: "leilões" }
+  partOfSpeech: noun
+  status: native-ratified
+  description: >
+    Explore nav label renders "Leilões". Provenance: bug-bash native feedback
+    (2026-07-15). The Auctions tab is currently unkeyed app-side (universe
+    bug) — this pre-encodes the rendering for when the key lands.
+
+- term: Limit
+  preferred: { pt-PT: "Limite" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — the conventional
+    compact trading label, NOT the verb "Limitar" (reads as "restrict").
+    Full form where ambiguous: "ordem limitada". TLM ruling (2026-07-30);
+    pending native confirmation.
+
+- term: website
+  preferred: { pt-PT: "site" }
+  description: >
+    "Site" is the standard European Portuguese term (universal in pt press
+    and UIs). Vendor had this right; adopted 2026-07-31.
+
+- term: email
+  preferred: { pt-PT: "e-mail" }
+  description: >
+    European Portuguese orthography hyphenates the loanword (Priberam).
+    Label-case: "E-mail".
+
+- term: Spread
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Depth-chart bid-ask spread label. Vendor's "Distribuição" (distribution)
+    is a false sense.

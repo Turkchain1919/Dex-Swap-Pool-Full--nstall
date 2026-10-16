@@ -1,0 +1,76 @@
+import { isDevEnv } from '@universe/environment'
+import { Flex, Text } from '@universe/mycelium'
+import { useIsDarkMode } from '@universe/mycelium/theme-hooks-compat'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { StyleSheet } from 'react-native'
+import { FadeInDown, FadeOutUp } from 'react-native-reanimated'
+import { getFullAppVersion, isNewArchEnabled } from 'src/utils/version'
+import { Image } from 'ui/src'
+import { AVATARS_DARK, AVATARS_LIGHT } from 'ui/src/assets'
+import { AnimatedFlex } from 'ui/src/components/layout/AnimatedFlex'
+import { ONE_SECOND_MS } from 'utilities/src/time/time'
+import { useTimeout } from 'utilities/src/time/timing'
+
+const SIGNATURE_VISIBLE_DURATION = ONE_SECOND_MS * 10
+
+export function FooterSettings(): JSX.Element {
+  const { t } = useTranslation()
+  const [showSignature, setShowSignature] = useState(false)
+  const isDarkMode = useIsDarkMode()
+
+  // Fade out signature after duration
+  useTimeout(
+    showSignature
+      ? (): void => {
+          setShowSignature(false)
+        }
+      : (): void => undefined,
+    SIGNATURE_VISIBLE_DURATION,
+  )
+
+  return (
+    <Flex gap="$spacing12">
+      {showSignature ? (
+        <AnimatedFlex alignItems="center" entering={FadeInDown} exiting={FadeOutUp} gap="$none" mt="$spacing16">
+          <Flex gap="$spacing4">
+            <Text color="$neutral3" textAlign="center" variant="body2">
+              {t('settings.footer')}
+            </Text>
+          </Flex>
+          {isDarkMode ? (
+            <Image source={AVATARS_DARK} style={styles.responsiveImage} />
+          ) : (
+            <Image source={AVATARS_LIGHT} style={styles.responsiveImage} />
+          )}
+        </AnimatedFlex>
+      ) : null}
+      <Flex gap="$spacing4" pb="$spacing24">
+        <Text
+          color="$neutral3"
+          mt="$spacing8"
+          variant="body2"
+          onLongPress={(): void => {
+            setShowSignature(true)
+          }}
+        >
+          {t('settings.version', { appVersion: getFullAppVersion({ includeBuildNumber: true }) })}
+        </Text>
+        {/* Dev-only diagnostic: surfaces RN architecture so QA can tell new-arch builds apart. */}
+        {isDevEnv() ? (
+          <Text color={isNewArchEnabled() ? '$statusSuccess' : '$neutral3'} variant="body3">
+            {`New Architecture: ${isNewArchEnabled() ? 'Enabled' : 'Disabled'}`}
+          </Text>
+        ) : null}
+      </Flex>
+    </Flex>
+  )
+}
+
+const styles = StyleSheet.create({
+  responsiveImage: {
+    aspectRatio: 135 / 76,
+    height: undefined,
+    width: '100%',
+  },
+})

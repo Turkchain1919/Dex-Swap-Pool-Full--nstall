@@ -1,0 +1,63 @@
+/*
+ * TextCompat support CSS: import once from the Tailwind entry stylesheet,
+ * alongside `@import "@universe/mycelium/tailwind"` (whose @universe/tailwind
+ * compat layer supplies the shared media-* variants and animation presets).
+ *
+ * - --stext-font-* pin the legacy web font stacks verbatim (theme/fonts.ts):
+ *   the @universe/tailwind font-basel-* utilities resolve to different family
+ *   names + fallbacks, which changes metrics when the webfont isn't loaded.
+ * - --stext-* color vars are the pinned legacy theme palette
+ *   (spore-text-colors.generated.css) — @universe/tailwind's semantic colors
+ *   drift from it (e.g. neutral1 #222222 vs #131313) and cover only a subset
+ *   of the tokens the Text `color` prop accepts.
+ */
+@import "./spore-text-colors.generated.css";
+
+:root {
+  /* Verbatim legacy web font stacks (theme/fonts.ts baselBook/baselMedium — identical on web — and monospaceFontFamily). */
+  --stext-font-book:
+    Basel, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --stext-font-medium:
+    Basel, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --stext-font-mono:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Courier New", monospace;
+}
+
+/* Matches ui/src/loading/Shine.web.tsx's `shine` keyframes exactly. */
+@keyframes stext-shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+  to {
+    -webkit-mask-position: -50%;
+  }
+}
+
+/* Unlayered, and the attribute is doubled: this must outrank `@layer utilities` classes and any unlayered legacy `a` / `a:hover` global a consumer still carries. */
+/* Order is Tailwind's emitted variant order, not PSEUDO_VARIANT's; equal-specificity rules tie-break on source order. */
+a[data-stext-anchor][data-stext-anchor] {
+  color: var(--stext-a-col);
+}
+a[data-stext-anchor~='w']:focus-within {
+  color: var(--stext-a-col-w);
+}
+@media (hover: hover) {
+  a[data-stext-anchor~='h']:hover {
+    color: var(--stext-a-col-h);
+  }
+}
+a[data-stext-anchor~='f']:focus {
+  color: var(--stext-a-col-f);
+}
+a[data-stext-anchor~='v']:focus-visible {
+  color: var(--stext-a-col-v);
+}
+a[data-stext-anchor~='a']:active {
+  color: var(--stext-a-col-a);
+}
+a[data-stext-anchor~='d'][aria-disabled='true'] {
+  color: var(--stext-a-col-d);
+}

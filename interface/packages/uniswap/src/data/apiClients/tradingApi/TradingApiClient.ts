@@ -1,0 +1,299 @@
+import {
+  createTradingApiClient,
+  createTradingApiFetchClient,
+  type GetFeatureFlagHeadersOptions,
+  provideSessionService,
+  SharedQueryClient,
+  TradingApi,
+  TRADING_API_PATHS,
+  type TradingApiClient as TradingApiClientType,
+  tryProvideSession,
+} from '@universe/api'
+import { type UniverseChainId, Platform } from '@universe/chains'
+import { getExperimentsClient } from '@universe/experiments'
+import {
+  EthAsErc20UniswapXProperties,
+  Experiments,
+  FeatureFlags,
+  getExperimentValueFromLayer,
+  getFeatureFlag,
+  Layers,
+  waitForStatsigReady,
+} from '@universe/gating'
+import { SessionGateSource } from '@universe/sessions'
+import { config } from 'uniswap/src/config'
+import { getUniswapServiceUrls } from 'uniswap/src/constants/urls'
+import { BASE_UNISWAP_HEADERS } from 'uniswap/src/data/apiClients/createUniswapFetchClient'
+import { getIsPermissionedTokenFromCache } from 'uniswap/src/data/apiClients/tradingApi/getIsPermissionedTokenFromCache'
+import { getChainInfo } from 'uniswap/src/features/chains/chainInfo'
+import { filterChainIdsByPlatform } from 'uniswap/src/features/chains/utils'
+import { tradingApiToUniverseChainId } from 'uniswap/src/features/transactions/swap/utils/tradingApi'
+
+// Built through the trading factory so web requests carry the session cookie.
+const TradingFetchClient = createTradingApiFetchClient({
+  getBaseUrl: () => getUniswapServiceUrls(config).tradingApiUrl,
+  getHeaders: () => ({
+    ...BASE_UNISWAP_HEADERS,
+    'x-api-key': config.tradingApiKey,
+    // Correlate experiment buckets with the trading backend (our own service): the active
+    // set rides as `x-experiments` on every trading request. Merged here, not in a shared
+    // client, so experiment data never leaks to third-party clients (Blockaid, Jupiter).
+    ...getExperimentsClient().toHeaders(),
+  }),
+  // Absorb any experiments the backend echoes or originates (BE→FE).
+  onResponse: (response) => getExperimentsClient().absorb(response),
+  getSessionService: () =>
+    provideSessionService({
+      getBaseUrl: () => getUniswapServiceUrls(config).apiBaseUrlV2,
+    }),
+  getSession: tryProvideSession,
+  source: SessionGateSource.FetchUniswap,
+})
+
+/**
+ * Helper to add a header only if enabled.
+ */
+function addHeaderIfEnabled(params: { headers: Record<string, string>; key: string; enabled: boolean }): void {
+  const { headers, key, enabled } = params
+  if (enabled) {
+    headers[key] = 'true'
+  }
+}
+
+export enum TradingApiHeaders {
+  UniversalRouterVersion = 'x-universal-router-version',
+  RequestSwapSteps = 'x-universal-router-swapsteps',
+  UniquoteEnabled = 'x-uniquote-enabled',
+  ViemProviderEnabled = 'x-viem-provider-enabled',
+  Erc20EthEnabled = 'x-erc20eth-enabled',
+  ChainedActionsEnabled = 'x-chained-actions-enabled',
+  UnirouteEnabled = 'x-uniroute-enabled',
+  UniroutePulumiEnabled = 'x-uniroute-pulumi-enabled',
+  DisableUniswapInterfaceFees = 'x-disable-uniswap-interface-fees',
+}
+
+// Universal Router 2.2.0 is required to route through permissioned pools; 2.1.1/2.0 don't work
+// with them, so for a permissioned token 2.2.0 is a correctness requirement, not a rollout
+// choice. No separate feature flag gates this: permissioned-pool support (the backend and this)
+// launches as a unit, so "a permissioned token is involved" is itself the gate.
+function getUniversalRouterVersionHeader(params: {
+  chainId: UniverseChainId | undefined
+  options?: GetFeatureFlagHeadersOptions
+}): string {
+  if (isPermissionedTokenRequest(params)) {
+    return TradingApi.UniversalRouterVersion._2_2_0
+  }
+
+  const { chainId } = params
+  const chainSupports211 =
+    !!chainId && getChainInfo(chainId).supportedURVersions.includes(TradingApi.UniversalRouterVersion._2_1_1)
+  const useUR211 = getFeatureFlag(FeatureFlags.UseUniversalRouterVersion211) && chainSupports211
+  return useUR211 ? TradingApi.UniversalRouterVersion._2_1_1 : TradingApi.UniversalRouterVersion._2_0
+}
+
+// Quote requests carry the underlying token addresses, so permissioned status is resolved from
+// the cached `/permissions` results. Swap requests pre-resolve it (their embedded quote only
+// references v4-adapter addresses, which never appear in the `/permissions` cache).
+function isPermissionedTokenRequest({
+  chainId,
+  options,
+}: {
+  chainId: UniverseChainId | undefined
+  options?: GetFeatureFlagHeadersOptions
+}): boolean {
+  if (options?.isPermissionedToken !== undefined) {
+    return options.isPermissionedToken
+  }
+  if (options?.permissionCheckTokenAddresses?.length) {
+    return getIsPermissionedTokenFromCache({
+      queryClient: SharedQueryClient,
+      tokenAddresses: options.permissionCheckTokenAddresses,
+      chainId,
+    })
+  }
+  return false
+}
+
+/**
+ * Returns the headers for the trading API client that are based on feature flags
+ *
+ * NOTE: Be sure to confirm that adding this header does not cause a CORS issue
+ * with the web environments.
+ */
+export const getFeatureFlaggedHeaders = async (
+  tradingApiPath: (typeof TRADING_API_PATHS)[keyof typeof TRADING_API_PATHS],
+  options?: GetFeatureFlagHeadersOptions,
+): Promise<HeadersInit> => {
+  await waitForStatsigReady()
+  const chainId = tradingApiToUniverseChainId(options?.chainId)
+  const headers: Record<string, string> = {
+    [TradingApiHeaders.UniversalRouterVersion]: getUniversalRouterVersionHeader({ chainId, options }),
+  }
+  const uniquoteEnabled = getFeatureFlag(FeatureFlags.UniquoteEnabled)
+  const viemProviderEnabled = getFeatureFlag(FeatureFlags.ViemProviderEnabled)
+  addHeaderIfEnabled({ headers, key: TradingApiHeaders.UniquoteEnabled, enabled: uniquoteEnabled })
+  addHeaderIfEnabled({ headers, key: TradingApiHeaders.ViemProviderEnabled, enabled: viemProviderEnabled })
+
+  const chainedActionsEnabled = getFeatureFlag(FeatureFlags.ChainedActions)
+  const unirouteEnabled = getFeatureFlag(FeatureFlags.UnirouteEnabled)
+  const shouldRequestSwapSteps = getFeatureFlag(FeatureFlags.RequestSwapSteps)
+  const ethAsErc20UniswapXEnabled = getExperimentValueFromLayer<
+    typeof Layers.SwapPage,
+    Experiments.EthAsErc20UniswapX,
+    boolean
+  >({
+    layerName: Layers.SwapPage,
+    param: EthAsErc20UniswapXProperties.EthAsErc20UniswapXEnabled,
+    defaultValue: false,
+  })
+  const disableUniswapInterfaceFees = getFeatureFlag(FeatureFlags.NoUniswapInterfaceFees)
+  switch (tradingApiPath) {
+    case TRADING_API_PATHS.quote:
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.UnirouteEnabled, enabled: unirouteEnabled })
+      // TODO(INFRA-1595): remove once backend is fully migrated to new route
+      headers[TradingApiHeaders.UniroutePulumiEnabled] = 'true'
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.Erc20EthEnabled, enabled: ethAsErc20UniswapXEnabled })
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.ChainedActionsEnabled, enabled: chainedActionsEnabled })
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.RequestSwapSteps, enabled: shouldRequestSwapSteps })
+      addHeaderIfEnabled({
+        headers,
+        key: TradingApiHeaders.DisableUniswapInterfaceFees,
+        enabled: disableUniswapInterfaceFees,
+      })
+      break
+    case TRADING_API_PATHS.plan:
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.ChainedActionsEnabled, enabled: chainedActionsEnabled })
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.Erc20EthEnabled, enabled: ethAsErc20UniswapXEnabled })
+      break
+    case TRADING_API_PATHS.order:
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.Erc20EthEnabled, enabled: ethAsErc20UniswapXEnabled })
+      break
+    case TRADING_API_PATHS.swap7702:
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.UnirouteEnabled, enabled: unirouteEnabled })
+      // TODO(INFRA-1595): remove once backend is fully migrated to new route
+      headers[TradingApiHeaders.UniroutePulumiEnabled] = 'true'
+      addHeaderIfEnabled({ headers, key: TradingApiHeaders.Erc20EthEnabled, enabled: ethAsErc20UniswapXEnabled })
+      break
+  }
+  return headers
+}
+
+// Narrowed to `TradingApiClientType` type safety to ensure we are only using the plan endpoints with sessions, until full migration
+export const TradingApiClient: TradingApiClientType = createTradingApiClient({
+  fetchClient: TradingFetchClient,
+  getFeatureFlagHeaders: getFeatureFlaggedHeaders,
+  // Entry gateway serves trading at unversioned paths (same as the session/Plan client and DataApi),
+  // so no `/v1` prefix. The legacy trading-api-labs cloudflare host required `/v1`; we no longer use it.
+  getApiPathPrefix: () => '',
+})
+
+// Default maximum amount of combinations wallet<>chainId per check delegation request
+const DEFAULT_CHECK_VALIDATIONS_BATCH_THRESHOLD = 140
+
+// Utility function to chunk wallet addresses for batching
+function chunkWalletAddresses(params: {
+  walletAddresses: Address[]
+  chainIds: TradingApi.ChainId[]
+  batchThreshold: number
+}): Address[][] {
+  const { walletAddresses, chainIds, batchThreshold } = params
+  const totalCombinations = walletAddresses.length * chainIds.length
+
+  if (totalCombinations <= batchThreshold) {
+    return [walletAddresses]
+  }
+
+  const maxWalletsPerBatch = Math.floor(batchThreshold / chainIds.length)
+  const chunks: Address[][] = []
+
+  for (let i = 0; i < walletAddresses.length; i += maxWalletsPerBatch) {
+    chunks.push(walletAddresses.slice(i, i + maxWalletsPerBatch))
+  }
+
+  return chunks
+}
+
+function mergeDelegationResponses(
+  responses: TradingApi.WalletCheckDelegationResponseBody[],
+): TradingApi.WalletCheckDelegationResponseBody {
+  if (responses.length === 0) {
+    throw new Error('No responses to merge')
+  }
+
+  const firstResponse = responses[0]
+  if (!firstResponse) {
+    throw new Error('First response is undefined')
+  }
+
+  if (responses.length === 1) {
+    return firstResponse
+  }
+
+  const mergedDelegationDetails: Record<string, TradingApi.ChainDelegationMap> = {}
+
+  for (const response of responses) {
+    for (const [walletAddress, chainDelegationMap] of Object.entries(response.delegationDetails)) {
+      mergedDelegationDetails[walletAddress] = chainDelegationMap
+    }
+  }
+
+  return {
+    requestId: firstResponse.requestId,
+    delegationDetails: mergedDelegationDetails,
+  }
+}
+
+export type CheckWalletDelegation = (
+  params: TradingApi.WalletCheckDelegationRequestBody,
+) => Promise<TradingApi.WalletCheckDelegationResponseBody>
+
+export async function checkWalletDelegation(
+  params: TradingApi.WalletCheckDelegationRequestBody,
+  batchThreshold: number = DEFAULT_CHECK_VALIDATIONS_BATCH_THRESHOLD,
+): Promise<TradingApi.WalletCheckDelegationResponseBody> {
+  const { walletAddresses, chainIds } = params
+
+  // Filter out SVM chains - check_delegation only supports EVM chains
+  const evmChainIds = filterChainIdsByPlatform(chainIds, Platform.EVM)
+
+  // If no wallet addresses provided or if no EVM chains after filtering, return empty response
+  if (!walletAddresses || walletAddresses.length === 0 || evmChainIds.length === 0) {
+    return {
+      requestId: '',
+      delegationDetails: {},
+    }
+  }
+
+  // Ensure batchThreshold is at least the number of chain IDs
+  const effectiveBatchThreshold = Math.max(batchThreshold, evmChainIds.length)
+
+  const totalCombinations = walletAddresses.length * evmChainIds.length
+
+  // If under threshold, make a single request
+  if (totalCombinations <= effectiveBatchThreshold) {
+    return await TradingApiClient.checkWalletDelegationWithoutBatching({
+      walletAddresses,
+      chainIds: evmChainIds,
+    })
+  }
+
+  // Split into batches
+  const walletChunks = chunkWalletAddresses({
+    walletAddresses,
+    chainIds: evmChainIds,
+    batchThreshold: effectiveBatchThreshold,
+  })
+
+  // Make batched requests
+  const batchPromises = walletChunks.map((chunk) =>
+    TradingApiClient.checkWalletDelegationWithoutBatching({
+      walletAddresses: chunk,
+      chainIds: evmChainIds,
+    }),
+  )
+
+  const responses = await Promise.all(batchPromises)
+
+  // Merge all responses
+  return mergeDelegationResponses(responses)
+}

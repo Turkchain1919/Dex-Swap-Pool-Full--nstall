@@ -1,0 +1,24 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "src/global.d.ts"],
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "types": ["node"],
+    "paths": {}
+  },
+  "references": [
+    {
+      "path": "../environment"
+    },
+    {
+      "path": "../utilities"
+    },
+    {
+      "path": "../config"
+    },
+    {
+      "path": "../api"
+    }
+  ]
+}

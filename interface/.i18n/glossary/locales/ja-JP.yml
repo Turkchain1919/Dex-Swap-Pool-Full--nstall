@@ -1,0 +1,189 @@
+# Japanese (ja-JP) glossary.
+#
+# Verbatim from the Notion "i18n style guide: Japanese" term table. Authoritative
+# team source. Japanese uses phonetic katakana transliteration for most crypto
+# loanwords (ウォレット, スワップ) and semantic translation for the rest. Core DNT
+# brand terms are inherited from ../core/crypto.yml.
+
+- term: wallet
+  preferred: { ja-JP: "ウォレット" }
+
+- term: smart wallet
+  preferred: { ja-JP: "スマート ウォレット" }
+
+- term: token
+  preferred: { ja-JP: "トークン" }
+
+- term: network cost
+  preferred: { ja-JP: "ネットワーク代" }
+
+- term: fee
+  preferred: { ja-JP: "手数料" }
+
+- term: crypto
+  preferred: { ja-JP: "暗号" }
+
+- term: cryptocurrency
+  preferred: { ja-JP: "暗号通貨" }
+
+- term: market cap
+  preferred: { ja-JP: "時価総額" }
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym (total value locked).
+
+- term: seed phrase
+  preferred: { ja-JP: "シードフレーズ" }
+
+- term: recovery phrase
+  preferred: { ja-JP: "リカバリフレーズ" }
+
+- term: backup
+  preferred: { ja-JP: "バックアップ" }
+
+- term: smart contract
+  preferred: { ja-JP: "スマートコントラクト" }
+
+- term: wrap
+  preferred: { ja-JP: "ラップ" }
+
+- term: unwrap
+  preferred: { ja-JP: "アンラップ" }
+
+- term: swap
+  preferred: { ja-JP: "スワップ" }
+
+- term: mint
+  preferred: { ja-JP: "ミント" }
+  description: >
+    Transliterate — "ミント". 発行 (hakkō) is generic issuance (books, securities) with no
+    DeFi connotation; Japanese DeFi/NFT products use ミント in headings and action labels,
+    and 発行 only as a definitional gloss. Updated from the Notion "発行" on 2026-06-24
+    (evidence-based; sync the Notion JP guide).
+
+- term: slippage
+  preferred: { ja-JP: "スリッページ" }
+
+- term: max slippage
+  preferred: { ja-JP: "最大スリッページ" }
+
+- term: function
+  preferred: { ja-JP: "関数" }
+
+- term: trade
+  preferred: { ja-JP: "交換" }
+  description: >
+    Never 「貿易」 (that is trade as in global/import-export trade). Use 交換 (exchange),
+    取引 (transact), or スワップ (swap) as the sense requires.
+
+- term: transaction history
+  preferred: { ja-JP: "履歴" }
+
+- term: explore
+  preferred: { ja-JP: "発見" }
+
+- term: minutes
+  preferred: { ja-JP: "分" }
+  description: Time unit (also when shortened as "m").
+
+- term: passkey
+  preferred: { ja-JP: "パスキー" }
+  forbidden: { ja-JP: ["passkey"] }
+  description: Apple's Japanese term for passkey (katakana). Verify with native reviewer.
+
+- term: private keys
+  preferred: { ja-JP: "秘密鍵" }
+  description: Standard ja-JP term for private keys (coverage fill, audit 2026-06-23).
+
+- term: onchain
+  preferred: { ja-JP: "オンチェーン" }
+  forbidden: { ja-JP: ["onchain", "on-chain"] }
+  description: >
+    Re-scoped from core/crypto.yml (2026-07-01): a blanket core DNT rule
+    wrongly forced English "onchain" into ja-JP, where the katakana
+    transliteration オンチェーン is correct and far more readable for an
+    app-store audience. Forbidden catches the bare English so this
+    regression can't recur.
+
+# --- Earn / yield domain (TLM ruling 2026-07-30; supersedes the 2026-07-28 収益 draft) ---
+
+- term: yield
+  preferred: { ja-JP: "利回り" }
+  partOfSpeech: noun
+  termType: rate
+  status: draft
+  description: >
+    利回り is the financial METRIC — return expressed relative to invested
+    capital (MOF and market-glossary usage; APY, rate displays, comparisons).
+    Supersedes the 2026-07-28 draft that pinned 収益 and discouraged 利回り:
+    the resolution is a taxonomy, not one noun — yield-as-rate = 利回り;
+    earned amounts = 運用益 (see `earnings`); protocol incentives = 報酬 (see
+    `rewards`). "Earn yield" copy TRANSCREATES rather than translating
+    mechanically: 暗号資産で利回りを得る, USDC・USDT・ETHを運用, or
+    資産を預けて運用益を獲得 — never 利回りを稼ぐ. The glossary ruling stays
+    yield = 利回り even when the sentence is transcreated. TLM ruling
+    (2026-07-30), anchored to MOF usage; pending native ja confirmation.
+
+- term: earnings
+  preferred: { ja-JP: "運用益" }
+  partOfSpeech: noun
+  termType: amount
+  status: draft
+  description: >
+    運用益 — profit/gains produced through asset management: an amount or
+    outcome, not the rate itself. Estimated earnings: 予想運用益. Carries the
+    "investment management" (運用) connotation; part of the 2026-07-30 yield
+    taxonomy. Pending native ja confirmation.
+
+- term: rewards
+  preferred: { ja-JP: "報酬" }
+  partOfSpeech: noun
+  termType: amount
+  status: draft
+  description: >
+    報酬 — ONLY for actual protocol incentives (token emissions, campaigns,
+    loyalty programs), never as a synonym for yield or earnings. Part of the
+    2026-07-30 yield taxonomy.
+
+- term: Start Earning
+  preferred: { ja-JP: "収益を得る" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Earn CTA — 収益を得る is the ratified verb-first form (native review r3,
+    2026-07-28, endorsed by TLM). 収益獲得を始める is acceptable but
+    noun-heavy; never the bare 獲得を開始. NOTE: the 2026-07-30 yield
+    taxonomy (利回り rate / 運用益 amount) postdates this ratification and
+    uses neither noun — at next native review confirm whether the CTA stands
+    as transcreation or moves to a 運用 framing (運用を始める) if product
+    accepts the asset-management connotation.
+
+# --- Round-3 native review (2026-07-28) ---
+
+- term: "New:"
+  preferred: { ja-JP: "新機能：" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Marketing-label prefix for feature announcements. Always the full-width
+    colon 「：」 after the label — never half-width ": ". Provenance:
+    native review r3 (2026-07-28), endorsed by TLM.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  preferred: { ja-JP: "指値" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — 指値 is the
+    established Japanese financial term for a limit order, NOT a literal
+    verb meaning "restrict" (制限する). Full form where ambiguous:
+    指値注文. TLM ruling (2026-07-30); pending native confirmation.

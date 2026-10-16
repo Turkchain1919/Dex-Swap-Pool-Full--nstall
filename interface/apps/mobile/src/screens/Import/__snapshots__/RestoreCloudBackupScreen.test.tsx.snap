@@ -1,0 +1,276 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RestoreCloudBackupScreen > renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+  >
+    <div
+      class="css-view-175oi2r"
+      style="padding-top: 48px; padding-left: 0px; padding-right: 0px;"
+    >
+      <div
+        class="css-view-175oi2r r-flex-13awgt0 r-justifyContent-17s6mgv"
+        style="margin-bottom: 0px;"
+      >
+        <div
+          class="css-view-175oi2r"
+          style="gap: 0px; padding-right: 16px; padding-left: 16px; padding-bottom: 16px;"
+        >
+          <div
+            class="css-view-175oi2r"
+            style="gap: 8px; margin: 12px 12px 12px 12px;"
+          >
+            <div
+              class="css-text-146c3p1"
+              dir="auto"
+              style="padding-top: 0px; font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+            >
+              account.cloud.backup.title
+            </div>
+            <div
+              class="css-text-146c3p1"
+              dir="auto"
+              style="font-size: 15px; line-height: 18px; font-family: Basel Grotesk; font-weight: 400;"
+            >
+              account.cloud.backup.subtitle
+            </div>
+          </div>
+          <div
+            class="css-view-175oi2r"
+          >
+            <div>
+              <div
+                class="css-view-175oi2r"
+                style="gap: 8px;"
+              >
+                <button
+                  android_ripple="[object Object]"
+                  role="button"
+                  style="padding: 16px; border-radius: 20px; border-width: 1px;"
+                >
+                  <div
+                    class="css-view-175oi2r"
+                    style="gap: 12px;"
+                  >
+                    <div
+                      class="css-view-175oi2r"
+                      data-testid="account-icon"
+                      style="width: 36px; height: 36px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px;"
+                    >
+                      <div
+                        class="css-view-175oi2r"
+                      >
+                        <div
+                          class="css-view-175oi2r"
+                          style="width: 36px; height: 36px;"
+                        >
+                          <div
+                            height="36"
+                            viewbox="0 0 36 36"
+                            width="36"
+                          >
+                            <div
+                              cx="18"
+                              cy="18"
+                              fill="#23A3FF"
+                              opacity="0.1216"
+                              r="18"
+                            />
+                            <div
+                              transform="translate(6, 6) scale(0.5)"
+                            >
+                              <div
+                                clip-rule="evenodd"
+                                d="M25.6134 1.13864C25.0735 -0.379548 22.9265 -0.379548 22.3866 1.13864L21.541 3.51642C20.0519 7.70386 15.2686 9.68516 11.2547 7.77716L8.97544 6.69372C7.52015 6.00196 6.00196 7.52015 6.69372 8.97544C9.18135 14.2087 6.59816 20.4451 1.13864 22.3866C-0.379548 22.9265 -0.379548 25.0735 1.13864 25.6134C6.59816 27.5549 9.18135 33.7913 6.69372 39.0246C6.00196 40.4798 7.52015 41.998 8.97544 41.3063L11.2547 40.2228C15.2686 38.3148 20.0519 40.2961 21.541 44.4836L22.3866 46.8614C22.9265 48.3795 25.0735 48.3796 25.6134 46.8614L26.459 44.4836C27.9481 40.2961 32.7314 38.3148 36.7453 40.2228L39.0246 41.3063C40.4798 41.998 41.998 40.4798 41.3063 39.0246L40.2228 36.7453C38.3148 32.7314 40.2961 27.9481 44.4836 26.459L46.8614 25.6134C48.3795 25.0735 48.3796 22.9265 46.8614 22.3866L44.4836 21.541C40.2961 20.0519 38.3148 15.2686 40.2228 11.2547L41.3063 8.97544C41.998 7.52015 40.4798 6.00196 39.0246 6.69372L36.7453 7.77716C32.7314 9.68516 27.9481 7.70386 26.459 3.51642L25.6134 1.13864Z"
+                                fill="#23A3FF"
+                                fill-rule="evenodd"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="css-view-175oi2r"
+                      style="flex-grow: 1; flex-shrink: 1;"
+                    >
+                      <div
+                        class="css-view-175oi2r"
+                      >
+                        <div
+                          class="css-text-146c3p1"
+                          dir="auto"
+                          style="font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+                        />
+                      </div>
+                      <div
+                        class="css-text-146c3p1"
+                        dir="auto"
+                        style="font-size: 15px; line-height: 18px; font-family: Basel Grotesk; font-weight: 400;"
+                      >
+                        Nov 8, 55840 5:30 PM
+                      </div>
+                    </div>
+                    <div
+                      class="css-view-175oi2r"
+                    >
+                      <div
+                        class="css-view-175oi2r"
+                        style="border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; transform: rotate(180deg);"
+                      >
+                        <div
+                          fill="none"
+                          stroke-width="8"
+                          style="width: 20px; height: 20px; color: rgba(19, 19, 19, 0.63);"
+                          viewbox="0 0 24 24"
+                        >
+                          <div
+                            clip-rule="evenodd"
+                            d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+                <button
+                  android_ripple="[object Object]"
+                  role="button"
+                  style="padding: 16px; border-radius: 20px; border-width: 1px;"
+                >
+                  <div
+                    class="css-view-175oi2r"
+                    style="gap: 12px;"
+                  >
+                    <div
+                      class="css-view-175oi2r"
+                      data-testid="account-icon"
+                      style="width: 36px; height: 36px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px;"
+                    >
+                      <div
+                        class="css-view-175oi2r"
+                      >
+                        <div
+                          class="css-view-175oi2r"
+                          style="width: 36px; height: 36px;"
+                        >
+                          <div
+                            height="36"
+                            viewbox="0 0 36 36"
+                            width="36"
+                          >
+                            <div
+                              cx="18"
+                              cy="18"
+                              fill="#85754A"
+                              opacity="0.1216"
+                              r="18"
+                            />
+                            <div
+                              transform="translate(6, 6) scale(0.5)"
+                            >
+                              <div
+                                clip-rule="evenodd"
+                                d="M24 39C32.2843 39 39 32.2843 39 24C39 15.7157 32.2843 9 24 9C15.7157 9 9 15.7157 9 24C9 32.2843 15.7157 39 24 39ZM24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48Z"
+                                fill="#85754A"
+                                fill-rule="evenodd"
+                              />
+                              <div
+                                clip-rule="evenodd"
+                                d="M33 24C33 28.9706 28.9706 33 24 33C19.0294 33 15 28.9706 15 24C15 19.0294 19.0294 15 24 15C28.9706 15 33 19.0294 33 24Z"
+                                fill="#85754A"
+                                fill-rule="evenodd"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="css-view-175oi2r"
+                      style="flex-grow: 1; flex-shrink: 1;"
+                    >
+                      <div
+                        class="css-view-175oi2r"
+                      >
+                        <div
+                          class="css-text-146c3p1"
+                          dir="auto"
+                          style="font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+                        />
+                      </div>
+                      <div
+                        class="css-text-146c3p1"
+                        dir="auto"
+                        style="font-size: 15px; line-height: 18px; font-family: Basel Grotesk; font-weight: 400;"
+                      >
+                        Nov 8, 55840 5:13 PM
+                      </div>
+                    </div>
+                    <div
+                      class="css-view-175oi2r"
+                    >
+                      <div
+                        class="css-view-175oi2r"
+                        style="border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; transform: rotate(180deg);"
+                      >
+                        <div
+                          fill="none"
+                          stroke-width="8"
+                          style="width: 20px; height: 20px; color: rgba(19, 19, 19, 0.63);"
+                          viewbox="0 0 24 24"
+                        >
+                          <div
+                            clip-rule="evenodd"
+                            d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-view-175oi2r"
+      style="padding-right: 16px; padding-left: 16px; top: 0px; right: 0px; left: 0px; z-index: 1020; pointer-events: box-none;"
+    >
+      <button
+        android_ripple="[object Object]"
+        data-testid="onboarding-header-back"
+        hitslop="24"
+        role="button"
+        style="background-color: transparent;"
+      >
+        <div
+          class="css-view-175oi2r"
+          style="border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; transform: rotate(0deg);"
+        >
+          <div
+            fill="none"
+            stroke-width="8"
+            style="width: 28px; height: 28px; color: rgba(19, 19, 19, 0.63);"
+            viewbox="0 0 24 24"
+          >
+            <div
+              clip-rule="evenodd"
+              d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

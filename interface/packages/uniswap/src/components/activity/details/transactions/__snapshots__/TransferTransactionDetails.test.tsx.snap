@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TransferTransactionDetails Component > renders TransferTransactionDetails without error 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center gap-[8px] p-[32px]"
+  >
+    <h2
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [line-height:40px] [font-weight:485] [color:var(--stext-neutral1)] text-center"
+    >
+      -
+    </h2>
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-center gap-[8px]"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        -
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,22 @@
+/*
+ * Shared Tailwind `@source` registration, imported by both extension stylesheets
+ * (src/app/tailwind.css and src/entrypoints/tailwindDevTest.content/style.css).
+ *
+ * Tailwind's automatic source detection only scans the Vite root (apps/extension),
+ * so class names used inside workspace packages (e.g. the cva variant strings in
+ * mycelium's flex.tsx, or styled-factory conversions under uniswap) would never be
+ * emitted. Packages declare their own scan roots — and their test-file exclusions,
+ * since probe literals in test fixtures aren't style sources — in a stylesheet
+ * they ship; `@source` paths resolve relative to the stylesheet that declares
+ * them, so importing those files here leaves no cross-package path to maintain
+ * (a missed source was exactly the silent failure mode debugged in INFRA-2960).
+ */
+@import "@universe/mycelium/tailwind-sources.css";
+@import "uniswap/tailwind-sources.css";
+@import "wallet/tailwind-sources.css";
+
+/* Compat class names are built at runtime, so nothing scans them out of source. The
+   mycelium entry registers this safelist, but the extension imports
+   @universe/tailwind/tailwind.css instead, so it must register it itself.
+   Gated by scripts/checkCompatCss.ts. */
+@source "../../../../packages/mycelium/compat-classes.gen.txt";

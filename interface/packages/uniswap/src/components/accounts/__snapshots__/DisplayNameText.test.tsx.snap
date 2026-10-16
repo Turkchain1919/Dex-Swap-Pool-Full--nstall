@@ -1,0 +1,67 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DisplayNameText > renders address display name without error 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row grow items-center"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] [white-space:initial] shrink-[1]"
+    >
+      0x82D56A352367453f74FC0dC7B071b311da373Fa6
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayNameText > renders ens display name without error 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row grow items-center"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] [white-space:initial] shrink-[1]"
+    >
+      vitalik.eth
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayNameText > renders local display name without error 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row grow items-center"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] [white-space:initial] shrink-[1]"
+    >
+      Wallet 1
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayNameText > renders unitag without error 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row grow items-center"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] [white-space:initial] shrink-[1]"
+    >
+      luni
+    </span>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-[0] pl-[2px]"
+    >
+      <img
+        height="24"
+        src="mock-asset-UNITAG_DARK_SMALL.png"
+        style="vertical-align: sub;"
+        width="24"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

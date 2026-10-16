@@ -1,0 +1,203 @@
+appId: com.uniswap.mobile.dev
+jsEngine: graaljs
+tags:
+  - language-agnostic
+env:
+  E2E_RECOVERY_PHRASE: ${E2E_RECOVERY_PHRASE}
+  DATADOG_API_KEY: ${DATADOG_API_KEY}
+  PLATFORM: ${PLATFORM}
+  GITHUB_REF_NAME: ${GITHUB_REF_NAME}
+  GITHUB_SHA: ${GITHUB_SHA}
+  GITHUB_RUN_ID: ${GITHUB_RUN_ID}
+---
+# Initialize Performance Tracking
+- runScript:
+    file: ../../scripts/performance/dist/actions/init-tracking.js
+    env:
+      PLATFORM: ${PLATFORM}
+
+# Start Flow Tracking
+- runScript:
+    file: ../../scripts/performance/dist/actions/start-flow.js
+    env:
+      FLOW_NAME: 'explore-favorite-token'
+
+# Setup: Start app, recover wallet, and navigate to explore
+- runFlow: ../../shared-flows/start.yaml
+- runFlow: ../../shared-flows/recover-fast.yaml
+- runFlow: ../../shared-flows/navigate-to-explore.yaml
+
+# --- Test Case: Search for and favorite a token ---
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'ExploreSearchInput'
+      PHASE: 'start'
+
+# Tap on the search input field
+- tapOn:
+    id: ${output.testIds.ExploreSearchInput}
+
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'ExploreSearchInput'
+      PHASE: 'end'
+
+# Search for a specific token (using USDC as it's popular and should be available)
+- inputText: "USDC"
+
+# Wait for search results to load. Wait on the result row's testID — a text
+# wait on ".*USDC.*" passes trivially because the search input itself contains
+# "USDC" before any result renders.
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+      id: "token-option-1-USDC"
+    timeout: 15000
+
+# Tap on the USDC token result
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'USDC_Token_Result'
+      PHASE: 'start'
+
+# Mainnet USDC row testID (token-option-<chainId>-<symbol>, TokenOptionItem.tsx) —
+# deterministic, unlike text "USDC" index 1 which depends on how many exact-"USDC"
+# text nodes have rendered.
+- tapOn:
+    id: "token-option-1-USDC"
+
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'USDC_Token_Result'
+      PHASE: 'end'
+
+- waitForAnimationToEnd
+
+# Assert navigation to token details page
+- assertVisible:
+    id: ${output.testIds.TokenDetailsHeaderText}
+
+# Wait for page to load
+- waitForAnimationToEnd
+
+# --- Test Case: Favorite the token ---
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'FavoriteToken'
+      PHASE: 'start'
+
+# Tap the favorite heart icon
+- tapOn:
+    id: 'token-details-favorite-button'
+
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'FavoriteToken'
+      PHASE: 'end'
+
+- waitForAnimationToEnd
+
+# Go back to explore by tapping back twice
+- tapOn:
+    id: ${output.testIds.Back}
+
+- extendedWaitUntil:
+    visible: 'noop'
+    timeout: 2000
+    optional: true
+
+- tapOn:
+    id: ${output.testIds.Back}
+- waitForAnimationToEnd
+
+# Look for Favorites section header
+- extendedWaitUntil:
+    visible:
+      id: ${output.testIds.FavoriteTokensHeader}
+    timeout: 3000
+
+# Verify USDC appears in the favorites section
+- extendedWaitUntil:
+    visible:
+      id: "${output.testIds.FavoriteTokenCardPrefix}USDC"
+    timeout: 3000
+
+# --- Test Case: Unfavorite the token ---
+# Tap on the favorited USDC token from the favorites section
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'USDC_From_Favorites'
+      PHASE: 'start'
+
+- tapOn:
+    text: "USDC"
+    index: 0
+
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'USDC_From_Favorites'
+      PHASE: 'end'
+
+- waitForAnimationToEnd
+
+# Tap on the favorite button to unfavorite the token
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'UnfavoriteToken'
+      PHASE: 'start'
+
+# Tap the favorite heart icon to unfavorite
+- tapOn:
+    id: ${output.testIds.TokenDetailsFavoriteButton}
+
+- runScript:
+    file: ../../scripts/performance/dist/actions/track-action.js
+    env:
+      ACTION: 'tap'
+      TARGET: 'UnfavoriteToken'
+      PHASE: 'end'
+
+- waitForAnimationToEnd
+
+# Go back to explore
+- tapOn:
+    id: ${output.testIds.Back}
+- waitForAnimationToEnd
+
+# Verify USDC is no longer in favorites
+- extendedWaitUntil:
+    notVisible:
+      id: "${output.testIds.FavoriteTokenCardPrefix}USDC"
+    timeout: 3000
+
+# End Flow Tracking
+- runScript:
+    file: ../../scripts/performance/dist/actions/end-flow.js
+
+# Upload Metrics (for CI/Maestro Cloud)
+- runScript:
+    file: ../../scripts/performance/upload-metrics.js
+    env:
+      DATADOG_API_KEY: ${DATADOG_API_KEY}
+      GITHUB_REF_NAME: ${GITHUB_REF_NAME}
+      GITHUB_SHA: ${GITHUB_SHA}
+      GITHUB_RUN_ID: ${GITHUB_RUN_ID}
+      ENVIRONMENT: 'maestro_cloud'

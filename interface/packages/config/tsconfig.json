@@ -1,0 +1,18 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "types": ["node"],
+    "paths": {
+      "@universe/config/*": ["./src/*"]
+    }
+  },
+  "references": [
+    {
+      "path": "../../config/vitest-presets"
+    }
+  ]
+}

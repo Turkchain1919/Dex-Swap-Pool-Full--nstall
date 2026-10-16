@@ -1,0 +1,109 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorCallout > should not render errorMessage if true 1`] = `
+<DocumentFragment>
+  <div
+    class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row gap-[12px] p-[12px] bg-surface2 rounded-[16px]"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 self-start p-[12px] bg-critical-secondary rounded-[12px]"
+    >
+      <svg
+        fill="currentColor"
+        stroke-width="8"
+        style="width: 20px; height: 20px;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M21.6074 17.1522L15.0004 4.79599C13.7204 2.40199 10.2814 2.40199 9.00042 4.79599L2.39349 17.1522C1.21949 19.3482 2.81353 22.0001 5.30853 22.0001H18.6923C21.1863 22.0001 22.7814 19.3472 21.6074 17.1522ZM11.2504 10.0001C11.2504 9.58609 11.5864 9.25009 12.0004 9.25009C12.4144 9.25009 12.7504 9.58609 12.7504 10.0001V14.0001C12.7504 14.4141 12.4144 14.7501 12.0004 14.7501C11.5864 14.7501 11.2504 14.4141 11.2504 14.0001V10.0001ZM12.0204 18.0001C11.4684 18.0001 11.0153 17.5521 11.0153 17.0001C11.0153 16.4481 11.4584 16.0001 12.0104 16.0001H12.0204C12.5734 16.0001 13.0204 16.4481 13.0204 17.0001C13.0204 17.5521 12.5724 18.0001 12.0204 18.0001Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] items-start flex-wrap shrink-[1] gap-[4px]"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-statusCritical)]"
+      >
+        Something went wrong
+      </span>
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        There was an error fetching data required for your transaction.
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ErrorCallout > should render defaults 1`] = `
+<DocumentFragment>
+  <div
+    class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row gap-[12px] p-[12px] bg-surface2 rounded-[16px]"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 self-start p-[12px] bg-critical-secondary rounded-[12px]"
+    >
+      <svg
+        fill="currentColor"
+        stroke-width="8"
+        style="width: 20px; height: 20px;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M21.6074 17.1522L15.0004 4.79599C13.7204 2.40199 10.2814 2.40199 9.00042 4.79599L2.39349 17.1522C1.21949 19.3482 2.81353 22.0001 5.30853 22.0001H18.6923C21.1863 22.0001 22.7814 19.3472 21.6074 17.1522ZM11.2504 10.0001C11.2504 9.58609 11.5864 9.25009 12.0004 9.25009C12.4144 9.25009 12.7504 9.58609 12.7504 10.0001V14.0001C12.7504 14.4141 12.4144 14.7501 12.0004 14.7501C11.5864 14.7501 11.2504 14.4141 11.2504 14.0001V10.0001ZM12.0204 18.0001C11.4684 18.0001 11.0153 17.5521 11.0153 17.0001C11.0153 16.4481 11.4584 16.0001 12.0104 16.0001H12.0204C12.5734 16.0001 13.0204 16.4481 13.0204 17.0001C13.0204 17.5521 12.5724 18.0001 12.0204 18.0001Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] items-start flex-wrap shrink-[1] gap-[4px]"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-statusCritical)]"
+      >
+        Something went wrong
+      </span>
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        There was an error fetching data required for your transaction.
+      </span>
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral3)]"
+      >
+        Request failed: test
+      </span>
+      <div
+        class="[container-name:true] flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] rounded-[12px] bg-transparent flex-row mt-[2px] [cursor:pointer] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] hover:opacity-[var(--ch-opacity)] active:opacity-[var(--ca-opacity)] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] [text-decoration:none] group"
+        role="button"
+        style="--ch-opacity: 0.8; --ca-opacity: 0.6; transition: 100ms;"
+        tabindex="0"
+      >
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row gap-[4px]"
+        >
+          <svg
+            fill="none"
+            stroke-width="8"
+            style="width: 16px; height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M14.6667 8C14.6667 11.676 11.676 14.6667 8.00004 14.6667C5.45204 14.6667 3.16399 13.248 2.02999 10.9634C1.86599 10.6334 2.00077 10.2333 2.33077 10.07C2.65944 9.90532 3.06067 10.0413 3.224 10.3706C4.13133 12.1986 5.96137 13.334 8.00004 13.334C10.9407 13.334 13.3334 10.9413 13.3334 8.00065C13.3334 5.05998 10.9407 2.66732 8.00004 2.66732C6.07537 2.66732 4.33143 3.71065 3.39343 5.33398H5.33337C5.70204 5.33398 6.00004 5.63265 6.00004 6.00065C6.00004 6.36865 5.70204 6.66732 5.33337 6.66732H2.00004C1.63137 6.66732 1.33337 6.36865 1.33337 6.00065V2.66732C1.33337 2.29932 1.63137 2.00065 2.00004 2.00065C2.36871 2.00065 2.66671 2.29932 2.66671 2.66732V4.00602C3.90204 2.35736 5.86471 1.33398 8.00004 1.33398C11.676 1.33332 14.6667 4.324 14.6667 8Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span
+            class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-medium)] text-[14px] [line-height:16.1px] [font-weight:535] [color:var(--stext-neutral1)]"
+          >
+            Try again
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

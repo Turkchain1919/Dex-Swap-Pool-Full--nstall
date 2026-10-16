@@ -1,0 +1,135 @@
+# Portuguese, Brazil (pt-BR) glossary.
+#
+# Verbatim from the Notion "i18n style guide: Portuguese (Português)" term table
+# (🇧🇷 Brazil). Authoritative team source. Core DNT brand terms are inherited
+# from ../core/crypto.yml.
+
+- term: wallet
+  preferred: { pt-BR: "carteira" }
+  description: Translated in Portuguese (unlike es-ES/fr-FR which keep "wallet").
+
+- term: token
+  doNotTranslate: true
+  description: Keep English.
+
+- term: network cost
+  preferred: { pt-BR: "taxa de rede" }
+  description: Blockchain network fees. (Guide lists this as "network fee".)
+
+- term: fee
+  preferred: { pt-BR: "tarifa" }
+  description: Uniswap Labs interface fee.
+
+- term: crypto
+  preferred: { pt-BR: "cripto" }
+
+- term: cryptocurrency
+  preferred: { pt-BR: "criptomoeda" }
+
+- term: market cap
+  preferred: { pt-BR: "valor de mercado" }
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym. Spelled-out phrase is "valor total bloqueado".
+
+- term: seed phrase
+  preferred: { pt-BR: "frase de recuperação" }
+
+- term: recovery phrase
+  preferred: { pt-BR: "frase de recuperação" }
+
+- term: backup
+  doNotTranslate: true
+  description: Used as a noun only ("backup"). The verb "to back up" is "Fazer backup".
+
+- term: private keys
+  preferred: { pt-BR: "chaves privadas" }
+
+- term: smart contract
+  preferred: { pt-BR: "contrato inteligente" }
+
+- term: wrapped
+  preferred: { pt-BR: "embrulhado" }
+
+- term: wrap
+  preferred: { pt-BR: "embrulhar" }
+  partOfSpeech: verb
+
+- term: unwrap
+  preferred: { pt-BR: "desembrulhar" }
+  partOfSpeech: verb
+
+- term: swap
+  preferred: { pt-BR: "trocar" }
+  partOfSpeech: verb
+
+- term: mint
+  preferred: { pt-BR: "cunhar" }
+  partOfSpeech: verb
+
+- term: slippage
+  doNotTranslate: true
+  description: >
+    Keep English — Binance pt-BR, PancakeSwap pt-BR, and Uniswap's own pt-BR blog all keep
+    "slippage". Three rival PT translations (deslizamento/derrapagem/deslize) never converged,
+    which is itself the evidence. Updated from "deslizamento" 2026-06-24 (evidence-based).
+  forbidden: { pt-BR: ["deslizamento", "derrapagem"] }
+
+- term: smart wallet
+  doNotTranslate: true
+  description: Keep English.
+
+- term: passkey
+  preferred: { pt-BR: "chave de acesso" }
+  gender: feminine
+  forbidden: { pt-BR: ["passkey"] }
+  description: Apple's Portuguese term for passkey. Verify with native reviewer.
+
+- term: onchain
+  doNotTranslate: true
+  description: >
+    Keep English "onchain". The literal calque "em cadeia" is a false friend —
+    it reads as "in a row / in a chain (sequence)", not "on the blockchain".
+    Re-scoped from core (2026-07-01): the core DNT rule wrongly forced English
+    into CJK locales where native terms are correct; pt-BR is one of the Latin
+    locales where keeping English is actually right.
+
+# --- Earn / yield domain (TLM native review, 2026-07-28) ---
+
+- term: yield
+  preferred: { pt-BR: "rendimentos" }
+  partOfSpeech: noun
+  termType: amount
+  status: native-ratified
+  description: >
+    Plural "rendimentos" in pt-BR Earn copy (originally corpus-derived from
+    shipped copy, then ratified). pt-BR plural vs pt-PT singular "rendimento"
+    is accepted variance, NOT an error — do not "fix" one to match the other.
+    Possessives agree with multi-token lists ("seus USDT, USDC e ETH").
+    TLM native review (Thomas Osmonson, 2026-07-28).
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: auctions
+  preferred: { pt-BR: "leilões" }
+  partOfSpeech: noun
+  status: draft
+  description: >
+    Explore nav label "Leilões" — mirrors the pt-PT bug-bash native ruling
+    (2026-07-15); same standard term in Brazilian Portuguese. Pending BR
+    native confirmation.
+
+- term: Limit
+  preferred: { pt-BR: "Limite" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — the conventional
+    compact trading label, NOT the verb "Limitar" (reads as "restrict").
+    Full form where ambiguous: "ordem limitada". TLM ruling (2026-07-30);
+    pending native confirmation.

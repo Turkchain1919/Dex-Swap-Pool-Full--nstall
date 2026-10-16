@@ -1,0 +1,156 @@
+import { ProtocolVersion } from '@uniswap/client-data-api/dist/data/v1/poolTypes_pb'
+import { Currency } from '@uniswap/sdk-core'
+import { tickToPrice } from '@uniswap/v3-sdk'
+import { tickToPrice as tickToPriceV4 } from '@uniswap/v4-sdk'
+import { UniverseChainId } from '@universe/chains'
+import JSBI from 'jsbi'
+import { UTCTimestamp } from 'lightweight-charts'
+import { useEffect, useState } from 'react'
+import { useLocalizationContext } from 'uniswap/src/features/language/LocalizationContext'
+import { getWrappedTokenIfExists } from 'uniswap/src/utils/currency'
+import { NumberType } from 'utilities/src/format/types'
+import { LiquidityBarData } from '~/features/Liquidity/charts/LiquidityChart/types'
+import { calculateTokensLocked } from '~/features/Liquidity/charts/LiquidityChart/utils/calculateTokensLocked'
+import { usePoolActiveLiquidity } from '~/features/Liquidity/hooks/usePoolTickData'
+import { V2Reserves } from '~/features/Liquidity/utils/v2SyntheticTicks'
+import { PositionField } from '~/types/position'
+
+export function useLiquidityBarData({
+  sdkCurrencies,
+  feeTier,
+  isReversed,
+  chainId,
+  version,
+  tickSpacing,
+  hooks,
+  poolId,
+  v2Reserves,
+}: {
+  sdkCurrencies: { [field in PositionField]: Currency }
+  feeTier: number
+  isReversed: boolean
+  chainId: UniverseChainId
+  version: ProtocolVersion
+  tickSpacing?: number
+  hooks?: string
+  poolId?: string
+  v2Reserves?: V2Reserves
+}) {
+  const { formatNumberOrString } = useLocalizationContext()
+
+  const activePoolData = usePoolActiveLiquidity({
+    sdkCurrencies,
+    feeAmount: feeTier,
+    version,
+    poolId,
+    chainId,
+    tickSpacing,
+    hooks,
+    v2Reserves,
+  })
+
+  const [tickData, setTickData] = useState<{
+    barData: LiquidityBarData[]
+    activeRangeData?: LiquidityBarData
+    activeRangePercentage?: number
+  }>()
+
+  const {
+    data: ticksProcessed,
+    activeTick,
+    currentTick,
+    liquidity,
+    isLoading,
+    error,
+    tickSpacing: resolvedTickSpacing,
+  } = activePoolData
+
+  useEffect(() => {
+    async function formatData() {
+      if (!ticksProcessed || activeTick === undefined || !liquidity || resolvedTickSpacing === undefined) {
+        // Publish an empty result once the source has settled so `loading` can resolve.
+        if (!isLoading) {
+          setTickData({ barData: [] })
+        }
+        return
+      }
+
+      let activeRangePercentage: number | undefined
+      let activeRangeIndex: number | undefined
+
+      const barData: LiquidityBarData[] = []
+      for (let index = 0; index < ticksProcessed.length; index++) {
+        const t = ticksProcessed[index]
+
+        // Lightweight-charts require the x-axis to be time; a fake time base on index is provided
+        const fakeTime = (isReversed ? index * 1000 : (ticksProcessed.length - index) * 1000) as UTCTimestamp
+        const isActive = activeTick === t.tick
+
+        let price0 = t.sdkPrice
+        let price1 = t.sdkPrice.invert()
+
+        if (isActive && currentTick !== undefined) {
+          activeRangeIndex = index
+          activeRangePercentage = 1 - (currentTick - t.tick) / resolvedTickSpacing
+
+          // v3 denominates prices in wrapped tokens; chains with no wrapped native (Arc, Tempo)
+          // have none, so fall through to the v4 conversion — same tick math, and its sort
+          // comparator is the one that handles a native currency.
+          const wrappedToken0 = getWrappedTokenIfExists(sdkCurrencies.TOKEN0)
+          const wrappedToken1 = getWrappedTokenIfExists(sdkCurrencies.TOKEN1)
+          price0 =
+            version === ProtocolVersion.V3 && wrappedToken0 && wrappedToken1
+              ? tickToPrice(wrappedToken0, wrappedToken1, t.tick)
+              : tickToPriceV4(sdkCurrencies.TOKEN0, sdkCurrencies.TOKEN1, t.tick)
+          price1 = price0.invert()
+        }
+
+        const nextTick = ticksProcessed[index + 1]?.tick
+
+        const { amount0Locked, amount1Locked } = calculateTokensLocked({
+          token0: sdkCurrencies.TOKEN0,
+          token1: sdkCurrencies.TOKEN1,
+          tickSpacing: resolvedTickSpacing,
+          currentTick: currentTick ?? 0,
+          amount: JSBI.BigInt(t.liquidityActive.toString()),
+          nextTick,
+          tick: t,
+        })
+
+        barData.push({
+          tick: t.tick,
+          liquidity: parseFloat(t.liquidityActive.toString()),
+          price0: formatNumberOrString({ value: price0.toSignificant(), type: NumberType.SwapTradeAmount }),
+          price1: formatNumberOrString({ value: price1.toSignificant(), type: NumberType.SwapTradeAmount }),
+          time: fakeTime,
+          amount0Locked,
+          amount1Locked,
+        })
+      }
+
+      const activeRangeData = activeRangeIndex !== undefined ? barData[activeRangeIndex] : undefined
+
+      // Reverse data so that token0 is on the left by default
+      if (!isReversed) {
+        barData.reverse()
+      }
+      setTickData({ barData, activeRangeData, activeRangePercentage })
+    }
+
+    formatData()
+  }, [
+    ticksProcessed,
+    activeTick,
+    currentTick,
+    liquidity,
+    sdkCurrencies,
+    formatNumberOrString,
+    isReversed,
+    feeTier,
+    version,
+    resolvedTickSpacing,
+    isLoading,
+  ])
+
+  return { tickData, activeTick, loading: (isLoading || !tickData) && !error }
+}

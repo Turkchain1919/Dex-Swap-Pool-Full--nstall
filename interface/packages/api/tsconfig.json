@@ -1,0 +1,29 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.json", "src/**/*.tsx", "src/**/*.mts"],
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "paths": {
+      "@universe/api/*": ["./src/*"]
+    },
+    "types": ["chrome", "node"]
+  },
+  "references": [
+    {
+      "path": "../../config/vitest-presets"
+    },
+    {
+      "path": "../environment"
+    },
+    {
+      "path": "../utilities"
+    },
+    {
+      "path": "../sessions"
+    },
+    {
+      "path": "../config"
+    }
+  ]
+}

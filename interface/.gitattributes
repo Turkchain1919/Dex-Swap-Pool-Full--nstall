@@ -1,0 +1,11 @@
+# Windows files should use crlf line endings
+# https://help.github.com/articles/dealing-with-line-endings/
+*.bat text eol=crlf
+
+# Machine-written translation memory shards (i18n_generate_translations.yml,
+# one file per locale). A line-wise auto-merge of two divergent shards can
+# produce duplicated keys or invalid JSON that the next pipeline run trusts —
+# force any divergence to a loud conflict instead. Deliberately NOT
+# linguist-generated: the batch PR review is the memory's only content gate,
+# so the diff must stay visible; per-locale sharding keeps it small.
+.i18n/memory/*.json merge=binary

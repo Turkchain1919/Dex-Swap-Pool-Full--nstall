@@ -1,0 +1,65 @@
+{
+  "tags": ["scope:uniswap", "type:lib"],
+  "targets": {
+    "prepare": {
+      "executor": "nx:noop",
+      "dependsOn": ["contracts:compile:abi", "contracts:compile:v3"]
+    },
+    "contracts:compile:abi": {
+      "command": "typechain --target ethers-v5 --out-dir src/abis/types \"./src/abis/**/*.json\"",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": ["{projectRoot}/src/abis/**/*.json", "!{projectRoot}/src/abis/types/**", "ciCacheBust"],
+      "outputs": ["{projectRoot}/src/abis/types/*.ts", "{projectRoot}/src/abis/types/factories"]
+    },
+    "contracts:compile:v3": {
+      "command": "xargs typechain --target ethers-v5 --out-dir src/abis/types/v3 < src/abis/v3-type-filepaths.txt",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": ["{projectRoot}/package.json", "{projectRoot}/src/abis/v3-type-filepaths.txt", "ciCacheBust"],
+      "outputs": ["{projectRoot}/src/abis/types/v3/**"]
+    },
+    "check:deps:usage": {},
+    "typecheck": {},
+    "format": {},
+    "format:check": {},
+    "lint:oxlint": {},
+    "lint:oxlint:fix": {},
+    "lint:oxlint:fast": {},
+    "lint": {},
+    "lint:fix": {},
+    "check": {},
+    "check:fast": {},
+    "test": {
+      "command": "vitest run",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test:shard": {
+      "command": "vitest run --shard=${VITEST_SHARD:-1/1}",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"],
+      "inputs": [
+        "sourceFiles",
+        "^production",
+        "{projectRoot}/**/*.test.*",
+        "{projectRoot}/**/*.spec.*",
+        { "env": "VITEST_SHARD" }
+      ],
+      "cache": true
+    },
+    "snapshots": {
+      "command": "vitest run -u",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

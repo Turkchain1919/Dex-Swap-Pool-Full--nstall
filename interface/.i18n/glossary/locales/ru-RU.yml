@@ -1,0 +1,345 @@
+# Russian (ru-RU) glossary.
+#
+# Seeded from the June-2026 audit's adversarially-verified findings.
+# This file exists because the March-2026 pipeline ran with ZERO ru-RU glossary,
+# producing 7 critical and 58 major defects — the worst single defect being a
+# mass unratified substitution of «секретная фраза» for «фраза восстановления»
+# across ~80 security-critical strings including legal consent checkboxes. Other
+# systemic failures: «passkey» left as bare English (~30+ strings), «своп»
+# wholesale replaced by generic «обмен», «закрытый ключ» displaced by anglicism
+# «приватный ключ» in export/security screens, ERC-20 approval fragmented across
+# four Russian verbs, and mint barbarisms «заминчено»/«свопнуто» in
+# high-frequency transaction status strings.
+#
+# Voice (button labels use infinitive, wizard titles use imperative) lives in
+# ../../style/locales/ru-RU.md.
+#
+# Schema: term / preferred / forbidden / doNotTranslate / gender /
+#         partOfSpeech / domain / description
+
+# --- Recovery phrase: mass critical defect, mandatory lock before any release ---
+
+- term: recovery phrase
+  preferred: { ru-RU: "фраза восстановления" }
+  description: >
+    Security-critical. «Секретная фраза» overlaps cognitively with passwords, passphrases,
+    and PINs — users who learned «фраза восстановления» in MetaMask, Ledger, and Trust Wallet
+    (the Russian-language wallet industry standard) will not recognise it as the same thing,
+    creating a direct path to missed backups and fund loss. The audit found ~80 strings across
+    account.recoveryPhrase.*, onboarding.backup.*, extension.lock.*, settings.setting.backup.*,
+    and account.passkey.delete.* using «секретная фраза» — all must be reverted before release.
+  forbidden: { ru-RU: ["секретная фраза", "сид-фраза"] }
+
+- term: seed phrase
+  preferred: { ru-RU: "фраза восстановления" }
+  description: >
+    Primary rendering: «фраза восстановления». «Сид-фраза» (Cyrillic) is acceptable only as a
+    parenthetical alternative after the primary term in educational strings. «seed-фраза» (Latin
+    script) is forbidden in all contexts.
+  forbidden: { ru-RU: ["сид-фраза", "seed-фраза"] }
+
+# --- Passkey: bare English is undeclinable and unrecognised ---
+
+- term: passkey
+  preferred: { ru-RU: "ключ доступа" }
+  description: >
+    Apple iOS ru-RU and Google Android ru-RU both use «ключ доступа». The audit found ~30+
+    strings across account.passkey.*, onboarding.passkey.*, passkeys.manage.*, and
+    notification.passkey.* leaving «passkey» as bare untranslated English — which cannot be
+    declined in Russian sentences. Correct inflection: gen. «ключа доступа», instr. «ключом
+    доступа», pl. «ключи доступа». The prior Crowdin baseline used «ключ доступа» correctly.
+  forbidden: { ru-RU: ["passkey"] }
+
+# --- Swap: restore DeFi term and eliminate barbarisms ---
+
+- term: swap
+  preferred: { ru-RU: "обмен" }
+  partOfSpeech: noun
+  status: native-ratified
+  description: >
+    Use «обмен» (noun) and «обменять» (verb) consistently. The audit found ~55 strings
+    across swap.*, common.swap*, notification.transaction.swap.*, and portfolio.activity.*
+    using «своп» — which is not established Russian DeFi terminology. The brand name
+    "Uniswap" contains "swap"; «своп» on action buttons while the product is named for
+    swapping is internally contradictory. Forbid the anglicism «своп» in UI strings and
+    the barbarisms «свопнуть/свопнуто» in all contexts.
+  forbidden: { ru-RU: ["своп", "свопнуть", "свопнуто", "свопайте"] }
+
+- term: to swap
+  preferred: { ru-RU: "обменять" }
+  partOfSpeech: verb
+  status: native-ratified
+  description: >
+    Canonical verb form. Button label: «Обменять». Completed status: «Обмен выполнен».
+    History filter: «Обмены». Never use «своп» as a verb stem or «свопнуто» as a past
+    passive participle in transaction completion strings. CTA labels must use
+    the VERB «Обменять», never the bare noun «Обмен» as a button — the noun
+    names the concept, the verb names the action (bug-bash native, 2026-07-15).
+  forbidden: { ru-RU: ["свопнуть", "свопнуто", "своп"] }
+
+# --- Private key: ISO/GOST-aligned term vs anglicism ---
+
+- term: private key
+  preferred: { ru-RU: "закрытый ключ" }
+  description: >
+    ISO/GOST-aligned cryptographic term used in Russian banking and government e-signature
+    (УКЭП) documentation. «Приватный ключ» is an informal anglicism with no legal standing —
+    the audit found it displacing «закрытый ключ» across all export and security screens
+    (privateKeys.export.modal.*, privateKeys.view.*, settings.setting.privateKeys.title),
+    a register degradation at the highest-stakes UI moment. The old Crowdin used «закрытый
+    ключ» correctly.
+  forbidden: { ru-RU: ["приватный ключ"] }
+
+# --- ERC-20 approve: collapse four-verb fragmentation to one ---
+
+- term: approve
+  preferred: { ru-RU: "разрешить" }
+  partOfSpeech: verb
+  description: >
+    Use «разрешить» for the on-chain ERC-20 approval action (MetaMask ru-RU precedent). The
+    audit found the same concept mapped to four different Russian verbs across ~20 strings:
+    «подтвердить» (dapp.request.approve.action), «одобрить» (common.approved,
+    common.approveSpend), «утвердить» (surviving old Crowdin revoke strings), and «разрешить»
+    (dapp.request.approve.title). A user who sees «Одобрено» when granting and «Разрешение
+    отозвано» when revoking cannot recognise these as the same on-chain concept. Reserve
+    «подтвердить» for generic transaction confirmation only. Reserve «одобрить» for social
+    or editorial endorsement contexts only.
+  forbidden: { ru-RU: ["подтвердить", "одобрить"] }
+
+# --- Mint: eliminate barbarisms ---
+
+- term: mint
+  preferred: { ru-RU: "выпустить" }
+  partOfSpeech: verb
+  description: >
+    «Выпустить» for completed status (Выпущено — transaction.status.mint.success), «Выпуск»
+    for pending state, «Не удалось выпустить» for failure. The barbarisms «заминчено» and
+    «свопнуто» appear in high-frequency transaction status strings shown after every completed
+    swap or mint — neither form appears in professional Russian financial or DeFi copy.
+  forbidden: { ru-RU: ["минтить", "заминчено", "минт"] }
+
+# --- Network cost: collapse four-phrasing fragmentation ---
+
+- term: network cost
+  preferred: { ru-RU: "комиссия сети" }
+  status: native-ratified
+  description: >
+    «Комиссия сети» — the old-Crowdin baseline the bug-bash native reviewer
+    preferred over «сетевые расходы» ("both technically valid but old is
+    better", 2026-07-15); this file previously pinned «сетевые расходы»
+    while noting «комиссия сети» was acceptable if applied consistently —
+    now it IS the pinned form. The audit context stands: the same concept
+    had fragmented across four renderings; «стоимость» (price/value) remains
+    a mistranslation of "cost" and stays forbidden.
+  forbidden: { ru-RU: ["сетевая стоимость", "сетевой сбор"] }
+
+# --- Passcode: distinguish PIN from text password ---
+
+- term: passcode
+  preferred: { ru-RU: "код доступа" }
+  description: >
+    «Код доступа» is the established term used by Apple, Google, and Russian banking apps.
+    «Код-пароль» is an unnatural mechanical back-translation. In the passkey flow, a passcode
+    is a numeric PIN used to encrypt the backup login — it must not collapse to «пароль»
+    (text password), which erases a security UX distinction.
+  forbidden: { ru-RU: ["код-пароль"] }
+
+# --- Legal document lock ---
+
+- term: Terms of Service
+  preferred: { ru-RU: "Условия использования" }
+  description: >
+    LEGAL LOCK REQUIRED: verify against the actual published Russian-language document title
+    before deploying. If the published document is titled «Условия обслуживания», revert all
+    7 strings (common.termsOfService, onboarding.termsOfService, wallet.connectingAgreement,
+    fiatOnRamp.disclaimer, fiatOnRamp.connection.terms, privacy.uniswaptos,
+    settings.action.terms). Do not allow the pipeline to vary this string freely — it is a
+    legal reference cited in consent flows.
+
+# --- Permit (EIP-2612): keep as DNT proper noun ---
+
+- term: Permit
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    The EIP-2612 protocol name "Permit" is a technical brand term. Do not translate to
+    «Разрешение» — that loses the technical identity and conflates the protocol name with the
+    generic verb «разрешить» used for ERC-20 approve. Keep as "Permit" (DNT) alongside
+    calldata, NFT, Uniswap.
+
+# --- Security / honeypot ---
+
+- term: honeypot
+  preferred: { ru-RU: "приманка" }
+  description: >
+    «Приманка» is the standard Russian security and DeFi term. The bare English "honeypot" is
+    unrecognised by most Russian users and cannot be declined in Russian sentences (the old
+    translation used feminine «приманка», enabling correct agreement).
+  forbidden: { ru-RU: ["honeypot"] }
+
+# --- Protocol features ---
+
+- term: hook
+  preferred: { ru-RU: "хук" }
+  description: >
+    Use «хук» (Cyrillic transliteration) for mid-sentence usage in Russian UI copy — bare
+    Latin "hook" cannot be declined in Russian. "Hooks v4" as a section header title may remain
+    in Latin as a technical feature name.
+  forbidden: { ru-RU: ["hook"] }
+
+# --- General UI terms ---
+
+- term: fee
+  preferred: { ru-RU: "комиссия" }
+  description: Uniswap Labs interface fee.
+
+- term: crypto
+  preferred: { ru-RU: "криптовалюта" }
+  description: Formal register. "Крипта" is acceptable in informal body copy only.
+
+- term: market cap
+  preferred: { ru-RU: "рыночная капитализация" }
+  description: Market capitalisation.
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym. Spelled-out phrase is "общая заблокированная стоимость".
+
+- term: slippage
+  preferred: { ru-RU: "проскальзывание" }
+  description: Price slippage tolerance in DeFi swaps.
+
+- term: smart contract
+  preferred: { ru-RU: "умный контракт" }
+  description: Established Russian rendering of smart contract.
+
+- term: wallet
+  preferred: { ru-RU: "кошелёк" }
+  description: >
+    Use «кошелёк» (note ё, not е) throughout. Unlike fr-FR where "wallet" stays English,
+    Russian DeFi culture uses the native translation. Always include the ё — «кошелек» (with е)
+    is technically readable but violates Russian typographic norms.
+
+- term: smart wallet
+  preferred: { ru-RU: "умный кошелёк" }
+  description: Consistent with "wallet → кошелёк".
+
+- term: backup
+  preferred: { ru-RU: "резервная копия" }
+  description: Data backup. Standard Russian tech term.
+
+# --- Coverage fills (audit 2026-06-23): core terms that were missing. Drafts — native review. ---
+- term: token
+  preferred: { ru-RU: "токен" }
+  description: Standard Russian transliteration.
+
+- term: cryptocurrency
+  preferred: { ru-RU: "криптовалюта" }
+
+- term: private keys
+  preferred: { ru-RU: "закрытые ключи" }
+  forbidden: { ru-RU: ["приватные ключи"] }
+  description: Per this glossary's header — prefer "закрытый ключ" over the anglicism "приватный ключ".
+
+- term: wrap
+  preferred: { ru-RU: "обернуть" }
+  partOfSpeech: verb
+  description: Draft — confirm vs keeping the English "wrap" in Russian DeFi.
+
+- term: unwrap
+  preferred: { ru-RU: "развернуть" }
+  partOfSpeech: verb
+  description: Draft — confirm vs keeping the English "unwrap".
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: "To"
+  preferred: { ru-RU: "Кому" }
+  caseSensitive: true
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    The send-form recipient field label — «Кому» (dative "to whom"), NEVER
+    «До» (temporal "until"): the shipped «До» was a P1 meaning error in a
+    money-send flow (bug bash, 2026-07-10). Deliberately no forbidden scan —
+    both «До» and bare "To" are far too common to hard-fail on; the reviewer
+    prompt and this preferred carry the rule.
+
+- term: blockchain
+  preferred: { ru-RU: "блокчейн" }
+  status: draft
+  description: >
+    Use «блокчейн» when the technology or a specific chain-as-object is
+    meant. Part of the chain taxonomy (TLM ruling 2026-07-30): chain does NOT
+    collapse to «сеть» — that erases the blockchain/network distinction.
+
+- term: network
+  preferred: { ru-RU: "сеть" }
+  status: draft
+  description: >
+    «Сеть» for a selectable blockchain network: «Выберите сеть». Part of the
+    chain taxonomy (TLM ruling 2026-07-30). See `blockchain` and
+    `cross-chain` for the other axes.
+
+- term: cross-chain
+  preferred: { ru-RU: "межсетевой" }
+  partOfSpeech: adjective
+  status: native-ratified
+  forbidden: { ru-RU: ["кросс-чейн"] }
+  description: >
+    Consumer UI copy uses «межсетевой» («межсетевой перевод») — the bug-bash
+    native reviewer's suggestion (2026-07-15). The crypto-native compound
+    «кроссчейн» is reserved for docs, advanced settings, analytics, and
+    protocol terminology where recognition matters. NEVER mix «межсетевой»
+    and «кроссчейн» for the same feature on one screen. The spaced form
+    «кросс-чейн» is forbidden — pick the normalized compound when the
+    technical term is used at all (TLM ruling 2026-07-30).
+
+- term: explore
+  preferred: { ru-RU: "Обзор" }
+  status: native-ratified
+  description: >
+    The Explore surface renders «Обзор» — bug-bash native reviewer endorsed
+    the new rendering over the old literal «Исследовать» (2026-07-15).
+    «Исследовать» is not forbidden (legitimate verb elsewhere), but the
+    surface name is «Обзор».
+
+- term: auction
+  preferred: { ru-RU: "аукцион" }
+  partOfSpeech: noun
+  status: native-ratified
+  description: >
+    «Аукцион» — bug-bash native reviewer: "a better translation and unifies
+    the old multiple options (аукцион is a sub-case of торг, and we only
+    support auctions)" (2026-07-15). Nav label plural: «Аукционы». Parts of
+    the auctions surface are still unkeyed app-side (universe bug); this
+    pre-encodes the rendering.
+
+- term: Limit
+  preferred: { ru-RU: "Лимит" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — the conventional
+    compact trading label, NOT a literal restrict-verb («Лимитировать»).
+    Where ambiguous outside the trading context, use the full «Лимитная
+    заявка». TLM ruling (2026-07-30); pending native confirmation.
+
+# --- Round-3 native review (2026-07-28) ---
+
+- term: "New:"
+  preferred: { ru-RU: "Новинка:" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  forbidden: { ru-RU: ["Новое:"] }
+  description: >
+    Marketing-label prefix for feature announcements — «Новинка:», not
+    «Новое:» (the bare neuter adjective reads clipped as a label); the
+    off-policy variant is a hard-fail. Provenance: native review r3
+    (2026-07-28), endorsed by TLM.

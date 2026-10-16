@@ -1,0 +1,1831 @@
+{
+  "version": 1,
+  "locale": "ru-RU",
+  "entries": [
+    [
+      "ru-RU:i18next-json:account.passkey.backupLogin.add.apple",
+      {
+        "unitId": "account.passkey.backupLogin.add.apple",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "f223faa96f22916294922b171a2696d868fd1f9129302eb41a45b2a2ea2ebbfd",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Apple",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:account.passkey.backupLogin.add.google",
+      {
+        "unitId": "account.passkey.backupLogin.add.google",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "ce770667e5f9b0d8f55367bb79419689d90c48451bb33f079f3a9a72ae132de8",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Google",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:chart.noData.price.title",
+      {
+        "unitId": "chart.noData.price.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a67ccbf5b6366d4b0681999abfb45864bffb0d314fb6694e542b2dacb5695265",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Нет данных о цене",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-14T20-54-06Z",
+        "approvedAt": "2026-09-14T20:54:06.322Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:chart.noData.tokens.description",
+      {
+        "unitId": "chart.noData.tokens.description",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "4949909f21d332fcce6a434c130fa95a30e0db26aa18f6660b130f198ca25634",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Недостаточно исторических данных, чтобы показать график этого токена.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-14T21-35-45Z",
+        "approvedAt": "2026-09-14T21:35:45.870Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:chart.noData.tvl.title",
+      {
+        "unitId": "chart.noData.tvl.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "18f5bd9ca6cf92b822086f5392b731391f13e841190b28e15e7bd6bc8472ce44",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Нет данных TVL",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-14T20-54-06Z",
+        "approvedAt": "2026-09-14T20:54:06.322Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:chart.noData.volume.title",
+      {
+        "unitId": "chart.noData.volume.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "b97dfd27b26d32aeea0eb561da315c401787dbb733e4fddfc59ba4041592bcf1",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Нет данных об объёме",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-14T20-54-06Z",
+        "approvedAt": "2026-09-14T20:54:06.322Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:dapp.request.amountUnavailable",
+      {
+        "unitId": "dapp.request.amountUnavailable",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "6ea97c53df001e76387ca3cd2a57c61aa2ffa0e12d752ff4f445556b31edd0b1",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Сумма недоступна",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-18T15-34-59Z",
+        "approvedAt": "2026-09-18T15:34:59.207Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:explore.collections.single",
+      {
+        "unitId": "explore.collections.single",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "7b790708ff1b171315a152018f3712e8c71c82f4f9000635f77a1336c34f1893",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Коллекция",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-17T17-30-50Z",
+        "approvedAt": "2026-09-17T17:30:50.155Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:explore.earn.title",
+      {
+        "unitId": "explore.earn.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a697f90fb199423119c503cd3d56739b8810dadcd832e037afbbc918927f713b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Earn",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:fiatOnRamp.paymentMethods.venmo",
+      {
+        "unitId": "fiatOnRamp.paymentMethods.venmo",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a1593ecc5a13b7a066c20b6c85dd945ba178a9618c95d50bbe52e4a834b5082d",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Venmo",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:landing.api",
+      {
+        "unitId": "landing.api",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "c8e5998f6a3955c21d858936fe05c69621724d7f825c6e17793002a0fa798bf9",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "API",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:launches.hero.subtitleArcRobinhoodWithWordmark",
+      {
+        "unitId": "launches.hero.subtitleArcRobinhoodWithWordmark",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "75668dd168d7ed3491d00a54ff57efceb54853536bda7849a7302edbec57a361",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Торгуйте новыми токенами Arc и Robinhood Chain на <wordmark>Pools</wordmark>",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T22-40-26Z",
+        "approvedAt": "2026-09-15T22:40:26.067Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:launches.hero.subtitleRobinhoodWithWordmark",
+      {
+        "unitId": "launches.hero.subtitleRobinhoodWithWordmark",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "b53e3274a1546eabe90235d83cf30d24426587059f598cdc54fe8ce6d44e1f95",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Торгуйте новыми токенами Robinhood Chain на <wordmark>Pools</wordmark>",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T22-40-26Z",
+        "approvedAt": "2026-09-15T22:40:26.067Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:liquidityPool.positions.table.column.apr",
+      {
+        "unitId": "liquidityPool.positions.table.column.apr",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "4bc04668c1d32bda93f0842b49737604ab020722bf62c55127cd852f6baeeb95",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "APR",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:notification.auction.open.failed",
+      {
+        "unitId": "notification.auction.open.failed",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "e4d2634ab0b23d0e9a07704b98f1b4ae2c8f1622a2f832297cba3b3ecd63be45",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Не удалось открыть аукцион",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:pool.apr",
+      {
+        "unitId": "pool.apr",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "4bc04668c1d32bda93f0842b49737604ab020722bf62c55127cd852f6baeeb95",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "APR",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:pool.migrateLiquidityV2DisabledTooltip",
+      {
+        "unitId": "pool.migrateLiquidityV2DisabledTooltip",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "4489cb130e7c9aeed213fc1acaeb5925905fd6876095e3d2d840719e3ccc92c5",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Миграция на v3 не поддерживается в этой сети.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-29T16-55-04Z",
+        "approvedAt": "2026-09-29T16:55:04.306Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:portfolio.defi.title",
+      {
+        "unitId": "portfolio.defi.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "3871f97fc9a1fa1298ef55c7ec904392f630e41e2f7be2355bf92c400d4c3151",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "DeFi",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.create.feeRecipientLockedCrowdLaunch",
+      {
+        "unitId": "rhcca.create.feeRecipientLockedCrowdLaunch",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "3010c20d764d983a5e0650148d526e7e8c0371edcd541cbf58d593154c1bbee0",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Комиссии создателя {{ccaMechanism}} идут на запускающий кошелёк.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T21-15-30Z",
+        "approvedAt": "2026-09-15T21:15:30.137Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.create.field.tickerSymbolPlaceholder",
+      {
+        "unitId": "rhcca.create.field.tickerSymbolPlaceholder",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a1efe92e5d394bfbfadb01f863c3ebb3503ed198f7b7ddd4d14da5bcbb850ae9",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "$TICKER",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.create.network.feeBuyback",
+      {
+        "unitId": "rhcca.create.network.feeBuyback",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2aeb5bffe13f0642efdcc282915dce6655af1d9f8ac54271b651b649bb20adbd",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Торговые комиссии выкупают и сжигают ваш токен",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.create.network.feeCompound",
+      {
+        "unitId": "rhcca.create.network.feeCompound",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "d2ea9546dd6d9ac5cadb72d731fa2f76c8d0735a246a245003437e1bca19c9bd",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Торговые комиссии автоматически реинвестируются в заблокированную ликвидность",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.creatorSettings.feeSubOffBuyback",
+      {
+        "unitId": "rhcca.creatorSettings.feeSubOffBuyback",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2ce6112d34aa4d5bf2a949d0b9b0155b5526177099c7e5bbf01e888851ddc644",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Комиссии создателя отключены. Все торговые комиссии выкупают и сжигают токен.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.explainer.subheaderBuyback",
+      {
+        "unitId": "rhcca.explainer.subheaderBuyback",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "7ccf787e87768fefb8c1df86830dae3cc12a2688d385601852e8f00ab8cfe05d",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Вся ликвидность заблокирована навсегда. Комиссии выкупают и сжигают {{ticker}}.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.fees.boughtBackBurned",
+      {
+        "unitId": "rhcca.fees.boughtBackBurned",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "8096aba338294dcacd7f14f185e299699d0917d2513d1baa39adc38087d82aa8",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Выкуплено и сожжено",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.fees.boughtBackBurnedNote",
+      {
+        "unitId": "rhcca.fees.boughtBackBurnedNote",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "3611a0fe318c4950c310678d351ed63dc84232bac02eeb25432053141fd6f455",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Используется для выкупа и сжигания {{ticker}} — не входит в ваш заработок и не подлежит получению.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.fees.disabledCopyBuyback",
+      {
+        "unitId": "rhcca.fees.disabledCopyBuyback",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "e92196b7aa234c0d94cda11e15a2418325ff58c70566e97b0e17b317dd423dc6",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Этот токен запущен с отключёнными комиссиями создателя, поэтому комиссии вам не начисляются. Вместо этого каждая комиссия выкупает и сжигает токен.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.fees.rowOffBuyback",
+      {
+        "unitId": "rhcca.fees.rowOffBuyback",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "3898516067d722263ac6d4d45fa024bdef32f7c368845a5bf868734e539c0085",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Комиссии откл. · выкуп и сжигание",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-15T18-46-01Z",
+        "approvedAt": "2026-09-15T18:46:01.599Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.filter.clearActive",
+      {
+        "unitId": "rhcca.filter.clearActive",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2dc1c0755c9ec2716cbacc0a40d7babc53c889496a89b8c4495d09e38b95a758",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Сбросить активные фильтры",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-01T21-27-23Z",
+        "approvedAt": "2026-10-01T21:27:23.014Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.filter.crowdLaunch",
+      {
+        "unitId": "rhcca.filter.crowdLaunch",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "0c30868c94cf6a8ba6c34defe7b888c1498b30ad8ebd749476e80a1cae3fba5b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Crowd Launch",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.filter.instantLaunch",
+      {
+        "unitId": "rhcca.filter.instantLaunch",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "44b2da044269016fe547745dcdeef111551c2ea14fb21e5af07448d684de564b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Instant Launch",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.home.empty.noResults",
+      {
+        "unitId": "rhcca.home.empty.noResults",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "7d7e360586090927c7aeee67c8a46d8354694e7aa4b722ff5b421347f798057a",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Ничего не найдено",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-01T21-27-23Z",
+        "approvedAt": "2026-10-01T21:27:23.014Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.mark.crowd",
+      {
+        "unitId": "rhcca.mark.crowd",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "f469beecc6e76fe41fc4556460ffbc64e57bc2161422a9d54657232e3c631e1b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Crowd",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:rhcca.mark.instant",
+      {
+        "unitId": "rhcca.mark.instant",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "e2861894f065ab75433a07f7a17a9b8df3ffdc01ff29e8723ba0d9ff8c2ec437",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Instant",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:search.results.auction.timeRemaining",
+      {
+        "unitId": "search.results.auction.timeRemaining",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Осталось {{time}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-30T16-16-45Z",
+        "approvedAt": "2026-09-30T16:16:45.700Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:search.results.stats.apr",
+      {
+        "unitId": "search.results.stats.apr",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "399e5130e4d208df7ae038b56cffa8f007c00974a639709a97d0cdd4bde10c0b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "{{apr}} APR",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:search.results.stats.apy",
+      {
+        "unitId": "search.results.stats.apy",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2893ffd5ee534dd0615007dd70af33d3a0c37197cf50a6592c563c6840d7e6bc",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "{{apy}} APY",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-24T15-11-34Z",
+        "approvedAt": "2026-09-24T15:11:34.537Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:send.warning.newAddress.details.ENS",
+      {
+        "unitId": "send.warning.newAddress.details.ENS",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "09ddf36201cda6a7b9c8ace9811b71087f9d38be4750f9e4706361dd2deb3787",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "ENS",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:settings.setting.notifications.row.priceAlerts.description",
+      {
+        "unitId": "settings.setting.notifications.row.priceAlerts.description",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "c5aeb5d1f60eab4d0e5416efd645ee6de258fd86bc5ee90abca9bdbae858360a",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Значительные изменения цен токенов",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-05T16-59-46Z",
+        "approvedAt": "2026-10-05T16:59:46.695Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:settings.setting.notifications.row.priceAlerts.title",
+      {
+        "unitId": "settings.setting.notifications.row.priceAlerts.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "da1bea0919595b27553478f49c4fc929dc2a9e139573bada017d90cccf561802",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Оповещения о ценах",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-05T16-59-46Z",
+        "approvedAt": "2026-10-05T16:59:46.695Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.chart.checkBack",
+      {
+        "unitId": "tdp.auction.chart.checkBack",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "538a0ddc9f9ef4ddd35f5572912fad05edce6e960345ec05015b9d5ca550ebf8",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Загляните снова, когда аукцион {{symbol}} завершится",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.chart.priceDiscovery",
+      {
+        "unitId": "tdp.auction.chart.priceDiscovery",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "d0715e5df8afb1209a733cc8f76d4ac8a510a9773cd4d97688fe488b9620b13a",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Идёт определение цены",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.ended",
+      {
+        "unitId": "tdp.auction.ended",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "ca39ca58747a7e918510277836e9cdbd742060cf4d708c39ed14eab6f987002a",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Аукцион завершён",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.inProgress",
+      {
+        "unitId": "tdp.auction.inProgress",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2d50704771bb0b8d28e9ed2126dc45c0ba69623594da03c8ba6f71db517d4e6d",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Идёт аукцион",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.launchInProgress",
+      {
+        "unitId": "tdp.auction.launchInProgress",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "e48000ebad93aed54de3ea50a38bc6207ec7f03e550fdc2318eabe0ed90512eb",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Идёт запуск",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.statusUnavailable",
+      {
+        "unitId": "tdp.auction.statusUnavailable",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "4a1959d064e31e165cb6d873bb83164237b0b5fc62ea4616a626778de53ab808",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Статус аукциона недоступен",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.timeRemaining",
+      {
+        "unitId": "tdp.auction.timeRemaining",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Осталось {{time}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auction.viewAuction",
+      {
+        "unitId": "tdp.auction.viewAuction",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2611222ae79f6e7a87bdc6cedbcd80b4936532114bd23c245f6c48b1b96bf8a1",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Посмотреть аукцион",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auctions.committed",
+      {
+        "unitId": "tdp.auctions.committed",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "dd9061853d8b1498557341a82186e1d9087de502101d830b5d1bc2d560399eb0",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Заявлено",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "«Внесено» diverges from the shipped rendering of “committed” in auction copy («заявленный объём», «Топ аукционов по заявленному объёму»); same concept should use one rendering.",
+            "evidence": {
+              "rule": "shipped: Top auctions by committed volume → Топ аукционов по заявленному объёму",
+              "targetSpan": "Внесено"
+            },
+            "alternative": "Заявлено"
+          }
+        ],
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auctions.failedToLaunch",
+      {
+        "unitId": "tdp.auctions.failedToLaunch",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "7bcdf89acba1f37c3542c9fce70e5e3b303a104513ed0c5bab4f6b2eb333eee6",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Запуск не удался",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auctions.modalTitle",
+      {
+        "unitId": "tdp.auctions.modalTitle",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "923215eead9085089ba0a2637a4752957d671ca0e01441ab5939041386667ec5",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Аукционы {{symbol}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.auctions.raised",
+      {
+        "unitId": "tdp.auctions.raised",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "b4a8bf1f6b295bba4c6f67f5e1a02db62acd5dac20aee193984d7d3ef7bea0fe",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Собрано",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.claim.action",
+      {
+        "unitId": "tdp.claim.action",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "4ca41db0282537009663db9b9ae8142e0e6b60812996d07075e5a9291d3d91bf",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Получить",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.claim.receivedFromAuction",
+      {
+        "unitId": "tdp.claim.receivedFromAuction",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "ed1de60dff6c30802d8300c8417b6f45c64c4a1c3d6b5fa4731942904692696d",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Получено с аукциона",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.claim.refundAvailable",
+      {
+        "unitId": "tdp.claim.refundAvailable",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "e5f4e63ae3c60cab9e3c74f766a9eaf9f9c0f8b068504569415c148ec9114743",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Доступен возврат по аукциону",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.claim.unavailable",
+      {
+        "unitId": "tdp.claim.unavailable",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "4dc5ccbce22b7b38115ff6589bb5c1497e3fd9680c18567cd70df0c00097dbf3",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Не удалось загрузить ваше распределение в аукционе",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.provenance.auctionHistory",
+      {
+        "unitId": "tdp.provenance.auctionHistory",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "43c72d3ec03e034da668875565b2195ffe7e3b51b485605a55a7435c5536e29c",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "История аукциона",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.provenance.createdBy",
+      {
+        "unitId": "tdp.provenance.createdBy",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "374cd9d220fbeb7a793416ff812502e11f49c06070d2e730676daccd2b6a6b87",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Создатель",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.provenance.launchDate",
+      {
+        "unitId": "tdp.provenance.launchDate",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "87a01519dba4c4429cc399e509f348093780cba20afab322adb5110b4229e51b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Дата запуска",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.provenance.launchMethod",
+      {
+        "unitId": "tdp.provenance.launchMethod",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "c611b5ef80308b76cbc6b63f3802c130a4d0367017db551e5b0c09aeda732b30",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Способ запуска",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.provenance.launchpad",
+      {
+        "unitId": "tdp.provenance.launchpad",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "08c9188c5d641e944ca3c674f027a1c0186d00f69d1079c8ba1417aa6bfa2d51",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Лаунчпад",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.provenance.raised",
+      {
+        "unitId": "tdp.provenance.raised",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "e7e2fdd8458e6629ca789959ea040dc5754392a079bc915a0788d1dfae4b2105",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Собрано {{amount}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tdp.relatedTokens.single.meme",
+      {
+        "unitId": "tdp.relatedTokens.single.meme",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "5d50c37d0e22df692382d024d383cd6de38e22892329896263ac00a939a2ff6b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Другие мемкоины",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-30T16-05-32Z",
+        "approvedAt": "2026-09-30T16:05:32.413Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:token.hoverCard.volume24h",
+      {
+        "unitId": "token.hoverCard.volume24h",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "7f80d74af2310969ce5a164897f87c4bd5aedbae8dbdd7ce05e6ddc78f461d2a",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "{{amount}} объём за 24 ч.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-30T20-37-01Z",
+        "approvedAt": "2026-09-30T20:37:01.780Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:tokens.selector.categoryFilter.myTokens",
+      {
+        "unitId": "tokens.selector.categoryFilter.myTokens",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "16f6f49ce8ba3114b5b5495524ad01dc739a58e7405110fa38669d4d23443f0c",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Мои токены",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-23T16-12-06Z",
+        "approvedAt": "2026-09-23T16:12:06.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.biddingClosed",
+      {
+        "unitId": "toucan.auction.biddingClosed",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "dab4f89cb166fd7798684f2e64ffc1d2ad73fa2d24ede047ba62e9133fedbff1",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Приём ставок закрыт",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.endedOn",
+      {
+        "unitId": "toucan.auction.endedOn",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "73988725620dc90b856b12cb96dfece96728f0e071bba609f58176c43e5db792",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Аукцион завершён {{date}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.introBanner.remaining",
+      {
+        "unitId": "toucan.auction.introBanner.remaining",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Осталось {{time}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.introBanner.timelineAndDetails",
+      {
+        "unitId": "toucan.auction.introBanner.timelineAndDetails",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "797b81c9cbcbd002fd55f3c046c05c7f67f495e9552652ac5c45737b6ff8cc63",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Хронология и подробности",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.nowTradingCard.fdv",
+      {
+        "unitId": "toucan.auction.nowTradingCard.fdv",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a88fc94a8c65608df080363d9a6eddacc0d6fdcffd13ea23fe3cdb49cae70fe9",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "<value>{{fdv}}</value> FDV",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.nowTradingCard.title",
+      {
+        "unitId": "toucan.auction.nowTradingCard.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "79e6d37dc36a5b282ff78e93a02f58b32dcdfc1fe1de59e414199252a06d6c1f",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "{{symbol}} уже торгуется",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.nowTradingCard.trade",
+      {
+        "unitId": "toucan.auction.nowTradingCard.trade",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "3f67c276590bef9320fc9e9c2999b18935d0d9c6e2713c0d41e05962432bb3ad",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Торговать {{symbol}} →",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.nowTradingCard.volume24h",
+      {
+        "unitId": "toucan.auction.nowTradingCard.volume24h",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "6f49d846eb0dc8ff08cc032696fc0a2e5cab201a7bba4eccb3c054b1e15d0a4a",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "<value>{{volume}}</value> объём за 24 ч.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.auction.tradeTokenBanner.buyOrSell",
+      {
+        "unitId": "toucan.auction.tradeTokenBanner.buyOrSell",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a43ddcd7960258306b756bd6f58f620d058bb3eb80009fe429a8fe21001c470c",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Купить или продать {{symbol}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.bidReview.networkErrorDescription",
+      {
+        "unitId": "toucan.bidReview.networkErrorDescription",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "5fca6f81a3bd9b9a7951a0a350833450dbd0a432f3cc3437a9d5af79c80d8093",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Не удалось связаться с сетью для проверки вашей ставки. Проверьте подключение и попробуйте ещё раз.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.bidReview.networkErrorTitle",
+      {
+        "unitId": "toucan.bidReview.networkErrorTitle",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2a33d984de88157305b38d8c13bc9d85880a40f84eec3683507785fdc2bfd48d",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Ошибка сети",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.bidReview.simulationErrorDescription",
+      {
+        "unitId": "toucan.bidReview.simulationErrorDescription",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "779665ad0b4bfa480e80812c9bc2eb823ff80f0aa140c83a8a7327bb7d51a17a",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Что-то пошло не так при проверке вашей ставки. Попробуйте ещё раз.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.bidReview.simulationErrorTitle",
+      {
+        "unitId": "toucan.bidReview.simulationErrorTitle",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "f0ad46c32019b07dd91ad277ede77cee3201cd280c9517a97933cf033d90e85f",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Не удалось проверить ставку",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "d0d34a7e3abfec0e4af45d5a20a1f14e0df2e5efe8f2508d6c7205ceb38d40c1",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Период предварительных ставок",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.add",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.add",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "57dbd479fb4aa9d5526f59cbfcab40d023383d04a1c5489f8f1d9b57a8f5da7d",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Добавить период предварительных ставок",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.description",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.description",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "1b82234a5328430b862fd6644a87bd5e42b1829a0e92337d0f1edc2db5a215b7",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Пользователи могут делать ставки в период предварительных ставок, но токены не выпускаются до даты начала аукциона",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.endDate",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.endDate",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a5a7488402f3ef3a2ec3e343f780b64c36a18b9e0756e69bf20a2508d96f6424",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Дата окончания предварительных ставок",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.range.error",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.range.error",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "6d64b3a80bdfd7f64d6fc9d041c157993717477726d7c329268f787cad1a5b9b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Предварительные ставки должны начинаться до даты начала аукциона",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.remove",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.remove",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "b1a336caaf8c47a5d38280d4ef6b91fed2d4a38e84ca57437680eb2e16d7592c",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Удалить период предварительных ставок",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.startDate",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startDate",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "ddf4fb33930653cda0348a1d0755c78a490931d18dd36316edf109d75907c755",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Дата начала предварительных ставок",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.startDate.placeholder",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startDate.placeholder",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "ce591ddf839d668ab46070a0bc3d88f815adae3c4b36a180398de67edb9c55be",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Выберите дату начала предварительных ставок",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.preBid.startTime.error",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startTime.error",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "e37e7fdbac10d6a014349bdfcb72f862a6406c0afc9400f0a57b6b75b56e976f",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Начало предварительных ставок должно быть не ранее чем через {{time}}",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T01-50-51Z",
+        "approvedAt": "2026-09-12T01:50:51.236Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.configureAuction.priceSettings.description.singleRaiseCurrency",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.priceSettings.description.singleRaiseCurrency",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "dd49668d1e2c03fd9753909ccb26f4d41886335e847c70c605dcb4da58a3b050",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Установите минимальную цену для вашего аукциона.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-12T00-41-52Z",
+        "approvedAt": "2026-09-12T00:41:52.392Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.createAuction.step.tokenInfo.tickerPlaceholder",
+      {
+        "unitId": "toucan.createAuction.step.tokenInfo.tickerPlaceholder",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "a1efe92e5d394bfbfadb01f863c3ebb3503ed198f7b7ddd4d14da5bcbb850ae9",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "$TICKER",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.crowd",
+      {
+        "unitId": "toucan.launchMethod.crowd",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "0c30868c94cf6a8ba6c34defe7b888c1498b30ad8ebd749476e80a1cae3fba5b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Crowd Launch",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.crowd.description",
+      {
+        "unitId": "toucan.launchMethod.crowd.description",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "1a29c138738225944360ee41d9d119899b1a5ae620536e730cec4e93b28ef158",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Стандартизированные запуски, которые создают заблокированную ликвидность и честно распределяют токены через предстартовый краудфандинг. Запуск через pools.xyz.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "accuracy",
+            "severity": "minor",
+            "detail": "Source domain “pools.xyz” was capitalized to «Pools.xyz»; product/domain names must be kept verbatim.",
+            "evidence": {
+              "sourceSpan": "pools.xyz",
+              "targetSpan": "Pools.xyz"
+            },
+            "alternative": "Запуск через pools.xyz."
+          }
+        ],
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.crowd.title",
+      {
+        "unitId": "toucan.launchMethod.crowd.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "280c70ebebbbc7e0b7a65d2f88fa764a7c1ccf9474ede08bc9273c9ef47518c1",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Запуски Crowd Launch",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "design-and-markup",
+            "severity": "major",
+            "detail": "Translator annotation '[uncertain: Crowd Launches]' left in the string and would ship to users.",
+            "evidence": {
+              "targetSpan": "[uncertain: Crowd Launches]"
+            }
+          }
+        ],
+        "agentRunId": "ru-RU-2026-09-23T16-12-06Z",
+        "approvedAt": "2026-09-23T16:12:06.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.custom",
+      {
+        "unitId": "toucan.launchMethod.custom",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "26c0eec7a150863465a9d2a64d4e462e24cafd6d6d8cbbe57b0c7945e3397fca",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Настраиваемый аукцион",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.custom.description",
+      {
+        "unitId": "toucan.launchMethod.custom.description",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "cbb9694a13b77fb5d5ea311da28461fdceb919e0483f9802c4e357876574e92b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Полностью настраиваемые запуски токенов для формирования ликвидности и честного распределения токенов на основе протокола CCA от Uniswap.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.custom.title",
+      {
+        "unitId": "toucan.launchMethod.custom.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "8552081d0306fba41472f2001fbc869673fa28e24e9b40285435ddc0c602d175",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Настраиваемые аукционы",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.exploreAuctions",
+      {
+        "unitId": "toucan.launchMethod.exploreAuctions",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "7a4d35a06d9a616af63ee66f2bf557f7e221279d3e4b4c91cbacd287810dec8b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Обзор аукционов",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.instant",
+      {
+        "unitId": "toucan.launchMethod.instant",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "44b2da044269016fe547745dcdeef111551c2ea14fb21e5af07448d684de564b",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Instant Launch",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.instant.description",
+      {
+        "unitId": "toucan.launchMethod.instant.description",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "75c4c546d125f49141c3ec887e723a67a7d469da7affc62de5b2d720984d2dae",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Стандартизированные запуски с немедленной торговлей. Цена определяется бондинговой кривой, а комиссии направляются в заблокированную ликвидность. Запуск через pools.xyz.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "accuracy",
+            "severity": "minor",
+            "detail": "Source domain “pools.xyz” was capitalized to «Pools.xyz»; keep verbatim.",
+            "evidence": {
+              "sourceSpan": "pools.xyz",
+              "targetSpan": "Pools.xyz"
+            },
+            "alternative": "Запуск через pools.xyz."
+          }
+        ],
+        "agentRunId": "ru-RU-2026-09-28T18-49-10Z",
+        "approvedAt": "2026-09-28T18:49:10.172Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchMethod.instant.title",
+      {
+        "unitId": "toucan.launchMethod.instant.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "2990da5554ed8b8d80ca9d06f4f23b0566a88a1ffd4f4eb7be58788afea54016",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Мгновенные запуски",
+        "status": "clean",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "reviewDimension": "term-type-agreement",
+            "detail": "'Instant Launch' (singular, i=2656/4407) stays English while the plural is translated 'Мгновенные запуски'; this split matches shipped precedent ('Instant Launch' kept, 'мгновенные запуски' in prose), so no change — noting for terminology ratification.",
+            "evidence": {
+              "rule": "shipped: 'How Instant Launches work → Как работают мгновенные запуски'"
+            }
+          }
+        ],
+        "agentRunId": "ru-RU-2026-09-23T16-12-06Z",
+        "approvedAt": "2026-09-23T16:12:06.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.launchToken.pools.title",
+      {
+        "unitId": "toucan.launchToken.pools.title",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "6836fec847c82e18c57a8f6726d1b9772f7417eded592146d144170dc6735a37",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Pools.trade",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.timeline.tokensClaimable.noPool",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "02d94f483919d16205cf038955d0129791be8f8148ddfd62841001b24a78bfbb",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Токен доступен для получения",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.timeline.tokensClaimable.noPool.description",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool.description",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "23d043e17df938b730efb01015c6e91984c81d590641b446db0181754ffe8cfc",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Окно получения открыто. Участники, завершившие свои ставки, теперь могут получить токены. Торговля откроется после запуска пула.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:toucan.timeline.tokensClaimable.noPool.description.future",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool.description.future",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "5bbcb65f274ab081feb7a2a47288ad81c541371b9302cfb483569c461b253632",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "Окно получения откроется. Участники, завершившие свои ставки, смогут получить токены. Торговля откроется после запуска пула.",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-09-16T16-27-14Z",
+        "approvedAt": "2026-09-16T16:27:14.310Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "ru-RU:i18next-json:uniswapx.item",
+      {
+        "unitId": "uniswapx.item",
+        "providerId": "i18next-json",
+        "locale": "ru-RU",
+        "domain": "product-ui",
+        "sourceHash": "962676d110660f838984054682f7fb2116294fc38804fc6ad9b9ea221579f563",
+        "glossaryHash": "d2367f6f01d952276e2c0514ba34a2a6d06707246916c4189ca7f8d5e013cb1e",
+        "styleHash": "f3505dabe65470ea0d468afe28ea94a45e607b5ffacdaa8f526fdcd664bb0a95",
+        "translation": "<icon /> <gradient>UniswapX</gradient> <info />",
+        "status": "clean",
+        "agentRunId": "ru-RU-2026-10-06T18-09-46Z",
+        "approvedAt": "2026-10-06T18:09:46.161Z",
+        "approvedBy": "agent"
+      }
+    ]
+  ]
+}

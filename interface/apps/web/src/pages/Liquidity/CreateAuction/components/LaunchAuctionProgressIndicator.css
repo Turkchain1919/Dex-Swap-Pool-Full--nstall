@@ -1,0 +1,13 @@
+/* Opacity only — animating theme-token colors flashes on light/dark toggle. */
+@keyframes launch-auction-progress-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.launch-auction-progress-enter {
+  animation: launch-auction-progress-enter 180ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

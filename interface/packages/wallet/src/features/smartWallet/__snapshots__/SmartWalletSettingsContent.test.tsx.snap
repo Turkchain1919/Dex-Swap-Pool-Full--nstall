@@ -1,0 +1,232 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SmartWalletSettingsContent > renders correctly with active and inactive wallets 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink [transform:translateZ(0)] [-webkit-overflow-scrolling:touch] overflow-x-hidden overflow-y-auto [scrollbar-width:none]"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+    >
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 px-[8px]"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[16px]"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[16px]"
+          >
+            <div
+              class="[container-name:true] flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] [cursor:pointer] bg-transparent flex-row items-center justify-between gap-[12px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+              role="button"
+              tabindex="0"
+            >
+              <div
+                class="flex basis-auto box-border relative min-h-[0px] flex-row shrink items-center gap-[12px] min-w-[0px] opacity-[1]"
+              >
+                <div
+                  class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+                >
+                  <div
+                    class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[40px] h-[40px] bg-surface1 rounded-[999999px] overflow-hidden"
+                  >
+                    <div
+                      class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[40px] h-[40px] border-transparent border-[0px] rounded-[999999px] relative"
+                      data-testid="account-icon"
+                    >
+                      <div
+                        class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink items-center justify-center opacity-[0] [transition:var(--c-t)]"
+                        style="--c-t: opacity 100ms cubic-bezier(0.17, 0.67, 0.45, 1);"
+                      >
+                        <svg
+                          class="shrink-0"
+                          height="40"
+                          style="width: 40px; height: 40px;"
+                          viewBox="0 0 40 40"
+                          width="40"
+                        >
+                          <circle
+                            cx="20"
+                            cy="20"
+                            fill="var(--unicon-6)"
+                            opacity="var(--unicon-bg-opacity)"
+                            r="20"
+                          />
+                          <g
+                            transform="translate(6.666666666666666, 6.666666666666666) scale(0.5555555555555556)"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M20.9454 0.0175773C22.4936 -0.167833 23.763 1.13917 23.763 2.72944V21.3625C23.763 22.9527 22.4993 24.2419 20.9405 24.2419L2.67549 24.2419C1.11665 24.2419 -0.16452 22.9469 0.0172307 21.3675C1.30306 10.1936 9.99222 1.32931 20.9454 0.0175773Z"
+                              fill="var(--unicon-6)"
+                              fill-rule="evenodd"
+                            />
+                            <path
+                              clip-rule="evenodd"
+                              d="M27.0546 47.9824C25.5064 48.1678 24.237 46.8608 24.237 45.2706V26.6375C24.237 25.0473 25.5007 23.7581 27.0595 23.7581L45.3245 23.7581C46.8833 23.7581 48.1645 25.0531 47.9828 26.6325C46.6969 37.8064 38.0078 46.6707 27.0546 47.9824Z"
+                              fill="var(--unicon-6)"
+                              fill-rule="evenodd"
+                            />
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] shrink min-w-[0px]"
+                >
+                  <div
+                    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row grow items-center"
+                  >
+                    <span
+                      class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:20px] [font-weight:485] [color:var(--stext-neutral1)] [white-space:initial] shrink-[1]"
+                    >
+                      0x​82D5...3Fa6
+                    </span>
+                  </div>
+                  <span
+                    class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+                  >
+                    0x82D5...3Fa6
+                  </span>
+                </div>
+              </div>
+              <div
+                class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[8px]"
+              >
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-accent1)]"
+                >
+                  settings.setting.smartWallet.status.active
+                </span>
+                <div
+                  class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center rounded-[999999px] static [transform:var(--c-tr)] transition-transform duration-150 ease-in-out"
+                  style="--c-tr: rotate(180deg);"
+                >
+                  <svg
+                    fill="none"
+                    stroke-width="8"
+                    style="width: 20px; height: 20px;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[16px]"
+          >
+            <div
+              class="[container-name:true] flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] [cursor:pointer] bg-transparent flex-row items-center justify-between gap-[12px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+              role="button"
+              tabindex="0"
+            >
+              <div
+                class="flex basis-auto box-border relative min-h-[0px] flex-row shrink items-center gap-[12px] min-w-[0px] opacity-[1]"
+              >
+                <div
+                  class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+                >
+                  <div
+                    class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[40px] h-[40px] bg-surface1 rounded-[999999px] overflow-hidden"
+                  >
+                    <div
+                      class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[40px] h-[40px] border-transparent border-[0px] rounded-[999999px] relative"
+                      data-testid="account-icon"
+                    >
+                      <div
+                        class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink items-center justify-center opacity-[0] [transition:var(--c-t)]"
+                        style="--c-t: opacity 100ms cubic-bezier(0.17, 0.67, 0.45, 1);"
+                      >
+                        <svg
+                          class="shrink-0"
+                          height="40"
+                          style="width: 40px; height: 40px;"
+                          viewBox="0 0 40 40"
+                          width="40"
+                        >
+                          <circle
+                            cx="20"
+                            cy="20"
+                            fill="var(--unicon-2)"
+                            opacity="var(--unicon-bg-opacity)"
+                            r="20"
+                          />
+                          <g
+                            transform="translate(6.666666666666666, 6.666666666666666) scale(0.5555555555555556)"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M6 11.25C6 8.35051 8.35051 6 11.25 6H36.75C39.6495 6 42 8.35051 42 11.25C42 14.1495 39.6495 16.5 36.75 16.5H30.0551C28.7188 16.5 28.0495 18.1157 28.9945 19.0607L32.4062 22.4724C32.992 23.0582 32.992 24.008 32.4062 24.5938L28.0607 28.9393C27.1157 29.8843 27.785 31.5 29.1213 31.5H36.75C39.6495 31.5 42 33.8505 42 36.75C42 39.6495 39.6495 42 36.75 42H11.25C8.3505 42 6 39.6495 6 36.75C6 33.8505 8.35051 31.5 11.25 31.5H20.0037C21.34 31.5 22.0093 29.8843 21.0643 28.9393L16.7188 24.5938C16.133 24.008 16.133 23.0582 16.7188 22.4724L20.1305 19.0607C21.0755 18.1157 20.4062 16.5 19.0699 16.5H11.25C8.3505 16.5 6 14.1495 6 11.25Z"
+                              fill="var(--unicon-2)"
+                              fill-rule="evenodd"
+                            />
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] shrink min-w-[0px]"
+                >
+                  <div
+                    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row grow items-center"
+                  >
+                    <span
+                      class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:20px] [font-weight:485] [color:var(--stext-neutral1)] [white-space:initial] shrink-[1]"
+                    >
+                      0x​55f4...4F98
+                    </span>
+                  </div>
+                  <span
+                    class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+                  >
+                    0x55f4...4F98
+                  </span>
+                </div>
+              </div>
+              <div
+                class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[8px]"
+              >
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+                >
+                  settings.setting.smartWallet.status.inactive
+                </span>
+                <div
+                  class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center rounded-[999999px] static [transform:var(--c-tr)] transition-transform duration-150 ease-in-out"
+                  style="--c-tr: rotate(180deg);"
+                >
+                  <svg
+                    fill="none"
+                    stroke-width="8"
+                    style="width: 20px; height: 20px;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

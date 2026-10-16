@@ -1,0 +1,199 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AccountDetails > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row shrink items-center justify-between gap-[16px]"
+  >
+    <div
+      class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row grow shrink"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink flex-row items-center gap-[8px]"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[24px] h-[24px] border-transparent border-[0px] rounded-[999999px] relative"
+            data-testid="account-icon"
+          >
+            <div
+              class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink items-center justify-center opacity-[0] [transition:var(--c-t)]"
+              style="--c-t: opacity 100ms cubic-bezier(0.17, 0.67, 0.45, 1);"
+            >
+              <svg
+                class="shrink-0"
+                height="24"
+                style="width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  fill="var(--unicon-6)"
+                  opacity="var(--unicon-bg-opacity)"
+                  r="12"
+                />
+                <g
+                  transform="translate(4, 4) scale(0.3333333333333333)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M20.9454 0.0175773C22.4936 -0.167833 23.763 1.13917 23.763 2.72944V21.3625C23.763 22.9527 22.4993 24.2419 20.9405 24.2419L2.67549 24.2419C1.11665 24.2419 -0.16452 22.9469 0.0172307 21.3675C1.30306 10.1936 9.99222 1.32931 20.9454 0.0175773Z"
+                    fill="var(--unicon-6)"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M27.0546 47.9824C25.5064 48.1678 24.237 46.8608 24.237 45.2706V26.6375C24.237 25.0473 25.5007 23.7581 27.0595 23.7581L45.3245 23.7581C46.8833 23.7581 48.1645 25.0531 47.9828 26.6325C46.6969 37.8064 38.0078 46.6707 27.0546 47.9824Z"
+                    fill="var(--unicon-6)"
+                    fill-rule="evenodd"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink gap-[0px] max-w-[100%]"
+        >
+          <div
+            class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row gap-[12px]"
+          >
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row grow items-center shrink-[1] gap-[4px]"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] [font-weight:485] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap shrink-[1]"
+                data-testid="address-display/name/undefined"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row grow shrink items-center justify-end gap-[4px]"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        0x82D5...3Fa6
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`AccountDetails > renders without error with chevron 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row shrink items-center justify-between gap-[16px]"
+  >
+    <div
+      class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row grow shrink"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink flex-row items-center gap-[8px]"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[24px] h-[24px] border-transparent border-[0px] rounded-[999999px] relative"
+            data-testid="account-icon"
+          >
+            <div
+              class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink items-center justify-center opacity-[0] [transition:var(--c-t)]"
+              style="--c-t: opacity 100ms cubic-bezier(0.17, 0.67, 0.45, 1);"
+            >
+              <svg
+                class="shrink-0"
+                height="24"
+                style="width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  fill="var(--unicon-6)"
+                  opacity="var(--unicon-bg-opacity)"
+                  r="12"
+                />
+                <g
+                  transform="translate(4, 4) scale(0.3333333333333333)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M20.9454 0.0175773C22.4936 -0.167833 23.763 1.13917 23.763 2.72944V21.3625C23.763 22.9527 22.4993 24.2419 20.9405 24.2419L2.67549 24.2419C1.11665 24.2419 -0.16452 22.9469 0.0172307 21.3675C1.30306 10.1936 9.99222 1.32931 20.9454 0.0175773Z"
+                    fill="var(--unicon-6)"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M27.0546 47.9824C25.5064 48.1678 24.237 46.8608 24.237 45.2706V26.6375C24.237 25.0473 25.5007 23.7581 27.0595 23.7581L45.3245 23.7581C46.8833 23.7581 48.1645 25.0531 47.9828 26.6325C46.6969 37.8064 38.0078 46.6707 27.0546 47.9824Z"
+                    fill="var(--unicon-6)"
+                    fill-rule="evenodd"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink gap-[0px] max-w-[100%]"
+        >
+          <div
+            class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row gap-[12px]"
+          >
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row grow items-center shrink-[1] gap-[4px]"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] [font-weight:485] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap shrink-[1]"
+                data-testid="address-display/name/undefined"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row grow shrink items-center justify-end gap-[4px]"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        0x82D5...3Fa6
+      </span>
+      <div
+        class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center rounded-[999999px] [transform:var(--c-tr)] [transition:var(--c-t)]"
+        style="--c-tr: rotate(180deg); --c-t: transform 100ms cubic-bezier(0.17, 0.67, 0.45, 1);"
+      >
+        <div
+          fill="none"
+          stroke-width="8"
+          style="width: 24px; height: 24px; color: rgba(19, 19, 19, 0.63);"
+          viewbox="0 0 24 24"
+        >
+          <div
+            clip-rule="evenodd"
+            d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

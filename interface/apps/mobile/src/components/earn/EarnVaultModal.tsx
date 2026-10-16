@@ -1,0 +1,183 @@
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet'
+import { Flex, spacing } from '@universe/mycelium'
+import { useCallback, useState } from 'react'
+import { useAppStackNavigation } from 'src/app/navigation/types'
+import type { EarnVaultModalProps } from 'src/components/earn/EarnVaultModalState'
+import { Modal } from 'uniswap/src/components/modals/Modal'
+import type { BaseModalProps } from 'uniswap/src/components/modals/ModalProps'
+import { EarnAnalyticsSurface, EarnEntryPoint } from 'uniswap/src/features/earn/analytics'
+import { EarnVaultOverview } from 'uniswap/src/features/earn/EarnVaultOverview'
+import { useEarnDepositSources } from 'uniswap/src/features/earn/hooks/useEarnDepositSources'
+import { useEarnPosition } from 'uniswap/src/features/earn/hooks/useEarnPosition'
+import { EarnAction } from 'uniswap/src/features/earn/types'
+import type { EarnVaultTab } from 'uniswap/src/features/earn/types'
+import { hasConfirmedEarnPositionRawBalance } from 'uniswap/src/features/earn/utils'
+import { ModalName } from 'uniswap/src/features/telemetry/constants'
+import { useCurrencyInfo } from 'uniswap/src/features/tokens/useCurrencyInfo'
+import { useAppInsets } from 'uniswap/src/hooks/useAppInsets'
+import { noop } from 'utilities/src/react/noop'
+import { useActiveAccount, useIsViewOnlyWallet } from 'wallet/src/features/wallet/hooks'
+
+export function EarnVaultModal({
+  analyticsEntryPoint,
+  vault,
+  position: prefetchedPosition,
+  initialSelectedTab,
+  isInfoOnly = false,
+  isOpen,
+  onClose,
+}: EarnVaultModalProps & BaseModalProps): JSX.Element | null {
+  const navigation = useAppStackNavigation()
+  const insets = useAppInsets()
+  const currencyInfo = useCurrencyInfo(vault?.displayCurrencyId)
+
+  const activeAccount = useActiveAccount()
+  const isViewOnlyWallet = useIsViewOnlyWallet()
+  const {
+    position,
+    isError: positionIsError,
+    refetch: refetchPosition,
+  } = useEarnPosition({
+    vault,
+    walletAddress: activeAccount?.address,
+    isConnected: true,
+    enabled: isOpen,
+    prefetchedPosition,
+  })
+  // Prefetched carries deposited/rate but not lifetime PnL. A failed live GetEarnPosition still shows
+  // the balance from the prefetch and localizes the failure to the rewards row; only a total absence
+  // of position data falls back to the full balance error.
+  const displayPosition = position ?? prefetchedPosition
+  const hasPosition = displayPosition !== undefined
+  const canWithdraw = hasConfirmedEarnPositionRawBalance(displayPosition)
+  const balanceError = positionIsError && prefetchedPosition === undefined
+  const lifetimeEarningsError = positionIsError && prefetchedPosition !== undefined
+  const [selectedTab, setSelectedTab] = useState<EarnVaultTab>(
+    initialSelectedTab ?? (hasPosition || balanceError ? 'balance' : 'details'),
+  )
+
+  const { balanceLookupErrored, balanceLookupHasData, balanceLookupSettled, hasSupportedBalanceForUnderlying } =
+    useEarnDepositSources({
+      vault,
+      walletAddress: activeAccount?.address,
+      // View-only wallets never reach the deposit sheet, so skip the sources lookup.
+      isOpen: isOpen && !isViewOnlyWallet,
+    })
+  const isBalanceLookupPending = !balanceLookupSettled && !balanceLookupErrored
+
+  const handleDeposit = useCallback(() => {
+    if (!vault) {
+      return
+    }
+
+    // View-only wallets can browse the overview but can't transact — surface the
+    // explainer sheet on top instead of progressing to the deposit flow.
+    if (isViewOnlyWallet) {
+      navigation.navigate(ModalName.ViewOnlyExplainer)
+      return
+    }
+
+    // Wait for the balance lookup to settle — without this, a tap during the loading window
+    // would silently fall through to the deposit sheet for a user who actually has no balance.
+    if (isBalanceLookupPending) {
+      return
+    }
+    // Use `replace` (not `navigate` + onClose) so the vault sheet is atomically swapped for
+    // the next modal — calling onClose after navigate is a no-op because the vault has
+    // already lost focus, leaving both sheets stacked.
+    // Route to the acquisition screen only when the lookup produced data proving there is no
+    // supported balance — an errored lookup is unknown, not confirmed-empty (matches web and
+    // the Token Details banner). On error, the deposit sheet handles missing sources itself.
+    if (balanceLookupHasData && !hasSupportedBalanceForUnderlying) {
+      navigation.replace(ModalName.EarnYouNeedToken, {
+        currencyId: vault.displayCurrencyId,
+      })
+    } else {
+      navigation.replace(ModalName.EarnDepositAmount, {
+        analyticsEntryPoint,
+        vault,
+        position: displayPosition,
+        initialAction: EarnAction.Deposit,
+      })
+    }
+  }, [
+    analyticsEntryPoint,
+    balanceLookupHasData,
+    displayPosition,
+    hasSupportedBalanceForUnderlying,
+    isBalanceLookupPending,
+    isViewOnlyWallet,
+    navigation,
+    vault,
+  ])
+
+  const handleWithdraw = useCallback(() => {
+    if (!vault || !canWithdraw) {
+      return
+    }
+    if (isViewOnlyWallet) {
+      navigation.navigate(ModalName.ViewOnlyExplainer)
+      return
+    }
+    navigation.replace(ModalName.EarnDepositAmount, {
+      analyticsEntryPoint,
+      vault,
+      position: displayPosition,
+      initialAction: EarnAction.Withdraw,
+    })
+  }, [analyticsEntryPoint, canWithdraw, displayPosition, isViewOnlyWallet, navigation, vault])
+
+  if (!vault) {
+    return null
+  }
+
+  return (
+    <Modal
+      // The expanded overview can exceed the screen-height cap; render it in a scroll view, with
+      // overrideInnerContainer so the shared static BottomSheetView doesn't clip it.
+      overrideInnerContainer
+      name={ModalName.EarnVault}
+      isModalOpen={isOpen}
+      maxWidth={420}
+      onClose={onClose}
+    >
+      <BottomSheetScrollView showsVerticalScrollIndicator={false}>
+        <Flex
+          gap="$spacing16"
+          px="$spacing16"
+          pb={insets.bottom + spacing.spacing16}
+          // Opaque $surface1 (matches the sheet surface) makes this an RNGH touch target on Android, so empty-space
+          // taps stop here instead of falling through to the dismiss backdrop (CONS-2919).
+          backgroundColor="$surface1"
+          testID="earn-vault-sheet-content"
+        >
+          <EarnVaultOverview
+            // Modal is only reachable from an active position, so a connected wallet is guaranteed.
+            isConnected
+            analyticsEntryPoint={analyticsEntryPoint ?? EarnEntryPoint.GlobalModal}
+            analyticsSurface={EarnAnalyticsSurface.Mobile}
+            showCloseIcon={false}
+            vault={vault}
+            currencyInfo={currencyInfo}
+            canWithdraw={canWithdraw}
+            depositLoading={!isViewOnlyWallet && isBalanceLookupPending}
+            hasPosition={hasPosition}
+            position={displayPosition}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+            showActionButtons={!isInfoOnly}
+            symbol={currencyInfo?.currency.symbol ?? ''}
+            balanceError={balanceError}
+            lifetimeEarningsUsd={position?.lifetimePnlUsd}
+            lifetimeEarningsError={lifetimeEarningsError}
+            onRetryBalance={refetchPosition}
+            onClose={onClose}
+            onConnectWallet={noop}
+            onDeposit={handleDeposit}
+            onWithdraw={handleWithdraw}
+          />
+        </Flex>
+      </BottomSheetScrollView>
+    </Modal>
+  )
+}

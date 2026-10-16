@@ -1,0 +1,56 @@
+# =============================================================================
+# .dockerignore for Docker builds (api-self-serve, mission-control)
+# =============================================================================
+
+# Dependencies (reinstalled in container)
+node_modules
+
+# Git
+.git
+.gitattributes
+
+# Build outputs (rebuilt in container)
+**/build
+**/dist
+**/.turbo
+**/.nx
+
+# Other apps (not needed for api-self-serve). Their tsconfig.json stays: vite's
+# resolve.tsconfigPaths walks the root tsconfig's project references and
+# hard-errors on any that is missing.
+apps/web
+apps/mobile
+apps/extension
+apps/cli
+!apps/*/tsconfig.json
+
+# Mobile/native artifacts
+**/ios
+**/android
+**/*.podspec
+
+# Tests
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/coverage
+**/__tests__
+**/__mocks__
+**/e2e
+
+# IDE & local config
+.vscode
+.idea
+**/.claude
+**/.env.local
+**/.env.*.local
+
+# Docs
+*.md
+!README.md
+
+# Misc
+.DS_Store
+*.log
+**/.storybook
+**/storybook-static

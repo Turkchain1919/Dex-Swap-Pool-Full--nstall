@@ -1,0 +1,11 @@
+/* Transform + opacity only — animating theme-token colors flashes on light/dark toggle. */
+@keyframes bid-activity-row-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.bid-activity-row-enter {
+  animation: bid-activity-row-enter 200ms ease-out;
+}

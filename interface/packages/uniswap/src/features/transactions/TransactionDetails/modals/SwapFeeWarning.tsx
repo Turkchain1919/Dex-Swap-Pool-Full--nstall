@@ -1,0 +1,68 @@
+import { isWebPlatform } from '@universe/environment'
+import { Text, TouchableArea, zIndexes } from '@universe/mycelium'
+import { useSporeColors } from '@universe/mycelium/theme-hooks-compat'
+import { PropsWithChildren } from 'react'
+import { useTranslation } from 'react-i18next'
+import { AlertCircleFilled } from 'ui/src/components/icons/AlertCircleFilled'
+import { WarningSeverity } from 'uniswap/src/components/modals/WarningModal/types'
+import { WarningInfo } from 'uniswap/src/components/modals/WarningModal/WarningInfo'
+import { UniswapHelpUrls } from 'uniswap/src/constants/urls'
+import { ModalName } from 'uniswap/src/features/telemetry/constants'
+import { openUri } from 'uniswap/src/utils/linking'
+
+export function SwapFeeWarning({
+  noUniswapInterfaceFees,
+  noFeeOnThisSwap,
+  children,
+  isJupiter,
+}: PropsWithChildren<{ noUniswapInterfaceFees: boolean; noFeeOnThisSwap: boolean; isJupiter: boolean }>): JSX.Element {
+  const colors = useSporeColors()
+  const { t } = useTranslation()
+
+  const onPressLearnMore = async (): Promise<void> => {
+    await openUri({ uri: UniswapHelpUrls.articles.swapFeeInfo })
+  }
+
+  const caption =
+    noUniswapInterfaceFees && !isJupiter
+      ? t('swap.warning.noInterfaceFees.message')
+      : noFeeOnThisSwap
+        ? t('swap.warning.uniswapFee.message.default')
+        : isJupiter
+          ? t('swap.fees.jupiter.message')
+          : t('swap.warning.uniswapFee.message.included')
+
+  return (
+    <WarningInfo
+      infoButton={
+        <TouchableArea onPress={onPressLearnMore}>
+          <Text color="$neutral1" variant={isWebPlatform ? 'body4' : 'buttonLabel2'}>
+            {t('common.button.learn')}
+          </Text>
+        </TouchableArea>
+      }
+      modalProps={{
+        icon: <AlertCircleFilled color="$neutral1" size="$icon.20" />,
+        backgroundIconColor: colors.surface2.get(),
+        captionComponent: (
+          <Text
+            color="$neutral2"
+            textAlign={isWebPlatform ? 'left' : 'center'}
+            variant={isWebPlatform ? 'body4' : 'body2'}
+          >
+            {caption}
+          </Text>
+        ),
+        rejectText: t('common.button.close'),
+        modalName: ModalName.NetworkFeeInfo,
+        severity: WarningSeverity.None,
+        title: t('swap.warning.uniswapFee.title'),
+        zIndex: zIndexes.popover,
+      }}
+      tooltipProps={{ text: caption, placement: 'top' }}
+      analyticsTitle="Swap fee"
+    >
+      {children}
+    </WarningInfo>
+  )
+}

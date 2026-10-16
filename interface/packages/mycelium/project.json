@@ -1,0 +1,95 @@
+{
+  "name": "@universe/mycelium",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/mycelium/src",
+  "projectType": "library",
+  "tags": ["scope:mycelium", "type:lib"],
+  "targets": {
+    "build:icons": {
+      "command": "bun run ./src/scripts/componentize-icons.ts --silent && oxfmt --threads=2 -c $NX_WORKSPACE_ROOT/.oxfmtrc.json src/components/icons",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": [
+        "lintConfig",
+        "{projectRoot}/src/scripts/componentize-icons.ts",
+        "{workspaceRoot}/packages/ui/src/assets/icons/**",
+        "{projectRoot}/src/components/icons/**",
+        "ciCacheBust"
+      ],
+      "outputs": ["{projectRoot}/src/components/icons/**"]
+    },
+    "build:icons:missing": {
+      "command": "bun run ./src/scripts/componentize-icons.ts --skip-existing --silent && oxfmt --threads=4 -c $NX_WORKSPACE_ROOT/.oxfmtrc.json src/components/icons",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": [
+        "lintConfig",
+        "{projectRoot}/src/scripts/componentize-icons.ts",
+        "{workspaceRoot}/packages/ui/src/assets/icons/**",
+        "{projectRoot}/src/components/icons/**",
+        "ciCacheBust"
+      ],
+      "outputs": ["{projectRoot}/src/components/icons/**"]
+    },
+    "generate:compat-classes": {
+      "command": "bun run ./src/scripts/generate-compat-classes.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": ["{projectRoot}/src/**/*.ts", "{workspaceRoot}/packages/tailwind/**/*.css", "ciCacheBust"],
+      "outputs": ["{projectRoot}/compat-classes.gen.txt"]
+    },
+    "generate:compat-classes:native": {
+      "command": "bun run ./src/scripts/generate-native-compat-classes.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["generate:compat-classes"],
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/compat-classes.gen.txt",
+        "{projectRoot}/src/compat/native-safe.ts",
+        "{projectRoot}/src/compat/variant-codes.ts",
+        "{projectRoot}/src/scripts/generate-native-compat-classes.ts",
+        "ciCacheBust"
+      ],
+      "outputs": ["{projectRoot}/compat-classes.native.gen.txt"]
+    },
+    "typecheck": {
+      "command": "tsc -b && tsc -p tsconfig.test.json",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "format": {},
+    "format:check": {},
+    "lint:oxlint": {},
+    "lint:oxlint:fix": {},
+    "lint:oxlint:fast": {},
+    "lint": {},
+    "lint:fix": {},
+    "check": {},
+    "check:fast": {},
+    "check:deps:usage": {},
+    "test": {
+      "command": "vitest run",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["@universe/tailwind:test:native"],
+      "// inputs": "Repeats the targetDefaults test inputs verbatim (a target-level `inputs` REPLACES the default, it does not extend it) plus the consumer Tailwind entry that src/button-compat/web-css-coverage.test.ts reads by path. Without that entry in the graph, narrowing its @source root or adding an @source not touches no mycelium file, `nx affected` skips this suite, and the cached green stands — the exact regression that gate exists to catch.",
+      "inputs": [
+        "sourceFiles",
+        "^production",
+        "{projectRoot}/**/*.test.*",
+        "{projectRoot}/**/*.spec.*",
+        "{workspaceRoot}/apps/web/src/tailwind.css"
+      ]
+    }
+  }
+}

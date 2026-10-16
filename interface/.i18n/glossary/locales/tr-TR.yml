@@ -1,0 +1,499 @@
+# Turkish (tr-TR) glossary.
+#
+# DRAFT — no Notion style guide exists for tr-TR. Anchored to:
+#   - Apple HIG / iOS localization (Turkish system terms visible on device)
+#   - Google/Android localization (Google Play Store, Android UI Turkish strings)
+#   - Microsoft Terminology Collection (tr-TR, downloaded 2024)
+#   - BtcTurk / Paribu / Binance TR exchange UI (established Turkish crypto usage)
+#   - Turkish Capital Markets Board (SPK/TSPB) regulatory vocabulary
+#
+# NEEDS NATIVE REVIEW before production use. Flagged decisions are marked [REVIEW].
+#
+# Strategy: selective-keep-English.
+#   Turkish tech culture (per Apple/Google/Microsoft Turkish UI) keeps English loanwords
+#   for core crypto nouns where no single native term dominates. Microsoft Terminology
+#   uses "cüzdan" for wallet; BtcTurk/Paribu consistently use "cüzdan" too — so
+#   wallet translates. "Token", "slippage" stay English as community norm on Turkish
+#   exchanges. UPDATE 2026-06-24 (evidence review): "mint", "wrap", "unwrap" (+ the
+#   "wrapped" adjective) now also kept English — "basım"/"sarma"/"açma" are physical
+#   false friends (print-run / stuffed grape leaves / opening a door) with no DeFi
+#   attestation; the community uses the English forms (e.g. "mint etmek"). "swap"
+#   still maps to "takas" (BtcTurk AMM usage) pending native review. See descriptions.
+#
+# Morphology note: Turkish is agglutinative with vowel harmony. When a kept-English
+# loanword takes a Turkish suffix, the suffix vowel follows back-vowel harmony for
+# most EN loanwords (which are treated as back-vowel stems): token → token'ın,
+# swap → swap'ın, slippage → slippage'ın. "Cüzdan" (front-vowel stem) follows
+# front-vowel harmony: cüzdanın, cüzdana. The pipeline adds suffixes in context;
+# the glossary governs the base form only.
+#
+# No grammatical gender in Turkish — no gender fields here.
+# Voice (sen/siz decision) lives in ../../style/locales/tr-TR.md.
+# Core DNT brand terms inherited from ../core/crypto.yml — not re-listed here.
+
+# --- Wallet family ---
+
+- term: wallet
+  preferred: { tr-TR: "cüzdan" }
+  partOfSpeech: noun
+  description: >
+    "Cüzdan" is the standard Turkish rendering. Apple HIG Turkish, Microsoft
+    Terminology, BtcTurk, and Paribu all use "cüzdan" consistently. Front-vowel
+    stem: vowel-harmony suffixes use front vowels (cüzdanın, cüzdana, cüzdandan).
+    Do NOT keep English — unlike es-ES where regional variants fragment, Turkish
+    has a clear consensus term.
+
+- term: smart wallet
+  preferred: { tr-TR: "akıllı cüzdan" }
+  partOfSpeech: noun
+  description: >
+    "Akıllı" is the standard adjective for "smart" in Turkish tech UI (akıllı
+    telefon, akıllı sözleşme). Microsoft/Apple Turkish both use this pattern.
+
+# --- Token family ---
+
+- term: token
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. BtcTurk, Paribu, and Binance TR all keep "token" as-is.
+    No established single Turkish term dominates — "belirteç" is used in
+    academic/Microsoft contexts but is not the crypto-community norm. Turkish
+    suffix: token'ın (genitive), token'a (dative) — apostrophe separates the
+    loanword base from the suffix per Turkish spelling rules. [REVIEW: Microsoft
+    Terminology lists "belirteç" for software contexts; confirm crypto usage is
+    truly "token" not "belirteç" with native reviewer.]
+
+# --- Swap family ---
+
+- term: swap
+  preferred: { tr-TR: "takas" }
+  partOfSpeech: noun
+  description: >
+    "Takas" is the established Turkish financial/brokerage term for exchange/swap
+    (SPK/TSPB usage; Istanbul Stock Exchange uses it for swap instruments).
+    BtcTurk uses "takas" in settlement contexts; Paribu uses both "takas" and "swap"
+    interchangeably. Prefer "takas" over bare English "swap" to root the term in
+    established finance vocabulary. Do NOT coin "swaplamak". [REVIEW: confirm the
+    preferred form is "takas" not kept-English "swap" — both appear on Turkish exchanges.]
+  forbidden: { tr-TR: ["swaplamak", "swap etmek"] }
+
+# --- Wrap family (keep on one root) ---
+
+- term: wrap
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English — "Wrap". "sarma" is a false friend (primarily a stuffed-grape-leaf dish,
+    secondarily OOP encapsulation) with no shipped Turkish DeFi attestation as a label;
+    MetaMask Turkish has no wrap/unwrap keys. Flipped from "sarma" 2026-06-24 to keep the
+    wrap/unwrap pair symmetric. The Turkish auxiliary form "wrap etmek" is fine in prose.
+  forbidden: { tr-TR: ["sarma"] }
+
+- term: wrapped
+  doNotTranslate: true
+  partOfSpeech: adjective
+  description: >
+    Keep English — "Wrapped" (e.g. Wrapped BTC / WBTC). Same family as `wrap`; must stay
+    English to avoid a wrap/wrapped split. Flipped from "sarılmış" 2026-06-24.
+  forbidden: { tr-TR: ["sarılmış"] }
+
+- term: unwrap
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English — "Unwrap". "açma" means opening (a door, a box) and has zero DeFi
+    attestation; the Turkish community describes the reverse-wrap with "dönüştürme", not
+    "açma". Flipped from "açma" 2026-06-24 (high confidence). "unwrap etmek" is fine in prose.
+  forbidden: { tr-TR: ["açma"] }
+
+# --- Mint ---
+
+- term: mint
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English — "Mint". "basım" reads as "edition / print-run" and has no DeFi
+    attestation as a UI label; BtcTurk, Paribu, CoinTurk, and Stablex all use the English
+    forms ("mint etmek" / "mintleme"). Flipped from "basım" 2026-06-24 (high confidence).
+  forbidden: { tr-TR: ["basım"] }
+
+# --- Slippage ---
+
+- term: slippage
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. BtcTurk and Paribu both keep "slippage" without translating.
+    No established Turkish finance term captures price-slippage in the DeFi sense
+    (the nearest would be "kayma" but it is not the community norm). Turkish
+    suffix: slippage'ın (genitive). [REVIEW: "kayma" does appear in some Turkish
+    fintech writing — confirm keep-English is the right call.]
+
+- term: max slippage
+  preferred: { tr-TR: "maksimum slippage" }
+  partOfSpeech: noun
+  description: >
+    "Maksimum" is the Turkish loanword used by BtcTurk/Paribu for max limits.
+    Slippage kept English per the slippage entry above.
+
+# --- Network cost / fee ---
+
+- term: network cost
+  preferred: { tr-TR: "ağ ücreti" }
+  partOfSpeech: noun
+  description: >
+    "Ağ" (network) and "ücret" (fee/cost) are both standard Turkish. Microsoft
+    Terminology uses "ağ ücreti" for network cost. Apple/Google Turkish UIs use
+    this compound. [REVIEW: some UIs use "ağ maliyeti" (maliyeti = cost/expense) —
+    prefer "ağ ücreti" as it is more standard in payment contexts.]
+  forbidden: { tr-TR: ["network ücreti", "network cost"] }
+
+- term: fee
+  preferred: { tr-TR: "ücret" }
+  partOfSpeech: noun
+  description: >
+    Standard Turkish — Microsoft Terminology, Apple/Google all use "ücret" for
+    fee/charge. SPK/TSPB use "ücret" for brokerage fees.
+
+# --- Crypto / cryptocurrency ---
+
+- term: crypto
+  preferred: { tr-TR: "kripto" }
+  partOfSpeech: noun
+  description: >
+    "Kripto" is universally used in Turkish media, exchanges (BtcTurk, Paribu,
+    Binance TR), and regulatory documents (SPK). Not "şifre" (which means password/cipher).
+  forbidden: { tr-TR: ["şifre varlık", "dijital para"] }
+
+- term: cryptocurrency
+  preferred: { tr-TR: "kripto para" }
+  partOfSpeech: noun
+  description: >
+    "Kripto para" is the SPK/TSPB regulatory term and the standard in BtcTurk/
+    Paribu UI. "Kripto para birimi" also correct but wordier — "kripto para" is
+    the shorter established form. Do not use "sanal para" (SPK explicitly deprecated
+    it in favor of "kripto varlık"/"kripto para").
+  forbidden: { tr-TR: ["sanal para", "dijital para birimi"] }
+
+# --- Market cap ---
+
+- term: market cap
+  preferred: { tr-TR: "piyasa değeri" }
+  partOfSpeech: noun
+  description: >
+    Standard Turkish financial term. SPK, Borsa Istanbul, and Bloomberg TR all
+    use "piyasa değeri" for market capitalization. Microsoft Terminology confirms.
+
+# --- Recovery phrase / seed phrase (collapse to one target) ---
+
+- term: seed phrase
+  preferred: { tr-TR: "kurtarma ifadesi" }
+  partOfSpeech: noun
+  description: >
+    Collapsed with recovery phrase → "kurtarma ifadesi". "Kurtarma" = rescue/recovery,
+    "ifadesi" = phrase/expression. BtcTurk and Ledger TR use "kurtarma ifadesi" or
+    "gizli kurtarma ifadesi" (secret recovery phrase). Do not use "tohum cümlesi"
+    (literal calque of seed phrase — not a community norm).
+  forbidden: { tr-TR: ["tohum cümlesi", "seed ifadesi", "seed phrase"] }
+
+- term: recovery phrase
+  preferred: { tr-TR: "kurtarma ifadesi" }
+  partOfSpeech: noun
+  description: >
+    Security-critical — must not be left in English. Same as seed phrase:
+    "kurtarma ifadesi". Ledger TR, BtcTurk, and Trezor TR all use this form.
+  forbidden: { tr-TR: ["recovery phrase"] }
+
+# --- Private keys ---
+
+- term: private keys
+  preferred: { tr-TR: "özel anahtarlar" }
+  partOfSpeech: noun
+  description: >
+    "Özel anahtar" (private key) is standard in Turkish cryptography (Microsoft
+    Terminology, TÜBİTAK BİLGEM cryptography documents). Plural: "özel anahtarlar".
+    Front-vowel harmony: özel anahtarınız (your private keys).
+
+# --- Backup ---
+
+- term: backup
+  preferred: { tr-TR: "yedekleme" }
+  partOfSpeech: noun
+  description: >
+    "Yedekleme" is the Microsoft Terminology term for backup and is used by
+    Apple/Google Turkish UI consistently ("bulut yedeklemesi", etc.).
+    Do NOT keep English "backup" as the primary — "yedekleme" is unambiguous.
+  forbidden: { tr-TR: ["back up", "yedek kopya"] }
+
+# --- Smart contract ---
+
+- term: smart contract
+  preferred: { tr-TR: "akıllı sözleşme" }
+  partOfSpeech: noun
+  description: >
+    "Akıllı sözleşme" is used by SPK, Turkish academic literature, BtcTurk, and
+    Microsoft Terminology (confirmed). "Sözleşme" = contract/agreement. This is
+    the consensus term — no ambiguity.
+
+# --- TVL (acronym — keep English everywhere) ---
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym (total value locked). Turkish finance does not have an equivalent acronym.
+
+# --- Product long-tail ---
+
+- term: transaction
+  preferred: { tr-TR: "işlem" }
+  partOfSpeech: noun
+  description: >
+    "İşlem" is the standard Turkish term for transaction in financial/banking contexts
+    (SPK, Borsa Istanbul, all major Turkish banks use it). Not "muamele" (archaic)
+    or "transaksyon" (not established). Note capital İ when sentence-initial — Turkish
+    dotted I distinction (İ/i vs I/ı).
+
+- term: transaction history
+  preferred: { tr-TR: "işlem geçmişi" }
+  partOfSpeech: noun
+  description: Microsoft Terminology and Apple Turkish confirm "işlem geçmişi".
+
+- term: trade
+  preferred: { tr-TR: "işlem" }
+  partOfSpeech: noun
+  description: >
+    In DeFi context, "işlem" covers both trade and transaction; "takas" is used
+    when emphasizing the exchange aspect. Use "işlem" as default; if disambiguation
+    from "transaction" is needed in the same screen, use "alım satım" for trade.
+    [REVIEW: sentence-level disambiguation may need "alım satım" vs "işlem".]
+
+- term: explore
+  preferred: { tr-TR: "keşfet" }
+  partOfSpeech: verb
+  description: >
+    "Keşfet" (imperative of keşfetmek — to explore/discover) follows the Turkish
+    convention for nav tab labels (action as imperative). Google Maps TR uses
+    "Keşfet". Apple Maps TR uses "Keşfet". [REVIEW: if register is "siz" formal,
+    use "Keşfedin" instead.]
+
+- term: extension
+  preferred: { tr-TR: "uzantı" }
+  partOfSpeech: noun
+  description: >
+    Microsoft Terminology and Google Turkish both use "uzantı" for browser extension.
+    Chrome Uzantıları (Chrome Extensions) is the official Google TR term. Not
+    "eklenti" (that is add-on/plugin — distinct concept).
+  forbidden: { tr-TR: ["eklenti"] }
+
+- term: pool
+  preferred: { tr-TR: "havuz" }
+  partOfSpeech: noun
+  description: >
+    "Havuz" is the established DeFi translation in Turkish — BtcTurk, Paribu, and
+    Turkish DeFi community both use "likidite havuzu" (liquidity pool) / "havuz"
+    as short form. Consistent with the "pool" pattern in other translate-leaning terms.
+  forbidden: { tr-TR: ["pool"] }
+
+- term: passkey
+  preferred: { tr-TR: "erişim anahtarı" }
+  partOfSpeech: noun
+  description: >
+    Apple HIG Turkish uses "erişim anahtarı" for passkey. Apple iOS/macOS
+    Turkish UI strings confirmed. FIDO Alliance TR does not have a separate
+    official term yet — Apple's term is the most visible platform authority.
+    [REVIEW: Google Turkish uses "anahtar" (shorter) in some Passkeys contexts;
+    "erişim anahtarı" is more descriptive and follows Apple HIG.]
+  forbidden: { tr-TR: ["passkey", "şifre anahtarı"] }
+
+- term: passcode
+  preferred: { tr-TR: "şifre" }
+  partOfSpeech: noun
+  description: >
+    "Şifre" is used by Apple Turkish and Microsoft Terminology for PIN/passcode.
+    Distinguished from "parola" (password — longer, alphanumeric). In contexts
+    where password and passcode appear together, use "şifre" for passcode and
+    "parola" for password to maintain the distinction.
+
+- term: approve
+  preferred: { tr-TR: "onayla" }
+  partOfSpeech: verb
+  description: >
+    EIP-2612 approve flow. "Onayla" (imperative, informal sen-register).
+    Microsoft/Apple Turkish use "onayla" for approve/confirm CTA buttons.
+    Keep distinct from "izin ver" (permit — see below).
+
+- term: permit
+  preferred: { tr-TR: "izin ver" }
+  partOfSpeech: verb
+  description: >
+    EIP-2612 permit (signature-based approval). "İzin ver" (give permission).
+    Must stay distinct from "onayla" (approve). [REVIEW: Turkish UI often
+    uses "izin" as noun — confirm verb vs noun form is correct in context.]
+
+- term: approval
+  preferred: { tr-TR: "onay" }
+  partOfSpeech: noun
+  description: >
+    "Onay" is the noun form (approval/confirmation). Apple/Microsoft TR confirm.
+
+- term: revoke
+  preferred: { tr-TR: "iptal et" }
+  partOfSpeech: verb
+  description: >
+    "İptal et" (cancel/revoke) is the standard Turkish for revoking a permission.
+    Microsoft Terminology confirms "iptal et" for revoke. "Geri al" (undo) is
+    subtly different — use "iptal et" for approval revocation.
+
+- term: confirm
+  preferred: { tr-TR: "onayla" }
+  partOfSpeech: verb
+  description: >
+    "Onayla" for CTA confirm buttons. Note this overlaps with "approve" (onayla)
+    — in DeFi contexts where both appear on the same screen, use "izin ver" for
+    approve and "onayla" for confirm. [REVIEW]
+
+- term: rate
+  preferred: { tr-TR: "oran" }
+  partOfSpeech: noun
+  description: Exchange rate context. "Oran" is standard in Turkish finance (SPK, banks).
+
+- term: pair
+  preferred: { tr-TR: "çift" }
+  partOfSpeech: noun
+  description: >
+    "Çift" (pair) used by BtcTurk and Paribu for trading pairs (BTC/USDT çifti).
+    Not "ikili" (binary/duo — wrong register).
+
+- term: activity
+  preferred: { tr-TR: "etkinlik" }
+  partOfSpeech: noun
+  description: >
+    "Etkinlik" for activity/events in UI context. Microsoft/Apple Turkish use
+    "etkinlik" for activity. [REVIEW: "aktivite" is also used informally and is
+    a closer phonetic loanword; "etkinlik" is the preferred formal Microsoft term.]
+
+- term: limits
+  preferred: { tr-TR: "limitler" }
+  partOfSpeech: noun
+  description: >
+    "Limit" is the Turkish loanword (from French/English) used universally in
+    Turkish banking and exchange UI (BtcTurk: "limit emirleri" = limit orders).
+    Plural: "limitler" with vowel-harmony suffix.
+
+- term: all time
+  preferred: { tr-TR: "tüm zamanlar" }
+  partOfSpeech: phrase
+  description: >
+    Date-range label (NOT "constantly"). "Tüm zamanlar" = all time (temporal).
+    BtcTurk uses "Tüm zamanlar" for portfolio ATH/ATL labels. Do NOT use
+    "her zaman" (always/constantly — the temporal-frequency false friend).
+  forbidden: { tr-TR: ["her zaman"] }
+
+- term: clearing price
+  preferred: { tr-TR: "takas fiyatı" }
+  partOfSpeech: noun
+  description: >
+    Borsa Istanbul and SPK use "takas fiyatı" for clearing/settlement price.
+    "Tasfiye fiyatı" is also seen but less common. [REVIEW]
+
+- term: bid
+  preferred: { tr-TR: "teklif" }
+  partOfSpeech: noun
+  description: >
+    Auction bid → "teklif". Borsa Istanbul: "alış teklifi" (bid price). In DeFi
+    auction context, "teklif" without the qualifier is acceptable for UI brevity.
+    Distinct from "arz" (supply) — no collision risk.
+
+- term: order filled
+  preferred: { tr-TR: "emir gerçekleşti" }
+  partOfSpeech: phrase
+  description: >
+    Borsa Istanbul / SPK: "emir gerçekleşmesi" (order execution). "Gerçekleşti"
+    (past tense: executed/filled). Do NOT use "dolduruldu" (physically filled —
+    false friend).
+  forbidden: { tr-TR: ["emir dolduruldu"] }
+
+- term: in range
+  preferred: { tr-TR: "aralıkta" }
+  partOfSpeech: phrase
+  description: Price within the LP range. "Aralıkta" (within range/interval).
+
+- term: out of range
+  preferred: { tr-TR: "aralık dışında" }
+  partOfSpeech: phrase
+  description: Price outside LP range. "Aralık dışında" (outside the range/interval).
+
+- term: front-run
+  preferred: { tr-TR: "öne geçme" }
+  partOfSpeech: noun
+  description: >
+    "Öne geçme" is a literal but defensible rendering. No established Turkish DeFi
+    term exists — "front-running" is sometimes kept English on Turkish DeFi forums.
+    [REVIEW: may be better to keep English "front-run" given no community consensus.]
+
+- term: onchain
+  preferred: { tr-TR: "zincir üstünde" }
+  partOfSpeech: adjective
+  description: >
+    "Zincir üstünde" (on-chain, on the chain). Turkish DeFi content uses both
+    "zincir üstünde" and the English "on-chain". Prefer native form in UI.
+    [REVIEW: "on-chain" may be more recognizable to Turkish crypto users.]
+  forbidden: { tr-TR: ["onchain", "on-chain"] }
+
+- term: sweep
+  preferred: { tr-TR: "topla" }
+  partOfSpeech: verb
+  description: >
+    NFT sweep context. "Topla" (collect/gather — imperative sen-register).
+    No established Turkish DeFi term for "sweep"; "topla" captures the intent.
+    [REVIEW]
+
+- term: trustless
+  preferred: { tr-TR: "güvensiz" }
+  partOfSpeech: adjective
+  description: >
+    "Güvensiz" literally means "trustless/untrustworthy" — in Turkish this is a
+    false-friend risk (reads negatively). "Güvene ihtiyaç duymayan" (not needing
+    trust) is accurate but too long for UI. "Güven gerektirmeyen" is also seen.
+    [REVIEW CRITICAL: Turkish native reviewer must confirm whether "güvensiz"
+    reads correctly in DeFi context or needs the fuller phrase.]
+
+- term: Disclosures
+  preferred: { tr-TR: "Yasal Uyarılar" }
+  partOfSpeech: noun
+  description: >
+    Legal/footer term. "Yasal uyarılar" (legal notices/disclosures) is standard
+    in Turkish legal UI (e-commerce, fintech). Not "açıklamalar" (explanations —
+    too generic) and not "ifşaatlar" (a false-friend calque of "disclosures" that
+    is not a UI term in Turkish).
+  forbidden: { tr-TR: ["ifşaatlar", "açıklamalar"] }
+
+# --- Earn / yield domain (TLM native review, 2026-07-28) ---
+
+- term: Start Earning
+  preferred: { tr-TR: "Kazanmaya başlayın" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Earn CTA. Body AND CTA stay formal siz-register ("başlayın") — switching
+    only the CTA to informal would be inconsistent. Headlines: avoid the
+    possessive suffix directly on ticker symbols — prefer "USDT, USDC ve ETH
+    varlıklarınızdan". Second native review, endorsed by TLM
+    (Thomas Osmonson, 2026-07-28). Style seed untouched.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — "Limit" IS the
+    conventional local trading label in this locale, so it stays as-is (a
+    keep-as-is rendering, not an untranslated leftover). Never a literal
+    restrict-verb. TLM ruling (2026-07-30); pending native confirmation.

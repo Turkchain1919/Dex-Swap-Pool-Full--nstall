@@ -1,0 +1,161 @@
+import { Text } from '@universe/mycelium'
+import { useSporeColors } from '@universe/mycelium/theme-hooks-compat'
+import { TFunction } from 'i18next'
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { HistoryDuration } from 'uniswap/src/features/dataApi/types'
+import { useLocalizationContext } from 'uniswap/src/features/language/LocalizationContext'
+import { NumberType } from 'utilities/src/format/types'
+import { ChartHeader } from '~/components/Charts/ChartHeader'
+import { Chart, ChartModelParams } from '~/components/Charts/ChartModel'
+import { useHeaderDateFormatter } from '~/components/Charts/hooks/useHeaderDateFormatter'
+import {
+  CustomVolumeChartModel,
+  CustomVolumeChartModelParams,
+} from '~/components/Charts/VolumeChart/CustomVolumeChartModel'
+import { getCumulativeVolume, SingleHistogramData } from '~/components/Charts/VolumeChart/utils'
+import { TimePeriod, toHistoryDuration } from '~/data/util'
+
+interface VolumeChartModelParams extends ChartModelParams<SingleHistogramData>, CustomVolumeChartModelParams {
+  TooltipBody?: React.FunctionComponent<{ data: SingleHistogramData }>
+}
+
+class VolumeChartModel extends CustomVolumeChartModel<SingleHistogramData> {
+  constructor(chartDiv: HTMLDivElement, params: VolumeChartModelParams) {
+    super(chartDiv, params)
+  }
+
+  updateOptions(params: VolumeChartModelParams) {
+    const volumeChartOptions = {
+      autoSize: true,
+      rightPriceScale: {
+        borderVisible: false,
+        scaleMargins: {
+          top: 0.3,
+          bottom: 0,
+        },
+      },
+      handleScale: {
+        axisPressedMouseMove: false,
+      },
+      handleScroll: {
+        vertTouchDrag: false,
+      },
+    }
+
+    super.updateOptions(params, volumeChartOptions)
+  }
+}
+
+// oxlint-disable-next-line typescript/consistent-return
+function formatHistoryDuration(t: TFunction, duration: HistoryDuration): string {
+  switch (duration) {
+    case HistoryDuration.Hour:
+      return t('common.pastHour')
+    case HistoryDuration.Day:
+      return t('common.pastDay')
+    case HistoryDuration.Week:
+      return t('common.pastWeek')
+    case HistoryDuration.Month:
+      return t('common.pastMonth')
+    case HistoryDuration.Year:
+      return t('common.pastYear')
+    case HistoryDuration.Max:
+      return t('common.allTime')
+  }
+}
+
+function VolumeChartHeader({
+  crosshairData,
+  volumes,
+  timePeriod,
+}: {
+  crosshairData?: SingleHistogramData
+  volumes: SingleHistogramData[]
+  timePeriod: TimePeriod
+}) {
+  const { t } = useTranslation()
+  const { convertFiatAmountFormatted } = useLocalizationContext()
+  const headerDateFormatter = useHeaderDateFormatter()
+
+  const display = useMemo(() => {
+    const displayValues = {
+      volume: '-',
+      time: '-',
+    }
+    const priceFormatter = (price?: number) => convertFiatAmountFormatted(price, NumberType.FiatTokenStats)
+    if (crosshairData === undefined) {
+      const cumulativeVolume = getCumulativeVolume(volumes)
+      displayValues.volume = priceFormatter(cumulativeVolume)
+      displayValues.time = formatHistoryDuration(t, toHistoryDuration(timePeriod))
+    } else {
+      displayValues.volume = priceFormatter(crosshairData.value)
+      displayValues.time = headerDateFormatter(crosshairData.time)
+    }
+    return displayValues
+  }, [crosshairData, convertFiatAmountFormatted, headerDateFormatter, t, timePeriod, volumes])
+
+  return (
+    <ChartHeader
+      value={
+        <Text variant="heading3" color="inherit">
+          {display.volume}
+        </Text>
+      }
+      time={crosshairData?.time}
+      timePlaceholder={formatHistoryDuration(t, toHistoryDuration(timePeriod))}
+    />
+  )
+}
+
+function FeesTooltipDisplay({ data }: { data: SingleHistogramData }) {
+  const { t } = useTranslation()
+  const { convertFiatAmountFormatted } = useLocalizationContext()
+
+  if (data.feesUsd === undefined) {
+    return null
+  }
+
+  return (
+    <Text variant="body3">
+      {t(`token.chart.tooltip`, {
+        amount: convertFiatAmountFormatted(data.feesUsd, NumberType.FiatTokenStats),
+      })}
+    </Text>
+  )
+}
+
+interface VolumeChartProps {
+  height: number
+  data: SingleHistogramData[]
+  timePeriod: TimePeriod
+  TooltipBody?: React.FunctionComponent<{ data: SingleHistogramData }>
+  stale: boolean
+  overrideColor?: string
+}
+
+export function VolumeChart({ height, data, timePeriod, stale, overrideColor }: VolumeChartProps) {
+  const colors = useSporeColors()
+
+  const params = useMemo(
+    () => ({ data, chartColors: [colors.accent1.val], headerHeight: 75, stale }),
+    [data, stale, colors],
+  )
+
+  // Chart wraps TooltipBody in a bordered ChartTooltip whenever one is passed, so a token volume chart
+  // (no per-bar fees) must pass none rather than a body that renders nothing.
+  const hasFees = useMemo(() => data.some((bar) => bar.feesUsd !== undefined), [data])
+
+  return (
+    <Chart
+      Model={VolumeChartModel}
+      params={params}
+      height={height}
+      showDottedBackground={true}
+      overrideColor={overrideColor}
+      TooltipBody={hasFees ? FeesTooltipDisplay : undefined}
+    >
+      {(crosshairData) => <VolumeChartHeader crosshairData={crosshairData} volumes={data} timePeriod={timePeriod} />}
+    </Chart>
+  )
+}

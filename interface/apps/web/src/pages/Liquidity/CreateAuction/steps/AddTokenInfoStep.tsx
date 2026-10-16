@@ -1,0 +1,93 @@
+import { SharedEventName } from '@uniswap/analytics-events'
+import { Flex } from '@universe/mycelium'
+import { useMedia } from '@universe/mycelium/theme-hooks-compat'
+import { useTranslation } from 'react-i18next'
+import { ElementName } from 'uniswap/src/features/telemetry/constants'
+import { sendAnalyticsEvent } from 'uniswap/src/features/telemetry/send'
+import { useEvent } from 'utilities/src/react/hooks'
+import { useTrace } from 'utilities/src/telemetry/trace/TraceContext'
+import { CreateNewTokenForm } from '~/pages/Liquidity/CreateAuction/components/CreateNewTokenForm'
+import { ExistingTokenForm } from '~/pages/Liquidity/CreateAuction/components/ExistingTokenForm'
+import { HookTile } from '~/pages/Liquidity/CreateAuction/components/HookTile'
+import { QuickLaunchToggleCard } from '~/pages/Liquidity/CreateAuction/components/QuickLaunchSection'
+import {
+  useCreateAuctionStore,
+  useCreateAuctionStoreActions,
+} from '~/pages/Liquidity/CreateAuction/CreateAuctionContext'
+import { useIsQuickLaunchModalFlow } from '~/pages/Liquidity/CreateAuction/quickLaunchModalContext'
+import { TokenMode } from '~/pages/Liquidity/CreateAuction/types'
+
+export function AddTokenInfoStep() {
+  const { t } = useTranslation()
+  const tokenForm = useCreateAuctionStore((state) => state.tokenForm)
+  const { setTokenMode } = useCreateAuctionStoreActions()
+  // The launches-page modal is quick-launch-only: the source tiles and the quick-launch
+  // switch are hidden so the mode can't be toggled out of the preset.
+  const isQuickLaunchModalFlow = useIsQuickLaunchModalFlow()
+  const trace = useTrace()
+  // mWeb shows the source tiles title-only; the Token info copy below already explains the choice.
+  const showTileDescriptions = !useMedia().md
+
+  // HookTile is a custom component that doesn't forward an injected onPress, so the source-toggle
+  // ELEMENT_CLICKED is fired here rather than via a <Trace logPress> wrapper.
+  const switchToCreateNew = useEvent(() => {
+    sendAnalyticsEvent(SharedEventName.ELEMENT_CLICKED, {
+      ...trace,
+      element: ElementName.AuctionTokenSourceToggle,
+      token_source: 'new',
+    })
+    setTokenMode(TokenMode.CREATE_NEW)
+  })
+  const switchToExisting = useEvent(() => {
+    sendAnalyticsEvent(SharedEventName.ELEMENT_CLICKED, {
+      ...trace,
+      element: ElementName.AuctionTokenSourceToggle,
+      token_source: 'existing',
+    })
+    setTokenMode(TokenMode.EXISTING)
+  })
+
+  return (
+    <Flex gap="$spacing16">
+      {!isQuickLaunchModalFlow && (
+        <Flex row gap="$spacing12">
+          <HookTile
+            selected={tokenForm.mode === TokenMode.CREATE_NEW}
+            title={t('toucan.createAuction.step.tokenInfo.createNew')}
+            description={
+              showTileDescriptions ? t('toucan.createAuction.step.tokenInfo.createNew.description') : undefined
+            }
+            onPress={switchToCreateNew}
+          />
+          <HookTile
+            selected={tokenForm.mode === TokenMode.EXISTING}
+            title={t('toucan.createAuction.step.tokenInfo.existing')}
+            description={
+              showTileDescriptions ? t('toucan.createAuction.step.tokenInfo.existing.description') : undefined
+            }
+            onPress={switchToExisting}
+          />
+        </Flex>
+      )}
+      {!isQuickLaunchModalFlow && <QuickLaunchToggleCard />}
+      {/* Inside the modal the card chrome is dropped so the form sits flush against the modal padding. */}
+      <Flex
+        gap="$spacing24"
+        {...(!isQuickLaunchModalFlow && {
+          backgroundColor: '$surface1',
+          borderWidth: '$spacing1',
+          borderColor: '$surface3',
+          borderRadius: '$rounded20',
+          p: '$spacing24',
+          $md: { borderWidth: 0, borderRadius: '$none', p: '$none' },
+        })}
+      >
+        {tokenForm.mode === TokenMode.CREATE_NEW ? (
+          <CreateNewTokenForm createNew={tokenForm} />
+        ) : (
+          <ExistingTokenForm existing={tokenForm} />
+        )}
+      </Flex>
+    </Flex>
+  )
+}

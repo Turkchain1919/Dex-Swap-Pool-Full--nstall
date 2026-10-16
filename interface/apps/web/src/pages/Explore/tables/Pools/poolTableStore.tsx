@@ -1,0 +1,86 @@
+import { isDevEnv } from '@universe/environment'
+import { createContext, useContext, useState } from 'react'
+import type { StoreApi, UseBoundStore } from 'zustand'
+import { create, useStore } from 'zustand'
+import { devtools } from 'zustand/middleware'
+import { useShallow } from 'zustand/react/shallow'
+import { PoolSortFields } from '~/data/pools/poolStats'
+
+interface PoolTableActions {
+  setSort: (category: PoolSortFields) => boolean
+  resetSort: () => void
+}
+
+interface PoolTableState {
+  sortMethod: PoolSortFields
+  sortAscending: boolean
+  actions: PoolTableActions
+}
+
+type PoolTableStore = UseBoundStore<StoreApi<PoolTableState>>
+
+const INITIAL_SORT_METHOD = PoolSortFields.Volume24h
+const INITIAL_SORT_ASCENDING = false
+
+export function createPoolTableStore(): PoolTableStore {
+  return create<PoolTableState>()(
+    devtools(
+      (set) => ({
+        sortMethod: INITIAL_SORT_METHOD,
+        sortAscending: INITIAL_SORT_ASCENDING,
+        actions: {
+          setSort: (category) => {
+            let newSortAscending = false
+            set((state) => {
+              newSortAscending = state.sortMethod === category ? !state.sortAscending : false
+              return { sortMethod: category, sortAscending: newSortAscending }
+            })
+            return newSortAscending
+          },
+          resetSort: () =>
+            set({
+              sortMethod: INITIAL_SORT_METHOD,
+              sortAscending: INITIAL_SORT_ASCENDING,
+            }),
+        },
+      }),
+      {
+        name: 'usePoolTableStore',
+        enabled: isDevEnv(),
+        trace: true,
+        traceLimit: 25,
+      },
+    ),
+  )
+}
+
+const PoolTableStoreContext = createContext<PoolTableStore | null>(null)
+
+export function PoolTableStoreContextProvider({ children }: { children: React.ReactNode }): JSX.Element {
+  const [store] = useState(() => createPoolTableStore())
+
+  return <PoolTableStoreContext.Provider value={store}>{children}</PoolTableStoreContext.Provider>
+}
+
+function usePoolTableStoreBase(): PoolTableStore {
+  const store = useContext(PoolTableStoreContext)
+
+  if (!store) {
+    throw new Error('usePoolTableStore must be used within PoolTableStoreContextProvider')
+  }
+
+  return store
+}
+
+export function usePoolTableStore<T>(selector: (state: Omit<PoolTableState, 'actions'>) => T): T {
+  const store = usePoolTableStoreBase()
+  return useStore(store, useShallow(selector))
+}
+
+export function usePoolTableStoreActions(): PoolTableState['actions'] {
+  const store = usePoolTableStoreBase()
+  return useStore(
+    store,
+    useShallow((state) => state.actions),
+  )
+}

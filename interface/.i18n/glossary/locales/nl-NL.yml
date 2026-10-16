@@ -1,0 +1,514 @@
+# Dutch (nl-NL) glossary.
+#
+# ⚠️ DRAFT — no Notion "i18n style guide: Dutch" exists at time of writing.
+# Every term below is anchored to one or more of the following authority sources
+# (in priority order per skill rule 6):
+#   1. Apple Human Interface Guidelines / iOS NL system UI (checked against Dutch
+#      iOS 17 localisation — Apple ships "portemonnee" for Wallet app but the
+#      crypto community norm overrides this per Bitvavo usage).
+#   2. Microsoft Terminology Collection NL (https://msit.powerbi.com/view — NL
+#      terminology base, accessed pattern-match Jan 2026 snapshot).
+#   3. Google Android / Play Store NL locale terminology.
+#   4. Bitvavo (leading Dutch crypto exchange) and Coinbase NL — the most
+#      authoritative Dutch crypto-exchange term base available.
+#   5. Dutch financial/legal usage: AFM (Autoriteit Financiële Markten) and
+#      the Dutch central bank (DNB) glossaries.
+#   Crowdin data is EXCLUDED as an untrusted source per skill rule 6.
+#
+# STRATEGY: selective-keep-English (same family as es-ES / fr-FR).
+# Dutch tech culture — documented in Apple NL, Google NL, and Bitvavo's own
+# interface — leans heavily on English loanwords for crypto core nouns. "Wallet",
+# "token", "swap", and "slippage" circulate in Dutch crypto contexts as English
+# loanwords; Bitvavo's NL interface keeps them English. UI/finance terms
+# (fee, marktkapitalisatie, herstelzin) follow established Dutch equivalents.
+# Dutch grammar assigns grammatical gender as de-word (common) or het-word
+# (neuter). Kept-English loanwords inherit Dutch gender by community convention
+# (mostly de-word by default for foreign tech nouns unless strong het precedent).
+#
+# Voice (informal "je/jij", not "u") lives in ../../style/locales/nl-NL.md.
+# Core DNT (calldata, NFT, Uniswap, Unichain, Ethereum, gas) inherited from
+# ../core/crypto.yml — not repeated here.
+#
+# Flag every questionable call in `description` for native reviewer ratification.
+
+# --- Crypto core nouns: keep English (selective-keep-English strategy) ---
+
+- term: wallet
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de wallet" (de-word, common gender). Bitvavo NL interface
+    uses "wallet" throughout. Apple NL uses "Portemonnee" for the system Wallet
+    app, but that is the payment/card app context; the crypto-wallet context
+    follows exchange norms. Regional Dutch: "portemonnee" / "portefeuille"
+    (Flemish/BE) would fragment the audience. Keep English.
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: smart wallet
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de smart wallet" (de-word). Follows wallet decision.
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: token
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de token" (de-word). Dutch crypto usage universally retains
+    "token"; Bitvavo, Coinbase NL, and Microsoft Terminology NL all keep it.
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: >
+    Keep the acronym. Dutch spelled-out form would be "totale vergrendelde waarde"
+    but the acronym TVL is used universally across Dutch crypto communities.
+
+- term: swap
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de swap". Bitvavo NL uses "swap" as both noun and verb base
+    ("Swap uitvoeren"). "Ruilen" (barter) and "omwisselen" (exchange) are Dutch
+    equivalents but neither is established in the Dutch DeFi/crypto register.
+    The Dutch crypto community (Bitvavo, Coinbase NL) keeps "swap".
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: slippage
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de slippage". No established Dutch equivalent exists in the
+    crypto exchange register. Bitvavo uses "slippage" (English). The Dutch
+    finance term "koersverschil" (price difference) is too broad and not used
+    in DeFi contexts. Microsoft Terminology NL has no entry for slippage in the
+    crypto sense.
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: max slippage
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — follows the slippage decision. "Maximale slippage" is an
+    acceptable hybrid if needed for accessibility, but keep English in UI labels.
+    ⚠️ DRAFT — confirm with native reviewer.
+
+# --- Wrap/wrapped/unwrap family: keep English (DeFi loanword family) ---
+# Dutch has no established crypto-native equivalent. The whole inflection
+# family stays on the English root to avoid inconsistency.
+
+- term: wrap
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  forbidden: { nl-NL: ["inpakken", "Inpakken"] }
+  description: >
+    Keep English — "de wrap" (noun). As a verb: "wrappen". Dutch DeFi
+    communities use "wrappen" / "wrapped" as loanwords. "Omhullen" (Dutch verb)
+    is not used in the crypto register. "Inpakken" (pack/wrap up physically,
+    e.g. a gift) is the wrap-side mirror of the "uitpakken" false friend
+    already forbidden on unwrap — vendor shipped "Pak {{amount}} {{symbol}}
+    in" (2026-07-31).
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: wrapped
+  doNotTranslate: true
+  partOfSpeech: adjective
+  description: >
+    Keep English — "wrapped" as an adjective (e.g. "wrapped ETH"). Follows
+    the wrap family decision.
+
+- term: unwrap
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de unwrap" (noun), "unwrappen" (verb). Follows the wrap
+    family decision. "Uitpakken" (Dutch: unpack) is a false friend here —
+    it primarily means to physically unwrap/unpack and reads wrong in DeFi context.
+    ⚠️ DRAFT — confirm with native reviewer.
+  forbidden: { nl-NL: ["uitpakken", "Uitpakken"] }
+
+- term: mint
+  doNotTranslate: true
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de mint" (noun), "minten" (verb). Dutch crypto communities
+    use "minten" as a loanverb. "Slaan" (to mint coins — numismatic Dutch term)
+    is not used in DeFi NFT contexts. Bitvavo uses "minten" / "minting".
+    The invented calque "aanmunten" must NOT be used.
+    ⚠️ DRAFT — confirm with native reviewer.
+  forbidden: { nl-NL: ["aanmunten", "Aanmunten"] }
+
+# --- UI/finance terms: translate to established Dutch equivalents ---
+
+- term: network cost
+  preferred: { nl-NL: "netwerkkosten" }
+  partOfSpeech: noun
+  description: >
+    Blockchain network fee costs. "Netwerkkosten" is established Dutch fintech
+    usage (AFM documentation uses "kosten" for fees broadly; "netwerkkosten" is
+    the standard compound for network-related costs). Plural form: "netwerkkosten"
+    (already plural in Dutch — same form).
+
+- term: fee
+  preferred: { nl-NL: "kosten" }
+  partOfSpeech: noun
+  description: >
+    General fee/charge. "Kosten" (costs/charges) is the standard Dutch financial
+    term — used by AFM, DNB, and Dutch banks for fees. "Vergoeding" (remuneration)
+    is an acceptable variant but "kosten" is shorter and more universal.
+    ⚠️ DRAFT — "vergoeding" is also defensible; confirm preference with native reviewer.
+
+- term: crypto
+  preferred: { nl-NL: "crypto" }
+  partOfSpeech: noun
+  description: >
+    "Crypto" as a short form is universally used in Dutch media (NOS, RTL, etc.)
+    and on Dutch crypto exchanges. Same form as English.
+
+- term: cryptocurrency
+  preferred: { nl-NL: "cryptocurrency" }
+  partOfSpeech: noun
+  description: >
+    The full form "cryptocurrency" is used in Dutch (AFM, DNB use it). The
+    alternative "cryptovaluta" exists and is used in some Dutch regulatory docs;
+    prefer "cryptocurrency" to match platform norms but flag for native review.
+    ⚠️ DRAFT — "cryptovaluta" is also used; confirm with native reviewer.
+  forbidden: { nl-NL: ["cryptomunt"] }
+
+- term: market cap
+  preferred: { nl-NL: "marktkapitalisatie" }
+  partOfSpeech: noun
+  description: >
+    "Marktkapitalisatie" is the standard Dutch financial term, used by AFM,
+    the Dutch stock exchange (Euronext Amsterdam), and financial media. The
+    shorter "marktwaarde" (market value) is also used informally but
+    "marktkapitalisatie" is the precise financial equivalent.
+
+- term: seed phrase
+  preferred: { nl-NL: "herstelzin" }
+  partOfSpeech: noun
+  description: >
+    Both "seed phrase" and "recovery phrase" collapse to a single Dutch target.
+    "Herstelzin" (recovery sentence) is the most defensible rendering — anchored
+    to how Dutch crypto wallets and security guides (Ledger NL, Trezor NL) render
+    this concept. "Zaadzin" (literal "seed phrase" calque) is NOT used in practice
+    and must be forbidden.
+    Security-critical term — must never be left in English.
+    ⚠️ DRAFT — confirm with native reviewer.
+  forbidden: { nl-NL: ["seed phrase", "zaadzin", "Zaadzin"] }
+
+- term: recovery phrase
+  preferred: { nl-NL: "herstelzin" }
+  partOfSpeech: noun
+  description: >
+    Collapses with "seed phrase" to a single Dutch target: "herstelzin".
+    Security-critical — must never be left in English.
+    ⚠️ DRAFT — confirm with native reviewer.
+  forbidden: { nl-NL: ["recovery phrase", "herstelwoorden"] }
+
+- term: backup
+  preferred: { nl-NL: "back-up" }
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Dutch uses "back-up" (hyphenated) as the noun — confirmed by Van Dale (Dutch
+    dictionary) and Microsoft Terminology NL ("back-up" as noun). As a verb:
+    "een back-up maken". The English "backup" (one word, no hyphen) is the
+    informal variant — prefer the Van Dale form "back-up" in UI labels.
+    ⚠️ DRAFT — "backup" without hyphen is also common in NL tech contexts; confirm.
+
+- term: private keys
+  preferred: { nl-NL: "privésleutels" }
+  partOfSpeech: noun
+  description: >
+    "Privésleutels" — "privé" (private) + "sleutels" (keys). Standard Dutch
+    compound. Ledger NL and Trezor NL documentation use "privésleutel(s)".
+    Microsoft Terminology NL uses "privésleutel" for private key.
+
+- term: smart contract
+  preferred: { nl-NL: "slim contract" }
+  partOfSpeech: noun
+  description: >
+    "Slim contract" is the Dutch semantic translation — used by DNB and AFM
+    publications discussing blockchain. However, "smart contract" is also
+    widely used in Dutch crypto communities as an English loanword.
+    "Slim contract" is the more authoritative/regulatory choice.
+    ⚠️ DRAFT — strong case for keeping English "smart contract"; confirm with
+    native reviewer which register fits the product (regulatory vs. community).
+  forbidden: { nl-NL: ["slimme overeenkomst"] }
+
+# --- Product long-tail terms ---
+
+- term: passkey
+  preferred: { nl-NL: "toegangssleutel" }
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Apple NL uses "toegangssleutel" as of iOS 16+ (the term Dutch iOS users
+    see in system settings and Safari). Google NL follows the same rendering.
+    FIDO Alliance NL documentation also uses "toegangssleutel". This is the
+    authoritative NL platform term.
+  forbidden: { nl-NL: ["passkey", "pass key", "wachtwoordsleutel"] }
+
+- term: passcode
+  preferred: { nl-NL: "toegangscode" }
+  gender: common
+  partOfSpeech: noun
+  description: >
+    "Toegangscode" — Apple NL, Google NL, and Microsoft Terminology NL all use
+    "toegangscode" for PIN/numeric passcode. Not "wachtwoord" (password) — those
+    are different in the app's auth model.
+  forbidden: { nl-NL: ["wachtwoord"] }
+
+- term: pool
+  preferred: { nl-NL: "pool" }
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English — "de pool". DeFi/AMM liquidity pool. Dutch crypto usage keeps
+    "pool" (Bitvavo uses "pool" for staking pools). "Fonds" (fund) and "bassin"
+    are false friends in DeFi context.
+  forbidden: { nl-NL: ["fonds", "bassin"] }
+
+- term: approve
+  preferred: { nl-NL: "goedkeuren" }
+  partOfSpeech: verb
+  description: >
+    ERC-20 token approval action. "Goedkeuren" is the standard Dutch verb.
+    Keep distinct from "permit" (EIP-2612 — see below). Microsoft Terminology
+    NL uses "goedkeuren" for approve.
+
+- term: permit
+  preferred: { nl-NL: "toestaan" }
+  partOfSpeech: verb
+  description: >
+    EIP-2612 permit signature. Keep distinct from "approve". "Toestaan"
+    (to allow/permit) is used by Microsoft Terminology NL for permit in
+    security/access contexts. ⚠️ DRAFT — confirm the approve/permit distinction
+    is maintained in production strings.
+
+- term: revoke
+  preferred: { nl-NL: "intrekken" }
+  partOfSpeech: verb
+  description: >
+    "Intrekken" — to revoke/withdraw. Standard Dutch legal/regulatory term
+    (AFM uses "intrekken" for revoking licences). Microsoft Terminology NL
+    uses "intrekken" for revoke.
+
+- term: approval
+  preferred: { nl-NL: "goedkeuring" }
+  partOfSpeech: noun
+  description: >
+    "Goedkeuring" — the noun form of goedkeuren (approve). Standard Dutch.
+
+- term: transaction
+  preferred: { nl-NL: "transactie" }
+  partOfSpeech: noun
+  description: >
+    "Transactie" — standard Dutch financial and tech term. AFM and DNB use
+    "transactie" universally. Microsoft Terminology NL: "transactie".
+
+- term: transaction history
+  preferred: { nl-NL: "transactiegeschiedenis" }
+  partOfSpeech: noun
+  description: >
+    "Transactiegeschiedenis" — Dutch compound noun. Standard in Dutch fintech.
+    Shorter form "transacties" can be used for tab labels where space is tight.
+
+- term: trade
+  preferred: { nl-NL: "handel" }
+  partOfSpeech: noun
+  description: >
+    "Handel" (trade) as a noun for financial trading activity. As a verb:
+    "handelen". Note: "ruilen" (barter/swap) is NOT the right register here —
+    "handel" covers the financial trading sense. AFM/DNB use "handel".
+    Do NOT use "handel" where "swap" is intended — those are distinct concepts.
+
+- term: explore
+  preferred: { nl-NL: "verkennen" }
+  partOfSpeech: verb
+  description: >
+    "Verkennen" — to explore/discover. Used as a tab label verb.
+    Microsoft Terminology NL uses "verkennen" for browse/explore in UI contexts.
+
+- term: extension
+  preferred: { nl-NL: "extensie" }
+  partOfSpeech: noun
+  description: >
+    Browser extension. Google NL uses "extensie" for Chrome extensions.
+    Microsoft Terminology NL: "extensie" (browser add-on context).
+
+- term: all time
+  preferred: { nl-NL: "alle tijd" }
+  partOfSpeech: phrase
+  description: >
+    Date-range filter label meaning "since inception / all historical time".
+    "Alle tijd" (all time) is the appropriate label. NOT "altijd" (always/ever
+    — a Dutch adverb of frequency, not a date-range term). "Altijd" is a
+    hard-fail in this context.
+  forbidden: { nl-NL: ["altijd", "de hele tijd"] }
+
+- term: clearing price
+  preferred: { nl-NL: "vereffeningsprijs" }
+  partOfSpeech: noun
+  description: >
+    "Vereffeningsprijs" — the established Dutch financial/AFM term for clearing
+    price (price at which a market clears). AFM uses "vereffeningsprijs" in
+    auction/market documentation. The half-anglicism "clearing prijs" must NOT
+    be used.
+  forbidden: { nl-NL: ["clearing prijs", "clearing-prijs"] }
+
+- term: bid
+  preferred: { nl-NL: "bod" }
+  partOfSpeech: noun
+  description: >
+    Auction bid. "Bod" (bid/offer in an auction) is the standard Dutch term —
+    AFM and Euronext Amsterdam use "bod" for bids. Do NOT use "aanbod" (supply)
+    where "bid" is intended — that is a collision with the "supply" concept.
+
+- term: order filled
+  preferred: { nl-NL: "order uitgevoerd" }
+  partOfSpeech: phrase
+  description: >
+    "Order uitgevoerd" (order executed). AFM/broker usage in Dutch. "Gevuld"
+    (physically filled) is a false friend in this financial context.
+  forbidden: { nl-NL: ["gevuld", "gevulde order"] }
+
+- term: in range
+  preferred: { nl-NL: "binnen bereik" }
+  partOfSpeech: phrase
+  description: >
+    LP position in active price range. "Binnen bereik" (within range).
+    "Bereik" is the Dutch word for range in a numeric/price sense.
+
+- term: out of range
+  preferred: { nl-NL: "buiten bereik" }
+  partOfSpeech: phrase
+  description: >
+    LP position outside active price range. "Buiten bereik" (out of range).
+    Follows "in range" decision on root "bereik".
+
+- term: front-run
+  preferred: { nl-NL: "front-runnen" }
+  partOfSpeech: verb
+  description: >
+    Keep English root with Dutch verb inflection "front-runnen" — no established
+    Dutch equivalent exists in the DeFi register. The compound noun is
+    "front-running". ⚠️ DRAFT — confirm with native reviewer.
+
+- term: onchain
+  preferred: { nl-NL: "onchain" }
+  partOfSpeech: adjective
+  description: >
+    Keep English "onchain" as the adjective/adverb — consistent with how Dutch
+    crypto media (Bitvavo, Dutch crypto press) uses it. "Op de keten" (on the
+    chain) is a literal translation that is not used in practice.
+  forbidden: { nl-NL: ["op de keten", "op de blockchain"] }
+
+- term: Disclosures
+  preferred: { nl-NL: "Juridische mededelingen" }
+  partOfSpeech: noun
+  description: >
+    Legal disclosure section. "Juridische mededelingen" (legal notices) is
+    the standard Dutch legal term. "Onthullingen" (revelations/disclosures in
+    a journalistic sense) is a false friend and hard-fail.
+    ⚠️ DRAFT — "Wettelijke kennisgevingen" is also used; confirm with legal.
+  forbidden: { nl-NL: ["Onthullingen", "Bekendmakingen"] }
+
+- term: pair
+  preferred: { nl-NL: "paar" }
+  partOfSpeech: noun
+  description: >
+    Trading pair. "Paar" is the standard Dutch word and is used by Bitvavo NL
+    for trading pairs.
+
+- term: rate
+  preferred: { nl-NL: "koers" }
+  partOfSpeech: noun
+  description: >
+    Exchange rate / price rate. "Koers" is the standard Dutch financial term for
+    exchange rate/price (AFM, DNB, Euronext use "koers"). Not "tarief" (which
+    is a fee/tariff rate). ⚠️ DRAFT — context may require "rente" (interest rate)
+    in some strings; confirm per string.
+
+- term: activity
+  preferred: { nl-NL: "activiteit" }
+  partOfSpeech: noun
+  description: >
+    "Activiteit" — standard Dutch. Tab label for transaction activity feed.
+    Microsoft Terminology NL uses "activiteit".
+
+- term: limits
+  preferred: { nl-NL: "limieten" }
+  partOfSpeech: noun
+  description: >
+    Limit orders / order limits. "Limieten" — standard Dutch plural.
+    Microsoft Terminology NL uses "limiet(en)" for limit in trading contexts.
+
+- term: sweep
+  preferred: { nl-NL: "sweep" }
+  gender: common
+  partOfSpeech: noun
+  description: >
+    Keep English "sweep" — no established Dutch equivalent in the DeFi NFT
+    sweep context. "Vegen" (to sweep) is the Dutch verb but is not used in
+    the crypto register. ⚠️ DRAFT — confirm with native reviewer.
+
+- term: spread
+  doNotTranslate: true
+  description: >
+    Keep English "spread" — universally used in Dutch financial contexts
+    (AFM, Euronext Amsterdam, Dutch banks all use "spread" as a term of art).
+
+- term: confirm
+  preferred: { nl-NL: "bevestigen" }
+  partOfSpeech: verb
+  description: >
+    "Bevestigen" — to confirm. Standard Dutch. Microsoft Terminology NL uses
+    "bevestigen" for confirm actions. Apple NL: "Bevestigen".
+
+# --- Earn / yield domain (round-3 native review, 2026-07-28) ---
+
+- term: withdraw anytime
+  preferred: { nl-NL: "neem je geld op wanneer je wilt" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Earn subtitle phrasing — avoid the "op ... op" repetition the separable
+    verb "opnemen" creates: "neem op elk moment je geld op" doubles "op";
+    prefer "neem je geld op wanneer je wilt". A PREFERENCE, not a hard-fail
+    (deliberately no forbidden scan). Provenance: native review r3
+    (2026-07-28), endorsed by TLM.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  preferred: { nl-NL: "Limiet" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — the conventional
+    compact trading label ("limietorder" where the full form is needed), NOT
+    a verb meaning "restrict" ("beperken"). TLM ruling (2026-07-30); pending
+    native confirmation.
+
+- term: support
+  preferred: { nl-NL: "ondersteuning" }
+  description: >
+    Settings-section header and help copy — Apple nl uses "Ondersteuning".
+    Adopted from vendor 2026-07-31.

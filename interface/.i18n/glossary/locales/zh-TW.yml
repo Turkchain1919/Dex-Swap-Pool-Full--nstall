@@ -1,0 +1,121 @@
+# Chinese, Traditional (zh-TW) glossary.
+#
+# Verbatim from the Notion "i18n style guide: Chinese, Traditional" term table.
+# Authoritative team source. Traditional Chinese uses semantic translation
+# (錢包, 兌換, 滑點). Core DNT brand terms are inherited from ../core/crypto.yml.
+
+- term: wallet
+  preferred: { zh-TW: "錢包" }
+
+- term: smart wallet
+  preferred: { zh-TW: "智能錢包" }
+
+- term: token
+  preferred: { zh-TW: "代幣" }
+
+- term: network cost
+  preferred: { zh-TW: "網路費用" }
+
+- term: fee
+  preferred: { zh-TW: "費用" }
+
+- term: app fee
+  preferred: { zh-TW: "App 手續費" }
+  forbidden: { zh-TW: ["應用程式費用", "應用費用", "應用程式手續費"] }
+  description: >
+    "Zero app fees" is a core marketing claim. Crypto-native Chinese renders
+    "app fee" as "App 手續費" — keep "App" in Latin, 手續費 = transaction fee.
+    NOT the literal "應用程式費用" (application cost). Native-reviewer note
+    (Melody, 2026-07-01). More specific than the generic `fee` → 費用.
+
+- term: crypto
+  preferred: { zh-TW: "加密貨幣" }
+
+- term: cryptocurrency
+  preferred: { zh-TW: "加密貨幣" }
+
+- term: market cap
+  preferred: { zh-TW: "市值" }
+
+- term: TVL
+  preferred: { zh-TW: "總鎖倉量" }
+  description: total value locked. Acronym TVL may also be kept inline.
+
+- term: seed phrase
+  preferred: { zh-TW: "種子短語" }
+
+- term: recovery phrase
+  preferred: { zh-TW: "恢復短語" }
+
+- term: backup
+  preferred: { zh-TW: "備份" }
+
+- term: smart contract
+  preferred: { zh-TW: "智能合約" }
+
+- term: wrap
+  preferred: { zh-TW: "封裝" }
+
+- term: unwrap
+  preferred: { zh-TW: "拆封" }
+
+- term: swap
+  preferred: { zh-TW: "兌換" }
+
+- term: mint
+  preferred: { zh-TW: "鑄造" }
+
+- term: slippage
+  preferred: { zh-TW: "滑點" }
+
+- term: max slippage
+  preferred: { zh-TW: "滑點上限" }
+
+- term: function
+  preferred: { zh-TW: "函數" }
+
+# --- Hardening: same NFT academic-expansion bug class the zh-CN audit caught ---
+- term: NFT
+  forbidden: { zh-TW: ["非同質化代幣"] }
+  description: Keep "NFT". Avoid the formal academic expansion (nobody in crypto says it). Mirrors the zh-CN audit finding.
+
+- term: passkey
+  preferred: { zh-TW: "密碼金鑰" }
+  forbidden: { zh-TW: ["passkey"] }
+  description: Apple's Traditional-Chinese term for passkey. Verify with native reviewer.
+
+- term: private keys
+  preferred: { zh-TW: "私鑰" }
+  description: Standard zh-TW term for private keys (coverage fill, audit 2026-06-23).
+
+- term: onchain
+  preferred: { zh-TW: "鏈上" }
+  forbidden: { zh-TW: ["onchain", "on-chain"] }
+  description: >
+    Re-scoped from core/crypto.yml (2026-07-01): a blanket core DNT rule
+    wrongly forced English "onchain" into zh-TW, where the native term 鏈上
+    is correct and far more readable for an app-store audience. Audit found
+    the awkward mixed-script "在 onchain 上" shipped; forbidden catches the
+    bare English so this regression can't recur.
+
+- term: self-custody
+  preferred: { zh-TW: "自我託管" }
+  forbidden: { zh-TW: ["自我保管"] }
+  description: >
+    託管/非託管 (custody/non-custody) is the established custody axis in
+    Chinese crypto usage. Audit found "自我保管" shipped, which reads as
+    generic safekeeping rather than the crypto-specific custody concept.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  preferred: { zh-TW: "限價" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — 限價 is the
+    established financial term for a limit order (限價單 for the full form),
+    NOT the literal verb "restrict" (限制). TLM ruling (2026-07-30); pending
+    native confirmation.

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Web App",
+  "extends": ["../../tsconfig.base.json"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.json", "declarations.d.ts"],
+  "exclude": ["node_modules", ".output", "wxt.config.ts", "oxlint.config.ts", "vitest.config.ts", "vitest-setup.ts"],
+  "references": [
+    {
+      "path": "../../packages/environment"
+    },
+    {
+      "path": "../../packages/wallet"
+    },
+    {
+      "path": "../../packages/uniswap"
+    },
+    {
+      "path": "../../packages/ui"
+    },
+    {
+      "path": "../../packages/tailwind"
+    },
+    {
+      "path": "../../packages/sessions"
+    },
+    {
+      "path": "../../packages/notifications"
+    },
+    {
+      "path": "../../packages/gating"
+    },
+    {
+      "path": "../../packages/encoding"
+    },
+    {
+      "path": "../../packages/config"
+    },
+    {
+      "path": "../../packages/api"
+    },
+    {
+      "path": "../../config/vitest-presets"
+    },
+    {
+      "path": "../../packages/utilities"
+    },
+    {
+      "path": "../../packages/compliance"
+    },
+    {
+      "path": "../../packages/embedded-wallet"
+    },
+    {
+      "path": "../../packages/mycelium"
+    },
+    {
+      "path": "../../packages/chains"
+    },
+    {
+      "path": "../../packages/test"
+    }
+  ],
+  "compilerOptions": {
+    "moduleResolution": "Bundler",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "types": ["chrome", "vitest/globals", "node"],
+    "paths": {
+      "src/*": ["./src/*"],
+      "e2e/*": ["./e2e/*"]
+    }
+  }
+}

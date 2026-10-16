@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BackButton > renders without error 1`] = `
+<DocumentFragment>
+  <button
+    android_ripple="[object Object]"
+    data-testid="back"
+    hitslop="24"
+    role="button"
+    style="background-color: transparent;"
+  >
+    <div
+      class="css-view-175oi2r"
+      style="gap: 8px;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; transform: rotate(0deg);"
+      >
+        <div
+          fill="none"
+          stroke-width="8"
+          style="width: 24px; height: 24px; color: rgba(19, 19, 19, 0.63);"
+          viewbox="0 0 24 24"
+        >
+          <div
+            clip-rule="evenodd"
+            d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </div>
+      </div>
+      <div
+        class="css-text-146c3p1"
+        dir="auto"
+        style="font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+      >
+        common.button.back
+      </div>
+    </div>
+  </button>
+</DocumentFragment>
+`;

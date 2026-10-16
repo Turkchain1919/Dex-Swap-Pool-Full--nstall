@@ -1,0 +1,99 @@
+import { FetchError, isRateLimitFetchError, TradingApi } from '@universe/api'
+import { TFunction } from 'i18next'
+import { Warning, WarningAction, WarningLabel, WarningSeverity } from 'uniswap/src/components/modals/WarningModal/types'
+import { SponsoredApprovalRejectedError } from 'uniswap/src/features/transactions/errors'
+import { GasSponsorshipNotAppliedError } from 'uniswap/src/features/transactions/swap/errors'
+import { DerivedSwapInfo } from 'uniswap/src/features/transactions/swap/types/derivedSwapInfo'
+import { logger } from 'utilities/src/logger/logger'
+
+// Classic/bridge/wrap surface non-delivery as GasSponsorshipNotAppliedError; UniswapX as SponsoredApprovalRejectedError.
+export function isGasSponsorshipFailureError(error: Error): boolean {
+  return error instanceof GasSponsorshipNotAppliedError || error instanceof SponsoredApprovalRejectedError
+}
+
+export function getSwapWarningFromError({
+  error,
+  t,
+  derivedSwapInfo,
+}: {
+  error: Error
+  t: TFunction
+  derivedSwapInfo: DerivedSwapInfo
+}): Warning {
+  // Trade object is null for quote not found case
+  const isBridgeTrade =
+    derivedSwapInfo.currencies.input?.currency.chainId !== derivedSwapInfo.currencies.output?.currency.chainId
+
+  // Sponsorship promised at quote but not delivered downstream — block submission rather than charge the user.
+  if (isGasSponsorshipFailureError(error)) {
+    return {
+      type: WarningLabel.GasSponsorshipFailed,
+      severity: WarningSeverity.High,
+      action: WarningAction.DisableSubmit,
+      title: t('swap.warning.gasSponsorshipFailed.title'),
+      message: t('swap.warning.gasSponsorshipFailed.message'),
+    }
+  }
+
+  if (error instanceof FetchError) {
+    // Special case: rate limit errors are not parsed by errorCode
+    if (isRateLimitFetchError(error)) {
+      return {
+        type: WarningLabel.RateLimit,
+        severity: WarningSeverity.Medium,
+        action: WarningAction.DisableReview,
+        title: t('swap.warning.rateLimit.title'),
+        message: t('swap.warning.rateLimit.message'),
+      }
+    }
+
+    // Map errorCode to Warning
+    switch (error.data?.errorCode) {
+      case TradingApi.Err404.errorCode.QUOTE_AMOUNT_TOO_LOW_ERROR: {
+        return {
+          type: WarningLabel.EnterLargerAmount,
+          severity: WarningSeverity.Low,
+          action: WarningAction.DisableReview,
+          title: t('swap.warning.enterLargerAmount.title'),
+          message: undefined,
+        }
+      }
+
+      case TradingApi.Err404.errorCode.RESOURCE_NOT_FOUND: {
+        if (isBridgeTrade) {
+          return {
+            type: WarningLabel.NoQuotesFound,
+            severity: WarningSeverity.Low,
+            action: WarningAction.DisableReview,
+            title: t('swap.warning.noQuotesFound.title'),
+            message: t('swap.warning.noQuotesFound.bridging.message'),
+          }
+        }
+        return {
+          type: WarningLabel.NoRoutesError,
+          severity: WarningSeverity.Low,
+          action: WarningAction.DisableReview,
+          title: t('swap.warning.noRoutesFound.title'),
+          message: t('swap.warning.noRoutesFound.message'),
+        }
+      }
+
+      default: {
+        if (error.data?.errorCode !== undefined) {
+          logger.warn('TradingApi', 'getSwapWarningFromError', 'Unmapped errorCode in trading-api response', {
+            errorCode: error.data.errorCode,
+          })
+        }
+      }
+    }
+  }
+
+  // Generic routing error if we can't parse a specific case
+  return {
+    type: WarningLabel.SwapRouterError,
+    severity: WarningSeverity.Low,
+    action: WarningAction.DisableReview,
+    title: t('swap.warning.router.title'),
+    message: t('swap.warning.router.message'),
+  }
+}

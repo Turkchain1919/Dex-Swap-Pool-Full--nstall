@@ -1,0 +1,26 @@
+{
+  "name": "@universe/config-cli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/config-cli/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "test": {
+      "command": "vitest run",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "typecheck": {},
+    "format": {},
+    "format:check": {},
+    "lint:oxlint": {},
+    "lint:oxlint:fix": {},
+    "lint:oxlint:fast": {},
+    "lint": {},
+    "lint:fix": {},
+    "check": {},
+    "check:fast": {},
+    "check:deps:usage": {}
+  }
+}

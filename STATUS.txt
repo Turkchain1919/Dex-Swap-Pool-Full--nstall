@@ -1,0 +1,20 @@
+STATUS: TEST/PREFLIGHT BUNDLE ONLY — NOT PRODUCTION READY
+
+The archive pins official Uniswap Interface web/5.166.0 and includes a Turkchain ENV profile,
+central validation, known contract registry, beginner first-install guide, per-variable ENV guide,
+test ENV example, and an RPC/bytecode preflight installer. Newly encountered clean-install
+requirements and unresolved blockers are maintained in docs/INSTALL_REQUIREMENTS.md.
+
+Confirmed blocker: the public release checkout declares tools/uniswap-nx in the Bun workspace
+but does not contain that package directory. bun install --frozen-lockfile stops with
+Workspace not found tools/uniswap-nx. The package must not be deployed as a live application.
+
+Also pending before production: replace or disable upstream GraphQL, trading gateway, telemetry,
+metadata, chart and wallet-product service calls with verified TurkDex-owned adapters; port
+TurkDex-only Chain 1919 wallet/routing and API integration; then run full build/browser/route tests.
+No production symlink or running API service was changed by this bundle work.
+
+The copied API is currently Turkchain-specific internally (including chain/provider/contract
+registry assumptions); the ENV profile and validator alone do not make it portable to another
+chain. A complete API config adapter and first-party API coverage are required before advertising
+the archive as a ready-to-install product on an arbitrary EVM server.

@@ -1,0 +1,298 @@
+import { ProtocolVersion } from '@uniswap/client-data-api/dist/data/v1/poolTypes_pb'
+import type { Currency } from '@uniswap/sdk-core'
+import { parseRestProtocolVersion } from '@universe/api'
+import { cn, Flex as FlexCompat, type FlexCompatProps } from '@universe/mycelium'
+import { Button, Flex, Text, TouchableArea } from '@universe/mycelium'
+import type { Dispatch, SetStateAction } from 'react'
+import {
+  forwardRef,
+  type ForwardRefExoticComponent,
+  type RefAttributes,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
+import { useTranslation } from 'react-i18next'
+import { RotateLeft } from 'ui/src/components/icons/RotateLeft'
+import { zIndexes } from 'ui/src/theme/zIndexes'
+import { useEnabledChains } from 'uniswap/src/features/chains/hooks/useEnabledChains'
+import { InterfacePageName } from 'uniswap/src/features/telemetry/constants'
+import Trace from 'uniswap/src/features/telemetry/Trace'
+import { Deadline } from 'uniswap/src/features/transactions/components/settings/settingsConfigurations/deadline/Deadline/Deadline'
+import { Slippage } from 'uniswap/src/features/transactions/components/settings/settingsConfigurations/slippage/Slippage/Slippage'
+import { LPTransactionSettingsStoreContextProvider } from 'uniswap/src/features/transactions/components/settings/stores/transactionSettingsStore/LPTransactionSettingsStoreContextProvider'
+import { useTransactionSettingsStore } from 'uniswap/src/features/transactions/components/settings/stores/transactionSettingsStore/useTransactionSettingsStore'
+import { usePrevious } from 'utilities/src/react/hooks'
+import { Dropdown } from '~/components/Dropdowns/Dropdown'
+import { getNextFlowStep } from '~/features/Liquidity/Create/flowSteps'
+import { FormStepsWrapper, FormWrapper } from '~/features/Liquidity/Create/FormWrapper'
+import { useLiquidityUrlState } from '~/features/Liquidity/Create/hooks/useLiquidityUrlState'
+import { useLPSlippageValue } from '~/features/Liquidity/Create/hooks/useLPSlippageValues'
+import { ResetCreatePositionFormModal } from '~/features/Liquidity/Create/ResetCreatePositionsFormModal'
+import { DEFAULT_POSITION_STATE, PositionFlowStep } from '~/features/Liquidity/Create/types'
+import { LPSettings } from '~/features/Liquidity/LPSettings'
+import { getProtocolVersionLabel } from '~/features/Liquidity/utils/protocolVersion'
+import {
+  CreateLiquidityContextProvider,
+  DEFAULT_PRICE_RANGE_STATE,
+  useCreateLiquidityContext,
+} from '~/pages/CreatePosition/CreateLiquidityContextProvider'
+import { CreatePositionTxContextProvider } from '~/pages/CreatePosition/CreatePositionTxContext'
+import { SharedCreateModals } from '~/pages/CreatePosition/SharedCreateModals'
+import { MultichainContextProvider } from '~/state/multichain/MultichainContext'
+import { useMultichainContext } from '~/state/multichain/useMultichainContext'
+
+function CreatePositionInner({
+  currencyInputs,
+  setCurrencyInputs,
+}: {
+  currencyInputs: { tokenA: Maybe<Currency>; tokenB: Maybe<Currency> }
+  setCurrencyInputs: Dispatch<SetStateAction<{ tokenA: Maybe<Currency>; tokenB: Maybe<Currency> }>>
+}) {
+  const {
+    positionState: { protocolVersion },
+    creatingPoolOrPair,
+    step,
+    setStep,
+  } = useCreateLiquidityContext()
+
+  const handleContinue = useCallback(() => {
+    setStep(getNextFlowStep({ currentStep: step, protocolVersion, creatingPoolOrPair: Boolean(creatingPoolOrPair) }))
+  }, [creatingPoolOrPair, step, protocolVersion, setStep])
+
+  return (
+    <FormStepsWrapper
+      currencyInputs={currencyInputs}
+      setCurrencyInputs={setCurrencyInputs}
+      onSelectTokensContinue={handleContinue}
+    />
+  )
+}
+
+interface ResetProps {
+  onClickReset: () => void
+  isDisabled: boolean
+}
+
+const ResetButton = ({ onClickReset, isDisabled }: ResetProps) => {
+  const { t } = useTranslation()
+  return (
+    <Button size="small" emphasis="tertiary" onPress={onClickReset} disabled={isDisabled} icon={<RotateLeft />}>
+      {t('common.button.reset')}
+    </Button>
+  )
+}
+
+// `$md` stays `$md`: mycelium's `media-md` is `(max-width: 640px)`; Tailwind's stock `md:` is the inversion.
+// Explicit return type: forwardRef's inferred type isn't nameable under declaration emit (TS2883).
+const ToolbarContainer: ForwardRefExoticComponent<FlexCompatProps & RefAttributes<HTMLDivElement>> = forwardRef<
+  HTMLDivElement,
+  FlexCompatProps
+>(function ToolbarContainer({ $md: md, className, ...props }, ref) {
+  return (
+    <FlexCompat
+      ref={ref}
+      row
+      centered
+      gap="$gap8"
+      // `gridColumnGap` is outside `VARIANT_TWIN_PROPS`, so it cannot ride a variant prefix and is
+      // authored as a source class instead (`variantTierPropertyGapError`).
+      className={cn('media-md:[grid-column-gap:8px]', className)}
+      // Merge, don't spread: Tamagui deep-merged a caller's object-valued prop into the config's value for the same key.
+      $md={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', ...md }}
+      {...props}
+    />
+  )
+})
+
+const Toolbar = () => {
+  const { t } = useTranslation()
+  const {
+    isNativeTokenAOnly,
+    currencies,
+    positionState,
+    setPositionState,
+    setStep,
+    reset: resetCreatePositionState,
+    setPriceRangeState,
+    resetPriceRange: resetPriceRangeState,
+    resetDeposit: resetDepositState,
+  } = useCreateLiquidityContext()
+  const { protocolVersion } = positionState
+  const customSlippageTolerance = useTransactionSettingsStore((s) => s.customSlippageTolerance)
+  const [versionDropdownOpen, setVersionDropdownOpen] = useState(false)
+
+  const [showResetModal, setShowResetModal] = useState(false)
+
+  const { reset: resetMultichainState } = useMultichainContext()
+
+  const { isTestnetModeEnabled } = useEnabledChains()
+  const prevIsTestnetModeEnabled = usePrevious(isTestnetModeEnabled)
+
+  const handleReset = useCallback(() => {
+    resetCreatePositionState()
+    resetPriceRangeState()
+    resetMultichainState()
+    resetDepositState()
+  }, [resetDepositState, resetCreatePositionState, resetMultichainState, resetPriceRangeState])
+
+  useEffect(() => {
+    // Only reset when testnet mode changes after initial mount
+    // Don't reset on initial mount to preserve URL parameters
+    if (prevIsTestnetModeEnabled !== undefined && isTestnetModeEnabled !== prevIsTestnetModeEnabled) {
+      handleReset()
+    }
+  }, [handleReset, isTestnetModeEnabled, prevIsTestnetModeEnabled])
+
+  const handleVersionChange = useCallback(
+    (version: ProtocolVersion) => {
+      setPositionState({
+        ...DEFAULT_POSITION_STATE,
+        protocolVersion: version,
+      })
+      setPriceRangeState(DEFAULT_PRICE_RANGE_STATE)
+      setStep(PositionFlowStep.SELECT_TOKENS_AND_FEE_TIER)
+      setVersionDropdownOpen(false)
+    },
+    [setPositionState, setPriceRangeState, setStep],
+  )
+
+  const versionOptions = useMemo(
+    () =>
+      [ProtocolVersion.V4, ProtocolVersion.V3, ProtocolVersion.V2]
+        .filter((version) => version !== protocolVersion)
+        .map((version) => (
+          <TouchableArea key={`version-${version}`} onPress={() => handleVersionChange(version)}>
+            <Flex p="$spacing8" borderRadius="$rounded8" hoverStyle={{ backgroundColor: '$surface2' }}>
+              <Text variant="body2">
+                {t('position.new.protocol', { protocol: getProtocolVersionLabel(version) ?? '' })}
+              </Text>
+            </Flex>
+          </TouchableArea>
+        )),
+    [handleVersionChange, protocolVersion, t],
+  )
+
+  return (
+    <Flex>
+      <ResetCreatePositionFormModal
+        isOpen={showResetModal}
+        onClose={() => setShowResetModal(false)}
+        onHandleReset={handleReset}
+      />
+
+      <ToolbarContainer>
+        <ResetButton onClickReset={() => setShowResetModal(true)} isDisabled={isNativeTokenAOnly} />
+        <Dropdown
+          containerStyle={{ width: 'auto' }}
+          buttonStyle={{ py: '$spacing8', px: '$spacing12' }}
+          dropdownStyle={{ width: 200, borderRadius: '$rounded16', zIndex: zIndexes.popover }}
+          adaptToSheet
+          menuLabel={
+            <Text variant="buttonLabel3" lineHeight="16px" whiteSpace="nowrap">
+              {t('position.protocol', { protocol: getProtocolVersionLabel(protocolVersion) ?? '' })}
+            </Text>
+          }
+          isOpen={versionDropdownOpen}
+          toggleOpen={() => setVersionDropdownOpen(!versionDropdownOpen)}
+          alignRight
+        >
+          {versionOptions}
+        </Dropdown>
+        <Flex
+          borderRadius="$rounded12"
+          borderWidth={!customSlippageTolerance ? '$spacing1' : '$none'}
+          borderColor="$surface3"
+          height="38px"
+          px={!customSlippageTolerance ? '$gap8' : '$gap4'}
+          alignItems="center"
+          pt="$spacing2"
+        >
+          <LPSettings
+            position="relative"
+            adjustRightAlignment={false}
+            adjustTopAlignment={false}
+            settings={[Slippage, Deadline]}
+            iconColor="$neutral1"
+            iconSize="$icon.16"
+            isNativePool={Boolean(currencies.sdk.TOKEN0?.isNative || currencies.sdk.TOKEN1?.isNative)}
+          />
+        </Flex>
+      </ToolbarContainer>
+    </Flex>
+  )
+}
+
+function CreatePositionContent({
+  initialInputs,
+  paramsProtocolVersion,
+  autoSlippageTolerance,
+}: {
+  initialInputs: ReturnType<typeof useLiquidityUrlState>
+  paramsProtocolVersion: ProtocolVersion | undefined
+  autoSlippageTolerance: number
+}) {
+  const initialProtocolVersion = paramsProtocolVersion ?? ProtocolVersion.V4
+
+  const [currencyInputs, setCurrencyInputs] = useState<{ tokenA: Maybe<Currency>; tokenB: Maybe<Currency> }>({
+    tokenA: initialInputs.tokenA,
+    tokenB: initialInputs.tokenB,
+  })
+
+  return (
+    <Trace logImpression page={InterfacePageName.CreatePosition}>
+      <MultichainContextProvider initialChainId={initialInputs.chainId}>
+        <LPTransactionSettingsStoreContextProvider autoSlippageTolerance={autoSlippageTolerance}>
+          <CreateLiquidityContextProvider
+            currencyInputs={currencyInputs}
+            setCurrencyInputs={setCurrencyInputs}
+            initialPositionState={{
+              fee: initialInputs.fee ?? undefined,
+              hook: initialInputs.hook ?? undefined,
+              protocolVersion: initialProtocolVersion,
+            }}
+            defaultInitialToken={initialInputs.defaultInitialToken}
+            initialPriceRangeState={initialInputs.priceRangeState}
+            initialDepositState={initialInputs.depositState}
+            initialFlowStep={initialInputs.flowStep}
+          >
+            <CreatePositionTxContextProvider>
+              <FormWrapper toolbar={<Toolbar />}>
+                <CreatePositionInner currencyInputs={currencyInputs} setCurrencyInputs={setCurrencyInputs} />
+              </FormWrapper>
+              <SharedCreateModals />
+            </CreatePositionTxContextProvider>
+          </CreateLiquidityContextProvider>
+        </LPTransactionSettingsStoreContextProvider>
+      </MultichainContextProvider>
+    </Trace>
+  )
+}
+
+export function CreatePosition() {
+  // URL format is `/positions/add/new?currencyA=...&currencyB=...&chain=...&fee=...&hook=...`.
+  // The version rides in `?protocolVersion=v3` rather than a path segment: the retired
+  // `/positions/create/:protocolVersion` redirects the segment into this param, so a deep link keeps
+  // the version it asked for instead of silently falling back to the v4 default below.
+  const initialInputs = useLiquidityUrlState()
+  const paramsProtocolVersion = parseRestProtocolVersion(initialInputs.protocolVersion ?? undefined)
+
+  const autoSlippageTolerance = useLPSlippageValue({
+    version: paramsProtocolVersion,
+  })
+
+  if (initialInputs.loading) {
+    return null
+  }
+
+  return (
+    <CreatePositionContent
+      initialInputs={initialInputs}
+      paramsProtocolVersion={paramsProtocolVersion}
+      autoSlippageTolerance={autoSlippageTolerance}
+    />
+  )
+}
+
+export default CreatePosition

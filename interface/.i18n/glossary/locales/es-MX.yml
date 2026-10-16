@@ -1,0 +1,237 @@
+# Spanish, Mexico (es-MX) glossary.
+#
+# Authored 2026-07-01 as a sibling of es-ES (packages/i18n-cli/seed/glossary/locales/es-ES.yml),
+# which was itself seeded from the Notion "i18n style guide: Spanish (Español)" term table. No
+# Notion guide exists yet for the es-MX variant specifically — this file inherits the es-ES
+# strategy (selective-keep-English) and its audit-derived `forbidden` entries wherever Mexican
+# Spanish usage matches, and deviates ONLY where there is concrete, cited evidence that Mexican
+# Spanish / Apple's es-LA (Latin America) platform localization differs from es-ES / Spain. Every
+# deviation is cited in its `description`. This file is a DRAFT pending native (Mexican) reviewer
+# ratification, same status es-ES itself carries for its uncertain entries.
+#
+# Voice (informal tú, never vosotros — plural "you" is ustedes) lives in
+# ../../style/locales/es-MX.md.
+#
+# `preferred` here is the per-locale value the cascade resolves; `forbidden` is the deterministic
+# post-translation hard-fail scan. Where a term is kept in English for es-MX, `doNotTranslate:
+# true` masks it for THIS locale only (the core entries it overlays may translate it for other
+# locales).
+
+# --- Loanwords kept in English for es-MX (matches es-ES; pan-regional in crypto usage) ---
+- term: wallet
+  doNotTranslate: true
+  gender: feminine
+  description: >
+    Keep English — "una wallet" (feminine), matching es-ES. Bitso and Binance's Mexican Spanish
+    product surfaces both use "wallet" untranslated; regional alternatives (billetera/cartera/
+    monedero) would fragment across Spanish-speaking markets, the same reasoning es-ES gives.
+
+- term: smart wallet
+  doNotTranslate: true
+  gender: feminine
+  description: Keep English — "una smart wallet" (feminine). Matches es-ES.
+
+- term: token
+  doNotTranslate: true
+  gender: masculine
+  description: >
+    Keep English — "un token" (masculine). Matches es-ES; "token" is the pan-regional crypto term,
+    not an Iberian-only choice.
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym. The spelled-out phrase is "valor total bloqueado" (matches es-ES).
+
+- term: onchain
+  doNotTranslate: true
+  description: >
+    Keep English "onchain". The literal calque "en cadena" is a false friend —
+    it reads as "in a row / in a chain (sequence)", not "on the blockchain".
+    Re-scoped from core (2026-07-01): the core DNT rule wrongly forced English
+    into CJK locales where native terms are correct; es-MX is one of the Latin
+    locales where keeping English is actually right. Matches es-ES.
+
+# --- Preferred renderings ---
+- term: network cost
+  preferred: { es-MX: "costo de red" }
+  description: >
+    Blockchain network fees. "Costo" (not "coste") is the natural Mexican Spanish form — matches
+    es-ES's choice, which already uses "costo" over the Iberian "coste".
+
+- term: fee
+  preferred: { es-MX: "tarifa" }
+  description: Uniswap Labs interface fee. Matches es-ES; "tarifa" is pan-regional.
+
+- term: crypto
+  preferred: { es-MX: "cripto" }
+
+- term: cryptocurrency
+  preferred: { es-MX: "criptomoneda" }
+
+- term: market cap
+  preferred: { es-MX: "capitalización de mercado" }
+  description: Matches es-ES; standard financial Spanish term, not regionally marked.
+
+- term: seed phrase
+  preferred: { es-MX: "frase de recuperación" }
+  description: Collapsed to the same target as "recovery phrase" — one canonical concept, one rendering.
+
+- term: recovery phrase
+  preferred: { es-MX: "frase de recuperación" }
+  description: >
+    Matches es-ES. Security-critical string — never leave the bare English "recovery phrase" or
+    "seed phrase" in a Mexican Spanish string; both must resolve to this one target.
+  forbidden: { es-MX: ["recovery phrase", "seed phrase"] }
+
+- term: backup
+  preferred: { es-MX: "respaldo" }
+  forbidden: { es-MX: ["copia de seguridad"] }
+  description: >
+    "Respaldo" is the natural Mexican Spanish noun for backup (more so than in Spain — "respaldo"
+    is the everyday MX word, "copia de seguridad" reads as stiffer/more technical). Matches es-ES's
+    preferred choice; the forbidden variant is even more clearly dispreferred in MX usage.
+
+- term: private keys
+  preferred: { es-MX: "llaves privadas" }
+  description: >
+    Matches es-ES. Note the parallel with the "passkey" entry below — Mexican Spanish and Apple's
+    es-LA localization both favor "llave" (key, physical/concrete) over "clave" (code/cipher,
+    abstract) for cryptographic keys. "Llaves privadas" is natural and already es-ES's choice, so
+    no deviation needed here even though the passkey term does deviate.
+
+- term: smart contract
+  preferred: { es-MX: "contrato inteligente" }
+  description: Matches es-ES; standard pan-regional rendering.
+
+- term: wrapped
+  preferred: { es-MX: "envuelto" }
+  description: Matches es-ES. Standard verb family, no MX-specific alternative in use.
+
+- term: wrap
+  preferred: { es-MX: "envolver" }
+  partOfSpeech: verb
+  description: Matches es-ES. Keep the wrap/wrapped/unwrap family on one root (envolver/envuelto/desenvolver).
+
+- term: unwrap
+  preferred: { es-MX: "desenvolver" }
+  forbidden: { es-MX: ["Desenvoltura"] }
+  partOfSpeech: verb
+  description: >
+    Matches es-ES. Carried forward as a forbidden: the es-ES audit found "Desenvoltura" (meaning
+    "composure/poise" — a false friend, not a verb form) shipped for Unwrap. This is a model
+    failure mode independent of Spanish variant, so the same hard-fail applies here.
+
+- term: swap
+  preferred: { es-MX: "cambiar" }
+  termType: action
+  status: draft
+  description: >
+    Mirrors the es-ES role split (bug-bash natives 2026-07-15 + TLM ruling
+    2026-07-30): action labels and CTAs "Cambiar"; nouns "intercambio";
+    prose "cambiar X por Y" or "intercambiar" as reads naturally; never the
+    noun "Intercambio" as a verb-style CTA. Supersedes the earlier bare
+    "intercambio" inheritance. The bug bash reviewed es-ES, not es-MX, so
+    this mirror stays draft — flag for native (Mexican) confirmation.
+
+- term: bridge
+  doNotTranslate: true
+  description: >
+    Cross-chain bridge — keep English "bridge" (DeFi register, like pool/swap),
+    e.g. "hacer bridge entre cadenas". Matches es-ES; the two Spanish locales
+    were diverging (ES "Conecta cadenas" vs MX "bridge") and are now aligned.
+
+- term: mint
+  preferred: { es-MX: "acuñar" }
+  forbidden: { es-MX: ["mintear"] }
+  partOfSpeech: verb
+  description: >
+    Matches es-ES. "Acuñar" is the standard Spanish numismatic verb ("to coin/mint") and transfers
+    cleanly to Mexican Spanish with no regional alternative. Carried forward as forbidden: the
+    es-ES audit found the invented verb "mintear" (an anglicism calque with no Spanish etymology)
+    shipped for Mint — a model failure mode independent of Spanish variant.
+
+- term: slippage
+  preferred: { es-MX: "deslizamiento" }
+  description: Matches es-ES; standard pan-regional financial-Spanish rendering.
+
+# --- Audit wrong-word bugs (carried forward from es-ES — model failure modes, not regionalisms) ---
+- term: browser
+  preferred: { es-MX: "Navegador" }
+  forbidden: { es-MX: ["Buscador"] }
+  description: >
+    Matches es-ES. Carried forward as forbidden: the es-ES audit found "Buscador" (search engine —
+    a false friend) shipped for browser. "Navegador" is the correct, pan-regional term (used
+    identically across Chrome/Safari/Firefox's Mexican Spanish builds); this is a model error
+    class, not a regional split.
+
+- term: pool
+  doNotTranslate: true
+  forbidden: { es-MX: ["fondo"] }
+  description: >
+    Matches es-ES. Keep "pool" in the DeFi register — pan-regional crypto usage. Carried forward as
+    forbidden: "fondo" (fund / background) was found used inconsistently for pool in the es-ES
+    audit; the word is arguably an even clearer false friend in Mexican Spanish, where "fondo" most
+    commonly means "background" or "(pension/investment) fund" in everyday finance contexts, which
+    would actively mislead a user reading about a liquidity pool.
+
+- term: passkey
+  preferred: { es-MX: "llave de acceso" }
+  gender: feminine
+  forbidden: { es-MX: ["passkey", "clave de acceso"] }
+  description: >
+    DEVIATES FROM es-ES. es-ES uses "clave de acceso"; verified directly against Apple's live
+    support content (2026-07-01): Apple's es-lamr/es-la (Latin America Spanish, the region Mexico
+    is served under) support pages — e.g. "Buscar contraseñas y llaves de acceso guardadas en el
+    iPhone" (support.apple.com/es-la/104955) — consistently render passkey as "llave de acceso"
+    ("access key", using "llave" = physical/concrete key), not "clave de acceso" ("access code/
+    cipher", using "clave" = code). This is the term Mexican iOS/macOS users actually see in system
+    UI, so per the skill's authority hierarchy (platform term base for the SPECIFIC locale beats
+    inheriting a sibling's rendering), es-MX uses "llave de acceso". "clave de acceso" is forbidden
+    here specifically because it is the wrong platform term for this locale (not because it's
+    inherently incorrect Spanish). Flag for native (Mexican) reviewer confirmation.
+
+- term: monitor
+  preferred: { es-MX: "monitorear" }
+  description: >
+    MX/LatAm verb form — locked distinct from es-ES, which pins the peninsular
+    "monitorizar" for the same term. Keeps the two Spanish locales from
+    drifting onto each other's regional form.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 (es-ES mirrors; pending MX native) ---
+
+- term: commodities
+  doNotTranslate: true
+  partOfSpeech: noun
+  status: draft
+  description: >
+    Keep English (TradFi register) — mirrors the es-ES bug-bash ruling
+    (2026-07-30); pan-regional in Spanish financial media. Pending MX native.
+
+- term: portfolio
+  doNotTranslate: true
+  gender: masculine
+  status: draft
+  description: >
+    Keep English "Portfolio" ("el portfolio") — mirrors the es-ES bug-bash
+    ruling (2026-07-30). Pending MX native.
+
+- term: auctions
+  preferred: { es-MX: "subastas" }
+  partOfSpeech: noun
+  status: draft
+  description: >
+    Explore nav label "Subastas" — mirrors es-ES (bug bash 2026-07-15).
+    Pending MX native.
+
+- term: Limit
+  preferred: { es-MX: "Límite" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow — the conventional compact trading label,
+    not a restrict-verb ("Limitar"). Full form where ambiguous: "orden
+    límite". TLM ruling (2026-07-30); pending MX native.

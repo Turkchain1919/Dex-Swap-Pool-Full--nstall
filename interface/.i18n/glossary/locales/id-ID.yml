@@ -1,0 +1,507 @@
+# Indonesian (id-ID) glossary.
+#
+# DRAFT — no Notion i18n style guide exists for Indonesian. Every rendering has
+# been anchored to: Apple Human Interface Guidelines / Apple localisation (id),
+# Google/Android localisation (id), Microsoft Terminology (Bahasa Indonesia),
+# and established Indonesian crypto-exchange usage (Indodax, Tokocrypto, Pintu).
+# Needs native-speaker review before production use.
+#
+# STRATEGY: selective-keep-English
+# Indonesian tech culture has a strong English-loanword absorption pattern.
+# Apple ships Indonesian iOS with some translated generic terms (e.g. "kata sandi"
+# for password), but the crypto sector (Indodax, Tokocrypto, Pintu) keeps English
+# for core crypto nouns: wallet, token, swap, NFT. This matches how Google/Android
+# ships Indonesian and how Microsoft Terminology handles crypto terms. UI/finance
+# terms (fee, market cap, recovery phrase) translate to established Indonesian
+# equivalents. Indonesian has no grammatical gender and no grammatical plural
+# (CLDR "other" only).
+#
+# Voice (neutral/informal "Anda") lives in ../../style/locales/id-ID.md.
+# Core DNT (calldata, NFT, gas, Uniswap, Uniswap Labs, Unichain, Ethereum)
+# is inherited from ../core/crypto.yml — not re-listed here.
+
+# --- Core crypto nouns: kept in English (selective-keep-English strategy) ---
+
+- term: wallet
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. Indodax, Tokocrypto, and Pintu all use "wallet" in their Indonesian UIs;
+    "dompet" (Indonesian for wallet) appears in general-purpose contexts (Apple system settings
+    for Apple Wallet) but is not the crypto-exchange convention. Keeping English avoids the
+    generic-finance "dompet digital" false-friend that users associate with GoPay/OVO, not
+    a self-custody DeFi wallet. DRAFT — confirm with native crypto users.
+  forbidden: { id-ID: ["dompet", "dompet digital"] }
+
+- term: smart wallet
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. No established Indonesian rendering in any platform or exchange reference.
+    DRAFT — native review needed.
+
+- term: token
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. Used universally in Indonesian crypto context (Indodax, Tokocrypto,
+    Pintu, OJK regulatory docs). Microsoft Terminology (id) retains "token" for auth tokens.
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: >
+    Keep the acronym. Spelled-out in Indonesian: "total nilai yang dikunci".
+    The acronym "TVL" is used as-is across Indonesian crypto media (CoinMarketCap id,
+    Pintu blog).
+
+- term: swap
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. Indodax, Tokocrypto, and Pintu all use "swap" as the DeFi action label.
+    Indonesian has no established single-word equivalent — "tukar" means barter/exchange
+    in a generic sense and is used by PayPal Indonesia for currency exchange but not for
+    on-chain token swaps. Keeping English is the crypto-community norm in Indonesia.
+    DRAFT — native review recommended.
+  forbidden: { id-ID: ["tukar-menukar", "pertukaran"] }
+
+- term: wrap
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. No established Indonesian DeFi term. "Membungkus" (to wrap physically)
+    is not used in Indonesian crypto contexts. DRAFT — native review needed.
+
+- term: wrapped
+  doNotTranslate: true
+  partOfSpeech: adjective
+  description: >
+    Keep English ("wrapped ETH"). No Indonesian crypto exchange uses a translated form.
+    DRAFT — native review needed.
+
+- term: unwrap
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English, consistent with wrap/wrapped. DRAFT — native review needed.
+
+- term: mint
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. Indonesian crypto exchanges and media (Pintu, Tokocrypto) use "mint" as the
+    DeFi action label. No established Indonesian equivalent in crypto context. "Cetak" (to print/
+    stamp) is occasionally used in academic Indonesian blockchain texts but not in product UI.
+    DRAFT — native review needed.
+
+- term: slippage
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English. Indodax and Tokocrypto both use "slippage" as-is in their swap UIs.
+    "Selisip" (Indonesian calque) is not used anywhere in the industry. DRAFT — confirm.
+  forbidden: { id-ID: ["selisip", "pergeseran harga"] }
+
+- term: max slippage
+  doNotTranslate: true
+  description: >
+    Keep English. Consistent with slippage being kept English. The label appears as
+    "Max Slippage" in Indodax/Tokocrypto swap UIs.
+
+# --- UI/finance terms: translated ---
+
+- term: network cost
+  preferred: { id-ID: "biaya jaringan" }
+  partOfSpeech: noun
+  description: >
+    "Biaya" (cost/fee) + "jaringan" (network). This is the standard Indonesian rendering.
+    Microsoft Terminology uses "biaya" for cost; Indodax uses "biaya jaringan" for gas fees.
+
+- term: fee
+  preferred: { id-ID: "biaya" }
+  partOfSpeech: noun
+  description: >
+    "Biaya" is the standard Indonesian word for fee/cost. Used in Indodax, Tokocrypto, and
+    Pintu fee displays. Microsoft Terminology (id): "biaya". Apple iOS (id): "biaya".
+
+- term: crypto
+  preferred: { id-ID: "kripto" }
+  partOfSpeech: noun
+  description: >
+    "Kripto" is the established short form in Indonesian crypto media and exchanges.
+    OJK (Otoritas Jasa Keuangan — Indonesian financial regulator) uses "aset kripto"
+    in regulatory documents. The bare "kripto" is the product-UI convention.
+  forbidden: { id-ID: ["mata uang kripto"] }
+
+- term: cryptocurrency
+  preferred: { id-ID: "mata uang kripto" }
+  partOfSpeech: noun
+  description: >
+    "Mata uang kripto" is used by OJK and Bank Indonesia in formal regulatory texts.
+    Indodax uses "aset kripto" in some contexts; "mata uang kripto" is the broader
+    established term for the full-length form. DRAFT — OJK uses both; confirm the
+    preferred long form.
+
+- term: market cap
+  preferred: { id-ID: "kapitalisasi pasar" }
+  partOfSpeech: noun
+  description: >
+    "Kapitalisasi pasar" is the standard Indonesian financial term. Used by Bursa Efek
+    Indonesia (IDX), OJK, and Indonesian crypto exchanges (Pintu, Indodax). Microsoft
+    Terminology (id) confirms "kapitalisasi pasar".
+
+- term: recovery phrase
+  preferred: { id-ID: "frasa pemulihan" }
+  partOfSpeech: noun
+  description: >
+    "Frasa pemulihan" is the most defensible Indonesian rendering. Apple uses "frasa
+    pemulihan" for recovery/passphrase contexts in iOS Indonesian. Security-critical:
+    never leave as the bare English passthrough. DRAFT — confirm with native speaker.
+  forbidden: { id-ID: ["recovery phrase", "kata pemulihan"] }
+
+- term: seed phrase
+  preferred: { id-ID: "frasa pemulihan" }
+  partOfSpeech: noun
+  description: >
+    Collapsed to the same canonical target as "recovery phrase" — "frasa pemulihan".
+    Indonesian has no separate established term for seed phrase vs recovery phrase.
+  forbidden: { id-ID: ["seed phrase", "frasa benih"] }
+
+- term: backup
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English as a noun ("backup"). This mirrors pt-BR convention and is consistent with
+    how Apple iOS Indonesian uses "backup" in system settings. The verb form is "buat
+    cadangan" (Indonesian) but "backup" is universally understood in Indonesian tech UI.
+    DRAFT — some Apple Indonesian UI uses "cadangan"; native review recommended.
+
+- term: private keys
+  preferred: { id-ID: "kunci pribadi" }
+  partOfSpeech: noun
+  description: >
+    "Kunci pribadi" is the standard Indonesian rendering. Microsoft Terminology (id) uses
+    "kunci privat" as an alternative; "kunci pribadi" is more natural in product UI.
+    DRAFT — choose between "kunci pribadi" and "kunci privat" with native review.
+
+- term: smart contract
+  preferred: { id-ID: "kontrak pintar" }
+  partOfSpeech: noun
+  description: >
+    "Kontrak pintar" is used by OJK (Otoritas Jasa Keuangan) and Indonesian blockchain
+    academic contexts. Indodax and Tokocrypto both use this form. "Smart contract" in
+    English is also widely understood; "kontrak pintar" is the institutionally established
+    translation. DRAFT — some platforms keep English; confirm.
+
+- term: passkey
+  preferred: { id-ID: "kunci sandi" }
+  partOfSpeech: noun
+  description: >
+    Apple iOS Indonesian uses "kunci sandi" for passkeys (as of iOS 17 localisation).
+    Google Android Indonesian uses "kunci sandi" as well. This is the platform-anchored
+    term the user will see in system UI. DRAFT — confirm Apple ID Indonesian UI.
+  forbidden: { id-ID: ["passkey", "pass key", "kunci akses"] }
+
+- term: passcode
+  preferred: { id-ID: "kode sandi" }
+  partOfSpeech: noun
+  description: >
+    "Kode sandi" is used by Apple iOS Indonesian for device passcode (distinct from
+    "kata sandi" which is password). Microsoft Terminology (id): "kode akses" is an
+    alternative, but "kode sandi" is the Apple-anchored term. DRAFT — native review needed.
+  forbidden: { id-ID: ["kata sandi", "passcode"] }
+
+- term: pool
+  preferred: { id-ID: "pool" }
+  partOfSpeech: noun
+  description: >
+    Keep English in DeFi context. Indodax and Pintu both use "pool" in liquidity pool
+    contexts. "Kolam" (Indonesian for pool) is not used in DeFi product UI.
+  forbidden: { id-ID: ["kolam", "kolam likuiditas"] }
+
+- term: trade
+  preferred: { id-ID: "perdagangan" }
+  partOfSpeech: noun
+  description: >
+    "Perdagangan" for the noun (trade/trading). For the verb "to trade" use "berdagang"
+    or "bertransaksi". Never use for import/export trade context. Indodax uses
+    "perdagangan" for the trading section of their exchange.
+
+- term: transaction
+  preferred: { id-ID: "transaksi" }
+  partOfSpeech: noun
+  description: >
+    "Transaksi" is the standard Indonesian financial term. Used universally in Indonesian
+    banking, fintech, and crypto. Apple iOS (id), Microsoft Terminology (id), all
+    Indonesian exchanges.
+
+- term: transaction history
+  preferred: { id-ID: "riwayat transaksi" }
+  partOfSpeech: noun
+  description: >
+    "Riwayat" (history) + "transaksi". Used by Indodax, Tokocrypto, and Bank Indonesia
+    apps. Apple iOS (id) uses "riwayat" for history.
+
+- term: approve
+  preferred: { id-ID: "setujui" }
+  partOfSpeech: verb
+  description: >
+    "Setujui" (approve/authorize). In DeFi token-approval context: keep distinct from
+    "permit" (see below). Apple iOS (id) uses "setujui" for approval actions.
+
+- term: permit
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    Keep English in the EIP-2612 technical context (the Permit2 contract signature flow).
+    "Izin" (Indonesian for permit) is used in generic UI (file access, camera permission)
+    but the on-chain technical "permit" should stay English to avoid confusion with system
+    permissions. DRAFT — native review needed to confirm.
+
+- term: revoke
+  preferred: { id-ID: "cabut" }
+  partOfSpeech: verb
+  description: >
+    "Cabut" (to revoke/withdraw). Used in Indonesian legal and regulatory contexts for
+    revoking authorisations. Indodax uses "cabut" for approval revocation. Alternative:
+    "batalkan izin" (cancel permission), but "cabut" is more concise. DRAFT.
+
+- term: approval
+  preferred: { id-ID: "persetujuan" }
+  partOfSpeech: noun
+  description: >
+    "Persetujuan" is the standard Indonesian noun for approval. Distinct from "izin"
+    (permission — OS-level) and "setujui" (the verb to approve).
+
+- term: confirm
+  preferred: { id-ID: "konfirmasi" }
+  partOfSpeech: verb
+  description: >
+    "Konfirmasi" is universally used across Indonesian fintech and crypto apps.
+    Apple iOS (id), Google Android (id), all Indonesian exchanges use this form.
+
+- term: explore
+  preferred: { id-ID: "jelajahi" }
+  partOfSpeech: verb
+  description: >
+    "Jelajahi" (explore/browse). Apple iOS (id) uses "jelajahi" for the Explore
+    navigation item. Alternative "temukan" (discover) is also used; "jelajahi" is
+    the more spatially apt rendering for a browse/search context.
+
+- term: extension
+  preferred: { id-ID: "ekstensi" }
+  partOfSpeech: noun
+  description: >
+    "Ekstensi" is used by Google Chrome Indonesian UI for browser extensions.
+    Microsoft Edge (id) also uses "ekstensi". This is the platform-anchored term.
+
+- term: activity
+  preferred: { id-ID: "aktivitas" }
+  partOfSpeech: noun
+  description: >
+    "Aktivitas" is the standard Indonesian rendering for activity feeds/history.
+    Used by Apple iOS (id), Google Android (id).
+
+- term: rate
+  preferred: { id-ID: "nilai tukar" }
+  partOfSpeech: noun
+  description: >
+    "Nilai tukar" (exchange rate) for token price rates. Used by Bank Indonesia and
+    Indodax. "Tarif" is rate in the fee sense; "nilai tukar" is specifically the
+    price-ratio meaning in finance.
+
+- term: pair
+  preferred: { id-ID: "pasangan" }
+  partOfSpeech: noun
+  description: >
+    "Pasangan" (pair). Indodax uses "pasangan aset" (asset pair) in their trading
+    terminology. "Pasangan perdagangan" is also used. DRAFT — confirm with native review.
+
+- term: limits
+  preferred: { id-ID: "batas" }
+  partOfSpeech: noun
+  description: >
+    "Batas" (limit/boundary). Used in Indonesian fintech for transaction limits.
+    Apple iOS (id): "batas". Microsoft Terminology (id): "batas".
+
+- term: sweep
+  preferred: { id-ID: "sweep" }
+  partOfSpeech: noun
+  description: >
+    Keep English in DeFi context. No established Indonesian rendering for the NFT/token
+    sweep action. DRAFT — native review needed.
+
+- term: bid
+  preferred: { id-ID: "penawaran" }
+  partOfSpeech: noun
+  description: >
+    "Penawaran" (bid/offer in auction context). Indonesian financial market term —
+    used by IDX (Bursa Efek Indonesia) for bid price. Distinct from "tawar" (to bid
+    as a verb). DRAFT.
+
+- term: clearing price
+  preferred: { id-ID: "harga kliring" }
+  partOfSpeech: noun
+  description: >
+    "Harga kliring" is the established Indonesian financial term used by IDX and OJK.
+    "Kliring" (from clearing) is standard in Indonesian banking/finance. DRAFT.
+  forbidden: { id-ID: ["harga bersih"] }
+
+- term: order filled
+  preferred: { id-ID: "pesanan dieksekusi" }
+  partOfSpeech: phrase
+  description: >
+    "Pesanan dieksekusi" (order executed). "Diisi" (physically filled) is a false friend
+    in Indonesian — "diisi" means filled as in filling a container. "Dieksekusi" is the
+    financial execution term used in Indonesian brokerage/exchange contexts. DRAFT.
+  forbidden: { id-ID: ["pesanan diisi", "diisi"] }
+
+- term: out of range
+  preferred: { id-ID: "di luar rentang" }
+  partOfSpeech: phrase
+  description: >
+    "Di luar rentang" (out of range). "Rentang" is the appropriate term for a price
+    range/band in Indonesian financial context. DRAFT.
+
+- term: in range
+  preferred: { id-ID: "dalam rentang" }
+  partOfSpeech: phrase
+  description: >
+    "Dalam rentang" (in range). Pair with "di luar rentang". DRAFT.
+
+- term: all time
+  preferred: { id-ID: "sepanjang masa" }
+  partOfSpeech: phrase
+  description: >
+    "Sepanjang masa" (all time / since inception). Indonesian date-range label for the
+    ATH/portfolio filter. "Setiap saat" (at all times / always) is a false friend — it
+    means "constantly" not "over all time". DRAFT.
+  forbidden: { id-ID: ["setiap saat", "sepanjang waktu"] }
+
+- term: Disclosures
+  preferred: { id-ID: "Pengungkapan" }
+  partOfSpeech: noun
+  description: >
+    "Pengungkapan" is the OJK regulatory term for disclosures in Indonesian financial law.
+    "Pengumuman" (announcement) and "Pemberitahuan" (notification) are false friends in
+    this legal context. DRAFT — confirm with legal/compliance.
+  forbidden: { id-ID: ["Pengumuman", "Pemberitahuan Hukum"] }
+
+- term: onchain
+  preferred: { id-ID: "onchain" }
+  partOfSpeech: adjective
+  description: >
+    Keep English "onchain" in product UI. Indonesian DeFi media and exchanges use the
+    English form. "Di jaringan" (on-network) is not used in DeFi product UI.
+  forbidden: { id-ID: ["di rantai", "di jaringan"] }
+
+- term: off-chain
+  preferred: { id-ID: "off-chain" }
+  partOfSpeech: adjective
+  description: >
+    Keep English "off-chain". Consistent with "onchain" being kept English.
+  forbidden: { id-ID: ["di luar rantai"] }
+
+- term: spread
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: >
+    "Spread" is used universally in Indonesian financial contexts (IDX, Bank Indonesia,
+    Indodax). Keep English.
+
+- term: front-run
+  preferred: { id-ID: "front-run" }
+  partOfSpeech: noun
+  description: >
+    Keep English. No established Indonesian equivalent in DeFi context. "Front-running"
+    appears as-is in Indonesian DeFi media. DRAFT.
+
+- term: trustless
+  preferred: { id-ID: "tanpa kepercayaan" }
+  partOfSpeech: adjective
+  description: >
+    "Tanpa kepercayaan" (without trust / trustless). Used in Indonesian DeFi educational
+    content. DRAFT — "nirsandar" is a more concise coinage but not yet established.
+
+# --- Earn / yield domain (TLM native review, 2026-07-28) ---
+# Unlike the draft entries above, these three are native-ratified (see each
+# entry's `status`) — native-reviewed output from the Earn marketing run.
+
+- term: yield
+  preferred: { id-ID: "imbal hasil" }
+  partOfSpeech: noun
+  termType: amount
+  status: native-ratified
+  forbidden: { id-ID: ["pendapatan"] }
+  description: >
+    "Imbal hasil" consistently in yield contexts — the established Indonesian
+    finance term. Never "pendapatan" (income) for yield; it is a hard-fail.
+    TLM native review (Thomas Osmonson, 2026-07-28).
+
+- term: Start Earning
+  preferred: { id-ID: "Mulai mendapatkan imbal hasil" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Earn CTA — long form with the full "mendapatkan" verb, naming the object
+    ("imbal hasil") consistent with the yield entry. Second native review,
+    endorsed by TLM (Thomas Osmonson, 2026-07-28); revised from the short
+    form "Mulai dapatkan imbal hasil".
+
+- term: withdraw anytime
+  preferred: { id-ID: "tarik kapan saja" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Earn reassurance phrase. Prefer the concise "tarik kapan saja" over
+    "kapan pun Anda inginkan" for register. Second native review,
+    endorsed by TLM (Thomas Osmonson, 2026-07-28).
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — "Limit" IS the
+    conventional local trading label in this locale, so it stays as-is (a
+    keep-as-is rendering, not an untranslated leftover). Never a literal
+    restrict-verb. TLM ruling (2026-07-30); pending native confirmation.
+
+- term: reset
+  preferred: { id-ID: "setel ulang" }
+  description: >
+    Android id convention (Settings: "Opsi setel ulang", "Setel ulang
+    jaringan"). Button-case: "Setel ulang"; composes with kept terms
+    ("Setel Ulang Biaya Gas" keeps Gas English). Adopted from vendor
+    2026-07-31.
+
+- term: vote
+  preferred: { id-ID: "berikan suara" }
+  partOfSpeech: verb
+  description: >
+    Governance-vote CTA. Our own corpus already ships "Berikan suara pada
+    proposal tata kelola" (title.voteOnGov) — this aligns the bare CTA with
+    it. Button-case: "Berikan suara".
+
+- term: minimum
+  preferred: { id-ID: "minimal" }
+  description: >
+    KBBI form for the full word in amount errors ("Minimal {{amount}}").
+    The compact "Min" button abbreviation stays English — see the core
+    Max/Min compactness note.
+
+- term: checkout
+  doNotTranslate: true
+  status: draft
+  description: >
+    On-ramp checkout surface — id e-commerce norm keeps English (Tokopedia).
+    Per-locale on purpose: es/fr/pt render native checkout terms, so this
+    must NOT live in core. ⚠️ DRAFT — confirm with native reviewer.

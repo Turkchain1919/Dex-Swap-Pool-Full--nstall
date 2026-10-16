@@ -1,0 +1,22 @@
+@keyframes web-shimmer-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.web-shimmer,
+.web-loading-rows > div {
+  animation: web-shimmer-loading 1.5s infinite;
+  animation-fill-mode: both;
+  background: linear-gradient(to left, var(--surface1) 25%, var(--surface3) 50%, var(--surface1) 75%);
+  background-size: 400%;
+  will-change: background-position;
+}
+
+.web-loading-rows > div {
+  border-radius: 12px;
+  height: 2.4em;
+}

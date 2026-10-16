@@ -1,0 +1,127 @@
+import { isExtensionApp, isWebApp } from '@universe/environment'
+import { useEffect, useState } from 'react'
+// AdaptiveWebModal/WebModalWithBottomAttachment stay on ui/src pending INFRA-3513: the INFRA-3316 rebuild
+// took the cluster off Tamagui Dialog/Sheet but two tamagui imports remain (`useMedia` in
+// ui/src/components/modal/AdaptiveWebModal.web.tsx, `isTouchable` in WebBottomSheet.web.tsx). Once
+// INFRA-3513 lands, the cluster is Tamagui-free and this ui/src import is a completed state, not a hold.
+// oxlint-disable-next-line no-restricted-imports -- needed here
+import { AdaptiveWebModal, WebModalWithBottomAttachment } from 'ui/src/components/modal/AdaptiveWebModal'
+import { INTERFACE_NAV_HEIGHT } from 'ui/src/theme'
+import type { ModalProps } from 'uniswap/src/components/modals/ModalProps'
+import { WEB_MODAL_ANIMATION_MS } from 'uniswap/src/constants/misc'
+import Trace from 'uniswap/src/features/telemetry/Trace'
+
+export function Modal({
+  children,
+  name,
+  onClose,
+  fullScreen,
+  backgroundColor,
+  isModalOpen = true,
+  alignment = 'center',
+  maxWidth,
+  maxHeight,
+  height,
+  padding,
+  bottomAttachment,
+  gap,
+  paddingX,
+  paddingY,
+  pt,
+  pb,
+  mx = '$none',
+  analyticsProperties,
+  skipLogImpression,
+  position,
+  flex,
+  zIndex,
+  isDismissible = true,
+  hideHandlebar,
+  borderWidth,
+  borderColor,
+  borderRadius,
+  overlayOpacity,
+  snapPointsMode,
+  snapPoints,
+  sheetFitHeight,
+  testID,
+  disableRemoveScroll,
+}: ModalProps): JSX.Element {
+  const [fullyClosed, setFullyClosed] = useState(false)
+
+  if (fullyClosed && isModalOpen) {
+    setFullyClosed(false)
+  }
+
+  // Not the greatest, we are syncing 200 here to 200ms animation
+  // TODO(EXT-745): Add Tamagui onFullyClosed callback and replace here
+  useEffect(() => {
+    if (!isModalOpen) {
+      const tm = setTimeout(() => {
+        setFullyClosed(true)
+      }, WEB_MODAL_ANIMATION_MS)
+
+      return () => {
+        clearTimeout(tm)
+      }
+    }
+    return undefined
+  }, [isModalOpen])
+
+  const ModalComponent = bottomAttachment ? WebModalWithBottomAttachment : AdaptiveWebModal
+
+  return (
+    <Trace logImpression={skipLogImpression ? false : isModalOpen} modal={name} properties={analyticsProperties}>
+      {(isModalOpen || !fullyClosed) && (
+        <ModalComponent
+          position={position}
+          bottomAttachment={bottomAttachment}
+          data-testid={testID}
+          shadowOpacity={isExtensionApp ? 0 : undefined}
+          borderWidth={borderWidth !== undefined ? borderWidth : isExtensionApp ? 1 : undefined}
+          borderColor={borderColor !== undefined ? borderColor : isExtensionApp ? '$surface2' : undefined}
+          borderRadius={borderRadius}
+          overlayOpacity={overlayOpacity !== undefined ? overlayOpacity : isExtensionApp ? 1 : undefined}
+          adaptToSheet={isWebApp}
+          disableRemoveScroll={disableRemoveScroll}
+          alignment={alignment}
+          backgroundColor={backgroundColor}
+          height={height ?? (fullScreen ? '100%' : undefined)}
+          isOpen={isModalOpen}
+          mx={mx}
+          my="$none"
+          maxWidth={maxWidth}
+          maxHeight={maxHeight}
+          gap={gap}
+          zIndex={zIndex}
+          hideHandlebar={hideHandlebar}
+          snapPointsMode={snapPointsMode}
+          snapPoints={snapPoints}
+          sheetFitHeight={sheetFitHeight}
+          $md={{
+            p: padding ?? '$spacing12',
+            ...(isWebApp && {
+              '$platform-web': {
+                height: height ?? 'max-content',
+                maxHeight: `calc(100dvh - ${INTERFACE_NAV_HEIGHT}px)`,
+              },
+            }),
+          }}
+          p={padding ?? '$spacing24'}
+          px={paddingX}
+          py={paddingY}
+          pt={pt}
+          pb={pb}
+          flex={flex}
+          onClose={isDismissible ? onClose : undefined}
+        >
+          {/*
+            To keep this consistent with how the `Modal` works on native mobile, we only mount the children when the modal is open.
+            It is critical for the modal to work this way or else it breaks existing assumptions throughout our codebase about when components are mounted / unmounted.
+          */}
+          {fullyClosed ? null : children}
+        </ModalComponent>
+      )}
+    </Trace>
+  )
+}

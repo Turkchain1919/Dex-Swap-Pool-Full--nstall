@@ -1,0 +1,117 @@
+import { sanitizeAddressText } from '@universe/chains'
+import { AccountList } from 'src/components/accounts/AccountList'
+import { cleanup, fireEvent, render, screen } from 'src/test/test-utils'
+import { Locale } from 'uniswap/src/features/language/constants'
+import { ON_PRESS_EVENT_PAYLOAD } from 'uniswap/src/test/fixtures'
+import { mockLocalizedFormatter } from 'uniswap/src/test/mocks'
+import { createArray } from 'uniswap/src/test/utils'
+import { shortenAddress } from 'utilities/src/addresses'
+import { NumberType } from 'utilities/src/format/types'
+import type { MockedFunction } from 'vitest'
+import { useAccountListData } from 'wallet/src/features/accounts/useAccountListData'
+import { ACCOUNT, readOnlyAccount, signerMnemonicAccount } from 'wallet/src/test/fixtures'
+
+vi.mock('wallet/src/features/accounts/useAccountListData')
+const mockUseAccountListData = useAccountListData as MockedFunction<typeof useAccountListData>
+
+const totalBalanceValue = 55
+
+const formatter = mockLocalizedFormatter(Locale.EnglishUnitedStates)
+
+const defaultProps = {
+  onPress: vi.fn(),
+  onClose: vi.fn(),
+}
+
+// Skip entering animation of AccountIcon
+
+describe(AccountList, () => {
+  beforeEach(() => {
+    mockUseAccountListData.mockReturnValue({
+      balancesByAddress: { [ACCOUNT.address]: totalBalanceValue },
+      loading: false,
+      refetch: vi.fn(),
+    })
+  })
+
+  it('renders without error', async () => {
+    const tree = render(<AccountList {...defaultProps} accounts={[ACCOUNT]} />)
+
+    expect(
+      await screen.findByText(
+        formatter.formatNumberOrString({
+          value: totalBalanceValue,
+          type: NumberType.PortfolioBalance,
+          currencyCode: 'usd',
+        }),
+      ),
+    ).toBeDefined()
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('handles press on card items', async () => {
+    const onPressSpy = vi.fn()
+    render(<AccountList {...defaultProps} accounts={[ACCOUNT]} onPress={onPressSpy} />)
+
+    // go to success state
+    expect(
+      await screen.findByText(
+        formatter.formatNumberOrString({
+          value: totalBalanceValue,
+          type: NumberType.PortfolioBalance,
+          currencyCode: 'usd',
+        }),
+      ),
+    ).toBeDefined()
+
+    fireEvent.press(screen.getByTestId(`account-item/${ACCOUNT.address}`), ON_PRESS_EVENT_PAYLOAD)
+
+    expect(onPressSpy).toHaveBeenCalledTimes(1)
+  })
+
+  describe('signer accounts', () => {
+    it('renders signer accounts section if there are signer accounts', () => {
+      const signerAccounts = createArray(3, signerMnemonicAccount)
+      render(<AccountList {...defaultProps} accounts={signerAccounts} />)
+
+      signerAccounts.forEach((account) => {
+        const address = sanitizeAddressText(shortenAddress({ address: account.address, chars: 6 }))
+        if (address) {
+          expect(screen.queryByText(address)).toBeTruthy()
+        }
+      })
+      cleanup()
+    })
+
+    it('does not render signer accounts section if there are no signer accounts', () => {
+      render(<AccountList {...defaultProps} accounts={[readOnlyAccount()]} />)
+
+      expect(screen.queryByText('Your other wallets')).toBeFalsy()
+      cleanup()
+    })
+  })
+
+  describe('view only accounts', () => {
+    it('renders view only accounts section if there are view only accounts', () => {
+      const viewOnlyAccounts = createArray(3, readOnlyAccount)
+      render(<AccountList {...defaultProps} accounts={viewOnlyAccounts} />)
+
+      expect(screen.queryByText('account.wallet.header.viewOnly')).toBeTruthy()
+
+      viewOnlyAccounts.forEach((account) => {
+        const address = sanitizeAddressText(shortenAddress({ address: account.address, chars: 6 }))
+        if (address) {
+          expect(screen.queryByText(address)).toBeTruthy()
+        }
+      })
+      cleanup()
+    })
+
+    it('does not render view only accounts section if there are no view only accounts', () => {
+      render(<AccountList {...defaultProps} accounts={[signerMnemonicAccount()]} />)
+
+      expect(screen.queryByText('account.wallet.header.viewOnly')).toBeFalsy()
+      cleanup()
+    })
+  })
+})

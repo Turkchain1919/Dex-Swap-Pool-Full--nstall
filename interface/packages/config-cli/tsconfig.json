@@ -1,0 +1,30 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "src/global.d.ts"],
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "types": ["node", "bun"],
+    "paths": {}
+  },
+  "references": [
+    {
+      "path": "../utilities"
+    },
+    {
+      "path": "../environment"
+    },
+    {
+      "path": "../encoding"
+    },
+    {
+      "path": "../config"
+    },
+    {
+      "path": "../api"
+    },
+    {
+      "path": "../../config/vitest-presets"
+    }
+  ]
+}

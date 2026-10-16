@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`KeyboardKey Component > renders correctly with state Highlighted 1`] = `
+<div>
+  <div
+    class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center px-[28px] h-[var(--c-h)] bg-surface1 border-accent2-hovered border-[2px] rounded-[20px] [box-shadow:var(--c-bosh)]"
+    style="--c-h: 70px; --c-bosh: 0px 7px 0px var(--accent1-hovered);"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] [line-height:22px] [font-weight:485] text-[length:var(--c-text)] [color:var(--stext-accent1)]"
+      style="--c-text: 28px;"
+    >
+      Shift
+    </span>
+  </div>
+</div>
+`;
+
+exports[`KeyboardKey Component > renders correctly with state KeyDown 1`] = `
+<div>
+  <div
+    class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center px-[28px] h-[var(--c-h)] bg-surface1 border-accent2-hovered border-[2px] rounded-[20px] top-[var(--c-top)] [box-shadow:var(--c-bosh)]"
+    style="--c-h: 70px; --c-top: 7px; --c-bosh: 0px 0px 16px var(--accent1-hovered);"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] [line-height:22px] [font-weight:485] text-[length:var(--c-text)] [color:var(--stext-accent1)]"
+      style="--c-text: 28px;"
+    >
+      Shift
+    </span>
+  </div>
+</div>
+`;
+
+exports[`KeyboardKey Component > renders correctly with state KeyUp 1`] = `
+<div>
+  <div
+    class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center px-[28px] h-[var(--c-h)] bg-surface1 border-surface3 border-[2px] rounded-[20px] [box-shadow:var(--c-bosh)]"
+    style="--c-h: 70px; --c-bosh: 0px 7px 0px var(--neutral3);"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] [line-height:22px] [font-weight:485] text-[length:var(--c-text)] [color:var(--stext-neutral2)]"
+      style="--c-text: 28px;"
+    >
+      Shift
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,633 @@
+diff --git a/dist/common/bundler/css-processor/addMetaToStylesTemplate.js b/dist/common/bundler/css-processor/addMetaToStylesTemplate.js
+index 8b53314010a37be4978f25710be04d926137c9ca..3e75553570721750a809a6cc745a6f4f7b780fc3 100644
+--- a/dist/common/bundler/css-processor/addMetaToStylesTemplate.js
++++ b/dist/common/bundler/css-processor/addMetaToStylesTemplate.js
+@@ -53,6 +53,8 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         orientation,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         colorScheme,
+         important: _,
+         importantProperties,
+@@ -89,7 +91,7 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+       if (rtl !== null) {
+         dependencies.push(_consts.StyleDependency.Rtl);
+       }
+-      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
++      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || Number(minHeight) !== 0 || Number(maxHeight) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
+         dependencies.push(_consts.StyleDependency.Dimensions);
+       }
+       if (stringifiedEntries.includes("rt.insets")) {
+@@ -102,6 +104,8 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         entries,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         theme: makeSafeForSerialization(theme),
+         orientation: makeSafeForSerialization(orientation),
+         rtl,
+diff --git a/dist/common/bundler/css-processor/mq.js b/dist/common/bundler/css-processor/mq.js
+index ab6415a110ac8aee72acdd79abbdf5ebd8566d0d..7f09e291d617fe7206801a0b8c854c3de8d377f5 100644
+--- a/dist/common/bundler/css-processor/mq.js
++++ b/dist/common/bundler/css-processor/mq.js
+@@ -34,10 +34,20 @@ class MQ {
+   }
+   processWidthMediaQuery(query, mq) {
+     const {
++      name,
+       operator,
+       value
+     } = query;
+     const result = this.Processor.CSS.processValue(value);
++    if (name === "height") {
++      if (operator === "greater-than-equal" || operator === "greater-than") {
++        mq.minHeight = result;
++      }
++      if (operator === "less-than-equal" || operator === "less-than") {
++        mq.maxHeight = result;
++      }
++      return;
++    }
+     if (operator === "greater-than-equal" || operator === "greater-than") {
+       mq.minWidth = result;
+     }
+@@ -65,6 +75,8 @@ class MQ {
+     return {
+       minWidth: 0,
+       maxWidth: Number.MAX_VALUE,
++      minHeight: 0,
++      maxHeight: Number.MAX_VALUE,
+       platform: null,
+       rtl: null,
+       important: false,
+diff --git a/dist/common/bundler/css-processor/processor.js b/dist/common/bundler/css-processor/processor.js
+index 4b75508c81683b2a9a2391972b233b97df14bfea..ad385ad777c3ac078812103320fb2a00672abab7 100644
+--- a/dist/common/bundler/css-processor/processor.js
++++ b/dist/common/bundler/css-processor/processor.js
+@@ -162,21 +162,29 @@ class ProcessorBuilder {
+           }
+         });
+         if ([rtl, theme, active, focus, disabled, dataAttributes].some(Boolean)) {
+-          this.declarationConfig.rtl = rtl;
+-          this.declarationConfig.theme = theme;
+-          this.declarationConfig.active = active;
+-          this.declarationConfig.focus = focus;
+-          this.declarationConfig.disabled = disabled;
+-          this.declarationConfig.dataAttributes = dataAttributes;
++          const previousConfig = {
++            rtl: this.declarationConfig.rtl,
++            theme: this.declarationConfig.theme,
++            active: this.declarationConfig.active,
++            focus: this.declarationConfig.focus,
++            disabled: this.declarationConfig.disabled,
++            dataAttributes: this.declarationConfig.dataAttributes,
++          };
++          this.declarationConfig.rtl = rtl ?? previousConfig.rtl;
++          this.declarationConfig.theme = theme ?? previousConfig.theme;
++          this.declarationConfig.active = active ?? previousConfig.active;
++          this.declarationConfig.focus = focus ?? previousConfig.focus;
++          this.declarationConfig.disabled = disabled ?? previousConfig.disabled;
++          this.declarationConfig.dataAttributes = dataAttributes ?? previousConfig.dataAttributes;
+           rule.value.declarations?.declarations?.forEach(declaration => this.addDeclaration(declaration));
+           rule.value.declarations?.importantDeclarations?.forEach(declaration => this.addDeclaration(declaration, true));
+           rule.value.rules?.forEach(rule2 => this.parseRuleRec(rule2));
+-          this.declarationConfig.rtl = null;
+-          this.declarationConfig.theme = null;
+-          this.declarationConfig.active = null;
+-          this.declarationConfig.focus = null;
+-          this.declarationConfig.disabled = null;
+-          this.declarationConfig.dataAttributes = null;
++          this.declarationConfig.rtl = previousConfig.rtl;
++          this.declarationConfig.theme = previousConfig.theme;
++          this.declarationConfig.active = previousConfig.active;
++          this.declarationConfig.focus = previousConfig.focus;
++          this.declarationConfig.disabled = previousConfig.disabled;
++          this.declarationConfig.dataAttributes = previousConfig.dataAttributes;
+           return;
+         }
+         selector.forEach(selectorToken => {
+diff --git a/dist/common/core/native/store.js b/dist/common/core/native/store.js
+index f448f4bceff05eda964aa32b638ece126e35705f..b67ae2fe56009433a3a1f2b4b225709a72aeaed6 100644
+--- a/dist/common/core/native/store.js
++++ b/dist/common/core/native/store.js
+@@ -100,7 +100,7 @@ class UniwindStoreBuilder {
+         if (style.dataAttributes !== null) {
+           hasDataAttributes = true;
+         }
+-        if (style.minWidth > this.runtime.screen.width || style.maxWidth < this.runtime.screen.width || style.theme !== null && theme !== style.theme || style.orientation !== null && this.runtime.orientation !== style.orientation || style.rtl !== null && this.runtime.rtl !== style.rtl || style.active !== null && state?.isPressed !== style.active || style.focus !== null && state?.isFocused !== style.focus || style.disabled !== null && state?.isDisabled !== style.disabled || style.dataAttributes !== null && !this.validateDataAttributes(style.dataAttributes, componentProps)) {
++        if (style.minWidth > this.runtime.screen.width || style.maxWidth < this.runtime.screen.width || style.minHeight > this.runtime.screen.height || style.maxHeight < this.runtime.screen.height || style.theme !== null && theme !== style.theme || style.orientation !== null && this.runtime.orientation !== style.orientation || style.rtl !== null && this.runtime.rtl !== style.rtl || style.active !== null && state?.isPressed !== style.active || style.focus !== null && state?.isFocused !== style.focus || style.disabled !== null && state?.isDisabled !== style.disabled || style.dataAttributes !== null && !this.validateDataAttributes(style.dataAttributes, componentProps)) {
+           continue;
+         }
+         for (const [property, valueGetter] of style.entries) {
+diff --git a/dist/metro/transformer.cjs b/dist/metro/transformer.cjs
+index 71e5e76f478bf20035d231bb7090946dae9703a5..9f01f69ee0691388c743637fcc0e2d64a7acc0a4 100644
+--- a/dist/metro/transformer.cjs
++++ b/dist/metro/transformer.cjs
+@@ -226,6 +226,8 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         orientation,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         colorScheme,
+         important: _,
+         importantProperties,
+@@ -262,7 +264,7 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+       if (rtl !== null) {
+         dependencies.push(config.StyleDependency.Rtl);
+       }
+-      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
++      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || Number(minHeight) !== 0 || Number(maxHeight) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
+         dependencies.push(config.StyleDependency.Dimensions);
+       }
+       if (stringifiedEntries.includes("rt.insets")) {
+@@ -275,6 +277,8 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         entries,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         theme: makeSafeForSerialization(theme),
+         orientation: makeSafeForSerialization(orientation),
+         rtl,
+@@ -1043,8 +1047,17 @@ class MQ {
+     return mq;
+   }
+   processWidthMediaQuery(query, mq) {
+-    const { operator, value } = query;
++    const { name, operator, value } = query;
+     const result = this.Processor.CSS.processValue(value);
++    if (name === "height") {
++      if (operator === "greater-than-equal" || operator === "greater-than") {
++        mq.minHeight = result;
++      }
++      if (operator === "less-than-equal" || operator === "less-than") {
++        mq.maxHeight = result;
++      }
++      return;
++    }
+     if (operator === "greater-than-equal" || operator === "greater-than") {
+       mq.minWidth = result;
+     }
+@@ -1067,6 +1080,8 @@ class MQ {
+     return {
+       minWidth: 0,
+       maxWidth: Number.MAX_VALUE,
++      minHeight: 0,
++      maxHeight: Number.MAX_VALUE,
+       platform: null,
+       rtl: null,
+       important: false,
+@@ -1570,21 +1585,29 @@ class ProcessorBuilder {
+           }
+         });
+         if ([rtl, theme, active, focus, disabled, dataAttributes].some(Boolean)) {
+-          this.declarationConfig.rtl = rtl;
+-          this.declarationConfig.theme = theme;
+-          this.declarationConfig.active = active;
+-          this.declarationConfig.focus = focus;
+-          this.declarationConfig.disabled = disabled;
+-          this.declarationConfig.dataAttributes = dataAttributes;
++          const previousConfig = {
++            rtl: this.declarationConfig.rtl,
++            theme: this.declarationConfig.theme,
++            active: this.declarationConfig.active,
++            focus: this.declarationConfig.focus,
++            disabled: this.declarationConfig.disabled,
++            dataAttributes: this.declarationConfig.dataAttributes,
++          };
++          this.declarationConfig.rtl = rtl ?? previousConfig.rtl;
++          this.declarationConfig.theme = theme ?? previousConfig.theme;
++          this.declarationConfig.active = active ?? previousConfig.active;
++          this.declarationConfig.focus = focus ?? previousConfig.focus;
++          this.declarationConfig.disabled = disabled ?? previousConfig.disabled;
++          this.declarationConfig.dataAttributes = dataAttributes ?? previousConfig.dataAttributes;
+           rule.value.declarations?.declarations?.forEach((declaration) => this.addDeclaration(declaration));
+           rule.value.declarations?.importantDeclarations?.forEach((declaration) => this.addDeclaration(declaration, true));
+           rule.value.rules?.forEach((rule2) => this.parseRuleRec(rule2));
+-          this.declarationConfig.rtl = null;
+-          this.declarationConfig.theme = null;
+-          this.declarationConfig.active = null;
+-          this.declarationConfig.focus = null;
+-          this.declarationConfig.disabled = null;
+-          this.declarationConfig.dataAttributes = null;
++          this.declarationConfig.rtl = previousConfig.rtl;
++          this.declarationConfig.theme = previousConfig.theme;
++          this.declarationConfig.active = previousConfig.active;
++          this.declarationConfig.focus = previousConfig.focus;
++          this.declarationConfig.disabled = previousConfig.disabled;
++          this.declarationConfig.dataAttributes = previousConfig.dataAttributes;
+           return;
+         }
+         selector.forEach((selectorToken) => {
+diff --git a/dist/metro/transformer.mjs b/dist/metro/transformer.mjs
+index 6fb28df0aa9add2bd4f508500dfe0926c4b19187..9cd87f0a8f7d54f3ad6cdc49618053e2bce31ff6 100644
+--- a/dist/metro/transformer.mjs
++++ b/dist/metro/transformer.mjs
+@@ -219,6 +219,8 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         orientation,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         colorScheme,
+         important: _,
+         importantProperties,
+@@ -255,7 +257,7 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+       if (rtl !== null) {
+         dependencies.push(StyleDependency.Rtl);
+       }
+-      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
++      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || Number(minHeight) !== 0 || Number(maxHeight) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
+         dependencies.push(StyleDependency.Dimensions);
+       }
+       if (stringifiedEntries.includes("rt.insets")) {
+@@ -268,6 +270,8 @@ const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         entries,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         theme: makeSafeForSerialization(theme),
+         orientation: makeSafeForSerialization(orientation),
+         rtl,
+@@ -1036,8 +1040,17 @@ class MQ {
+     return mq;
+   }
+   processWidthMediaQuery(query, mq) {
+-    const { operator, value } = query;
++    const { name, operator, value } = query;
+     const result = this.Processor.CSS.processValue(value);
++    if (name === "height") {
++      if (operator === "greater-than-equal" || operator === "greater-than") {
++        mq.minHeight = result;
++      }
++      if (operator === "less-than-equal" || operator === "less-than") {
++        mq.maxHeight = result;
++      }
++      return;
++    }
+     if (operator === "greater-than-equal" || operator === "greater-than") {
+       mq.minWidth = result;
+     }
+@@ -1060,6 +1073,8 @@ class MQ {
+     return {
+       minWidth: 0,
+       maxWidth: Number.MAX_VALUE,
++      minHeight: 0,
++      maxHeight: Number.MAX_VALUE,
+       platform: null,
+       rtl: null,
+       important: false,
+@@ -1563,21 +1578,29 @@ class ProcessorBuilder {
+           }
+         });
+         if ([rtl, theme, active, focus, disabled, dataAttributes].some(Boolean)) {
+-          this.declarationConfig.rtl = rtl;
+-          this.declarationConfig.theme = theme;
+-          this.declarationConfig.active = active;
+-          this.declarationConfig.focus = focus;
+-          this.declarationConfig.disabled = disabled;
+-          this.declarationConfig.dataAttributes = dataAttributes;
++          const previousConfig = {
++            rtl: this.declarationConfig.rtl,
++            theme: this.declarationConfig.theme,
++            active: this.declarationConfig.active,
++            focus: this.declarationConfig.focus,
++            disabled: this.declarationConfig.disabled,
++            dataAttributes: this.declarationConfig.dataAttributes,
++          };
++          this.declarationConfig.rtl = rtl ?? previousConfig.rtl;
++          this.declarationConfig.theme = theme ?? previousConfig.theme;
++          this.declarationConfig.active = active ?? previousConfig.active;
++          this.declarationConfig.focus = focus ?? previousConfig.focus;
++          this.declarationConfig.disabled = disabled ?? previousConfig.disabled;
++          this.declarationConfig.dataAttributes = dataAttributes ?? previousConfig.dataAttributes;
+           rule.value.declarations?.declarations?.forEach((declaration) => this.addDeclaration(declaration));
+           rule.value.declarations?.importantDeclarations?.forEach((declaration) => this.addDeclaration(declaration, true));
+           rule.value.rules?.forEach((rule2) => this.parseRuleRec(rule2));
+-          this.declarationConfig.rtl = null;
+-          this.declarationConfig.theme = null;
+-          this.declarationConfig.active = null;
+-          this.declarationConfig.focus = null;
+-          this.declarationConfig.disabled = null;
+-          this.declarationConfig.dataAttributes = null;
++          this.declarationConfig.rtl = previousConfig.rtl;
++          this.declarationConfig.theme = previousConfig.theme;
++          this.declarationConfig.active = previousConfig.active;
++          this.declarationConfig.focus = previousConfig.focus;
++          this.declarationConfig.disabled = previousConfig.disabled;
++          this.declarationConfig.dataAttributes = previousConfig.dataAttributes;
+           return;
+         }
+         selector.forEach((selectorToken) => {
+diff --git a/dist/module/bundler/css-processor/addMetaToStylesTemplate.js b/dist/module/bundler/css-processor/addMetaToStylesTemplate.js
+index 097cfafc8c866e75c11436ecc54b27c73be8b3e1..dbbaf12ad5226664c30d7a4ccfa07d29b2384b4e 100644
+--- a/dist/module/bundler/css-processor/addMetaToStylesTemplate.js
++++ b/dist/module/bundler/css-processor/addMetaToStylesTemplate.js
+@@ -47,6 +47,8 @@ export const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         orientation,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         colorScheme,
+         important: _,
+         importantProperties,
+@@ -83,7 +85,7 @@ export const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+       if (rtl !== null) {
+         dependencies.push(StyleDependency.Rtl);
+       }
+-      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
++      if (Number(minWidth) !== 0 || Number(maxWidth) !== Number.MAX_VALUE || Number(minHeight) !== 0 || Number(maxHeight) !== Number.MAX_VALUE || stringifiedEntries.includes("rt.screen")) {
+         dependencies.push(StyleDependency.Dimensions);
+       }
+       if (stringifiedEntries.includes("rt.insets")) {
+@@ -96,6 +98,8 @@ export const addMetaToStylesTemplate = (Processor, currentPlatform) => {
+         entries,
+         minWidth,
+         maxWidth,
++        minHeight,
++        maxHeight,
+         theme: makeSafeForSerialization(theme),
+         orientation: makeSafeForSerialization(orientation),
+         rtl,
+diff --git a/dist/module/bundler/css-processor/mq.js b/dist/module/bundler/css-processor/mq.js
+index ee3325dac09ceef807be98157f714203450489a9..57e4b3f8c2acfdc79dc5728ec33fc8e605b45b71 100644
+--- a/dist/module/bundler/css-processor/mq.js
++++ b/dist/module/bundler/css-processor/mq.js
+@@ -31,8 +31,17 @@ export class MQ {
+     return mq;
+   }
+   processWidthMediaQuery(query, mq) {
+-    const { operator, value } = query;
++    const { name, operator, value } = query;
+     const result = this.Processor.CSS.processValue(value);
++    if (name === "height") {
++      if (operator === "greater-than-equal" || operator === "greater-than") {
++        mq.minHeight = result;
++      }
++      if (operator === "less-than-equal" || operator === "less-than") {
++        mq.maxHeight = result;
++      }
++      return;
++    }
+     if (operator === "greater-than-equal" || operator === "greater-than") {
+       mq.minWidth = result;
+     }
+@@ -57,6 +66,8 @@ export class MQ {
+     return {
+       minWidth: 0,
+       maxWidth: Number.MAX_VALUE,
++      minHeight: 0,
++      maxHeight: Number.MAX_VALUE,
+       platform: null,
+       rtl: null,
+       important: false,
+diff --git a/dist/module/bundler/css-processor/processor.js b/dist/module/bundler/css-processor/processor.js
+index 4f6ef48efd3118864a15ef3b2d1f0f00ecfecf53..4cde413e554a9294823b843217291d2714af290d 100644
+--- a/dist/module/bundler/css-processor/processor.js
++++ b/dist/module/bundler/css-processor/processor.js
+@@ -156,21 +156,29 @@ export class ProcessorBuilder {
+           }
+         });
+         if ([rtl, theme, active, focus, disabled, dataAttributes].some(Boolean)) {
+-          this.declarationConfig.rtl = rtl;
+-          this.declarationConfig.theme = theme;
+-          this.declarationConfig.active = active;
+-          this.declarationConfig.focus = focus;
+-          this.declarationConfig.disabled = disabled;
+-          this.declarationConfig.dataAttributes = dataAttributes;
++          const previousConfig = {
++            rtl: this.declarationConfig.rtl,
++            theme: this.declarationConfig.theme,
++            active: this.declarationConfig.active,
++            focus: this.declarationConfig.focus,
++            disabled: this.declarationConfig.disabled,
++            dataAttributes: this.declarationConfig.dataAttributes,
++          };
++          this.declarationConfig.rtl = rtl ?? previousConfig.rtl;
++          this.declarationConfig.theme = theme ?? previousConfig.theme;
++          this.declarationConfig.active = active ?? previousConfig.active;
++          this.declarationConfig.focus = focus ?? previousConfig.focus;
++          this.declarationConfig.disabled = disabled ?? previousConfig.disabled;
++          this.declarationConfig.dataAttributes = dataAttributes ?? previousConfig.dataAttributes;
+           rule.value.declarations?.declarations?.forEach((declaration) => this.addDeclaration(declaration));
+           rule.value.declarations?.importantDeclarations?.forEach((declaration) => this.addDeclaration(declaration, true));
+           rule.value.rules?.forEach((rule2) => this.parseRuleRec(rule2));
+-          this.declarationConfig.rtl = null;
+-          this.declarationConfig.theme = null;
+-          this.declarationConfig.active = null;
+-          this.declarationConfig.focus = null;
+-          this.declarationConfig.disabled = null;
+-          this.declarationConfig.dataAttributes = null;
++          this.declarationConfig.rtl = previousConfig.rtl;
++          this.declarationConfig.theme = previousConfig.theme;
++          this.declarationConfig.active = previousConfig.active;
++          this.declarationConfig.focus = previousConfig.focus;
++          this.declarationConfig.disabled = previousConfig.disabled;
++          this.declarationConfig.dataAttributes = previousConfig.dataAttributes;
+           return;
+         }
+         selector.forEach((selectorToken) => {
+diff --git a/dist/module/bundler/css-processor/types.d.ts b/dist/module/bundler/css-processor/types.d.ts
+index 4876dcbdb860428d63743ca21b42a0efd48995ff..d3bed6b83ca5c4aa3b71f4acd3b7b71409db6849 100644
+--- a/dist/module/bundler/css-processor/types.d.ts
++++ b/dist/module/bundler/css-processor/types.d.ts
+@@ -3,6 +3,8 @@ import type { AbsoluteFontWeight, Declaration, GradientItemFor_DimensionPercenta
+ export type MediaQueryResolver = {
+     maxWidth: any;
+     minWidth: any;
++    maxHeight: any;
++    minHeight: any;
+     platform: Platform | null;
+     rtl: boolean | null;
+     important: boolean;
+diff --git a/dist/module/core/native/store.js b/dist/module/core/native/store.js
+index 93535b60efe41a3142463346b7008dd7a4b49235..37da9e2ea933d817ac9dcbeca062f9eb88c2c4fe 100644
+--- a/dist/module/core/native/store.js
++++ b/dist/module/core/native/store.js
+@@ -88,7 +88,7 @@ class UniwindStoreBuilder {
+         if (style.dataAttributes !== null) {
+           hasDataAttributes = true;
+         }
+-        if (style.minWidth > this.runtime.screen.width || style.maxWidth < this.runtime.screen.width || style.theme !== null && theme !== style.theme || style.orientation !== null && this.runtime.orientation !== style.orientation || style.rtl !== null && this.runtime.rtl !== style.rtl || style.active !== null && state?.isPressed !== style.active || style.focus !== null && state?.isFocused !== style.focus || style.disabled !== null && state?.isDisabled !== style.disabled || style.dataAttributes !== null && !this.validateDataAttributes(style.dataAttributes, componentProps)) {
++        if (style.minWidth > this.runtime.screen.width || style.maxWidth < this.runtime.screen.width || style.minHeight > this.runtime.screen.height || style.maxHeight < this.runtime.screen.height || style.theme !== null && theme !== style.theme || style.orientation !== null && this.runtime.orientation !== style.orientation || style.rtl !== null && this.runtime.rtl !== style.rtl || style.active !== null && state?.isPressed !== style.active || style.focus !== null && state?.isFocused !== style.focus || style.disabled !== null && state?.isDisabled !== style.disabled || style.dataAttributes !== null && !this.validateDataAttributes(style.dataAttributes, componentProps)) {
+           continue;
+         }
+         for (const [property, valueGetter] of style.entries) {
+diff --git a/dist/module/core/types.d.ts b/dist/module/core/types.d.ts
+index fe30a67eaf3dcb57859baa317802dcd81ea1defc..8b46fbbd3286a13d98a8b6dfdf3e2615be78f99d 100644
+--- a/dist/module/core/types.d.ts
++++ b/dist/module/core/types.d.ts
+@@ -6,6 +6,8 @@ export type Style = {
+     entries: Array<[string, () => unknown]>;
+     minWidth: number;
+     maxWidth: number;
++    minHeight: number;
++    maxHeight: number;
+     orientation: Orientation | null;
+     theme: ColorScheme | null;
+     rtl: boolean | null;
+diff --git a/src/bundler/css-processor/addMetaToStylesTemplate.ts b/src/bundler/css-processor/addMetaToStylesTemplate.ts
+index e9b727f217e71954e039336e7d97e703c1a4bb39..470a0410cecfe301073a6f4d2a4a15368e627cde 100644
+--- a/src/bundler/css-processor/addMetaToStylesTemplate.ts
++++ b/src/bundler/css-processor/addMetaToStylesTemplate.ts
+@@ -64,6 +64,8 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
+                     orientation,
+                     minWidth,
+                     maxWidth,
++                    minHeight,
++                    maxHeight,
+                     colorScheme,
+                     important: _,
+                     importantProperties,
+@@ -115,6 +117,8 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
+                 if (
+                     Number(minWidth) !== 0
+                     || Number(maxWidth) !== Number.MAX_VALUE
++                    || Number(minHeight) !== 0
++                    || Number(maxHeight) !== Number.MAX_VALUE
+                     || stringifiedEntries.includes('rt.screen')
+                 ) {
+                     dependencies.push(StyleDependency.Dimensions)
+@@ -132,6 +136,8 @@ export const addMetaToStylesTemplate = (Processor: ProcessorBuilder, currentPlat
+                     entries,
+                     minWidth,
+                     maxWidth,
++                    minHeight,
++                    maxHeight,
+                     theme: makeSafeForSerialization(theme),
+                     orientation: makeSafeForSerialization(orientation),
+                     rtl,
+diff --git a/src/bundler/css-processor/mq.ts b/src/bundler/css-processor/mq.ts
+index 02be572ba678a6fd7de4ee4b88ddf1745dc53a3d..e237dfd7932b3c14c654f3f31e9c2b31fb0275b2 100644
+--- a/src/bundler/css-processor/mq.ts
++++ b/src/bundler/css-processor/mq.ts
+@@ -45,9 +45,21 @@ export class MQ {
+     }
+ 
+     private processWidthMediaQuery(query: QueryFeatureFor_MediaFeatureId & { type: 'range' }, mq: MediaQueryResolver) {
+-        const { operator, value } = query
++        const { name, operator, value } = query
+         const result = this.Processor.CSS.processValue(value)
+ 
++        if (name === 'height') {
++            if (operator === 'greater-than-equal' || operator === 'greater-than') {
++                mq.minHeight = result
++            }
++
++            if (operator === 'less-than-equal' || operator === 'less-than') {
++                mq.maxHeight = result
++            }
++
++            return
++        }
++
+         if (operator === 'greater-than-equal' || operator === 'greater-than') {
+             mq.minWidth = result
+         }
+@@ -78,6 +90,8 @@ export class MQ {
+         return {
+             minWidth: 0,
+             maxWidth: Number.MAX_VALUE,
++            minHeight: 0,
++            maxHeight: Number.MAX_VALUE,
+             platform: null,
+             rtl: null,
+             important: false,
+diff --git a/src/bundler/css-processor/processor.ts b/src/bundler/css-processor/processor.ts
+index 5e71e4d20060179edbc9b8043229c5a296f3dc16..929bcc69b5ca05f9bd019761b82997cf4448cdf7 100644
+--- a/src/bundler/css-processor/processor.ts
++++ b/src/bundler/css-processor/processor.ts
+@@ -196,23 +196,36 @@ export class ProcessorBuilder {
+                 })
+ 
+                 if ([rtl, theme, active, focus, disabled, dataAttributes].some(Boolean)) {
+-                    this.declarationConfig.rtl = rtl
+-                    this.declarationConfig.theme = theme
+-                    this.declarationConfig.active = active
+-                    this.declarationConfig.focus = focus
+-                    this.declarationConfig.disabled = disabled
+-                    this.declarationConfig.dataAttributes = dataAttributes
++                    // Merge with the inherited config and restore it after: a nested
++                    // pseudo rule (e.g. `&:focus` inside `&:where(.dark, .dark *)`)
++                    // must keep the outer rule's theme gate, and a sibling rule must
++                    // not see a nulled config
++                    const previousConfig = {
++                        rtl: this.declarationConfig.rtl,
++                        theme: this.declarationConfig.theme,
++                        active: this.declarationConfig.active,
++                        focus: this.declarationConfig.focus,
++                        disabled: this.declarationConfig.disabled,
++                        dataAttributes: this.declarationConfig.dataAttributes
++                    }
++
++                    this.declarationConfig.rtl = rtl ?? previousConfig.rtl
++                    this.declarationConfig.theme = theme ?? previousConfig.theme
++                    this.declarationConfig.active = active ?? previousConfig.active
++                    this.declarationConfig.focus = focus ?? previousConfig.focus
++                    this.declarationConfig.disabled = disabled ?? previousConfig.disabled
++                    this.declarationConfig.dataAttributes = dataAttributes ?? previousConfig.dataAttributes
+ 
+                     rule.value.declarations?.declarations?.forEach(declaration => this.addDeclaration(declaration))
+                     rule.value.declarations?.importantDeclarations?.forEach(declaration => this.addDeclaration(declaration, true))
+                     rule.value.rules?.forEach(rule => this.parseRuleRec(rule))
+ 
+-                    this.declarationConfig.rtl = null
+-                    this.declarationConfig.theme = null
+-                    this.declarationConfig.active = null
+-                    this.declarationConfig.focus = null
+-                    this.declarationConfig.disabled = null
+-                    this.declarationConfig.dataAttributes = null
++                    this.declarationConfig.rtl = previousConfig.rtl
++                    this.declarationConfig.theme = previousConfig.theme
++                    this.declarationConfig.active = previousConfig.active
++                    this.declarationConfig.focus = previousConfig.focus
++                    this.declarationConfig.disabled = previousConfig.disabled
++                    this.declarationConfig.dataAttributes = previousConfig.dataAttributes
+ 
+                     return
+                 }
+diff --git a/src/bundler/css-processor/types.ts b/src/bundler/css-processor/types.ts
+index 204af1f3186d5f35a26bc65b493d3617fb678de5..a965141752d24fc9820fd7ab4123d1e0741c754b 100644
+--- a/src/bundler/css-processor/types.ts
++++ b/src/bundler/css-processor/types.ts
+@@ -16,6 +16,8 @@ import type {
+ export type MediaQueryResolver = {
+     maxWidth: any
+     minWidth: any
++    maxHeight: any
++    minHeight: any
+     platform: Platform | null
+     rtl: boolean | null
+     important: boolean
+diff --git a/src/core/native/store.ts b/src/core/native/store.ts
+index 01b5951fac9d2750967753ed377ab568794d00b8..80cd67de39a31eba16b5823bbd6be973adeea030 100644
+--- a/src/core/native/store.ts
++++ b/src/core/native/store.ts
+@@ -132,6 +132,8 @@ class UniwindStoreBuilder {
+                 if (
+                     style.minWidth > this.runtime.screen.width
+                     || style.maxWidth < this.runtime.screen.width
++                    || style.minHeight > this.runtime.screen.height
++                    || style.maxHeight < this.runtime.screen.height
+                     || (style.theme !== null && theme !== style.theme)
+                     || (style.orientation !== null && this.runtime.orientation !== style.orientation)
+                     || (style.rtl !== null && this.runtime.rtl !== style.rtl)
+diff --git a/src/core/types.ts b/src/core/types.ts
+index 0fb3ce04e6119231e714e9419a4f7a496abec757..dc3015ff206bd7f4c5fb97b057c1f6da057b4340 100644
+--- a/src/core/types.ts
++++ b/src/core/types.ts
+@@ -7,6 +7,8 @@ export type Style = {
+     entries: Array<[string, () => unknown]>
+     minWidth: number
+     maxWidth: number
++    minHeight: number
++    maxHeight: number
+     orientation: Orientation | null
+     theme: ColorScheme | null
+     rtl: boolean | null

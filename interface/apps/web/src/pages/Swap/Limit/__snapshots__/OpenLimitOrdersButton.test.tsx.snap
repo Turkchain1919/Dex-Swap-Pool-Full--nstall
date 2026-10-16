@@ -1,0 +1,68 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OpenLimitOrdersButton > should render if there are open limit orders 1`] = `
+<div>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 mb-[8px]"
+  >
+    <div
+      class="[container-name:true] flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] items-center justify-between gap-[12px] mt-[12px] px-[16px] py-[12px] bg-surface2 rounded-[16px] [cursor:pointer] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] hover:opacity-[var(--ch-opacity)] active:opacity-[var(--ca-opacity)] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group no-underline"
+      role="button"
+      style="--ch-opacity: 0.8; --ca-opacity: 0.6; transition: opacity 100ms;"
+      tabindex="0"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between gap-[12px] w-[100%]"
+      >
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row gap-[8px]"
+        >
+          <svg
+            fill="none"
+            stroke-width="8"
+            style="width: 20px; height: 20px;"
+            viewBox="0 0 18 18"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M8.99984 0.666748C4.39734 0.666748 0.666504 4.39758 0.666504 9.00008C0.666504 13.6026 4.39734 17.3334 8.99984 17.3334C13.6023 17.3334 17.3332 13.6026 17.3332 9.00008C17.3332 4.39758 13.6023 0.666748 8.99984 0.666748ZM11.9415 11.9418C11.8199 12.0634 11.6598 12.1251 11.4998 12.1251C11.3398 12.1251 11.1798 12.0643 11.0581 11.9418L8.55815 9.44177C8.44065 9.32427 8.37484 9.16508 8.37484 9.00008V4.83341C8.37484 4.48841 8.65484 4.20841 8.99984 4.20841C9.34484 4.20841 9.62484 4.48841 9.62484 4.83341V8.74088L11.9415 11.0576C12.1857 11.3026 12.1857 11.6976 11.9415 11.9418Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-medium)] text-[14px] [font-weight:535] [line-height:20px] [color:var(--stext-neutral2)]"
+            >
+              1 open limit
+            </span>
+          </div>
+        </div>
+        <svg
+          fill="none"
+          stroke-width="2"
+          style="width: 20px; height: 20px; color: rgba(19, 19, 19, 0.63); transform: rotateZ(270deg);"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 5V19"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+          <path
+            d="M19 12L12 19L5 12"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

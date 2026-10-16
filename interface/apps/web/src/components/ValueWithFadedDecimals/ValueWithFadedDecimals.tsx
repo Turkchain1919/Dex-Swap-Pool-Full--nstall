@@ -1,0 +1,37 @@
+import { Text } from '@universe/mycelium'
+import type { TextCompatProps as TextProps } from '@universe/mycelium'
+import { useParseCurrencyAmountParts } from '~/components/ValueWithFadedDecimals/parseCurrencyAmountParts'
+
+type ValueWithFadedDecimalsProps = {
+  value: string
+  textProps?: TextProps
+}
+
+export function ValueWithFadedDecimals({ value, textProps }: ValueWithFadedDecimalsProps) {
+  const { prefixSymbol, wholeNumber, decimalNumber, suffixSymbol, suffix, decimalSeparator } =
+    useParseCurrencyAmountParts(value)
+
+  const textVariant = textProps?.variant ?? 'body3'
+
+  if (!value) {
+    return <Text {...textProps}>—</Text>
+  }
+
+  return (
+    <Text variant={textVariant} {...textProps}>
+      {prefixSymbol}
+      {wholeNumber}
+      {decimalNumber && (
+        <>
+          {/* $neutral2 needs to be last so it overrides the textProps color */}
+          <Text variant={textVariant} {...textProps} color="$neutral2">
+            {decimalSeparator}
+            {decimalNumber}
+          </Text>
+          {suffix}
+        </>
+      )}
+      {suffixSymbol}
+    </Text>
+  )
+}

@@ -1,0 +1,56 @@
+'use strict'
+const {test}=require('node:test'),assert=require('node:assert/strict')
+const {ethers}=require('ethers')
+const registry=require('../../registry.json')
+const protocol=require('../protocol.cjs')
+const {prepare}=require('../initial-pools.cjs')
+const provider=new ethers.providers.JsonRpcProvider({url:registry.rpc,timeout:12000},1919)
+const pair={chainId:1919,token0:'0x34974f5c83915762e3ba9C487E09465c801aD9E3',token1:'0xCD0d7B9eEEc0897aFCcA0f0739DDECb830171271',sender:'0x000000000000000000000000000000000000dEaD',amount0:'1',amount1:'1',initialSqrtPriceX96:'79228162514264337593543950336',fee:3000,tickSpacing:60,hooks:ethers.constants.AddressZero}
+test('live Turkchain 7777/8888 V4 pool is discovered and quoted from current mainnet state without broadcasting',{timeout:45000},async()=>{
+ const pm=new ethers.Contract(registry.contracts.V4PositionManager,['function getPoolAndPositionInfo(uint256) view returns(tuple(address currency0,address currency1,uint24 fee,int24 tickSpacing,address hooks),bytes25)','function ownerOf(uint256) view returns(address)','function getPositionLiquidity(uint256) view returns(uint256)'],provider)
+ const [owner,keyAndInfo,positionLiquidity]=await Promise.all([pm.ownerOf(2),pm.getPoolAndPositionInfo(2),pm.getPositionLiquidity(2)])
+ assert.equal(owner.toLowerCase(),'0xb49b53f2d258a17e0fcc9d97ad2b93cb3ef65dbd')
+ const [currency0,currency1,fee,tickSpacing,hooks]=keyAndInfo[0]
+ const poolId=ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['address','address','uint24','int24','address'],[currency0,currency1,fee,tickSpacing,hooks]))
+ assert.equal(poolId,'0xc2b96c347958913dee895779c1719354b8b6d159a9bd8daefe9ddb8e1deeee6f')
+ assert.equal(positionLiquidity.toString(),'999999999999999999')
+ const state=new ethers.Contract(registry.contracts.StateView,['function getSlot0(bytes32) view returns(uint160,int24,uint24,uint24)','function getLiquidity(bytes32) view returns(uint128)'],provider)
+ const [slot,poolLiquidity]=await Promise.all([state.getSlot0(poolId),state.getLiquidity(poolId)])
+ assert.equal(slot[0].toString(),'79228162514264337593543950336')
+ assert.equal(Number(slot[1]),0)
+ assert.equal(poolLiquidity.toString(),'999999999999999999')
+ const quoter=new ethers.Contract(registry.contracts.V4Quoter,['function quoteExactInputSingle(((address currency0,address currency1,uint24 fee,int24 tickSpacing,address hooks) poolKey,bool zeroForOne,uint128 exactAmount,bytes hookData) parameters) returns(uint256,uint256)'],provider)
+ const output=await quoter.callStatic.quoteExactInputSingle([[currency0,currency1,fee,tickSpacing,hooks],false,ethers.utils.parseUnits('1',18),'0x'])
+ assert.equal(output[0].toString(),'499248873309964947')
+ assert.equal(output[1].toString(),'54522')
+})
+test('deposit amounts are decimal units and receive token decimals exactly once',{timeout:30000},async()=>{
+ const result=await prepare({provider,body:{...pair,protocol:'V2',amount0:'10',amount1:'10'}})
+ assert.equal(result.amount0,ethers.utils.parseUnits('10',18).toString())
+ assert.equal(result.amount1,ethers.utils.parseUnits('10',18).toString())
+ const iface=new ethers.utils.Interface(['function addLiquidity(address,address,uint256,uint256,uint256,uint256,address,uint256) returns(uint256,uint256,uint256)'])
+ const decoded=iface.decodeFunctionData('addLiquidity',result.transaction.data)
+ assert.equal(decoded[2].toString(),ethers.utils.parseUnits('10',18).toString())
+ assert.equal(decoded[3].toString(),ethers.utils.parseUnits('10',18).toString())
+ assert.equal(result.balancesSufficient,false)
+ assert.equal(result.transactionsEnabled,false)
+})
+
+test('native TURK first liquidity uses Router02 addLiquidityETH with WTURK pair and no native-token approval', {timeout:45000}, async()=>{
+ const nativeBody={...pair,protocol:'V2',token0:registry.contracts.WTURK,token1:pair.token1,nativeSide:'token0',deadline:Math.floor(Date.now()/1000)+600}
+ const result=await prepare({provider,body:nativeBody})
+ assert.equal(result.poolState.initialized,false)
+ assert.equal(result.creationSimulation.success,true,result.creationSimulation.reason)
+ assert.equal(result.transaction.to,protocol.addresses.V2Router02)
+ assert.equal(result.transaction.data.slice(0,10),'0xf305d719')
+ assert.equal(result.transaction.value,ethers.utils.parseUnits('1',18).toHexString())
+ assert.equal(result.allowanceTransactions.some(tx=>tx.to.toLowerCase()===registry.contracts.WTURK.toLowerCase()),false)
+ assert.equal(result.broadcast,false)
+ assert.equal(result.transactionsEnabled,false)
+})
+
+test('initial-pool request rejects foreign chains, unsorted addresses, and unknown hook contracts',async()=>{
+ await assert.rejects(()=>prepare({provider,body:{...pair,chainId:1,protocol:'V2'}}),/1919/)
+ await assert.rejects(()=>prepare({provider,body:{...pair,token0:pair.token1,token1:pair.token0,protocol:'V2'}}),/sırası/)
+ await assert.rejects(()=>prepare({provider,body:{...pair,protocol:'V4',hooks:'0x1111111111111111111111111111111111111111'}}),/Hook/)
+})

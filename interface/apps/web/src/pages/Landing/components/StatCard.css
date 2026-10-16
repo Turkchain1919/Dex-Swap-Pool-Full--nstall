@@ -1,0 +1,17 @@
+@keyframes stat-card-pulsate {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 24%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--success) 24%, transparent);
+  }
+}
+
+.stat-card-live-icon {
+  animation-name: stat-card-pulsate;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}

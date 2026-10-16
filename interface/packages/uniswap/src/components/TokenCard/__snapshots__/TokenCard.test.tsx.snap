@@ -1,0 +1,450 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TokenCard > renders a spacer instead of a sparkline for fewer than 2 points 1`] = `
+<DocumentFragment>
+  <div
+    class="[container-name:true] flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] [container-type:normal] [cursor:pointer] flex-col shrink-[0] gap-[12px] p-[12px] w-[var(--c-w)] bg-surface1 border-surface3 border-[1px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+    role="button"
+    style="--c-w: 204px;"
+    tabindex="0"
+  >
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between w-[100%]"
+    >
+      <div
+        class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[32px] h-[32px] relative [pointer-events:auto]"
+        data-testid="token-logo"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] bg-[color:var(--c-bg)] rounded-[999999px] opacity-[0] absolute top-[var(--c-top)] left-[var(--c-left)] z-[var(--c-z)]"
+          style="--c-w: 96%; --c-h: 96%; --c-bg: #FFFFFF; --c-top: 2%; --c-left: 2%; --c-z: 0;"
+        />
+        <div
+          class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center px-[8px] w-[32px] h-[32px] rounded-[999999px]"
+          style="background-color: rgb(21, 36, 43);"
+        >
+          <span
+            class="box-border m-0 [word-wrap:break-word] [line-height:18.4px] [font-family:var(--stext-font-medium)] [font-weight:var(--c-fowe)] [color:var(--c-col)] text-center text-[length:var(--c-text)] whitespace-nowrap text-clip [display:var(--c-di)] max-w-[16px] overflow-hidden"
+            style="--c-text: 6.666666666666666px; --c-fowe: 500; --c-col: #2ABDFF; --c-di: inline-block;"
+          >
+            SND
+          </span>
+        </div>
+      </div>
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px]"
+        data-testid="token-card-sparkline-empty"
+        style="--c-w: 64px;"
+      />
+    </div>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[2px] w-[100%]"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap shrink-[1]"
+        >
+          SanDisk
+        </span>
+      </div>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+        >
+          $1,594.61
+        </span>
+        <div
+          class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-start gap-[2px]"
+          data-testid="relative-change"
+        >
+          <div
+            fill="none"
+            stroke-width="2"
+            style="width: 12px; height: 12px; color: rgb(33, 201, 94); transform: rotate(180deg);"
+            viewbox="0 0 24 24"
+          >
+            <div
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+              data-testid="portfolio-relative-change"
+            >
+              9.67%
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TokenCard > renders the horizontal layout without a price 1`] = `
+<DocumentFragment>
+  <div
+    class="[container-name:true] flex basis-auto box-border relative min-h-[0px] min-w-[0px] [container-type:normal] [cursor:pointer] flex-row items-center shrink-[0] gap-[12px] p-[12px] w-[var(--c-w)] bg-surface1 border-surface3 border-[1px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+    role="button"
+    style="--c-w: 280px;"
+    tabindex="0"
+  >
+    <div
+      class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[32px] h-[32px] relative [pointer-events:auto]"
+      data-testid="token-logo"
+    >
+      <div
+        class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] bg-[color:var(--c-bg)] rounded-[999999px] opacity-[0] absolute top-[var(--c-top)] left-[var(--c-left)] z-[var(--c-z)]"
+        style="--c-w: 96%; --c-h: 96%; --c-bg: #FFFFFF; --c-top: 2%; --c-left: 2%; --c-z: 0;"
+      />
+      <div
+        class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center px-[8px] w-[32px] h-[32px] rounded-[999999px]"
+        style="background-color: rgb(16, 20, 61);"
+      >
+        <span
+          class="box-border m-0 [word-wrap:break-word] [line-height:18.4px] [font-family:var(--stext-font-medium)] [font-weight:var(--c-fowe)] [color:var(--c-col)] text-center text-[length:var(--c-text)] whitespace-nowrap text-clip [display:var(--c-di)] max-w-[16px] overflow-hidden"
+          style="--c-text: 6.666666666666666px; --c-fowe: 500; --c-col: #3271FF; --c-di: inline-block;"
+        >
+          SLX
+        </span>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] grow shrink min-w-[0px]"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+      >
+        Solstice
+      </span>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[8px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+        >
+          SLX
+        </span>
+        <div
+          class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-start gap-[2px]"
+          data-testid="relative-change"
+        >
+          <div
+            fill="none"
+            stroke-width="2"
+            style="width: 12px; height: 12px; color: rgb(33, 201, 94); transform: rotate(180deg);"
+            viewbox="0 0 24 24"
+          >
+            <div
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+              data-testid="portfolio-relative-change"
+            >
+              6.45%
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      height="40"
+      width="64"
+    >
+      <div>
+        <div
+          id="token-card-sparkline-_r_2_"
+          x1="0"
+          x2="0"
+          y1="0"
+          y2="1"
+        >
+          <div
+            offset="0"
+            stop-color="#21C95E"
+            stop-opacity="0.16"
+          />
+          <div
+            offset="1"
+            stop-color="#21C95E"
+            stop-opacity="0"
+          />
+        </div>
+      </div>
+      <div
+        d="M0,38C0,38,20.622,20.15,21.333,20C22.044,19.85,41.956,29.3,42.667,29C43.378,28.7,64,2,64,2L64,40C64,40,43.378,40,42.667,40C41.956,40,22.044,40,21.333,40C20.622,40,0,40,0,40Z"
+        fill="url(#token-card-sparkline-_r_2_)"
+      />
+      <div
+        d="M0,38C0,38,20.622,20.15,21.333,20C22.044,19.85,41.956,29.3,42.667,29C43.378,28.7,64,2,64,2"
+        fill="none"
+        stroke="#21C95E"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TokenCard > renders the vertical layout with a negative delta and no issuer label 1`] = `
+<DocumentFragment>
+  <div
+    class="[container-name:true] flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] [container-type:normal] [cursor:pointer] flex-col shrink-[0] gap-[12px] p-[12px] w-[var(--c-w)] bg-surface1 border-surface3 border-[1px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+    role="button"
+    style="--c-w: 168px;"
+    tabindex="0"
+  >
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between w-[100%]"
+    >
+      <div
+        class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[32px] h-[32px] relative [pointer-events:auto]"
+        data-testid="token-logo"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] bg-[color:var(--c-bg)] rounded-[999999px] opacity-[0] absolute top-[var(--c-top)] left-[var(--c-left)] z-[var(--c-z)]"
+          style="--c-w: 96%; --c-h: 96%; --c-bg: #FFFFFF; --c-top: 2%; --c-left: 2%; --c-z: 0;"
+        />
+        <div
+          class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center px-[8px] w-[32px] h-[32px] rounded-[999999px]"
+          style="background-color: rgb(26, 42, 33);"
+        >
+          <span
+            class="box-border m-0 [word-wrap:break-word] [line-height:18.4px] [font-family:var(--stext-font-medium)] [font-weight:var(--c-fowe)] [color:var(--c-col)] text-center text-[10px] whitespace-nowrap text-clip [display:var(--c-di)] max-w-[16px] overflow-hidden"
+            style="--c-fowe: 500; --c-col: #5CFE9D; --c-di: inline-block;"
+          >
+            MU
+          </span>
+        </div>
+      </div>
+      <div
+        height="32"
+        width="64"
+      >
+        <div>
+          <div
+            id="token-card-sparkline-_r_1_"
+            x1="0"
+            x2="0"
+            y1="0"
+            y2="1"
+          >
+            <div
+              offset="0"
+              stop-color="#FF593C"
+              stop-opacity="0.16"
+            />
+            <div
+              offset="1"
+              stop-color="#FF593C"
+              stop-opacity="0"
+            />
+          </div>
+        </div>
+        <div
+          d="M0,30C0,30,20.622,16.117,21.333,16C22.044,15.883,41.956,23.233,42.667,23C43.378,22.767,64,2,64,2L64,32C64,32,43.378,32,42.667,32C41.956,32,22.044,32,21.333,32C20.622,32,0,32,0,32Z"
+          fill="url(#token-card-sparkline-_r_1_)"
+        />
+        <div
+          d="M0,30C0,30,20.622,16.117,21.333,16C22.044,15.883,41.956,23.233,42.667,23C43.378,22.767,64,2,64,2"
+          fill="none"
+          stroke="#FF593C"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+        />
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[2px] w-[100%]"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap shrink-[1]"
+        >
+          Micron Technology
+        </span>
+      </div>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+        >
+          $900.63
+        </span>
+        <div
+          class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-start gap-[2px]"
+          data-testid="relative-change"
+        >
+          <div
+            fill="none"
+            stroke-width="2"
+            style="width: 12px; height: 12px; color: rgb(255, 89, 60); transform: rotate(0deg);"
+            viewbox="0 0 24 24"
+          >
+            <div
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+              data-testid="portfolio-relative-change"
+            >
+              9.03%
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TokenCard > renders the vertical layout with price, issuer label and positive delta 1`] = `
+<DocumentFragment>
+  <div
+    class="[container-name:true] flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] [container-type:normal] [cursor:pointer] flex-col shrink-[0] gap-[12px] p-[12px] w-[var(--c-w)] bg-surface1 border-surface3 border-[1px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+    role="button"
+    style="--c-w: 204px;"
+    tabindex="0"
+  >
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between w-[100%]"
+    >
+      <div
+        class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[32px] h-[32px] relative [pointer-events:auto]"
+        data-testid="token-logo"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] bg-[color:var(--c-bg)] rounded-[999999px] opacity-[0] absolute top-[var(--c-top)] left-[var(--c-left)] z-[var(--c-z)]"
+          style="--c-w: 96%; --c-h: 96%; --c-bg: #FFFFFF; --c-top: 2%; --c-left: 2%; --c-z: 0;"
+        />
+        <div
+          data-testid="img-token-image"
+          style="box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; min-width: 0;"
+        >
+          <img
+            height="32"
+            src="https://example.com/logo.png"
+            style="object-fit: cover; width: 32px; height: 32px; border-radius: 32px; z-index: 1;"
+            width="32"
+          />
+        </div>
+      </div>
+      <div
+        height="32"
+        width="64"
+      >
+        <div>
+          <div
+            id="token-card-sparkline-_r_0_"
+            x1="0"
+            x2="0"
+            y1="0"
+            y2="1"
+          >
+            <div
+              offset="0"
+              stop-color="#21C95E"
+              stop-opacity="0.16"
+            />
+            <div
+              offset="1"
+              stop-color="#21C95E"
+              stop-opacity="0"
+            />
+          </div>
+        </div>
+        <div
+          d="M0,30C0,30,20.622,16.117,21.333,16C22.044,15.883,41.956,23.233,42.667,23C43.378,22.767,64,2,64,2L64,32C64,32,43.378,32,42.667,32C41.956,32,22.044,32,21.333,32C20.622,32,0,32,0,32Z"
+          fill="url(#token-card-sparkline-_r_0_)"
+        />
+        <div
+          d="M0,30C0,30,20.622,16.117,21.333,16C22.044,15.883,41.956,23.233,42.667,23C43.378,22.767,64,2,64,2"
+          fill="none"
+          stroke="#21C95E"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+        />
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[2px] w-[100%]"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap shrink-[1]"
+        >
+          Amazon
+        </span>
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral3)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap shrink-[0]"
+        >
+          Robinhood
+        </span>
+      </div>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+        >
+          $257.62
+        </span>
+        <div
+          class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-start gap-[2px]"
+          data-testid="relative-change"
+        >
+          <div
+            fill="none"
+            stroke-width="2"
+            style="width: 12px; height: 12px; color: rgb(33, 201, 94); transform: rotate(180deg);"
+            viewbox="0 0 24 24"
+          >
+            <div
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+              data-testid="portfolio-relative-change"
+            >
+              7.55%
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

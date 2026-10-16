@@ -1,0 +1,180 @@
+# Chinese, Simplified (zh-CN) glossary.
+#
+# Seeded from the Notion "i18n style guide: Chinese, Simplified" term table and
+# hardened with the March-2026 audit's wrong-word findings as `forbidden`.
+# Register (use 你, not the over-formal 您) lives in ../../style/locales/zh-CN.md.
+
+- term: wallet
+  preferred: { zh-CN: "钱包" }
+
+- term: smart wallet
+  preferred: { zh-CN: "智能钱包" }
+
+- term: token
+  preferred: { zh-CN: "代币" }
+
+- term: network cost
+  preferred: { zh-CN: "网络费用" }
+
+- term: fee
+  preferred: { zh-CN: "费用" }
+
+- term: app fee
+  preferred: { zh-CN: "App 手续费" }
+  forbidden: { zh-CN: ["应用费用", "应用程序费用", "应用程序手续费"] }
+  description: >
+    "Zero app fees" is a core marketing claim. Crypto-native Chinese renders
+    "app fee" as "App 手续费" — keep "App" in Latin, 手续费 = transaction fee.
+    NOT the literal "应用费用" (application cost). Native-reviewer note
+    (Melody, 2026-07-01). More specific than the generic `fee` → 费用.
+
+- term: crypto
+  preferred: { zh-CN: "加密货币" }
+
+- term: cryptocurrency
+  preferred: { zh-CN: "加密货币" }
+
+- term: market cap
+  preferred: { zh-CN: "市值" }
+
+- term: TVL
+  preferred: { zh-CN: "总锁仓量" }
+  description: total value locked. (A spelled-out rendering is under team discussion; keep this for now.)
+
+- term: seed phrase
+  preferred: { zh-CN: "种子短语" }
+
+- term: recovery phrase
+  preferred: { zh-CN: "恢复短语" }
+
+- term: backup
+  preferred: { zh-CN: "备份" }
+
+- term: smart contract
+  preferred: { zh-CN: "智能合约" }
+
+- term: wrap
+  preferred: { zh-CN: "封装" }
+
+- term: unwrap
+  preferred: { zh-CN: "拆封" }
+
+- term: swap
+  preferred: { zh-CN: "兑换" }
+
+- term: mint
+  preferred: { zh-CN: "铸造" }
+
+- term: slippage
+  preferred: { zh-CN: "滑点" }
+
+- term: max slippage
+  preferred: { zh-CN: "滑点上限" }
+
+- term: function
+  preferred: { zh-CN: "函数" }
+
+# --- Audit wrong-word bugs: reinforce the core DNT terms with forbidden scans ---
+- term: NFT
+  forbidden: { zh-CN: ["非同质化代币"] }
+  description: Keep "NFT". Audit found the formal expansion "非同质化代币" — nobody in crypto says it.
+
+- term: calldata
+  forbidden: { zh-CN: ["通话数据"] }
+  description: Audit bug — "通话数据" (phone-call data) was shipped for calldata. Keep "calldata".
+
+# --- June-2026 audit quick-wins: three forbidden-term fixes + passcode/password split ---
+
+- term: report (data-quality feedback)
+  preferred: { zh-CN: "报告" }
+  description: >
+    举报 carries a police/regulatory complaint connotation in Mainland Chinese and is alarming
+    and wrong for a data-quality feedback action (reporting inaccurate token warnings or
+    portfolio data). Audit found the entire reporting.* namespace (8+ keys) using 举报, which
+    sounds like filing a criminal complaint rather than flagging inaccurate data — deterring
+    users from reporting inaccurate warnings. Reserve 举报 only for actual compliance/fraud
+    reporting (e.g. reporting a scam token to a platform). Use 报告 in all
+    reporting.*.data.* and reporting.token.warning.* strings.
+  forbidden: { zh-CN: ["举报"] }
+
+- term: claim (username registration — unitags)
+  preferred: { zh-CN: "申领" }
+  description: >
+    认领 means identifying and claiming found/lost property. 申领 means applying to register
+    something new. These are semantically inverted for a first-time username registration flow.
+    Audit found 13+ keys in unitags.* (unitags.banner.button.claim, unitags.claim.error.default,
+    unitags.onboarding.claim.title.claim, etc.) using 认领 — making a new registration sound
+    like collecting lost items.
+  forbidden: { zh-CN: ["认领"] }
+
+- term: bid (auction competitive bid — Toucan)
+  preferred: { zh-CN: "竞价" }
+  description: >
+    竞价 is the established Chinese auction bidding term used across Chinese crypto and art
+    auction platforms (including Taobao auctions, NFT markets). 出价 is a generic price offer
+    without competitive connotation. Audit found ~12 keys across transaction.status.submitBid.*,
+    transaction.status.withdrawBid.*, and toucan.bidActivities.* shifted wholesale to 出价.
+  forbidden: { zh-CN: ["出价"] }
+
+- term: passcode
+  preferred: { zh-CN: "PIN 码" }
+  description: >
+    密码 is reserved for "password" (text credential). A passcode in the Uniswap passkey flow
+    is a numeric PIN used to encrypt the backup login — a distinct credential type from a text
+    password. Collapsing both to 密码 erases a security UX distinction in the passkey
+    authentication flow (account.passkey.backupLogin.setPasscode.*, confirmPasscode.*,
+    account.passkey.recovery.pin.title, etc.). At minimum use PIN 码 or 数字密码 to make the
+    distinction explicit to users.
+  forbidden: { zh-CN: ["密码"] }
+
+- term: password
+  preferred: { zh-CN: "密码" }
+  description: >
+    密码 is the correct rendering for "password" (text credential / cloud backup password).
+    See the "passcode" entry for the PIN 码 split. Apply 密码 to account.cloud.password.*
+    and all text-credential authentication strings; apply PIN 码 to all numeric passcode
+    strings in the passkey backup-login flow.
+
+- term: passkey
+  preferred: { zh-CN: "通行密钥" }
+  forbidden: { zh-CN: ["passkey"] }
+  description: Apple/Notion zh-CN term for passkey.
+
+- term: private keys
+  preferred: { zh-CN: "私钥" }
+  description: Standard zh-CN term for private keys (coverage fill, audit 2026-06-23).
+
+- term: onchain
+  preferred: { zh-CN: "链上" }
+  forbidden: { zh-CN: ["onchain", "on-chain"] }
+  description: >
+    Re-scoped from core/crypto.yml (2026-07-01): a blanket core DNT rule
+    wrongly forced English "onchain" into zh-CN, where the native term 链上
+    is correct and far more readable for an app-store audience. Forbidden
+    catches the bare English so this regression can't recur.
+
+# --- Round-3 native review (2026-07-28) ---
+
+- term: "New:"
+  preferred: { zh-CN: "新功能：" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Marketing-label prefix for feature announcements. 新功能 aligns with the
+    zh-TW rendering; always the full-width colon 「：」 after the label.
+    Provenance: native review r3 (2026-07-28), endorsed by TLM.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  preferred: { zh-CN: "限价" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — 限价 is the
+    established financial term for a limit order (限价单 for the full form),
+    NOT the literal verb "restrict" (限制). TLM ruling (2026-07-30); pending
+    native confirmation.

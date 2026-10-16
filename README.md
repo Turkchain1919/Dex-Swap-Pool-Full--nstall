@@ -1,4 +1,3 @@
-# Dex-Swap-Pool-Full--install
 # TurkDex — ilk kurulum kılavuzu
 
 Bu paket TurkDex’in tek zincirli kurulum taslağıdır. Turkchain için örnek profil Chain ID `1919` ile gelir. Ayrı bir sunucuya başka bir EVM ağı kurulacaksa o kurulumun kendi `.env` dosyası, RPC/API/explorer adresleri ve o ağda gerçekten dağıtılmış sözleşme adresleri girilmelidir. Zincir seçimi uygulama içinden yapılmaz.

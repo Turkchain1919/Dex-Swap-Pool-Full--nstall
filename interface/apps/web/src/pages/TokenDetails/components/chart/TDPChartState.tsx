@@ -1,0 +1,52 @@
+import { useMemo, useState } from 'react'
+import { ChartType, PriceChartType } from '~/components/Charts/utils'
+import { TimePeriod } from '~/data/util'
+import type { TokenPriceChartQueryVariables } from '~/hooks/useTokenPriceChartData'
+
+/** Time period the TDP chart opens on. Prefetchers warm this period's key (see tdpTokenQueryOptions). */
+export const TDP_DEFAULT_TIME_PERIOD = TimePeriod.DAY
+
+export type TokenDetailsChartType = ChartType.PRICE | ChartType.VOLUME | ChartType.TVL
+
+export type TDPChartQueryVariables = TokenPriceChartQueryVariables
+
+export type TDPChartState = {
+  chartType: TokenDetailsChartType
+  setChartType: (chartType: TokenDetailsChartType) => void
+  timePeriod: TimePeriod
+  setTimePeriod: (timePeriod: TimePeriod) => void
+  priceChartType: PriceChartType
+  setPriceChartType: (priceChartType: PriceChartType) => void
+  disableCandlestickUI: boolean
+  setDisableCandlestickUI: (disable: boolean) => void
+}
+
+/** Price chart type for rendering and toggles when candlestick is not available; keeps `priceChartType` in store. */
+export function getDisplayPriceChartType(
+  priceChartType: PriceChartType,
+  disableCandlestickUI: boolean,
+): PriceChartType {
+  return disableCandlestickUI ? PriceChartType.LINE : priceChartType
+}
+
+/** Chart UI state only; data hooks run in `TDP*ChartPanel` components. Access via `useTDPStore`. */
+export function useCreateTDPChartState(): TDPChartState {
+  const [timePeriod, setTimePeriod] = useState<TimePeriod>(TDP_DEFAULT_TIME_PERIOD)
+  const [chartType, setChartType] = useState<TokenDetailsChartType>(ChartType.PRICE)
+  const [priceChartType, setPriceChartType] = useState<PriceChartType>(PriceChartType.LINE)
+  const [disableCandlestickUI, setDisableCandlestickUI] = useState(false)
+
+  return useMemo(
+    (): TDPChartState => ({
+      chartType,
+      setChartType,
+      timePeriod,
+      setTimePeriod,
+      priceChartType,
+      setPriceChartType,
+      disableCandlestickUI,
+      setDisableCandlestickUI,
+    }),
+    [chartType, disableCandlestickUI, priceChartType, timePeriod],
+  )
+}

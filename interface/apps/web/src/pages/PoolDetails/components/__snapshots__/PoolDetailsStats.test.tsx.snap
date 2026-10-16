@@ -1,0 +1,490 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PoolDetailsStats > pool balance chart not visible on mobile 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[24px] p-[20px] w-[100%] bg-surface2 rounded-[20px] z-[var(--c-z)] media-xl:[flex-direction:var(--cC-fd)] media-xl:[justify-content:var(--cC-jc)] media-xl:[flex-wrap:var(--cC-fw)] media-xl:mt-[var(--cC-mt)] media-xl:px-[var(--cC-px)] media-xl:py-[var(--cC-py)] media-xl:bg-[color:var(--cC-bg)]"
+    style="--c-z: 1; --cC-fd: row; --cC-jc: space-between; --cC-fw: wrap; --cC-mt: 0px; --cC-px: 0px; --cC-py: 20px; --cC-bg: transparent;"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[24px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:w-[var(--cC-w)]"
+      style="--c-lh: 36px; --cC-w: 100%;"
+    >
+      Stats
+    </span>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        Pool balances
+      </span>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row justify-between media-xl:[flex-direction:var(--cC-fd)]"
+        style="--cC-fd: column;"
+      >
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[max-content] media-xl:w-[var(--cC-w)]"
+          style="--cC-w: 100%;"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+          >
+            <div
+              class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[20px] h-[20px] relative [pointer-events:auto]"
+              data-testid="token-logo"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] bg-[color:var(--c-bg)] rounded-[999999px] opacity-[0] absolute top-[var(--c-top)] left-[var(--c-left)] z-[var(--c-z)]"
+                style="--c-w: 96%; --c-h: 96%; --c-bg: #FFFFFF; --c-top: 2%; --c-left: 2%; --c-z: 0;"
+              />
+              <div
+                data-testid="img-token-image"
+                style="box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; min-width: 0;"
+              >
+                <img
+                  height="20"
+                  src="https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                  style="object-fit: cover; width: 20px; height: 20px; border-radius: 20px; z-index: 1;"
+                  width="20"
+                />
+              </div>
+              <div
+                class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 absolute right-[var(--c-right)] bottom-[var(--c-bottom)] z-[var(--c-z)]"
+                style="--c-right: -3px; --c-bottom: -2px; --c-z: 10;"
+              >
+                <div
+                  class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center overflow-hidden z-[var(--c-z)]"
+                  data-testid="network-logo-1"
+                  style="--c-z: 10; width: 11px; height: 11px; border-radius: 3.3px; border-width: 1.5px;"
+                >
+                  <div
+                    class="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+                    style="object-fit: contain; width: 9px; height: 9px;"
+                  >
+                    <div
+                      class="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+                      style="background-image: url(ethereum-logo.png);"
+                    />
+                    <img
+                      alt=""
+                      class="css-accessibilityImage-9pa8cd"
+                      draggable="false"
+                      src="ethereum-logo.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+              style="--cC-text: 20px; --cC-lh: 28px;"
+            >
+              90.9M
+            </span>
+            <a
+              class="flex items-center cursor-pointer no-underline transition-opacity duration-100 hover:opacity-80 active:opacity-60"
+              data-discover="true"
+              href="/explore/tokens/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+                style="--cC-text: 20px; --cC-lh: 28px;"
+              >
+                USDC
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[max-content] media-xl:w-[var(--cC-w)]"
+          style="--cC-w: 100%;"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+          >
+            <div
+              class="flex flex-col basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 items-center justify-center w-[20px] h-[20px] relative [pointer-events:auto]"
+              data-testid="token-logo"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] bg-[color:var(--c-bg)] rounded-[999999px] opacity-[0] absolute top-[var(--c-top)] left-[var(--c-left)] z-[var(--c-z)]"
+                style="--c-w: 96%; --c-h: 96%; --c-bg: #FFFFFF; --c-top: 2%; --c-left: 2%; --c-z: 0;"
+              />
+              <div
+                data-testid="img-token-image"
+                style="box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; min-width: 0;"
+              >
+                <img
+                  height="20"
+                  src="eth-logo.png"
+                  style="object-fit: cover; width: 20px; height: 20px; border-radius: 20px; z-index: 1;"
+                  width="20"
+                />
+              </div>
+              <div
+                class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 absolute right-[var(--c-right)] bottom-[var(--c-bottom)] z-[var(--c-z)]"
+                style="--c-right: -3px; --c-bottom: -2px; --c-z: 10;"
+              >
+                <div
+                  class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center overflow-hidden z-[var(--c-z)]"
+                  data-testid="network-logo-1"
+                  style="--c-z: 10; width: 11px; height: 11px; border-radius: 3.3px; border-width: 1.5px;"
+                >
+                  <div
+                    class="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+                    style="object-fit: contain; width: 9px; height: 9px;"
+                  >
+                    <div
+                      class="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+                      style="background-image: url(ethereum-logo.png);"
+                    />
+                    <img
+                      alt=""
+                      class="css-accessibilityImage-9pa8cd"
+                      draggable="false"
+                      src="ethereum-logo.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+              style="--cC-text: 20px; --cC-lh: 28px;"
+            >
+              82.5K
+            </span>
+            <a
+              class="flex items-center cursor-pointer no-underline transition-opacity duration-100 hover:opacity-80 active:opacity-60"
+              data-discover="true"
+              href="/explore/tokens/ethereum/NATIVE"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+                style="--cC-text: 20px; --cC-lh: 28px;"
+              >
+                ETH
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        TVL
+      </span>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-end gap-[4px] w-[100%] media-xl:[flex-direction:var(--cC-fd)] media-xl:[align-items:var(--cC-ai)] media-xl:gap-[var(--cC-gap)]"
+        style="--cC-fd: column; --cC-ai: flex-start; --cC-gap: 0px;"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+          style="--c-lh: 44px; --cC-text: 20px; --cC-lh: 28px;"
+        >
+          $223.2M
+        </span>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row py-[4px] w-[max-content] media-lg:py-[var(--cD-py)]"
+          style="--cD-py: 0px;"
+        >
+          <svg
+            aria-label="down"
+            fill="none"
+            stroke-width="8"
+            style="width: 16px; height: 16px;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span
+            class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+          >
+            0.37%
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        24H volume
+      </span>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-end gap-[4px] w-[100%] media-xl:[flex-direction:var(--cC-fd)] media-xl:[align-items:var(--cC-ai)] media-xl:gap-[var(--cC-gap)]"
+        style="--cC-fd: column; --cC-ai: flex-start; --cC-gap: 0px;"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+          style="--c-lh: 44px; --cC-text: 20px; --cC-lh: 28px;"
+        >
+          $194.3M
+        </span>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row py-[4px] w-[max-content] media-lg:py-[var(--cD-py)]"
+          style="--cD-py: 0px;"
+        >
+          <svg
+            aria-label="down"
+            fill="none"
+            stroke-width="8"
+            style="width: 16px; height: 16px;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span
+            class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+          >
+            17.75%
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        24H fees
+      </span>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-end gap-[4px] w-[100%] media-xl:[flex-direction:var(--cC-fd)] media-xl:[align-items:var(--cC-ai)] media-xl:gap-[var(--cC-gap)]"
+        style="--cC-fd: column; --cC-ai: flex-start; --cC-gap: 0px;"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+          style="--c-lh: 44px; --cC-text: 20px; --cC-lh: 28px;"
+        >
+          $97.1K
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`PoolDetailsStats > renders stats text correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[24px] p-[20px] w-[100%] bg-surface2 rounded-[20px] z-[var(--c-z)] media-xl:[flex-direction:var(--cC-fd)] media-xl:[justify-content:var(--cC-jc)] media-xl:[flex-wrap:var(--cC-fw)] media-xl:mt-[var(--cC-mt)] media-xl:px-[var(--cC-px)] media-xl:py-[var(--cC-py)] media-xl:bg-[color:var(--cC-bg)]"
+    style="--c-z: 1; --cC-fd: row; --cC-jc: space-between; --cC-fw: wrap; --cC-mt: 0px; --cC-px: 0px; --cC-py: 20px; --cC-bg: transparent;"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[24px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:w-[var(--cC-w)]"
+      style="--c-lh: 36px; --cC-w: 100%;"
+    >
+      Stats
+    </span>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        Pool balances
+      </span>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row justify-between media-xl:[flex-direction:var(--cC-fd)]"
+        style="--cC-fd: column;"
+      >
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[max-content] media-xl:w-[var(--cC-w)]"
+          style="--cC-w: 100%;"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+              style="--cC-text: 20px; --cC-lh: 28px;"
+            >
+              90.9M
+            </span>
+            <a
+              class="flex items-center cursor-pointer no-underline transition-opacity duration-100 hover:opacity-80 active:opacity-60"
+              data-discover="true"
+              href="/explore/tokens/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+                style="--cC-text: 20px; --cC-lh: 28px;"
+              >
+                USDC
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[max-content] media-xl:w-[var(--cC-w)]"
+          style="--cC-w: 100%;"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+              style="--cC-text: 20px; --cC-lh: 28px;"
+            >
+              82.5K
+            </span>
+            <a
+              class="flex items-center cursor-pointer no-underline transition-opacity duration-100 hover:opacity-80 active:opacity-60"
+              data-discover="true"
+              href="/explore/tokens/ethereum/NATIVE"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [font-weight:485] [line-height:24px] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+                style="--cC-text: 20px; --cC-lh: 28px;"
+              >
+                ETH
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row"
+        data-testid="pool-balance-chart"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[8px] bg-[color:var(--c-bg)] border-t-[0px] border-b-[0px] border-l-[0px] border-r-[1px] [border-bottom-left-radius:var(--c-bblr)] [border-bottom-right-radius:var(--c-bbrr)] [border-left-color:var(--c-blc)] [border-right-color:var(--c-brc)] [border-style:solid] [border-top-left-radius:var(--c-btlr)] [border-top-right-radius:var(--c-btrr)]"
+          style="--c-w: 99.99999996483845%; --c-bg: #FF37C7; --c-bblr: 5px; --c-bbrr: 0px; --c-blc: var(--surface2); --c-brc: var(--surface2); --c-btlr: 5px; --c-btrr: 0px;"
+        />
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[8px] bg-[color:var(--c-bg)] border-t-[0px] border-b-[0px] border-l-[1px] border-r-[0px] [border-bottom-left-radius:var(--c-bblr)] [border-bottom-right-radius:var(--c-bbrr)] [border-left-color:var(--c-blc)] [border-right-color:var(--c-brc)] [border-style:solid] [border-top-left-radius:var(--c-btlr)] [border-top-right-radius:var(--c-btrr)]"
+          style="--c-w: 3.5161546763980574e-8%; --c-bg: #222222; --c-bblr: 0px; --c-bbrr: 5px; --c-blc: var(--surface2); --c-brc: var(--surface2); --c-btlr: 0px; --c-btrr: 5px;"
+        />
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        TVL
+      </span>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-end gap-[4px] w-[100%] media-xl:[flex-direction:var(--cC-fd)] media-xl:[align-items:var(--cC-ai)] media-xl:gap-[var(--cC-gap)]"
+        style="--cC-fd: column; --cC-ai: flex-start; --cC-gap: 0px;"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+          style="--c-lh: 44px; --cC-text: 20px; --cC-lh: 28px;"
+        >
+          $223.2M
+        </span>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row py-[4px] w-[max-content] media-lg:py-[var(--cD-py)]"
+          style="--cD-py: 0px;"
+        >
+          <svg
+            aria-label="down"
+            fill="none"
+            stroke-width="8"
+            style="width: 16px; height: 16px;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span
+            class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+          >
+            0.37%
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        24H volume
+      </span>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-end gap-[4px] w-[100%] media-xl:[flex-direction:var(--cC-fd)] media-xl:[align-items:var(--cC-ai)] media-xl:gap-[var(--cC-gap)]"
+        style="--cC-fd: column; --cC-ai: flex-start; --cC-gap: 0px;"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+          style="--c-lh: 44px; --cC-text: 20px; --cC-lh: 28px;"
+        >
+          $194.3M
+        </span>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row py-[4px] w-[max-content] media-lg:py-[var(--cD-py)]"
+          style="--cD-py: 0px;"
+        >
+          <svg
+            aria-label="down"
+            fill="none"
+            stroke-width="8"
+            style="width: 16px; height: 16px;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span
+            class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+          >
+            17.75%
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch box-border relative min-h-[0px] basis-[auto] gap-[8px] grow-[1] shrink min-w-[var(--c-min-w)] media-xl:basis-[var(--cC-basis)] media-md:min-w-[var(--cE-min-w)]"
+      style="--c-min-w: 180px; --cC-basis: 0px; --cE-min-w: 150px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral2)]"
+      >
+        24H fees
+      </span>
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-end gap-[4px] w-[100%] media-xl:[flex-direction:var(--cC-fd)] media-xl:[align-items:var(--cC-ai)] media-xl:gap-[var(--cC-gap)]"
+        style="--cC-fd: column; --cC-ai: flex-start; --cC-gap: 0px;"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [font-weight:485] [line-height:var(--c-lh)] [color:var(--stext-neutral1)] media-xl:text-[length:var(--cC-text)] media-xl:[line-height:var(--cC-lh)]"
+          style="--c-lh: 44px; --cC-text: 20px; --cC-lh: 28px;"
+        >
+          $97.1K
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

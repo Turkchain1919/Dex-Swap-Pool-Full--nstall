@@ -1,0 +1,104 @@
+import { FeatureFlags, useFeatureFlag } from '@universe/gating'
+import { clickableStyle, Flex, iconSizes, Text, TouchableArea } from '@universe/mycelium'
+import { Clock } from '@universe/mycelium/icons/Clock'
+import type { TFunction } from 'i18next'
+import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Arrow } from 'ui/src/components/arrow/Arrow'
+import { isCancelTimedOut } from 'uniswap/src/features/transactions/cancel/cancelTimeoutStateMachine'
+import type { UniswapXOrderDetails } from 'uniswap/src/features/transactions/types/transactionDetails'
+import { useOpenLimitOrders } from '~/components/AccountDrawer/MiniPortfolio/Activity/hooks'
+
+function getExtraWarning({
+  openLimitOrders,
+  isCancelTimeoutEnabled,
+  t,
+}: {
+  openLimitOrders: UniswapXOrderDetails[]
+  isCancelTimeoutEnabled: boolean
+  t: TFunction
+}) {
+  if (isCancelTimeoutEnabled) {
+    const timedOutCount = openLimitOrders.filter((order) => isCancelTimedOut(order)).length
+    if (timedOutCount > 0) {
+      return t('limits.cancel.mayFail', { count: timedOutCount })
+    }
+  }
+  if (openLimitOrders.length >= 100) {
+    return t('common.limits.cancelProceed')
+  }
+  if (openLimitOrders.length >= 90) {
+    return t('common.limits.approachMax')
+  }
+  return undefined
+}
+
+interface TabButtonProps {
+  text: ReactNode
+  icon: ReactNode
+  extraWarning?: ReactNode
+  onClick: () => void
+  disabled?: boolean
+}
+
+function TabButton({ text, icon, extraWarning, onClick, disabled }: TabButtonProps) {
+  return (
+    <TouchableArea
+      onPress={onClick}
+      disabled={disabled}
+      borderRadius="$rounded16"
+      backgroundColor="$surface2"
+      py="$spacing12"
+      px="$spacing16"
+      gap="$spacing12"
+      justifyContent="space-between"
+      alignItems="center"
+      mt="$spacing12"
+      {...clickableStyle}
+    >
+      <Flex row justifyContent="space-between" alignItems="center" gap="$spacing12" width="100%">
+        <Flex row gap="$spacing8">
+          {icon}
+          <Flex>
+            <Text variant="buttonLabel3" color="$neutral2" lineHeight={20} fontWeight="$medium">
+              {text}
+            </Text>
+            {extraWarning && <Text variant="body4">{extraWarning}</Text>}
+          </Flex>
+        </Flex>
+        <Arrow color="$neutral2" size={iconSizes.icon20} />
+      </Flex>
+    </TouchableArea>
+  )
+}
+
+export function OpenLimitOrdersButton({
+  openLimitsMenu,
+  account,
+  disabled,
+}: {
+  account: string
+  openLimitsMenu: () => void
+  disabled?: boolean
+}) {
+  const { t } = useTranslation()
+  const isCancelTimeoutEnabled = useFeatureFlag(FeatureFlags.LimitCancelTimeout)
+  const { openLimitOrders, loading } = useOpenLimitOrders(account)
+  const extraWarning = getExtraWarning({ openLimitOrders, isCancelTimeoutEnabled, t })
+
+  if (openLimitOrders.length < 1) {
+    return null
+  }
+
+  return (
+    <Flex mb="$spacing8">
+      <TabButton
+        text={loading ? t('common.loading') : t('limit.open.count', { count: openLimitOrders.length })}
+        icon={<Clock color="$neutral2" size="$icon.20" />}
+        extraWarning={extraWarning}
+        onClick={openLimitsMenu}
+        disabled={disabled || loading}
+      />
+    </Flex>
+  )
+}

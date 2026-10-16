@@ -1,0 +1,467 @@
+import type { Token } from '@uniswap/sdk-core'
+import { UniverseChainId } from '@universe/chains'
+import { useCallback, useEffect, useMemo } from 'react'
+import { useEnabledChains } from 'uniswap/src/features/chains/hooks/useEnabledChains'
+import { toSupportedChainId } from 'uniswap/src/features/chains/utils'
+import { selectTransactions } from 'uniswap/src/features/transactions/selectors'
+import { deleteTransaction, interfaceCancelTransaction } from 'uniswap/src/features/transactions/slice'
+import { PLAN_MAX_AGE_MS } from 'uniswap/src/features/transactions/swap/plan/planPollingUtils'
+import { isUniswapX } from 'uniswap/src/features/transactions/swap/utils/routing'
+import type {
+  InterfaceTransactionDetails,
+  PlanTransactionDetails,
+  TransactionDetails,
+  TransactionTypeInfo as TransactionInfo,
+  UniswapXOrderDetails,
+} from 'uniswap/src/features/transactions/types/transactionDetails'
+import {
+  LIQUIDITY_TRANSACTION_TYPES,
+  TransactionType,
+} from 'uniswap/src/features/transactions/types/transactionDetails'
+import {
+  isFinalizedTxStatus,
+  isInterfaceTransaction,
+  isPlanTransactionDetails,
+  isPlanTransactionInfo,
+} from 'uniswap/src/features/transactions/types/utils'
+import { isUniswapXOrderPending } from 'uniswap/src/features/transactions/utils/uniswapX.utils'
+import { useWallet } from 'uniswap/src/features/wallet/hooks/useWallet'
+import { usePrevious } from 'utilities/src/react/hooks'
+import { ONE_MINUTE_MS } from 'utilities/src/time/time'
+/* oxlint-disable typescript/no-unnecessary-condition */
+import type { TransactionResponse } from '~/chains'
+import { useAccount } from '~/hooks/useAccount'
+import { useAppDispatch, useAppSelector } from '~/state/hooks'
+import { useAddTransaction } from '~/state/transactions/adder'
+import { PendingTransactionDetails } from '~/state/transactions/types'
+import { isConfirmedTx, isPendingTx } from '~/state/transactions/utils'
+
+// Maximum age for a pending transaction to be displayed (5 minutes)
+const MAX_PENDING_TRANSACTION_AGE_MS = 5 * ONE_MINUTE_MS
+
+// helper that can take a ethers library transaction response and add it to the list of transactions
+// oxlint-disable-next-line max-params -- biome-parity: oxlint is stricter here
+export function useTransactionAdder(): (
+  response: TransactionResponse,
+  info: TransactionInfo,
+  deadline?: number,
+) => void {
+  const account = useAccount()
+  const addTransaction = useAddTransaction()
+
+  return useCallback(
+    // oxlint-disable-next-line max-params
+    (response: TransactionResponse, info: TransactionInfo, deadline?: number) => {
+      if (account.status !== 'connected' || !account.chainId || !account.address) {
+        return
+      }
+
+      const { hash } = response
+      if (!hash) {
+        throw Error('No transaction hash found.')
+      }
+      const chainId: UniverseChainId = toSupportedChainId(response.chainId) || account.chainId
+
+      addTransaction({
+        hash,
+        chainId,
+        request: {
+          to: response.to,
+          from: response.from,
+          data: response.data,
+          value: response.value,
+          gasLimit: response.gasLimit,
+          gasPrice: response.gasPrice,
+          nonce: response.nonce,
+          chainId: response.chainId,
+        },
+        info,
+        deadline,
+      })
+    },
+    [account.address, account.chainId, account.status, addTransaction],
+  )
+}
+
+export function useTransactionRemover() {
+  const account = useAccount()
+  const dispatch = useAppDispatch()
+
+  return useCallback(
+    (hash: string) => {
+      if (account.status !== 'connected' || !account.chainId || !account.address) {
+        return
+      }
+
+      dispatch(
+        deleteTransaction({
+          chainId: account.chainId,
+          id: hash,
+          address: account.address,
+        }),
+      )
+    },
+    [account.chainId, account.address, account.status, dispatch],
+  )
+}
+
+export function useTransactionCanceller() {
+  const account = useAccount()
+  const dispatch = useAppDispatch()
+
+  return useCallback(
+    ({ id, chainId, cancelHash }: { id: string; chainId: number; cancelHash: string }) => {
+      if (!account.address) {
+        return
+      }
+      dispatch(
+        interfaceCancelTransaction({
+          chainId,
+          id,
+          cancelHash,
+          address: account.address,
+        }),
+      )
+    },
+    [dispatch, account.address],
+  )
+}
+
+export function useMultichainTransactions(accountAddress?: string): [InterfaceTransactionDetails, UniverseChainId][] {
+  const account = useAccount()
+  const transactions = useAppSelector(selectTransactions)
+  const address = accountAddress ?? account.address
+  const status = account.status
+
+  const { chains: enabledChainIds } = useEnabledChains()
+
+  return useMemo(() => {
+    if (status !== 'connected' || !address) {
+      return []
+    }
+
+    const addressTransactions = transactions[address]
+    if (!addressTransactions) {
+      return []
+    }
+
+    return enabledChainIds.flatMap((chainId) => {
+      const chainTransactions = addressTransactions[chainId]
+      if (!chainTransactions) {
+        return []
+      }
+      return Object.values(chainTransactions)
+        .filter(isInterfaceTransaction)
+        .map((tx): [InterfaceTransactionDetails, UniverseChainId] => [tx, chainId])
+    })
+  }, [transactions, address, status, enabledChainIds])
+}
+
+/**
+ * Gets all plans. If planIds are provided, only returns those plans and returns early
+ * when found.
+ */
+export function usePlanTransactions(planIds?: string[]): PlanTransactionDetails[] {
+  const address = useWallet().evmAccount?.address
+  const transactions = useAppSelector(selectTransactions)
+  const { chains: enabledChainIds } = useEnabledChains()
+
+  return useMemo(() => {
+    if (!address || !transactions[address]) {
+      return []
+    }
+    const addressTransactions = transactions[address]
+    const planTransactions: PlanTransactionDetails[] = []
+    const planIdsSet = planIds ? new Set(planIds) : undefined
+
+    for (const chainId of enabledChainIds) {
+      const chainTransactions = addressTransactions?.[chainId]
+      if (!chainTransactions) {
+        continue
+      }
+      for (const tx of Object.values(chainTransactions)) {
+        if (tx && isPlanTransactionInfo(tx.typeInfo) && (!planIdsSet || planIdsSet.has(tx.typeInfo.planId))) {
+          planTransactions.push(tx as PlanTransactionDetails)
+          planIdsSet?.delete(tx.typeInfo.planId)
+          if (planIdsSet?.size === 0) {
+            return planTransactions
+          }
+        }
+      }
+    }
+    return planTransactions
+  }, [transactions, address, enabledChainIds, planIds])
+}
+
+/**
+ * Gets all pending (non-finalized) plan transactions that are not stale.
+ * Used for polling plan status updates.
+ */
+export function usePendingPlanTransactions(): PlanTransactionDetails[] {
+  const address = useWallet().evmAccount?.address
+  const transactions = useAppSelector(selectTransactions)
+  const { chains: enabledChainIds } = useEnabledChains()
+
+  return useMemo(() => {
+    if (!address || !transactions[address]) {
+      return []
+    }
+    const addressTransactions = transactions[address]
+    const pendingPlans: PlanTransactionDetails[] = []
+    const now = Date.now()
+
+    for (const chainId of enabledChainIds) {
+      const chainTransactions = addressTransactions?.[chainId]
+      if (!chainTransactions) {
+        continue
+      }
+      for (const tx of Object.values(chainTransactions)) {
+        if (tx && isPlanTransactionDetails(tx) && !isFinalizedTxStatus(tx.status)) {
+          const planTx = tx
+          if (now - planTx.updatedTime < PLAN_MAX_AGE_MS) {
+            pendingPlans.push(planTx)
+          }
+        }
+      }
+    }
+    return pendingPlans
+  }, [transactions, address, enabledChainIds])
+}
+
+// returns all the transactions for the current chains
+function useAllTransactionsByChain(): { [txHash: string]: InterfaceTransactionDetails } {
+  const { evmAccount, svmAccount } = useWallet()
+  const { chainId: evmChainId } = useAccount()
+
+  const state = useAppSelector(selectTransactions)
+
+  const evmAddress = evmAccount?.address
+  const svmAddress = svmAccount?.address
+
+  return useMemo(() => {
+    const transactions: { [txHash: string]: InterfaceTransactionDetails } = {}
+    if (evmAddress && evmChainId !== undefined) {
+      Object.assign(transactions, state[evmAddress]?.[evmChainId] ?? {})
+    }
+    if (svmAddress) {
+      Object.assign(transactions, state[svmAddress]?.[UniverseChainId.Solana] ?? {})
+    }
+    return transactions
+  }, [evmChainId, evmAddress, svmAddress, state])
+}
+
+export function useTransaction(transactionHash?: string): InterfaceTransactionDetails | undefined {
+  const allTransactions = useAllTransactionsByChain()
+
+  if (!transactionHash) {
+    return undefined
+  }
+
+  return allTransactions[transactionHash]
+}
+
+/**
+ * Like useTransaction, but also resolves an EIP-5792 batch id after confirmation — batch records are
+ * rekeyed from batch id to on-chain hash once confirmed (interfaceApplyTransactionHashToBatch).
+ */
+export function useTransactionByHashOrBatchId(hashOrBatchId?: string): InterfaceTransactionDetails | undefined {
+  const allTransactions = useAllTransactionsByChain()
+
+  return useMemo(() => {
+    if (!hashOrBatchId) {
+      return undefined
+    }
+    return (
+      allTransactions[hashOrBatchId] ??
+      Object.values(allTransactions).find((tx) => tx.batchInfo?.batchId === hashOrBatchId)
+    )
+  }, [allTransactions, hashOrBatchId])
+}
+
+/**
+ * Returns a map of transaction hashes to their transaction details.
+ * Useful when monitoring multiple transactions simultaneously.
+ * @param transactionHashes - Set or array of transaction hashes to look up
+ */
+export function useTransactions(transactionHashes: Set<string> | string[]): Map<string, InterfaceTransactionDetails> {
+  const allTransactions = useAllTransactionsByChain()
+
+  return useMemo(() => {
+    const result = new Map<string, InterfaceTransactionDetails>()
+    for (const hash of transactionHashes) {
+      const tx = allTransactions[hash]
+      if (tx) {
+        result.set(hash, tx)
+      }
+    }
+    return result
+  }, [allTransactions, transactionHashes])
+}
+
+export function useIsTransactionPending(transactionHash?: string): boolean {
+  const transactions = useAllTransactionsByChain()
+
+  if (!transactionHash || !transactions[transactionHash]) {
+    return false
+  }
+
+  return isPendingTx(transactions[transactionHash])
+}
+
+export function useIsTransactionConfirmed(transactionHash?: string): boolean {
+  const transactions = useAllTransactionsByChain()
+
+  if (!transactionHash || !transactions[transactionHash]) {
+    return false
+  }
+
+  return isConfirmedTx(transactions[transactionHash])
+}
+
+/**
+ * Returns whether a transaction happened in the last day (86400 seconds * 1000 milliseconds / second)
+ * @param tx to check for recency
+ */
+function isTransactionRecent(tx: TransactionDetails): boolean {
+  return new Date().getTime() - tx.addedTime < 86_400_000
+}
+
+function usePendingApprovalAmount(token?: Token, spender?: string): bigint | undefined {
+  const allTransactions = useAllTransactionsByChain()
+  return useMemo(() => {
+    if (typeof token?.address !== 'string' || typeof spender !== 'string') {
+      return undefined
+    }
+
+    // oxlint-disable-next-line guard-for-in
+    for (const txHash in allTransactions) {
+      const tx = allTransactions[txHash]
+      if (!tx || isConfirmedTx(tx) || tx.typeInfo.type !== TransactionType.Approve) {
+        continue
+      }
+      if (
+        tx.typeInfo.spender === spender &&
+        tx.typeInfo.tokenAddress === token.address &&
+        isTransactionRecent(tx) &&
+        tx.typeInfo.approvalAmount !== undefined
+      ) {
+        return BigInt(tx.typeInfo.approvalAmount)
+      }
+    }
+    return undefined
+  }, [allTransactions, spender, token?.address])
+}
+
+// returns whether a token has a pending approval transaction
+export function useHasPendingApproval(token?: Token, spender?: string): boolean {
+  return (usePendingApprovalAmount(token, spender) ?? 0n) > 0n
+}
+
+export function useHasPendingPermit2Approval(token?: Token, spender?: string): boolean {
+  const allTransactions = useAllTransactionsByChain()
+  return useMemo(() => {
+    if (typeof token?.address !== 'string' || typeof spender !== 'string') {
+      return false
+    }
+
+    // oxlint-disable-next-line guard-for-in
+    for (const txHash in allTransactions) {
+      const tx = allTransactions[txHash]
+      if (!tx || isConfirmedTx(tx) || tx.typeInfo.type !== TransactionType.Permit2Approve) {
+        continue
+      }
+      if (tx.typeInfo.spender === spender && tx.typeInfo.tokenAddress === token.address && isTransactionRecent(tx)) {
+        return true
+      }
+    }
+    return false
+  }, [allTransactions, spender, token?.address])
+}
+
+export function useHasPendingRevocation(token?: Token, spender?: string): boolean {
+  return usePendingApprovalAmount(token, spender) === 0n
+}
+
+function isPendingTransactionRecent(tx: TransactionDetails): boolean {
+  if (isPlanTransactionDetails(tx)) {
+    return Date.now() - tx.updatedTime < MAX_PENDING_TRANSACTION_AGE_MS
+  }
+  return Date.now() - tx.addedTime < MAX_PENDING_TRANSACTION_AGE_MS
+}
+
+/**
+ * Returns pending transactions that are less than MAX_PENDING_TRANSACTION_AGE_MS old.
+ * Note: The age filter is evaluated on re-render, not in real-time. Transactions won't
+ * automatically disappear after 5 minutes - they'll be filtered on the next re-render
+ * triggered by user interaction or state changes. This is intentional to avoid
+ * unnecessary polling/timer complexity.
+ */
+export function usePendingTransactions(): PendingTransactionDetails[] {
+  const allTransactions = useAllTransactionsByChain()
+  const account = useAccount()
+
+  return useMemo(
+    () =>
+      Object.values(allTransactions).filter(
+        (tx): tx is PendingTransactionDetails =>
+          tx.from === account.address && isPendingTx(tx) && isPendingTransactionRecent(tx),
+      ),
+    [account.address, allTransactions],
+  )
+}
+
+function usePendingLPTransactions(): PendingTransactionDetails[] {
+  const allTransactions = useAllTransactionsByChain()
+  const account = useAccount()
+
+  return useMemo(
+    () =>
+      Object.values(allTransactions).filter(
+        (tx): tx is PendingTransactionDetails =>
+          tx.from === account.address && isPendingTx(tx) && LIQUIDITY_TRANSACTION_TYPES.includes(tx.typeInfo.type),
+      ),
+    [account.address, allTransactions],
+  )
+}
+
+export function usePendingLPTransactionsChangeListener(callback: () => void) {
+  const pendingLPTransactions = usePendingLPTransactions()
+  const previousPendingCount = usePrevious(pendingLPTransactions.length)
+  useEffect(() => {
+    // `usePrevious` is undefined on the first render, so a bare `!==` reads the mount itself as a
+    // change and fires the callback before any transaction has been added. Consumers pass a query
+    // `refetch`, and TanStack's refetch ignores `enabled` — so that spurious mount call sends a
+    // request whose gating preconditions (a connected wallet address) are not met yet.
+    if (previousPendingCount === undefined) {
+      return
+    }
+    if (pendingLPTransactions.length !== previousPendingCount) {
+      callback()
+    }
+  }, [pendingLPTransactions, callback, previousPendingCount])
+}
+
+export function useUniswapXOrderByOrderHash(orderHash?: string): UniswapXOrderDetails | undefined {
+  const allTransactions = useAllTransactionsByChain()
+
+  return useMemo(() => {
+    if (!orderHash) {
+      return undefined
+    }
+
+    return Object.values(allTransactions).find(
+      (tx): tx is UniswapXOrderDetails => isUniswapX(tx) && 'orderHash' in tx && tx.orderHash === orderHash,
+    )
+  }, [allTransactions, orderHash])
+}
+
+export function usePendingUniswapXOrders(): UniswapXOrderDetails[] {
+  const allTransactions = useAllTransactionsByChain()
+  const account = useAccount()
+
+  return useMemo(() => {
+    return Object.values(allTransactions).filter(
+      (tx): tx is UniswapXOrderDetails => tx.from === account.address && isUniswapX(tx) && isUniswapXOrderPending(tx),
+    )
+  }, [account.address, allTransactions])
+}

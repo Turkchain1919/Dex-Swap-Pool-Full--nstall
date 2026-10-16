@@ -1,0 +1,68 @@
+import { GasFeeResult } from '@universe/api'
+import { UniverseChainId } from '@universe/chains'
+import { isWebPlatform } from '@universe/environment'
+import { Flex, iconSizes, SpinningLoader, Text } from '@universe/mycelium'
+import { Gas } from '@universe/mycelium/icons/Gas'
+import { useTranslation } from 'react-i18next'
+import { FadeIn } from 'react-native-reanimated'
+import { AnimatedFlex } from 'ui/src/components/layout/AnimatedFlex'
+import { NetworkFeeWarning } from 'uniswap/src/components/gas/NetworkFeeWarning'
+import { useGasFeeFormattedDisplayAmounts } from 'uniswap/src/features/gas/hooks'
+
+type GasFeeRowProps = {
+  gasFee: GasFeeResult
+  chainId: UniverseChainId
+}
+
+export function GasFeeRow({ gasFee, chainId }: GasFeeRowProps): JSX.Element | null {
+  const { t } = useTranslation()
+  const { gasFeeFormatted } = useGasFeeFormattedDisplayAmounts({
+    gasFee,
+    chainId,
+    placeholder: undefined,
+  })
+
+  if (!gasFeeFormatted) {
+    return null
+  }
+
+  return (
+    <Flex centered row justifyContent={isWebPlatform ? 'space-between' : 'center'} px="$spacing8">
+      {isWebPlatform && (
+        <Text color="$neutral2" flexShrink={1} variant="body3">
+          {t('send.gas.networkCost.title')}
+        </Text>
+      )}
+      {gasFee.isLoading ? (
+        <SpinningLoader size={iconSizes.icon16} />
+      ) : gasFee.error ? (
+        <Text color="$neutral2" variant="body3">
+          {t('send.gas.error.title')}
+        </Text>
+      ) : (
+        <NetworkFeeWarning
+          chainId={chainId}
+          placement="bottom"
+          tooltipTrigger={
+            <AnimatedFlex centered row entering={FadeIn} gap="$spacing4">
+              <Gas color="$neutral2" size="$icon.16" />
+              <Text color="$neutral2" variant="body3">
+                {gasFeeFormatted}
+              </Text>
+            </AnimatedFlex>
+          }
+        />
+      )}
+    </Flex>
+  )
+}
+
+export function EmptyGasFeeRow(): JSX.Element {
+  return (
+    <Flex centered row px="$spacing8" minHeight={iconSizes.icon16} opacity={0}>
+      <Text color="$neutral2" variant="body3">
+        {' '}
+      </Text>
+    </Flex>
+  )
+}

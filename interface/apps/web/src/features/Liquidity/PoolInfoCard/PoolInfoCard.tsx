@@ -1,0 +1,461 @@
+import { ProtocolVersion } from '@uniswap/client-data-api/dist/data/v1/poolTypes_pb'
+import type { Currency } from '@uniswap/sdk-core'
+import type { UniverseChainId } from '@universe/chains'
+import { Button, Flex, iconSizes, Skeleton, Text, TouchableArea } from '@universe/mycelium'
+import { ChevronsIn } from '@universe/mycelium/icons/ChevronsIn'
+import { ChevronsOut } from '@universe/mycelium/icons/ChevronsOut'
+import { useMedia, useSporeColors } from '@universe/mycelium/theme-hooks-compat'
+import { TestID } from '@universe/test'
+import { curveCardinal, scaleLinear } from 'd3'
+import { type ComponentProps, useCallback, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { v2TokenToCurrency } from 'uniswap/src/features/dataApi/utils/parsedToken'
+import { useLocalizationContext } from 'uniswap/src/features/language/LocalizationContext'
+import { getWrappedTokenIfExists } from 'uniswap/src/utils/currency'
+import { NumberType } from 'utilities/src/format/types'
+import { getPriceBounds } from '~/components/Charts/PriceChart/utils'
+import { LineChart } from '~/components/Charts/SparklineChart/LineChart'
+import { DeltaArrow, getDeltaTextColor } from '~/components/DeltaArrow/DeltaArrow'
+import { DoubleCurrencyLogo, type ServedLogo } from '~/components/Logo/DoubleLogo'
+import type { PoolData } from '~/data/pools/poolData'
+import { calculate24hLpFeesUsd } from '~/data/pools/poolStats'
+import { toHistoryDuration, TimePeriod } from '~/data/util'
+import { useLiquidityServicePoolPriceChartData } from '~/features/Liquidity/charts/useLiquidityServicePoolPriceChartData'
+import { LiquidityPositionInfoBadges } from '~/features/Liquidity/LiquidityPositionInfoBadges'
+import { RewardAprBadge } from '~/features/Liquidity/LPIncentives/RewardAprBadge'
+import { rewardCurrencyId, toPoolRewardAprEntries } from '~/features/Liquidity/LPIncentives/utils'
+import {
+  SIDEBAR_STICKY_TOP_OFFSET,
+  SIDEBAR_WIDTH,
+} from '~/features/Liquidity/PoolProgressIndicator/PoolProgressIndicator'
+import { useAppHeaderHeight } from '~/hooks/useAppHeaderHeight'
+
+const DOT_RADIUS = 4
+const SPARKLINE_PADDING = DOT_RADIUS + 1
+const SPARKLINE_WIDTH = SIDEBAR_WIDTH - 32 - 2
+const SPARKLINE_HEIGHT = 64
+const SPARKLINE_GRID_SIZE = 16
+
+export function PoolInfoSparkline({ poolData, width: overrideWidth }: { poolData: PoolData; width?: number }) {
+  const colors = useSporeColors()
+
+  const isV2 = poolData.protocolVersion === ProtocolVersion.V2
+  const isV3 = poolData.protocolVersion === ProtocolVersion.V3
+  const isV4 = poolData.protocolVersion === ProtocolVersion.V4
+
+  const variables = useMemo(
+    () => ({
+      addressOrId: poolData.idOrAddress,
+      chainId: poolData.token0.chainId,
+      duration: toHistoryDuration(TimePeriod.DAY),
+      isV2,
+      isV3,
+      isV4,
+    }),
+    [poolData.idOrAddress, poolData.token0.chainId, isV2, isV3, isV4],
+  )
+
+  const { entries, loading } = useLiquidityServicePoolPriceChartData({ variables, priceInverted: false })
+
+  if (loading || entries.length <= 1) {
+    return <Flex height={SPARKLINE_HEIGHT} />
+  }
+
+  const { min, max } = getPriceBounds(entries.map((e) => ({ timestamp: e.time, value: e.value })))
+  const padding = (max - min) * 0.1 || 1
+  const sparklineWidth = overrideWidth ?? SPARKLINE_WIDTH
+  const xScale = scaleLinear()
+    .domain([entries[0].time, entries[entries.length - 1].time])
+    .range([SPARKLINE_PADDING, sparklineWidth - SPARKLINE_PADDING])
+  const yScale = scaleLinear()
+    .domain([min - padding, max + padding])
+    .range([SPARKLINE_HEIGHT - SPARKLINE_PADDING, SPARKLINE_PADDING])
+
+  const lastEntry = entries[entries.length - 1]
+  const dotX = xScale(lastEntry.time)
+  const dotY = yScale(lastEntry.value)
+
+  return (
+    <Flex position="relative" width={sparklineWidth} height={SPARKLINE_HEIGHT}>
+      <Flex
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        style={{
+          backgroundImage: `radial-gradient(circle at center, ${colors.surface3.val} 1px, transparent 1px)`,
+          backgroundSize: `${SPARKLINE_GRID_SIZE}px ${SPARKLINE_GRID_SIZE}px`,
+        }}
+      />
+      <Flex position="relative">
+        <LineChart
+          data={entries}
+          getX={(p) => xScale(p.time)}
+          getY={(p) => yScale(p.value)}
+          curve={curveCardinal.tension(0.9)}
+          color={colors.accent1.val}
+          strokeWidth={1.5}
+          width={sparklineWidth}
+          height={SPARKLINE_HEIGHT}
+        >
+          <circle cx={dotX} cy={dotY} r={DOT_RADIUS} fill={colors.accent1.val} />
+        </LineChart>
+      </Flex>
+    </Flex>
+  )
+}
+
+export function StatCell({ label, value, delta }: { label: string; value: string; delta?: number }) {
+  const { formatPercent } = useLocalizationContext()
+
+  return (
+    <Flex gap="$spacing4" flex={1}>
+      <Text variant="body3" color="$neutral2">
+        {label}
+      </Text>
+      <Flex row alignItems="center" gap="$spacing4">
+        <Text variant="subheading2" color="$neutral1">
+          {value}
+        </Text>
+        {delta !== undefined && delta !== 0 && (
+          <Flex row alignItems="center" gap="$spacing2">
+            <DeltaArrow delta={delta} formattedDelta={formatPercent(Math.abs(delta))} size={12} />
+            <Text variant="body4" color={getDeltaTextColor(delta)}>
+              {formatPercent(Math.abs(delta))}
+            </Text>
+          </Flex>
+        )}
+      </Flex>
+    </Flex>
+  )
+}
+
+function StatCellSkeleton({ label }: { label: string }) {
+  return (
+    <Flex gap="$spacing4" flex={1}>
+      <Text variant="body3" color="$neutral2">
+        {label}
+      </Text>
+      <Skeleton>
+        <Flex height={20} width={80} borderRadius="$rounded8" backgroundColor="$surface3" />
+      </Skeleton>
+    </Flex>
+  )
+}
+
+function PoolInfoCardLoading() {
+  const { t } = useTranslation()
+  const headerHeight = useAppHeaderHeight()
+
+  return (
+    <Flex
+      width={SIDEBAR_WIDTH}
+      alignSelf="flex-start"
+      $platform-web={{ position: 'sticky', top: headerHeight + SIDEBAR_STICKY_TOP_OFFSET }}
+      borderRadius="$rounded24"
+      borderColor="$surface3"
+      borderWidth="$spacing1"
+      p="$padding16"
+      gap="$spacing16"
+    >
+      <Flex row gap="$spacing18" alignItems="center">
+        <Skeleton>
+          <Flex width={48} height={48} borderRadius="$roundedFull" backgroundColor="$surface3" />
+        </Skeleton>
+        <Flex gap="$spacing4">
+          <Skeleton>
+            <Flex height={20} width={120} borderRadius="$rounded8" backgroundColor="$surface3" />
+          </Skeleton>
+          <Skeleton>
+            <Flex height={16} width={80} borderRadius="$rounded8" backgroundColor="$surface3" />
+          </Skeleton>
+        </Flex>
+      </Flex>
+
+      <Flex gap="$spacing4">
+        <Text variant="body3" color="$neutral2">
+          {t('common.currentPrice')}
+        </Text>
+        <Skeleton>
+          <Flex height={24} width={180} borderRadius="$rounded8" backgroundColor="$surface3" />
+        </Skeleton>
+      </Flex>
+
+      <Flex height={SPARKLINE_HEIGHT} />
+
+      <Flex borderTopWidth="$spacing1" borderTopColor="$surface3" pt="$spacing16" gap="$spacing16">
+        <Flex row gap="$spacing16">
+          <StatCellSkeleton label={t('common.totalValueLocked')} />
+          <StatCellSkeleton label={t('stats.24volume')} />
+        </Flex>
+        <Flex row gap="$spacing16">
+          <StatCellSkeleton label={t('stats.24fees')} />
+          <StatCellSkeleton label={t('pool.apr.1day')} />
+        </Flex>
+      </Flex>
+    </Flex>
+  )
+}
+
+export function PoolStatsContent({
+  poolData,
+  currency0,
+  currency1,
+  sparklineWidth,
+}: {
+  poolData: PoolData
+  /** The pool's tokens as the flow displays them (e.g. ETH for a v2/v3 WETH leg), in either order; served tokens when absent. */
+  currency0?: Maybe<Currency>
+  currency1?: Maybe<Currency>
+  sparklineWidth?: number
+}) {
+  const { t } = useTranslation()
+  const { formatNumberOrString, formatPercent } = useLocalizationContext()
+  const rewards = toPoolRewardAprEntries(poolData.rewardTokens)
+  const [servedCurrency0, servedCurrency1] = useServedLogos(poolData).map((logo) => logo.currency)
+
+  // The price below is token1 per token0, so its labels must follow pool order even when the pair
+  // arrives in display order. Exact identity outranks a shared wrapped form so an ETH/WETH pool
+  // still orients correctly.
+  const wrappedServed0 = getWrappedTokenIfExists(servedCurrency0)
+  const rankAsToken0 = (currency: Currency): number => {
+    if (servedCurrency0 && currency.equals(servedCurrency0)) {
+      return 2
+    }
+    return wrappedServed0 && getWrappedTokenIfExists(currency)?.equals(wrappedServed0) ? 1 : 0
+  }
+  const [labelCurrency0, labelCurrency1] =
+    currency0 && currency1
+      ? rankAsToken0(currency1) > rankAsToken0(currency0)
+        ? [currency1, currency0]
+        : [currency0, currency1]
+      : [servedCurrency0, servedCurrency1]
+  const symbol0 = labelCurrency0?.symbol ?? poolData.token0.symbol
+  const symbol1 = labelCurrency1?.symbol ?? poolData.token1.symbol
+
+  const currentPrice =
+    poolData.token1Price && poolData.token0Price ? poolData.token1Price / poolData.token0Price : undefined
+
+  // Still derived: GetPool serves an APR but no 24h fee figure.
+  const fees24h = calculate24hLpFeesUsd({
+    volume24h: poolData.volumeUSD24H,
+    feeTier: poolData.feeTier?.feeAmount,
+    isDynamic: poolData.feeTier?.isDynamic,
+    protocolVersion: poolData.protocolVersion,
+    protocolFeePips: poolData.protocolFeePips,
+  })
+
+  return (
+    <>
+      <Flex gap="$spacing4">
+        <Text variant="body3" color="$neutral2">
+          {t('common.currentPrice')}
+        </Text>
+        <Text variant="subheading1" color="$neutral1">
+          {currentPrice
+            ? `${formatNumberOrString({ value: currentPrice, type: NumberType.TokenNonTx })} ${symbol0} / ${symbol1}`
+            : '-'}
+        </Text>
+      </Flex>
+
+      <PoolInfoSparkline poolData={poolData} width={sparklineWidth} />
+
+      <Flex borderTopWidth="$spacing1" borderTopColor="$surface3" pt="$spacing16" gap="$spacing16">
+        <Flex row gap="$spacing16">
+          <StatCell
+            label={t('common.totalValueLocked')}
+            value={formatNumberOrString({ value: poolData.tvlUSD, type: NumberType.FiatTokenStats })}
+            delta={poolData.tvlUSDChange}
+          />
+          <StatCell
+            label={t('stats.24volume')}
+            value={formatNumberOrString({ value: poolData.volumeUSD24H, type: NumberType.FiatTokenStats })}
+            delta={poolData.volumeUSD24HChange}
+          />
+        </Flex>
+        <Flex row gap="$spacing16">
+          <StatCell
+            label={t('stats.24fees')}
+            value={formatNumberOrString({ value: fees24h, type: NumberType.FiatTokenStats })}
+          />
+          <StatCell label={t('pool.apr.1day')} value={formatPercent(poolData.apr)} />
+        </Flex>
+      </Flex>
+
+      {rewards.length > 0 && (
+        <Flex borderTopWidth="$spacing1" borderTopColor="$surface3" pt="$spacing16" gap="$spacing4">
+          <Text variant="body3" color="$neutral2">
+            {t('pool.apr.reward')}
+          </Text>
+          {/* One single-reward badge per row: the section stacks them under its own heading, which
+              is the section's layout decision rather than the badge's. */}
+          {rewards.map((reward) => (
+            <RewardAprBadge key={rewardCurrencyId(reward.token)} rewards={[reward]} hideBackground />
+          ))}
+        </Flex>
+      )}
+    </>
+  )
+}
+
+/**
+ * The pool's served token logos, each tied to its currency so DoubleCurrencyLogo can skip its
+ * per-token lookup whatever order the currencies arrive in (ExpandablePoolInfo's callers pass
+ * display order, which can be the reverse of the pool's sorted token0/token1).
+ */
+function useServedLogos(poolData: PoolData | undefined): ServedLogo[] {
+  return useMemo(
+    () =>
+      poolData
+        ? [poolData.token0, poolData.token1].map((token) => ({
+            currency: v2TokenToCurrency(token),
+            logoUrl: token.logoUrl,
+          }))
+        : [],
+    [poolData],
+  )
+}
+
+export function PoolInfoCard({
+  poolData,
+  loading,
+  onAddLiquidity,
+  currency0: displayCurrency0,
+  currency1: displayCurrency1,
+}: {
+  poolData?: PoolData
+  loading?: boolean
+  onAddLiquidity?: () => void
+  /** The pool's token0/token1 as the surrounding flow displays them (e.g. ETH for a v2/v3 WETH leg). */
+  currency0?: Maybe<Currency>
+  currency1?: Maybe<Currency>
+}) {
+  const { t } = useTranslation()
+  const headerHeight = useAppHeaderHeight()
+  const servedLogos = useServedLogos(poolData)
+  // All-or-nothing: a half-passed pair would render one leg as ETH and the other as served WETH.
+  const [currency0, currency1] =
+    displayCurrency0 && displayCurrency1
+      ? [displayCurrency0, displayCurrency1]
+      : servedLogos.map((logo) => logo.currency)
+  const chainId = (currency0?.chainId ?? currency1?.chainId) as UniverseChainId | undefined
+
+  if (!poolData) {
+    if (loading) {
+      return <PoolInfoCardLoading />
+    }
+    return null
+  }
+
+  return (
+    <Flex
+      width={SIDEBAR_WIDTH}
+      alignSelf="flex-start"
+      $platform-web={{ position: 'sticky', top: headerHeight + SIDEBAR_STICKY_TOP_OFFSET }}
+      borderRadius="$rounded24"
+      borderColor="$surface3"
+      borderWidth="$spacing1"
+      p="$padding16"
+      gap="$spacing16"
+    >
+      <Flex row gap="$spacing18" alignItems="center">
+        <DoubleCurrencyLogo currencies={[currency0, currency1]} servedLogos={servedLogos} size={48} />
+        <Flex gap="$spacing4">
+          <Text variant="subheading1" color="$neutral1" testID={TestID.PoolPairLabel}>
+            {currency0?.symbol} / {currency1?.symbol}
+          </Text>
+          <Flex row flexWrap="wrap" gap="$spacing2">
+            <LiquidityPositionInfoBadges
+              version={poolData.protocolVersion}
+              v4hook={poolData.hookAddress}
+              chainId={chainId}
+              feeTier={poolData.feeTier}
+              protocolFeePips={poolData.protocolFeePips}
+              size="default"
+            />
+          </Flex>
+        </Flex>
+      </Flex>
+
+      <PoolStatsContent poolData={poolData} currency0={currency0} currency1={currency1} />
+      {onAddLiquidity && (
+        <Button variant="branded" emphasis="primary" fill={false} onPress={onAddLiquidity}>
+          <Button.Text>{t('common.addLiquidity')}</Button.Text>
+        </Button>
+      )}
+    </Flex>
+  )
+}
+
+// Shared expand/collapse pool summary, also rendered by EditSelectTokensStep.
+export function ExpandablePoolInfo({
+  currency0,
+  currency1,
+  version,
+  v4hook,
+  feeTier,
+  poolData,
+}: {
+  currency0?: Currency
+  currency1?: Currency
+  version?: ComponentProps<typeof LiquidityPositionInfoBadges>['version']
+  v4hook?: string
+  feeTier?: ComponentProps<typeof LiquidityPositionInfoBadges>['feeTier']
+  poolData: PoolData
+}) {
+  const media = useMedia()
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [sparklineWidth, setSparklineWidth] = useState(0)
+  const toggleExpand = useCallback(() => setIsExpanded((prev) => !prev), [])
+  const servedLogos = useServedLogos(poolData)
+
+  return (
+    // Measure on the always-rendered outer container (its width matches the inner expanded
+    // column) so the sparkline has a correct width before the first expansion — measuring the
+    // display:none inner Flex only fires onLayout on expand, causing a one-frame width jump.
+    <Flex gap={isExpanded ? '$gap12' : 0} onLayout={(e) => setSparklineWidth(e.nativeEvent.layout.width)}>
+      <Flex row gap="$gap12" alignItems="center">
+        <DoubleCurrencyLogo
+          currencies={[currency0, currency1]}
+          servedLogos={servedLogos}
+          size={media.md ? iconSizes.icon44 : iconSizes.icon32}
+        />
+        <Flex row grow gap="$gap12" $md={{ flexDirection: 'column', gap: '$gap4' }}>
+          <Flex row gap="$gap8" alignItems="center" testID={TestID.PoolPairLabel}>
+            <Text variant="subheading1">{currency0?.symbol}</Text>
+            <Text variant="subheading1">/</Text>
+            <Text variant="subheading1">{currency1?.symbol}</Text>
+          </Flex>
+          <Flex row gap={2} alignItems="center">
+            <LiquidityPositionInfoBadges
+              size="small"
+              version={version}
+              v4hook={v4hook}
+              chainId={(currency0?.chainId ?? currency1?.chainId) as UniverseChainId | undefined}
+              feeTier={feeTier}
+            />
+          </Flex>
+        </Flex>
+        <Flex flexShrink={0}>
+          <TouchableArea onPress={toggleExpand}>
+            {isExpanded ? (
+              <ChevronsIn size="$icon.20" color="$neutral2" />
+            ) : (
+              <ChevronsOut size="$icon.20" color="$neutral2" />
+            )}
+          </TouchableArea>
+        </Flex>
+      </Flex>
+
+      <Flex display={isExpanded ? 'flex' : 'none'} gap="$spacing24" mt="$spacing16">
+        <PoolStatsContent
+          poolData={poolData}
+          currency0={currency0}
+          currency1={currency1}
+          sparklineWidth={sparklineWidth || undefined}
+        />
+      </Flex>
+    </Flex>
+  )
+}

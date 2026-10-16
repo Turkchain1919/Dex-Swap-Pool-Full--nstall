@@ -1,0 +1,429 @@
+# Filipino / Tagalog (fil-PH) glossary.
+#
+# DRAFT — needs native Filipino reviewer ratification before production use.
+#
+# Strategy: selective-keep-English.
+# Filipino product UI (Apple Philippines, Google Play PH) ships predominantly in
+# English, and Filipino crypto platforms (Coins.ph, PDAX, Binance PH) consistently
+# keep core crypto nouns in English. The Taglish code-switching norm means kept-
+# English is the natural, defensible choice for technical/protocol/core-product
+# terms. UI/finance terms that have an established Filipino equivalent are
+# translated. No invented loanwords (e.g. "i-swap" is a verb construction that
+# exists in Taglish speech but not in any platform's written UI).
+#
+# Authority hierarchy used (no Notion guide exists):
+#   1. Coins.ph (PH's largest retail crypto platform) — strong precedent for PH
+#      crypto register.
+#   2. PDAX (Philippine Digital Asset Exchange) — secondary crypto reference.
+#   3. Apple iOS / macOS Philippines localisation — platform baseline.
+#   4. Google Android Philippines localisation — secondary platform baseline.
+#   5. Microsoft Terminology (Filipino) — for general UI/finance terms.
+#   6. Bangko Sentral ng Pilipinas (BSP) official terminology — for finance terms.
+#
+# Filipino has NO grammatical gender — no gender fields needed.
+# Core DNT brand terms (Uniswap, Unichain, Ethereum, NFT, calldata, gas) are
+# inherited from ../core/crypto.yml and are NOT re-listed here.
+#
+# Voice (polite-neutral) lives in ../../style/locales/fil-PH.md.
+
+# ── Core product nouns (kept English per selective-keep-English strategy) ────────
+
+- term: wallet
+  doNotTranslate: true
+  description: >
+    Keep English. Coins.ph and PDAX both render "wallet" in English throughout
+    their Filipino-language UI. No established Tagalog equivalent exists in
+    platform usage — regional variants (e.g. "pitaka") appear in dictionary
+    contexts but not in any PH crypto product UI. DRAFT: flag for native review.
+
+- term: smart wallet
+  doNotTranslate: true
+  description: Keep English. Compound of "smart" (no Filipino technical equivalent) + "wallet" (see above).
+
+- term: token
+  doNotTranslate: true
+  description: >
+    Keep English. Universal in Philippine crypto and broader tech culture.
+    Coins.ph, PDAX, and Binance PH all use "token" in Filipino-language contexts.
+
+- term: swap
+  doNotTranslate: true
+  description: >
+    Keep English. Coins.ph uses "swap" throughout its exchange UI in Filipino
+    contexts. No established Tagalog verb for DeFi token exchange. Do NOT use the
+    invented Taglish construction "i-swap" in written product UI.
+  forbidden: { fil-PH: ["i-swap", "palitan ng token"] }
+
+- term: slippage
+  doNotTranslate: true
+  description: >
+    Keep English. No Filipino equivalent exists in any PH crypto platform.
+    Coins.ph and PDAX use "slippage" verbatim. DRAFT: flag for native review.
+
+- term: max slippage
+  doNotTranslate: true
+  description: Keep English. "Max slippage" as a compound unit; see slippage entry.
+
+- term: wrap
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English. No established Filipino equivalent for the DeFi wrap mechanic.
+    Wrapped tokens (e.g. WETH) are referred to in English across all PH platforms.
+    Do NOT use invented constructions like "i-wrap" in written product UI.
+  forbidden: { fil-PH: ["i-wrap", "balutin"] }
+
+- term: wrapped
+  doNotTranslate: true
+  partOfSpeech: adjective
+  description: Keep English. See "wrap" entry. "Wrapped" as a token modifier (e.g. Wrapped Ether) stays English in PH usage.
+
+- term: unwrap
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English. Pair with "wrap". Do NOT use invented constructions.
+  forbidden: { fil-PH: ["i-unwrap", "alisan ng balot"] }
+
+- term: mint
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English. "Mint" as a DeFi verb. Do NOT invent the Taglish loanverb
+    "mintahin" — it does not appear in any PH platform UI.
+  forbidden: { fil-PH: ["mintahin", "gumawa ng token"] }
+
+- term: smart contract
+  doNotTranslate: true
+  description: >
+    Keep English. All PH DeFi/crypto platforms (Coins.ph, PDAX, BSP guidance
+    documents) use "smart contract" in English within Filipino-language text.
+  forbidden: { fil-PH: ["matalinong kontrata"] }
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym (total value locked). Universal in PH DeFi context.
+
+- term: pool
+  doNotTranslate: true
+  description: >
+    Keep English. "Liquidity pool" is used verbatim in PH DeFi discourse. No
+    Filipino equivalent in platform usage.
+  forbidden: { fil-PH: ["tangke"] }
+
+# ── UI / finance terms (translated to established Filipino equivalents) ───────────
+
+- term: network cost
+  preferred: { fil-PH: "bayad sa network" }
+  description: >
+    "Bayad" (payment/fee) + "sa network" is natural Filipino phrasing. Coins.ph
+    uses "bayad" for fees. Microsoft Terminology (Filipino) uses "bayad" for cost.
+    Alternative "gastos sa network" (expenditure) is also defensible but "bayad"
+    is more common in app UI contexts. DRAFT: flag for native review.
+
+- term: fee
+  preferred: { fil-PH: "bayad" }
+  description: >
+    "Bayad" is the standard Filipino word for fee/payment/charge. Used in
+    Microsoft Terminology (Filipino) for fee/charge contexts. Apple iOS Philippines
+    uses "bayad" in payment screens.
+
+- term: crypto
+  preferred: { fil-PH: "crypto" }
+  description: >
+    Keep as "crypto" — this is the dominant short form in PH media and Coins.ph UI.
+    Do NOT invent "kriypto" or "kripto" as a Filipino phonetic spelling; the English
+    form is what PH users see and expect.
+  forbidden: { fil-PH: ["kriypto", "kripto"] }
+
+- term: cryptocurrency
+  preferred: { fil-PH: "cryptocurrency" }
+  description: >
+    Keep English. "Cryptocurrency" appears in BSP (Bangko Sentral ng Pilipinas)
+    circulars and official PH financial guidance in English. Coins.ph uses
+    "cryptocurrency" in Filipino-language contexts. No official Filipino rendering
+    has been adopted by any regulatory body. DRAFT: flag for native review.
+
+- term: market cap
+  preferred: { fil-PH: "market cap" }
+  description: >
+    Keep English. Philippine Stock Exchange (PSE), Coins.ph, and financial media
+    (BusinessWorld, Manila Bulletin) universally use "market cap" in Filipino-
+    language financial contexts. No Filipino equivalent is in established use.
+
+- term: recovery phrase
+  preferred: { fil-PH: "recovery phrase" }
+  partOfSpeech: phrase
+  description: >
+    DRAFT — highest-priority native review flag. Security-critical term. Apple iOS
+    Philippines keeps "recovery key" in English. Coins.ph uses "recovery phrase" in
+    English. A Filipino rendering like "parirala ng pagbabawi" is grammatically
+    correct but does not appear in any PH platform. Keeping English as the safe
+    default pending native review; if a native reviewer establishes a Filipino form,
+    update preferred and add the English as forbidden.
+
+- term: seed phrase
+  preferred: { fil-PH: "recovery phrase" }
+  partOfSpeech: phrase
+  description: >
+    Collapse to same target as "recovery phrase" (canonical: "recovery phrase").
+    See recovery phrase entry.
+
+- term: backup
+  doNotTranslate: true
+  description: >
+    Keep English. Apple iOS Philippines uses "backup" in English throughout system
+    UI (iCloud Backup, etc.). Microsoft Terminology (Filipino) also uses "backup"
+    as the standard term.
+
+- term: private keys
+  doNotTranslate: true
+  description: >
+    Keep English. "Private key/keys" is the universal term in PH crypto platforms
+    and BSP guidance. No Filipino equivalent is in established use.
+    Do NOT use "lihim na susi" (a literal translation that appears in no PH platform).
+  forbidden: { fil-PH: ["lihim na susi", "pribadong susi"] }
+
+# ── Product long-tail ─────────────────────────────────────────────────────────────
+
+- term: passkey
+  preferred: { fil-PH: "passkey" }
+  description: >
+    Keep English. Apple iOS Philippines (as of iOS 17/18) uses "passkey" in
+    English in system UI. Google Android Philippines also uses "passkey".
+    FIDO Alliance has no official Filipino term. DRAFT: flag for native review.
+
+- term: transaction
+  doNotTranslate: true
+  description: >
+    Keep English. "Transaction" is used verbatim in Coins.ph, PDAX, and BSP
+    guidance. The Tagalog "transaksyon" is a phonetic loanword that appears in
+    informal contexts but not in established platform UI.
+
+- term: transaction history
+  preferred: { fil-PH: "kasaysayan ng transaksyon" }
+  description: >
+    "Kasaysayan" (history/record) + "ng transaksyon". Microsoft Terminology
+    (Filipino) uses "kasaysayan" for history in UI contexts. DRAFT: flag for
+    native review — "history ng transaksyon" (Taglish) is also natural.
+
+- term: trade
+  doNotTranslate: true
+  description: >
+    Keep English as a DeFi noun/verb. Disambiguate: "trade" in DeFi context is an
+    exchange operation, not international commerce. Do NOT use "kalakalan"
+    (commerce/trade as in international trade).
+  forbidden: { fil-PH: ["kalakalan"] }
+
+- term: explore
+  preferred: { fil-PH: "tuklasin" }
+  description: >
+    "Tuklasin" (to explore/discover) — standard Filipino verb. Apple iOS
+    Philippines uses native Filipino verbs for navigation. Microsoft Terminology
+    (Filipino) uses "tuklasin" for "Explore". DRAFT: "i-explore" (Taglish) is
+    common in speech but "tuklasin" is the platform standard.
+
+- term: extension
+  preferred: { fil-PH: "extension" }
+  description: >
+    Keep English. Google Chrome Philippines uses "extension" in English in the
+    Chrome Web Store. No established Filipino equivalent in browser extension
+    contexts.
+
+- term: revoke
+  preferred: { fil-PH: "bawiin" }
+  description: >
+    "Bawiin" (to take back/revoke) is the standard Filipino verb. Microsoft
+    Terminology (Filipino) uses "bawiin" for "revoke" in permission contexts.
+
+- term: approval
+  preferred: { fil-PH: "pahintulot" }
+  description: >
+    "Pahintulot" (permission/approval) — Microsoft Terminology (Filipino) uses
+    this for "approval/permission". In DeFi contexts this covers ERC-20 approve.
+
+- term: approve
+  preferred: { fil-PH: "payagan" }
+  partOfSpeech: verb
+  description: >
+    "Payagan" (to allow/approve) — the verb form. Keep distinct from "permit"
+    (EIP-2612 gasless approve). DRAFT: flag for native review.
+
+- term: confirm
+  preferred: { fil-PH: "kumpirmahin" }
+  description: >
+    "Kumpirmahin" — phonetic loanword that is the established Filipino UI term.
+    Apple iOS Philippines and Microsoft Terminology (Filipino) both use this form.
+
+- term: rate
+  preferred: { fil-PH: "rate" }
+  description: >
+    Keep English as an exchange-rate noun. "Rate" is universally used in PH
+    financial media and platform UI. "Halaga" (value) or "kurso" (exchange rate)
+    are alternatives but "rate" dominates in PH fintech UI.
+
+- term: pair
+  preferred: { fil-PH: "pares" }
+  description: >
+    "Pares" (pair/couple) — standard Filipino. In DeFi/trading context (token
+    pair), this is the natural Filipino rendering. DRAFT: flag for native review —
+    "pair" kept in English is also common in PH trading UI.
+
+- term: activity
+  preferred: { fil-PH: "aktibidad" }
+  description: >
+    "Aktibidad" — established Filipino loanword from English. Microsoft Terminology
+    (Filipino) and Apple iOS Philippines use this form.
+
+- term: limits
+  preferred: { fil-PH: "limitasyon" }
+  description: >
+    "Limitasyon" — established Filipino loanword. Microsoft Terminology (Filipino)
+    uses this for "limits" in UI contexts.
+
+- term: sweep
+  doNotTranslate: true
+  description: >
+    Keep English. "Sweep" as a DeFi operation (sweep remaining ETH) has no
+    established Filipino equivalent in platform usage.
+
+- term: front-run
+  doNotTranslate: true
+  description: Keep English. Technical DeFi term with no Filipino equivalent in platform usage.
+
+- term: onchain
+  preferred: { fil-PH: "onchain" }
+  description: >
+    Keep English compound. "Onchain" and "off-chain" are used in English in BSP
+    guidance and all PH crypto platforms. Do NOT use "sa chain".
+  forbidden: { fil-PH: ["sa chain", "on-chain na"] }
+
+- term: all time
+  preferred: { fil-PH: "lahat ng oras" }
+  description: >
+    "Lahat ng oras" as a date-range label meaning "all time / since inception".
+    NOTE: "palagi" (always/constantly) is a false friend — it means frequency, not
+    a date range. DRAFT: flag for native review.
+  forbidden: { fil-PH: ["palagi"] }
+
+- term: Disclosures
+  preferred: { fil-PH: "Mga Pagsisiwalat" }
+  description: >
+    "Mga Pagsisiwalat" — "pagsisiwalat" (disclosure/revelation) is the established
+    legal Filipino term. BSP uses "pagsisiwalat" in regulatory disclosures.
+    Alternatively "Mga Abiso" (Notices) but "Pagsisiwalat" is more legally precise.
+    DRAFT: flag for native review.
+
+- term: order filled
+  preferred: { fil-PH: "naisakatuparan ang order" }
+  description: >
+    "Naisakatuparan" (fulfilled/executed). Philippine financial terminology
+    uses "naisagawa" or "naisakatuparan" for order execution. DRAFT: flag for
+    native review.
+
+- term: clearing price
+  preferred: { fil-PH: "clearing price" }
+  description: >
+    Keep English. PSE and PH financial media use "clearing price" in English in
+    Filipino-language contexts. No established Filipino rendering.
+
+- term: bid
+  preferred: { fil-PH: "bid" }
+  description: >
+    Keep English in auction contexts. Coins.ph and PH financial media use "bid"
+    in English. Filipino "alok" (offer) is the dictionary equivalent but is not
+    used in PH fintech UI for bids.
+
+- term: in range
+  preferred: { fil-PH: "nasa hanay" }
+  description: '"Nasa hanay" — "nasa" (in/within) + "hanay" (range/row). DRAFT: flag for native review.'
+
+- term: out of range
+  preferred: { fil-PH: "labas ng hanay" }
+  description: '"Labas ng hanay" — outside the range. Pairs with "nasa hanay". DRAFT: flag for native review.'
+
+- term: spread
+  doNotTranslate: true
+  description: Keep English. Used in English in PH financial contexts universally.
+
+# ── Earn / yield domain (TLM native review, 2026-07-28) ──────────────────────────
+
+- term: yield
+  doNotTranslate: true
+  partOfSpeech: noun
+  termType: amount
+  status: native-ratified
+  description: >
+    Keep English "yield" — standard Taglish fintech register, consistent with
+    the selective-keep-English strategy. TLM native review
+    (Thomas Osmonson, 2026-07-28) — ratified, unlike most of this file.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — "Limit" IS the
+    conventional local trading label in this locale, so it stays as-is (a
+    keep-as-is rendering, not an untranslated leftover). Never a literal
+    restrict-verb. TLM ruling (2026-07-30); pending native confirmation.
+
+- term: contract address
+  doNotTranslate: true
+  description: >
+    Keep "Contract" English within this compound — bare "kontrata" reads as
+    an everyday legal contract, the ambiguity the smart-contract entry
+    exists to avoid. Filipino syntax around it is fine; the term itself
+    stays English.
+
+- term: private key
+  doNotTranslate: true
+  description: >
+    Keep the unit whole — vendor's hybrid "Pribadong Key" splits the term of
+    art. Consistent with transaction/backup/clearing-price keeps (Coins.ph,
+    PDAX convention).
+
+- term: verified
+  preferred: { fil-PH: "Na-verify" }
+  status: draft
+  description: >
+    Completed-aspect Taglish (na- + English root) — the attested pattern of
+    na-download/na-charge, NOT the invented-calque class (i-swap/mintahin).
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: bidding
+  preferred: { fil-PH: "Nagbi-bid" }
+  status: draft
+  description: >
+    Auction-status label — active-progressive Taglish (nag- + reduplication)
+    on the kept English root; the "bid" noun itself stays English. ⚠️ DRAFT —
+    native review on register vs a nominal chip.
+
+- term: identity verification
+  preferred: { fil-PH: "Pag-verify ng Pagkakakilanlan" }
+  status: draft
+  description: >
+    KYC copy — "verify" nominalized as a kept-English loanword, "identity"
+    translated natively, consistent with the selective-keep strategy.
+    ⚠️ DRAFT — confirm with native reviewer.
+
+- term: auth vocabulary (verification code, recovery email, login)
+  description: >
+    Context note: authentication/security vocabulary keeps English —
+    "verification code", "recovery email", "login", "backup" (see its DNT
+    entry) — per Apple iOS Philippines convention. General-UI phrases around
+    them still take Filipino syntax ("Backup sa iCloud").
+
+- term: checkout
+  doNotTranslate: true
+  status: draft
+  description: >
+    On-ramp checkout surface — Taglish keeps the English term. Per-locale on
+    purpose: es/fr/pt render native checkout terms, so this must NOT live in
+    core. ⚠️ DRAFT — confirm with native reviewer.

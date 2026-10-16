@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Mobile App",
+  "extends": "../../config/tsconfig/expo.json",
+  "exclude": [".storybook/storybook.requires.ts", "oxlint.config.ts", "vitest*"],
+  "references": [
+    {
+      "path": "../../packages/tailwind"
+    },
+    {
+      "path": "../../packages/sessions"
+    },
+    {
+      "path": "../../packages/notifications"
+    },
+    {
+      "path": "../../packages/hashcash-native"
+    },
+    {
+      "path": "../../packages/gating"
+    },
+    {
+      "path": "../../packages/encoding"
+    },
+    {
+      "path": "../../packages/config"
+    },
+    {
+      "path": "../../packages/compliance"
+    },
+    {
+      "path": "../../packages/api"
+    },
+    {
+      "path": "../../packages/wallet"
+    },
+    {
+      "path": "../../packages/utilities"
+    },
+    {
+      "path": "../../packages/environment"
+    },
+    {
+      "path": "../../packages/ui"
+    },
+    {
+      "path": "../../packages/uniswap"
+    },
+    {
+      "path": "../../config/vitest-presets"
+    },
+    {
+      "path": "../../packages/embedded-wallet"
+    },
+    {
+      "path": "../../packages/mycelium"
+    },
+    {
+      "path": "../../packages/chains"
+    },
+    {
+      "path": "../../packages/test"
+    }
+  ],
+  "compilerOptions": {
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "src/*": ["./src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "src/polyfills/**/*.js", "global.d.ts"]
+}

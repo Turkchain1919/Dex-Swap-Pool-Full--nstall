@@ -1,0 +1,56 @@
+diff --git a/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.kt b/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.kt
+index 9b511049b13ccff747fea97700c95227d4f164a3..c4e39b57334d24961a20de7e01ab0db323e35ee8 100644
+--- a/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.kt
++++ b/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.kt
+@@ -477,6 +477,10 @@
+ 
+     (handler as? NativeViewGestureHandler)?.updateConfig(buildManagedHandlerConfig(view))
+ 
++    // This handler backs the button's own press and its view is the JS responder target: cancelling
++    // the responder on activation makes RN send touch-cancel instead of touch-end, dropping that press.
++    handler?.cancelsJSResponder = false
++
+     if (isNewHandler) {
+       // Attached only after the handler is configured — setting `enabled` to `false` on an already
+       // attached handler cancels it, which for a button mounted as disabled would dispatch a
+@@ -803,6 +807,19 @@
+         return
+       }
+ 
++      releaseManagedHandler()
++    }
++
++    // A window opening over the app (context menu, dialog, permission prompt) keeps the rest of the
++    // touch stream, leaving this handler un-finalized and poisoning every press that follows.
++    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
++      super.onWindowFocusChanged(hasWindowFocus)
++      if (!hasWindowFocus) {
++        releaseManagedHandler()
++      }
++    }
++
++    private fun releaseManagedHandler() {
+       val moduleId = moduleId ?: return
+       val managedHandlerTag = managedHandlerTag ?: return
+ 
+diff --git a/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerDetectorView.kt b/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerDetectorView.kt
+index 1f6bd81b884e757e4f19d9b5e209d1a608b3ce40..75eb0865cd18b168a6b6d2d6cda10fc896ce2002 100644
+--- a/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerDetectorView.kt
++++ b/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerDetectorView.kt
+@@ -67,7 +67,15 @@ class RNGestureHandlerDetectorView(context: Context) : ReactViewGroup(context) {
+       return
+     }
+ 
+-    assert(this.moduleId == -1) { "Tried to change moduleId of a native detector" }
++    // `moduleId` (globalThis._RNGH_MODULE_ID) advances whenever the RNGH native module re-inits
++    // (reload / RN context recreation), and Fabric re-applies it to still-mounted detector views.
++    // iOS reassigns freely in updateProps; mirror that instead of asserting write-once. On a real
++    // change, tear down attachments bound to the previous registry before wiring up the new one.
++    // Re-attaching depends on `detachAllHandlers()` clearing `subscribedHandlers`: `attachHandlers`
++    // only observes tags missing from that set, so a bump that stops clearing it attaches nothing.
++    if (this.moduleId != -1) {
++      detachAllHandlers()
++    }
+ 
+     this.moduleId = id
+     attachHandlers(handlersToAttach)

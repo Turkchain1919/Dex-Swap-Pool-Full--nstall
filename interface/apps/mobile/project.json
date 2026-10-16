@@ -1,0 +1,366 @@
+{
+  "tags": ["scope:mobile", "type:app"],
+  "targets": {
+    "android": {
+      "command": "echo 'Specify a configuration, e.g. nx android mobile -c dev' && exit 1",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "config:pull"],
+      "defaultConfiguration": "dev",
+      "configurations": {
+        "dev": {
+          "command": "bunx expo run:android --variant=devDebug --app-id=com.uniswap.mobile.dev"
+        },
+        "dev-optimized": {
+          "command": "bunx expo run:android --variant=devDebugOptimized --app-id=com.uniswap.mobile.dev"
+        },
+        "dev-release": {
+          "command": "bunx expo run:android --variant=devRelease --app-id=com.uniswap.mobile.dev"
+        },
+        "beta": {
+          "command": "bunx expo run:android --variant=betaDebug --app-id=com.uniswap.mobile.beta"
+        },
+        "beta-release": {
+          "command": "bunx expo run:android --variant=betaRelease --app-id=com.uniswap.mobile.beta"
+        },
+        "prod": {
+          "command": "bunx expo run:android --variant=prodDebug"
+        },
+        "prod-release": {
+          "command": "bunx expo run:android --variant=prodRelease"
+        },
+        "dev-local": {
+          "command": "bash ./scripts/runAndroidLocal.sh dev"
+        },
+        "beta-local": {
+          "command": "bash ./scripts/runAndroidLocal.sh beta"
+        },
+        "prod-local": {
+          "command": "bash ./scripts/runAndroidLocal.sh prod"
+        }
+      }
+    },
+    "check:bundlesize": {
+      "command": "./scripts/checkBundleSize.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check:deps:usage": {},
+    "clean": {
+      "command": "react-native-clean-project",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "debug:reactotron:install": {
+      "command": "./scripts/installDebugger.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "deduplicate": {
+      "command": "echo 'Bun automatically deduplicates dependencies'",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "env:android:keystore:download": {
+      "command": "bash ./scripts/downloadAndroidKeystore.sh beta",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "env:android:keystore:download:beta": {
+      "command": "bash ./scripts/downloadAndroidKeystore.sh beta",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "env:android:keystore:download:dev": {
+      "command": "bash ./scripts/downloadAndroidKeystore.sh dev",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "env:android:keystore:download:prod": {
+      "command": "bash ./scripts/downloadAndroidKeystore.sh prod",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "env:fastlane:download": {
+      "command": "bash ./scripts/downloadFastlaneEnv.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "env:fastlane:upload": {
+      "command": "bash ./scripts/uploadFastlaneEnv.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "env:local:copy:swift": {
+      "command": "python3 scripts/copy_env_vars_to_swift.py",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "devicefarm:connect": {
+      "command": "bun run scripts/deviceFarmConnect.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "e2e:prepare": {
+      "executor": "nx:noop",
+      "dependsOn": ["^prepare", "e2e:generate-ids", "e2e:build-js"]
+    },
+    "e2e:generate-ids": {
+      "command": "mkdir -p .maestro/scripts/dist && bun run .maestro/scripts/tooling/generateTestIds.ts > .maestro/scripts/dist/testIds.js",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "e2e:build-js": {
+      "command": "bun run .maestro/scripts/tooling/buildPerformanceScripts.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare"]
+    },
+    "e2e": {
+      "command": "echo 'Specify a suite, e.g. nx e2e mobile -c e2e' && exit 1",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["e2e:prepare", "config:pull"],
+      "defaultConfiguration": "e2e",
+      "configurations": {
+        "e2e": {
+          "command": "maestro test .maestro"
+        },
+        "e2e-onboarding": {
+          "command": "maestro test .maestro/flows/onboarding"
+        },
+        "e2e-swap": {
+          "command": "maestro test .maestro/flows/swap"
+        }
+      }
+    },
+    "e2e:clear-logs": {
+      "command": "rm -rf $HOME/.maestro/tests",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "e2e:local:submit-metrics": {
+      "command": ".maestro/scripts/performance/submit-local.sh metrics.jsonl",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "e2e:local:extract-metrics": {
+      "command": "bun .maestro/scripts/performance/dist/utils/extract-metrics.js $HOME/.maestro/tests metrics.jsonl",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["e2e:build-js"]
+    },
+    "e2e:local:process-metrics": {
+      "command": "bun run e2e:local:extract-metrics && bun run e2e:local:submit-metrics",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "e2e:interactive": {
+      "command": "bun run .maestro/scripts/e2e-interactive.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["e2e:prepare"]
+    },
+    "firestore:deploy:rules": {
+      "command": "firebase deploy --only firestore:rules",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "link:assets": {
+      "command": "react-native-asset",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "ios": {
+      "command": "echo 'Specify a configuration, e.g. nx ios mobile -c dev' && exit 1",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "config:pull"],
+      "defaultConfiguration": "dev",
+      "configurations": {
+        "dev": {
+          "command": "bunx expo run:ios --scheme Uniswap --configuration DebugOptimized"
+        },
+        "debug": {
+          "command": "bunx expo run:ios --scheme Uniswap --configuration Debug"
+        },
+        "dev-release": {
+          "command": "NODE_ENV=production bunx expo run:ios --configuration Dev"
+        },
+        "smol": {
+          "command": "bunx expo run:ios --device=\"iPhone SE (3rd generation)\""
+        },
+        "beta": {
+          "command": "NODE_ENV=production bunx expo run:ios --configuration Beta"
+        },
+        "release": {
+          "command": "bunx expo run:ios --configuration Release"
+        },
+        "bundle": {
+          "command": "bunx react-native bundle --entry-file apps/mobile/index.js --platform ios --dev false --bundle-output ./ios/main.jsbundle --assets-dest ./ios --sourcemap-output ./ios/main.jsbundle.map"
+        },
+        "interactive": {
+          "command": "bun run scripts/ios-build-interactive/main.ts"
+        }
+      }
+    },
+    "ios:signing:local": {
+      "command": "bun run scripts/setupLocalDeviceSigning.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "format": {},
+    "format:check": {},
+    "lint:oxlint": {},
+    "lint:oxlint:fix": {},
+    "lint:oxlint:fast": {},
+    "lint": {},
+    "lint:fix": {},
+    "check": {},
+    "check:fast": {},
+    "start": {
+      "command": "EXPO_BUILD_CONFIGURATION=Debug NODE_ENV=development bunx expo start --scheme uniswap",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "config:pull", "pod:ensure", "android:ensure"],
+      "configurations": {
+        "e2e": {
+          "command": "NODE_ENV=development IS_E2E_TEST=true bunx expo start"
+        },
+        "production": {
+          "command": "NODE_ENV=production bunx expo start --reset-cache"
+        }
+      }
+    },
+    "test": {
+      "command": "vitest run",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "inputs": [
+        "sourceFiles",
+        "mobileGlobals",
+        "^production",
+        "{projectRoot}/**/*.test.*",
+        "{projectRoot}/**/*.spec.*"
+      ]
+    },
+    "snapshots": {
+      "command": "vitest run -u",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "typecheck": {},
+    "config:pull": {
+      "command": "if [ \"$SKIP_CONFIG_PULL\" != \"true\" ]; then bun config:pull mobile --env \"${CONFIG_ENV:-development}\" --soft; fi",
+      "options": { "cwd": "{workspaceRoot}" },
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {},
+        "staging": { "env": { "CONFIG_ENV": "staging" } },
+        "production": { "env": { "CONFIG_ENV": "production" } },
+        "beta": { "env": { "CONFIG_ENV": "staging" } },
+        "beta-release": { "env": { "CONFIG_ENV": "staging" } },
+        "beta-local": { "env": { "CONFIG_ENV": "staging" } },
+        "prod": { "env": { "CONFIG_ENV": "production" } },
+        "prod-release": { "env": { "CONFIG_ENV": "production" } },
+        "prod-local": { "env": { "CONFIG_ENV": "production" } },
+        "release": { "env": { "CONFIG_ENV": "production" } },
+        "bundle": { "env": { "CONFIG_ENV": "production" } },
+        "e2e": { "env": { "CONFIG_ENV": "production" } },
+        "e2e-onboarding": { "env": { "CONFIG_ENV": "production" } },
+        "e2e-swap": { "env": { "CONFIG_ENV": "production" } }
+      }
+    },
+    "unicons": {
+      "command": "cd scripts && python3 populate_svgs.py && cd .. && bun run lint --fix",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "pod": {
+      "command": "./scripts/podinstall.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "pod:ensure": {
+      "command": "./scripts/check-podfile.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "inputs": ["{projectRoot}/ios/Podfile", "{projectRoot}/ios/Podfile.lock"],
+      "cache": true
+    },
+    "android:ensure": {
+      "command": "./scripts/check-android-gradle.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "inputs": [
+        "{projectRoot}/android/build.gradle",
+        "{projectRoot}/android/app/build.gradle",
+        "{projectRoot}/android/settings.gradle",
+        "{projectRoot}/android/gradle.properties"
+      ],
+      "cache": true
+    },
+    "pod:update": {
+      "command": "./scripts/podinstall.sh -u",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "storybook:generate": {
+      "command": "sb-rn-get-stories",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prestart": {
+      "command": "bun run storybook:generate",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "softreset": {
+      "command": "bash ./scripts/resetDevEnv.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "hardreset": {
+      "command": "bash ./scripts/resetDevEnv.sh --hard",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

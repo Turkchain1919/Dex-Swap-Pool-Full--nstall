@@ -1,0 +1,402 @@
+import { ProtocolVersion } from '@uniswap/client-data-api/dist/data/v1/poolTypes_pb'
+import { Flex, Text, type TextCompatProps } from '@universe/mycelium'
+import { useMedia } from '@universe/mycelium/theme-hooks-compat'
+import { Dispatch, forwardRef, SetStateAction } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ArrowDownArrowUp } from 'ui/src/components/icons/ArrowDownArrowUp'
+import { InfoCircleFilled } from 'ui/src/components/icons/InfoCircleFilled'
+import AnimatedNumber from 'uniswap/src/components/AnimatedNumber/AnimatedNumber'
+import { CurrencyInfo } from 'uniswap/src/features/dataApi/types'
+import { useLocalizationContext } from 'uniswap/src/features/language/LocalizationContext'
+import { useGetRangeDisplay } from 'uniswap/src/features/positions/hooks/useGetRangeDisplay'
+import { PositionRewardApr, PriceOrdering } from 'uniswap/src/features/positions/types'
+import { MouseoverTooltip, TooltipSize } from '~/components/Tooltip'
+import { CHART_WIDTH } from '~/features/Liquidity/charts/LiquidityPositionRangeChart/LiquidityPositionRangeChart'
+import { TextLoader } from '~/features/Liquidity/Loader'
+import { PoolAprTooltip } from '~/features/Liquidity/LPIncentives/PoolAprTooltip'
+import { RewardAprBadge } from '~/features/Liquidity/LPIncentives/RewardAprBadge'
+import { ClickableTamaguiStyle } from '~/theme/components/styles'
+
+interface LiquidityPositionFeeStatsProps extends LiquidityPositionMinMaxRangeProps {
+  version: ProtocolVersion
+  cardHovered: boolean
+  currency0Info: Maybe<CurrencyInfo>
+  currency1Info: Maybe<CurrencyInfo>
+  formattedUsdValue?: string
+  formattedUsdFees?: string
+  formattedLpIncentiveEarnings?: string
+  totalApr?: number
+  feeApr?: string
+  apr?: number
+  apr1d?: number
+  apr7d?: number
+  apr30d?: number
+  /** The pool's live per-token LP-incentive boosts, as served. Empty/unset = no boosted APR stat. */
+  rewards?: PositionRewardApr[]
+  hasRewards?: boolean
+}
+
+const PrimaryText = forwardRef<HTMLElement, TextCompatProps>(function PrimaryText(props, ref) {
+  return <Text ref={ref} color="$neutral1" variant="body2" {...props} />
+})
+
+const SecondaryText = forwardRef<HTMLElement, TextCompatProps>(function SecondaryText(props, ref) {
+  return (
+    <Text
+      ref={ref}
+      color="$neutral2"
+      variant="body3"
+      overflow="hidden"
+      textOverflow="ellipsis"
+      whiteSpace="nowrap"
+      {...props}
+    />
+  )
+})
+
+function WrapChildrenForMediaSize({ children }: { children: React.ReactNode }) {
+  const media = useMedia()
+  const isMobile = media.sm
+
+  if (isMobile) {
+    return (
+      <Flex row gap="$gap12">
+        {children}
+      </Flex>
+    )
+  }
+
+  return <>{children}</>
+}
+
+function FeeStat({ children }: { children: React.ReactNode }) {
+  return (
+    <Flex flex={1} flexBasis={0} $sm={{ flexBasis: 'auto' }}>
+      {children}
+    </Flex>
+  )
+}
+
+function FeeStatLoader() {
+  return (
+    <Flex gap="$gap4">
+      <TextLoader variant="body2" width={60} />
+      <TextLoader variant="body3" width={40} />
+    </Flex>
+  )
+}
+
+export function LiquidityPositionFeeStatsLoader() {
+  return (
+    <Flex row gap="$gap20" justifyContent="space-between" width="50%" $md={{ width: '100%' }}>
+      <FeeStatLoader />
+      <FeeStatLoader />
+      <FeeStatLoader />
+    </Flex>
+  )
+}
+
+export function LiquidityPositionFeeStats({
+  formattedUsdValue,
+  formattedUsdFees,
+  formattedLpIncentiveEarnings,
+  priceOrdering,
+  tickLower,
+  tickUpper,
+  tickSpacing,
+  version,
+  apr,
+  apr1d,
+  apr7d,
+  apr30d,
+  currency0Info,
+  currency1Info,
+  cardHovered,
+  pricesInverted,
+  setPricesInverted,
+  rewards,
+  totalApr,
+  hasRewards,
+}: LiquidityPositionFeeStatsProps) {
+  const { t } = useTranslation()
+  const earningsOrFees = hasRewards ? formattedLpIncentiveEarnings : (formattedUsdFees ?? '-')
+
+  return (
+    <Flex
+      row
+      justifyContent="space-between"
+      gap="$gap20"
+      py="$spacing16"
+      px="$spacing24"
+      borderBottomLeftRadius="$rounded20"
+      borderBottomRightRadius="$rounded20"
+      backgroundColor={cardHovered ? '$surface2Hovered' : '$surface2'}
+    >
+      <Flex row gap="$gap20" grow $sm={{ row: false }}>
+        <WrapChildrenForMediaSize>
+          <FeeStat>
+            {formattedUsdValue ? (
+              <AnimatedNumber value={formattedUsdValue} textVariant="$body2" />
+            ) : (
+              <MouseoverTooltip text={t('position.valueUnavailable')} placement="top">
+                <PrimaryText>-</PrimaryText>
+              </MouseoverTooltip>
+            )}
+            <SecondaryText>{t('pool.position')}</SecondaryText>
+          </FeeStat>
+          <FeeStat>
+            {version === ProtocolVersion.V2 ? (
+              <Flex row gap="$gap4" alignItems="center">
+                <Text variant="body2" color="$neutral2">
+                  {t('common.unavailable')}
+                </Text>
+                <MouseoverTooltip text={t('fee.unavailable')} placement="auto">
+                  <Flex justifyContent="center">
+                    <InfoCircleFilled color="$neutral2" size="$icon.16" />
+                  </Flex>
+                </MouseoverTooltip>
+              </Flex>
+            ) : (
+              <AnimatedNumber value={earningsOrFees ?? '-'} textVariant="$body2" />
+            )}
+            <SecondaryText variant="body3" color="$neutral2">
+              {hasRewards ? t('pool.earnings') : t('common.fees')}
+            </SecondaryText>
+          </FeeStat>
+        </WrapChildrenForMediaSize>
+        {rewards?.length ? (
+          <LPIncentiveFeeStat
+            currency0Info={currency0Info}
+            currency1Info={currency1Info}
+            poolApr={apr}
+            apr1d={apr1d}
+            apr7d={apr7d}
+            apr30d={apr30d}
+            rewards={rewards}
+            totalApr={totalApr}
+          />
+        ) : (
+          <APRFeeStat
+            apr={apr}
+            apr1d={apr1d}
+            apr7d={apr7d}
+            apr30d={apr30d}
+            currency0Info={currency0Info}
+            currency1Info={currency1Info}
+          />
+        )}
+      </Flex>
+      <Flex $md={{ display: 'none' }}>
+        <MinMaxRange
+          priceOrdering={priceOrdering}
+          tickLower={tickLower}
+          tickUpper={tickUpper}
+          tickSpacing={tickSpacing}
+          pricesInverted={pricesInverted}
+          setPricesInverted={setPricesInverted}
+        />
+      </Flex>
+    </Flex>
+  )
+}
+
+interface LiquidityPositionMinMaxRangeProps {
+  priceOrdering: PriceOrdering
+  tickSpacing?: number
+  tickLower?: number
+  tickUpper?: number
+  pricesInverted: boolean
+  setPricesInverted: Dispatch<SetStateAction<boolean>>
+}
+
+export function MinMaxRange({
+  priceOrdering,
+  tickLower,
+  tickUpper,
+  tickSpacing,
+  pricesInverted,
+  setPricesInverted,
+}: LiquidityPositionMinMaxRangeProps) {
+  const { t } = useTranslation()
+
+  const { maxPrice, minPrice, tokenASymbol, tokenBSymbol, isFullRange } = useGetRangeDisplay({
+    priceOrdering,
+    tickSpacing,
+    tickLower,
+    tickUpper,
+    pricesInverted,
+  })
+
+  return (
+    <Flex group="item" minWidth={224} alignSelf="flex-start" width={CHART_WIDTH} $md={{ width: '100%' }} height="100%">
+      {priceOrdering.priceLower && priceOrdering.priceUpper && !isFullRange ? (
+        <Flex
+          gap="$gap4"
+          $md={{ row: true, justifyContent: 'flex-start', gap: '$gap24', width: '100%' }}
+          $sm={{ row: false, gap: '$gap4', width: '100%' }}
+          justifyContent="center"
+          height="100%"
+        >
+          <Flex row gap="$gap12" alignItems="center">
+            <SecondaryText flexShrink={0}>{t('common.min')}</SecondaryText>
+            <SecondaryText color="$neutral1">
+              {minPrice} {tokenASymbol} / {tokenBSymbol}
+            </SecondaryText>
+          </Flex>
+          <Flex row gap="$gap8" alignItems="center">
+            <SecondaryText flexShrink={0}>{t('common.max')}</SecondaryText>
+            <SecondaryText color="$neutral1" display="flex" alignItems="center" gap="$gap4">
+              <span
+                style={{
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
+                {maxPrice}
+              </span>
+              <span>
+                {tokenASymbol} / {tokenBSymbol}
+              </span>
+            </SecondaryText>
+            <Flex
+              height="100%"
+              justifyContent="center"
+              onPress={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setPricesInverted((prevInverted) => !prevInverted)
+              }}
+              {...ClickableTamaguiStyle}
+              display="none"
+              $group-item-hover={{ display: 'flex' }}
+            >
+              <ArrowDownArrowUp color="$neutral2" size="$icon.16" rotate="90deg" />
+            </Flex>
+          </Flex>
+        </Flex>
+      ) : (
+        <Flex grow height="100%">
+          <SecondaryText>{t('common.fullRange')}</SecondaryText>
+        </Flex>
+      )}
+    </Flex>
+  )
+}
+
+function APRFeeStat({
+  apr,
+  apr1d,
+  apr7d,
+  apr30d,
+  currency0Info,
+  currency1Info,
+}: {
+  apr?: number
+  apr1d?: number
+  apr7d?: number
+  apr30d?: number
+  currency0Info: Maybe<CurrencyInfo>
+  currency1Info: Maybe<CurrencyInfo>
+}) {
+  const { formatPercent } = useLocalizationContext()
+  const { t } = useTranslation()
+  const hasTimeframeAprs = apr1d !== undefined || apr7d !== undefined || apr30d !== undefined
+
+  const content = (
+    <>
+      <AnimatedNumber value={apr ? formatPercent(apr) : '-'} numericValue={apr} textVariant="$body2" />
+      <Flex row gap="$gap4" alignItems="center">
+        <SecondaryText variant="body3" color="$neutral2">
+          {t('pool.apr.24h')}
+        </SecondaryText>
+        {hasTimeframeAprs && <InfoCircleFilled color="$neutral2" size="$icon.12" />}
+      </Flex>
+    </>
+  )
+
+  if (!hasTimeframeAprs) {
+    return <FeeStat>{content}</FeeStat>
+  }
+
+  return (
+    <FeeStat>
+      <MouseoverTooltip
+        padding={0}
+        text={
+          <PoolAprTooltip
+            currency0Info={currency0Info}
+            currency1Info={currency1Info}
+            poolApr={apr}
+            apr1d={apr1d}
+            apr7d={apr7d}
+            apr30d={apr30d}
+          />
+        }
+        size={TooltipSize.Small}
+        placement="top"
+      >
+        <>{content}</>
+      </MouseoverTooltip>
+    </FeeStat>
+  )
+}
+
+function LPIncentiveFeeStat({
+  currency0Info,
+  currency1Info,
+  rewards,
+  poolApr,
+  apr1d,
+  apr7d,
+  apr30d,
+  totalApr,
+}: {
+  currency0Info: Maybe<CurrencyInfo>
+  currency1Info: Maybe<CurrencyInfo>
+  rewards: PositionRewardApr[]
+  poolApr?: number
+  apr1d?: number
+  apr7d?: number
+  apr30d?: number
+  totalApr?: number
+}) {
+  const { formatPercent } = useLocalizationContext()
+  const { t } = useTranslation()
+
+  return (
+    <Flex flex={1.3} flexBasis={0} $sm={{ flexBasis: 'auto' }}>
+      <MouseoverTooltip
+        padding={0}
+        text={
+          <PoolAprTooltip
+            currency0Info={currency0Info}
+            currency1Info={currency1Info}
+            poolApr={poolApr}
+            apr1d={apr1d}
+            apr7d={apr7d}
+            apr30d={apr30d}
+            rewards={rewards}
+            totalApr={totalApr}
+          />
+        }
+        size={TooltipSize.Small}
+        placement="top"
+      >
+        <>
+          <Flex row gap="$spacing6" alignItems="center">
+            <AnimatedNumber
+              value={poolApr ? formatPercent(poolApr) : '-'}
+              numericValue={poolApr}
+              textVariant="$body2"
+            />
+            <RewardAprBadge rewards={rewards} isTokenColor size="sm" />
+          </Flex>
+          <SecondaryText variant="body3" color="$neutral2">
+            {t('pool.totalAPR')}
+          </SecondaryText>
+        </>
+      </MouseoverTooltip>
+    </Flex>
+  )
+}

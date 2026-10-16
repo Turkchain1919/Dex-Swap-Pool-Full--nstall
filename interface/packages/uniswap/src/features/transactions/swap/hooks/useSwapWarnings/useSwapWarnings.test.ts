@@ -1,0 +1,347 @@
+import { CurrencyAmount } from '@uniswap/sdk-core'
+import { UniverseChainId } from '@universe/chains'
+import { WarningLabel } from 'uniswap/src/components/modals/WarningModal/types'
+import { DAI, nativeOnChain, USDC } from 'uniswap/src/constants/tokens'
+import { ProtectionResult } from 'uniswap/src/features/dataApi/safety'
+import { TokenList } from 'uniswap/src/features/dataApi/types'
+import { Locale } from 'uniswap/src/features/language/constants'
+import { getSwapWarnings } from 'uniswap/src/features/transactions/swap/hooks/useSwapWarnings/useSwapWarnings'
+import { DerivedSwapInfo } from 'uniswap/src/features/transactions/swap/types/derivedSwapInfo'
+import { WrapType } from 'uniswap/src/features/transactions/types/wrap'
+import i18n from 'uniswap/src/i18n'
+import { daiCurrencyInfo, ethCurrencyInfo } from 'uniswap/src/test/fixtures'
+import { createGasEstimate } from 'uniswap/src/test/fixtures/tradingApi'
+import { createEmptyTradeWithStatus } from 'uniswap/src/test/fixtures/transactions/swap'
+import { mockLocalizedFormatter } from 'uniswap/src/test/mocks'
+import { CurrencyField } from 'uniswap/src/types/currency'
+
+const ETH = nativeOnChain(UniverseChainId.Mainnet)
+
+const emptySwapInfo: Pick<
+  DerivedSwapInfo,
+  'exactAmountToken' | 'exactAmountFiat' | 'chainId' | 'wrapType' | 'focusOnCurrencyField'
+> = {
+  chainId: 1,
+  wrapType: WrapType.NotApplicable,
+  exactAmountToken: '1000',
+  exactAmountFiat: '1000',
+  focusOnCurrencyField: CurrencyField.INPUT,
+}
+
+const swapState: DerivedSwapInfo = {
+  ...emptySwapInfo,
+
+  currencyAmounts: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(ETH, '10000'),
+    [CurrencyField.OUTPUT]: undefined,
+  },
+  currencyAmountsUSDValue: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(USDC, '100000'),
+    [CurrencyField.OUTPUT]: undefined,
+  },
+  currencyBalances: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(ETH, '20000'),
+    [CurrencyField.OUTPUT]: undefined,
+  },
+  currencies: {
+    [CurrencyField.INPUT]: ethCurrencyInfo(),
+    [CurrencyField.OUTPUT]: undefined,
+  },
+  outputAmountUserWillReceive: undefined,
+  exactCurrencyField: CurrencyField.INPUT,
+  trade: createEmptyTradeWithStatus({ gasEstimate: createGasEstimate() }),
+}
+
+const insufficientBalanceState: DerivedSwapInfo = {
+  ...emptySwapInfo,
+  currencyAmounts: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(ETH, '10000'),
+    [CurrencyField.OUTPUT]: CurrencyAmount.fromRawAmount(DAI, '200000'),
+  },
+  currencyAmountsUSDValue: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(USDC, '100000'),
+    [CurrencyField.OUTPUT]: CurrencyAmount.fromRawAmount(USDC, '200000'),
+  },
+  currencyBalances: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(ETH, '1000'),
+    [CurrencyField.OUTPUT]: CurrencyAmount.fromRawAmount(DAI, '0'),
+  },
+  currencies: {
+    [CurrencyField.INPUT]: ethCurrencyInfo(),
+    [CurrencyField.OUTPUT]: daiCurrencyInfo(),
+  },
+  outputAmountUserWillReceive: CurrencyAmount.fromRawAmount(DAI, '200000'),
+  exactCurrencyField: CurrencyField.INPUT,
+  trade: createEmptyTradeWithStatus({ gasEstimate: createGasEstimate() }),
+}
+
+const blockedTokenState: DerivedSwapInfo = {
+  ...swapState,
+  currencies: {
+    ...swapState.currencies,
+    [CurrencyField.INPUT]: {
+      ...daiCurrencyInfo(),
+      safetyInfo: { tokenList: TokenList.Blocked, protectionResult: ProtectionResult.Unknown },
+    },
+  },
+}
+
+const tradeErrorState: DerivedSwapInfo = {
+  ...emptySwapInfo,
+  currencyAmounts: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(DAI, '1000'),
+    [CurrencyField.OUTPUT]: null,
+  },
+  currencyAmountsUSDValue: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(USDC, '1000'),
+    [CurrencyField.OUTPUT]: null,
+  },
+  currencyBalances: {
+    [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(DAI, '10000'),
+    [CurrencyField.OUTPUT]: CurrencyAmount.fromRawAmount(ETH, '0'),
+  },
+  currencies: {
+    [CurrencyField.INPUT]: daiCurrencyInfo(),
+    [CurrencyField.OUTPUT]: ethCurrencyInfo(),
+  },
+  outputAmountUserWillReceive: null,
+  exactCurrencyField: CurrencyField.INPUT,
+  trade: createEmptyTradeWithStatus({ error: new Error('Generic error'), gasEstimate: createGasEstimate() }),
+}
+const { formatPercent } = mockLocalizedFormatter(Locale.EnglishUnitedStates)
+
+describe(getSwapWarnings, () => {
+  it('catches incomplete form errors', async () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: swapState,
+      offline: false,
+      geoRestrictionMode: 'default',
+    })
+    expect(warnings.length).toBe(1)
+    expect(warnings[0]?.type).toEqual(WarningLabel.FormIncomplete)
+  })
+
+  it('catches blocked token errors', async () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: blockedTokenState,
+      offline: false,
+      geoRestrictionMode: 'default',
+    })
+    expect(warnings.map((w) => w.type)).toContain(WarningLabel.BlockedToken)
+  })
+
+  it('catches insufficient balance errors', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: insufficientBalanceState,
+      offline: false,
+      geoRestrictionMode: 'default',
+    })
+    expect(warnings.length).toBe(1)
+    expect(warnings[0]?.type).toEqual(WarningLabel.InsufficientFunds)
+  })
+
+  it('catches multiple errors', () => {
+    const incompleteAndInsufficientBalanceState = {
+      ...swapState,
+      currencyAmounts: {
+        ...swapState.currencyAmounts,
+        [CurrencyField.INPUT]: CurrencyAmount.fromRawAmount(ETH, '30000'),
+      },
+    }
+
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: incompleteAndInsufficientBalanceState,
+      offline: false,
+      geoRestrictionMode: 'default',
+    })
+    expect(warnings.length).toBe(2)
+  })
+
+  it('catches errors returned by the trading api', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: tradeErrorState,
+      offline: false,
+      geoRestrictionMode: 'default',
+    })
+    expect(warnings.find((warning) => warning.type === WarningLabel.SwapRouterError)).toBeTruthy()
+  })
+
+  it('errors if there is no internet', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: tradeErrorState,
+      offline: true,
+      geoRestrictionMode: 'default',
+    })
+    expect(warnings.find((warning) => warning.type === WarningLabel.NetworkError)).toBeTruthy()
+  })
+
+  it('does not return a network error when offline is false', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: tradeErrorState,
+      offline: false,
+      geoRestrictionMode: 'default',
+    })
+    expect(warnings.find((warning) => warning.type === WarningLabel.NetworkError)).toBeFalsy()
+  })
+
+  it('adds a geo restriction warning when mode is restricted', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: swapState,
+      offline: false,
+      geoRestrictionMode: 'restricted',
+    })
+    expect(warnings.map((w) => w.type)).toContain(WarningLabel.GeoRestricted)
+  })
+
+  it('labels the geo restriction CTA with the restricted token symbol when available', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: swapState,
+      offline: false,
+      geoRestrictionMode: 'restricted',
+      geoRestrictedTokenSymbol: 'OUSG',
+    })
+    const geoWarning = warnings.find((w) => w.type === WarningLabel.GeoRestricted)
+    expect(geoWarning?.buttonText).toBe(i18n.t('swap.geoRestriction.button', { tokenSymbol: 'OUSG' }))
+  })
+
+  it('falls back to the generic geo restriction CTA when no token symbol is available', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: swapState,
+      offline: false,
+      geoRestrictionMode: 'restricted',
+    })
+    const geoWarning = warnings.find((w) => w.type === WarningLabel.GeoRestricted)
+    expect(geoWarning?.buttonText).toBe(i18n.t('common.notAvailableInRegion.error'))
+  })
+
+  it('does not add a geo restriction warning when mode is unrestricted', () => {
+    const warnings = getSwapWarnings({
+      t: i18n.t,
+      formatPercent,
+      derivedSwapInfo: swapState,
+      offline: false,
+      geoRestrictionMode: 'unrestricted',
+    })
+    expect(warnings.map((w) => w.type)).not.toContain(WarningLabel.GeoRestricted)
+  })
+
+  describe('permissioned-pool integration', () => {
+    it('inserts a PermissionedPool blocking warning when isPermissioned=true and isAllowlisted=false', () => {
+      const warnings = getSwapWarnings({
+        t: i18n.t,
+        formatPercent,
+        derivedSwapInfo: swapState,
+        offline: false,
+        geoRestrictionMode: 'unrestricted',
+        isPermissioned: true,
+        isAllowlisted: false,
+      })
+
+      expect(warnings.find((w) => w.type === WarningLabel.PermissionedPool)).toBeTruthy()
+    })
+
+    it('does not insert a PermissionedPool warning when token is not permissioned', () => {
+      const warnings = getSwapWarnings({
+        t: i18n.t,
+        formatPercent,
+        derivedSwapInfo: swapState,
+        offline: false,
+        geoRestrictionMode: 'unrestricted',
+        isPermissioned: false,
+        isAllowlisted: false,
+      })
+
+      expect(warnings.find((w) => w.type === WarningLabel.PermissionedPool)).toBeFalsy()
+    })
+
+    it('does not insert a PermissionedPool warning when wallet is allowlisted', () => {
+      const warnings = getSwapWarnings({
+        t: i18n.t,
+        formatPercent,
+        derivedSwapInfo: swapState,
+        offline: false,
+        geoRestrictionMode: 'unrestricted',
+        isPermissioned: true,
+        isAllowlisted: true,
+      })
+
+      expect(warnings.find((w) => w.type === WarningLabel.PermissionedPool)).toBeFalsy()
+    })
+
+    it('defaults to no PermissionedPool warning when the flags are omitted (back-compat)', () => {
+      const warnings = getSwapWarnings({
+        t: i18n.t,
+        formatPercent,
+        derivedSwapInfo: swapState,
+        offline: false,
+        geoRestrictionMode: 'unrestricted',
+      })
+
+      expect(warnings.find((w) => w.type === WarningLabel.PermissionedPool)).toBeFalsy()
+    })
+
+    it('orders the PermissionedPool warning before form-incomplete (swapState is form-incomplete by construction)', () => {
+      const warnings = getSwapWarnings({
+        t: i18n.t,
+        formatPercent,
+        derivedSwapInfo: swapState,
+        offline: false,
+        geoRestrictionMode: 'unrestricted',
+        isPermissioned: true,
+        isAllowlisted: false,
+      })
+
+      const labels = warnings.map((w) => w.type)
+      const permissionedIdx = labels.indexOf(WarningLabel.PermissionedPool)
+      const formIncompleteIdx = labels.indexOf(WarningLabel.FormIncomplete)
+
+      // Both warnings must be present. If the test fixture stops being form-incomplete a
+      // future maintainer should pick a different fixture rather than silently skipping
+      // the ordering check.
+      expect(permissionedIdx).toBeGreaterThanOrEqual(0)
+      expect(formIncompleteIdx).toBeGreaterThanOrEqual(0)
+      expect(permissionedIdx).toBeLessThan(formIncompleteIdx)
+    })
+
+    it('orders the NetworkError warning before PermissionedPool when offline (network warning is pushed first)', () => {
+      const warnings = getSwapWarnings({
+        t: i18n.t,
+        formatPercent,
+        derivedSwapInfo: swapState,
+        offline: true,
+        geoRestrictionMode: 'unrestricted',
+        isPermissioned: true,
+        isAllowlisted: false,
+      })
+
+      const labels = warnings.map((w) => w.type)
+      const networkIdx = labels.indexOf(WarningLabel.NetworkError)
+      const permissionedIdx = labels.indexOf(WarningLabel.PermissionedPool)
+
+      // NetworkError is pushed first (line 50 of useSwapWarnings.tsx); permissioned is
+      // pushed after the token-blocked check. Both present; order is network → permissioned.
+      expect(networkIdx).toBe(0)
+      expect(permissionedIdx).toBeGreaterThan(networkIdx)
+    })
+  })
+})

@@ -1,0 +1,28 @@
+{
+  "name": "@universe/test",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "22.19.17",
+    "@vitest/coverage-v8": "3.2.1",
+    "vitest": "3.2.1",
+    "vitest-presets": "workspace:^"
+  },
+  "scripts": {
+    "typecheck": "nx typecheck test",
+    "check": "nx check test",
+    "check:fast": "nx check:fast test",
+    "check:deps:usage": "nx check:deps:usage test",
+    "test": "nx test test",
+    "format": "nx format test",
+    "format:check": "nx format:check test",
+    "lint": "nx lint test",
+    "lint:fix": "nx lint:fix test"
+  },
+  "nx": {
+    "includedScripts": []
+  },
+  "main": "src/index.ts",
+  "private": true,
+  "sideEffects": false
+}

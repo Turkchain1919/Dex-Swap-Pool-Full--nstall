@@ -1,0 +1,236 @@
+/* Tamagui->Tailwind compat CSS layer (media variants + animation presets), shared by every compat component.
+ *
+ * Media variants mirror the Tamagui media queries in
+ * packages/ui/src/theme/media.ts exactly (max-width / max-height, same
+ * breakpoint values as the --breakpoint-* tokens in theme.css). Tailwind's
+ * built-in max-* variants compile to exclusive ranges (`width < 450px`), so
+ * these custom variants exist to keep the emitted media query text identical
+ * to Tamagui's inclusive `(max-width: 450px)`.
+ */
+@custom-variant media-xxxl (@media (max-width: 1536px));
+@custom-variant media-xxl (@media (max-width: 1280px));
+@custom-variant media-xl (@media (max-width: 1024px));
+@custom-variant media-lg (@media (max-width: 768px));
+@custom-variant media-md (@media (max-width: 640px));
+@custom-variant media-sm (@media (max-width: 450px));
+@custom-variant media-xs (@media (max-width: 380px));
+@custom-variant media-xxs (@media (max-width: 360px));
+@custom-variant media-short (@media (max-height: 736px));
+@custom-variant media-mid-height (@media (max-height: 800px));
+@custom-variant media-lg-height (@media (max-height: 960px));
+
+/* The positive light-theme variant ($theme-light pools, INFRA-3263). The match
+ * set is identical to what the pool's old `not-dark:` spelling compiled to —
+ * an element with no `.dark` ancestor — but a user @custom-variant cannot
+ * occupy `not-dark:`'s emission slot (Tailwind sorts the `not-` compound with
+ * the built-ins, BEFORE hover/active/…; user variants sort after them), so the
+ * legacy cascade winners are restored by construction instead:
+ *  - `:where(…)` drops the selector to one class of specificity, so pseudo and
+ *    group-state pools (two classes) beat the light pool by SPECIFICITY, as
+ *    they used to beat it by ORDER;
+ *  - declared after media-* in this file, the light pool's rules emit after
+ *    base/media/height-pool rules and beat them by ORDER, as they used to
+ *    beat them by SPECIFICITY. It doesn't need to be LAST of the user
+ *    variants for that: legacy-group-hover, declared after it below, is a
+ *    two-class pool that already beats light by SPECIFICITY (bullet above)
+ *    regardless of declaration order.
+ * Pinned by packages/tailwind/src/parity/core/theme-pool-precedence.test.ts.
+ * A positive `light` (not `not-dark`) is load-bearing for native: the mobile
+ * entry only reaches uniwind's two-branch `dark` @custom-variant, which
+ * Tailwind's `not-*` cannot invert, so negated spellings emit nothing there.
+ * The native entry imports this file too (INFRA-3238), but never this
+ * variant: native.css redeclares `light` right after the import, restoring
+ * uniwind's own two-branch form (last declaration per name wins). uniwind's
+ * `light` deliberately differs from this web one: it also matches a `.light`
+ * class on the element ITSELF (`:where(.light, .light *)`) and falls back to
+ * a `prefers-color-scheme: light` media branch when no theme class is set,
+ * while on web `light` means only "no `.dark` ancestor". */
+@custom-variant light (&:where(:not(:is(.dark *))));
+
+/* Coexistence bridge: lets a compat component reveal/restyle on an ANCESTOR
+ * group's hover when that ancestor is still a legacy Tamagui group, which
+ * marks hover via a JS-toggled `.t_group_hover` class that Tailwind's own
+ * `group-hover:` can never match. Compat components ship both spellings.
+ * Migration scaffolding: remove once the last legacy group anchor above a
+ * compat consumer converts. */
+@custom-variant legacy-group-hover (.t_group_hover &);
+
+/* Enter/exit animation presets mirroring packages/ui/src/animations/presets.ts.
+ *
+ * Enter keyframes declare only the start frame: the animation ends at the
+ * element's computed style, exactly like Tamagui animating from enterStyle to
+ * the base style. Exit keyframes declare only the end frame and hold it via
+ * `forwards`. Timing is a fixed CSS approximation — Tamagui's timing comes
+ * from its animation driver at runtime and is not part of the static parity
+ * contract.
+ */
+@theme {
+  --animate-spore-enter-fade-in: spore-enter-fade-in 200ms ease-out;
+  --animate-spore-enter-fade-in-down: spore-enter-fade-in-down 200ms ease-out;
+  --animate-spore-enter-fade-in-left: spore-enter-fade-in-left 200ms ease-out;
+  --animate-spore-enter-fade-in-right: spore-enter-fade-in-right 200ms ease-out;
+  --animate-spore-enter-fade-in-below: spore-enter-fade-in-below 200ms ease-out;
+  --animate-spore-exit-fade-out: spore-exit-fade-out 200ms ease-out forwards;
+  --animate-spore-exit-fade-out-up: spore-exit-fade-out-up 200ms ease-out forwards;
+  --animate-spore-exit-fade-out-down: spore-exit-fade-out-down 200ms ease-out forwards;
+
+  @keyframes spore-enter-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes spore-enter-fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Directional presets are named for the enter ORIGIN (from the left / right
+   * / below), matching the ticketed consumer distances (±10px x, +10px y). */
+  @keyframes spore-enter-fade-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+  }
+
+  @keyframes spore-enter-fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+  }
+
+  @keyframes spore-enter-fade-in-below {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes spore-exit-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes spore-exit-fade-out-up {
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes spore-exit-fade-out-down {
+    to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  /* One full 360° turn per refresh press (refresh-button-compat), mirroring
+   * the legacy injected `rotate360` rule in ui/src/loading/RefreshIcon.web.tsx
+   * — same 1s duration, easing curve, and single iteration (CSS's default
+   * iteration count). */
+  --animate-spore-refresh-spin: spore-refresh-spin 1s cubic-bezier(0.83, 0, 0.17, 1);
+
+  @keyframes spore-refresh-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Pager lane (mycelium animate-presence-pager, INFRA-3344): one keyframe
+   * pair parameterized by CSS custom properties, so a single class covers
+   * every slide direction × distance the legacy AnimatePresencePager variants
+   * produced. The component sets the --spore-pager-* properties inline (and
+   * re-resolves the exit ones mid-flight through Presence's `custom` channel
+   * — running animations read the properties live). Defaults below make a
+   * bare class a plain 10px-free fade. Timing defaults to the `fastHeavy`
+   * curve's CSS approximation (the legacy pager default preset); the
+   * component overrides duration/easing inline per its `curve` prop.
+   * `backwards` fill on the enter lane is load-bearing for DELAYED curves:
+   * the component also sets `animation-delay` inline, and without it the
+   * incoming page paints at rest for the whole delay, then snaps to the
+   * `from` frame. */
+  --animate-spore-enter-pager: spore-enter-pager 120ms cubic-bezier(0.17, 0.67, 0.45, 1) backwards;
+  --animate-spore-exit-pager: spore-exit-pager 120ms cubic-bezier(0.17, 0.67, 0.45, 1) forwards;
+
+  @keyframes spore-enter-pager {
+    from {
+      opacity: var(--spore-pager-enter-opacity, 0);
+      transform: translate(var(--spore-pager-enter-x, 0px), var(--spore-pager-enter-y, 0px));
+    }
+  }
+
+  @keyframes spore-exit-pager {
+    to {
+      opacity: var(--spore-pager-exit-opacity, 0);
+      transform: translate(var(--spore-pager-exit-x, 0px), var(--spore-pager-exit-y, 0px));
+    }
+  }
+
+  /* Parameterized presence enter/exit keyframes: the pager parameterization
+   * above generalized for `Presence` call sites whose enter/exit offsets or
+   * scale don't match the fixed 10px directional presets (per-site distances,
+   * per-render dynamic offsets, a preserved scale). Consumers set the
+   * --spore-presence-* custom properties inline; every default below makes a
+   * bare class a plain 200ms fade, and timing overrides ride inline
+   * animation-duration / animation-timing-function like the pager pair. NOT a
+   * competitor to the named directional enter presets (fixed 10px distances,
+   * one keyframe per direction): this pair exists for offsets those presets
+   * cannot express. `backwards` fill on the enter animation matches the pager
+   * pair — consumers may also set `animation-delay` inline, and without it a
+   * delayed enter paints at rest, then snaps to the `from` frame. */
+  --animate-spore-enter-presence: spore-enter-presence 200ms ease-out backwards;
+  --animate-spore-exit-presence: spore-exit-presence 200ms ease-out forwards;
+
+  @keyframes spore-enter-presence {
+    from {
+      opacity: var(--spore-presence-enter-opacity, 0);
+      transform: translate(var(--spore-presence-enter-x, 0px), var(--spore-presence-enter-y, 0px))
+        scale(var(--spore-presence-enter-scale, 1));
+    }
+  }
+
+  @keyframes spore-exit-presence {
+    to {
+      opacity: var(--spore-presence-exit-opacity, 0);
+      transform: translate(var(--spore-presence-exit-x, 0px), var(--spore-presence-exit-y, 0px))
+        scale(var(--spore-presence-exit-scale, 1));
+    }
+  }
+}
+
+/* `Presence` (the mycelium package's presence primitive) sets
+ * `data-presence-skip-enter` while `initial={false}` suppresses a child's
+ * enter animation. An enter class can reach the node either as a literal
+ * className token (Presence strips that one directly) or composed downstream
+ * from a compat animation preset prop, invisible to that string check — this
+ * rule suppresses the animation at the DOM node either way.
+ * `data-presence-skip-enter` is set once and never removed, so it's still
+ * present once the node starts exiting — the rule must keep composing
+ * correctly with `data-exiting` for every combination:
+ *   - not exiting: always suppress the enter animation (the point of the
+ *     attribute).
+ *   - exiting, node also carries an exit-preset class (an enter+exit pair —
+ *     e.g. `ENTER_EXIT_PRESET_CLASSES`): let the exit animation take over.
+ *     The exit utility is already `[data-exiting]`-gated and, once active,
+ *     out-specifies the bare enter utility on its own — this rule only needs
+ *     to step out of the way, which the `[class*='animate-spore-exit-']`
+ *     clause in the `:not()` below does by making the whole selector stop
+ *     matching once both conditions hold.
+ *   - exiting, no exit-preset class at all (an enter-only child, no exit
+ *     lane): nothing else would suppress the enter animation — a bare
+ *     `:not([data-exiting])` scope would lift the suppression here and replay
+ *     the entrance instead of just disappearing, since the enter utility is
+ *     unconditional. The `:not()` below requires an exit-preset class too, so
+ *     it stays inert for this case and the suppression holds. */
+[data-presence-skip-enter][class*='animate-spore-enter-']:not([data-exiting][class*='animate-spore-exit-']) {
+  animation: none;
+}

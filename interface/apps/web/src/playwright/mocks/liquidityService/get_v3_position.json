@@ -1,0 +1,35 @@
+{
+  "position": {
+    "version": "V3",
+    "chainId": 1,
+    "owner": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "tokenId": "1028438",
+    "poolAddressOrId": "0x4e68Ccd3E89f51C3074ca5072bbAC773960dFa36",
+    "feeTier": 3000,
+    "tickLower": -887220,
+    "tickUpper": 887220,
+    "liquidity": "19174256010",
+    "status": "POSITION_STATUS_OPEN",
+    "token0Address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "token0Metadata": {
+      "symbol": "WETH",
+      "name": "Wrapped Ether",
+      "decimals": 18
+    },
+    "token1Address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "token1Metadata": {
+      "symbol": "USDT",
+      "name": "Tether USD",
+      "decimals": 6
+    },
+    "tickSpacing": 60,
+    "currentTick": -197193,
+    "sqrtPriceX96": "4141011630178333122154791",
+    "poolLiquidity": "4536242417127920644",
+    "amount0": "366852645421082",
+    "amount1": "1002179",
+    "token0UncollectedFees": "1416885760909",
+    "token1UncollectedFees": "5168",
+    "totalApr": 39.32764615107966
+  }
+}

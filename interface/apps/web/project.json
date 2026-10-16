@@ -1,0 +1,348 @@
+{
+  "root": "apps/web",
+  "sourceRoot": "apps/web/src",
+  "projectType": "application",
+  "tags": ["scope:web", "type:app"],
+  "targets": {
+    "ajv": {
+      "command": "bun run scripts/compile-ajv-validators.js",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": ["{projectRoot}/scripts/compile-ajv-validators.js", "{projectRoot}/package.json"],
+      "outputs": ["{projectRoot}/src/utils/__generated__"]
+    },
+    "analyze": {
+      "command": "source-map-explorer 'build/client/assets/*.js' --no-border-checks --gzip",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "anvil:base": {
+      "command": "dotenv -- ./scripts/start-anvil.sh base",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "continuous": true
+    },
+    "anvil:mainnet": {
+      "command": "dotenv -- ./scripts/start-anvil.sh mainnet",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "continuous": true
+    },
+    "build": {
+      "command": "echo 'Specify an environment, e.g. nx build web -c production' && exit 1",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare", "config:pull"],
+      "defaultConfiguration": "production",
+      "cache": true,
+      "inputs": ["production", "^production", "!{projectRoot}/build"],
+      "outputs": ["{projectRoot}/build"],
+      "configurations": {
+        "production": {
+          "command": "NODE_OPTIONS=\"--max-old-space-size=$([ -n \\\"$GITHUB_ACTIONS\\\" ] && echo 32768 || echo 16384)\" vite build"
+        },
+        "staging": {
+          "command": "NODE_OPTIONS=\"--max-old-space-size=$([ -n \\\"$GITHUB_ACTIONS\\\" ] && echo 32768 || echo 16384)\" ENABLE_ENTRY_GATEWAY_PROXY=true vite build --mode staging"
+        },
+        "e2e": {
+          "command": "SKIP_CSP=1 IS_E2E_TEST=true DISABLE_SOURCEMAP=true NODE_OPTIONS=\"--max-old-space-size=$([ -n \\\"$GITHUB_ACTIONS\\\" ] && echo 32768 || echo 16384)\" vite build"
+        },
+        "vercel": {
+          "command": "ENABLE_ENTRY_GATEWAY_PROXY=true NODE_OPTIONS=\"--max-old-space-size=$([ -n \\\"$GITHUB_ACTIONS\\\" ] && echo 32768 || echo 16384)\" DISABLE_SOURCEMAP=true DEPLOY_TARGET=vercel vite build --mode staging && DEPLOY_TARGET=vercel vite build -c vite.server.config.mts && bun scripts/build-vercel.ts"
+        },
+        "ecs": {
+          "command": "NODE_OPTIONS=\"--max-old-space-size=$([ -n \\\"$GITHUB_ACTIONS\\\" ] && echo 32768 || echo 16384)\" DEPLOY_TARGET=ecs vite build --mode ${VITE_MODE:-staging} && DEPLOY_TARGET=ecs vite build -c vite.server.config.mts"
+        },
+        "ipfs": {
+          "command": "NODE_OPTIONS=\"--max-old-space-size=$([ -n \\\"$GITHUB_ACTIONS\\\" ] && echo 32768 || echo 16384)\" DISABLE_SOURCEMAP=true DEPLOY_TARGET=ipfs vite build"
+        }
+      }
+    },
+    "check": {},
+    "check:client-build": {
+      "command": "bun ./scripts/check-client-build.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check:deps:usage": {},
+    "check:fast": {},
+    "config:pull": {
+      "command": "if [ \"$SKIP_CONFIG_PULL\" != \"true\" ]; then bun config:pull web --env \"${CONFIG_ENV:-development}\" --soft; fi",
+      "options": { "cwd": "{workspaceRoot}" },
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {},
+        "staging": { "env": { "CONFIG_ENV": "staging" } },
+        "production": { "env": { "CONFIG_ENV": "production" } },
+        "e2e": { "env": { "CONFIG_ENV": "staging" } },
+        "vercel": { "env": { "CONFIG_ENV": "staging" } },
+        "ecs": { "env": { "SKIP_CONFIG_PULL": "true" } },
+        "ipfs": { "env": { "CONFIG_ENV": "production" } }
+      }
+    },
+    "deduplicate": {
+      "command": "echo 'Bun automatically deduplicates dependencies'",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "dev": {
+      "command": "vite dev",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare", "config:pull"]
+    },
+    "dev:e2e": {
+      "command": "SKIP_CSP=1 IS_E2E_TEST=true vite dev",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "continuous": true,
+      "dependsOn": ["^prepare", "prepare", "config:pull"]
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx playwright:test web",
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["preview", "wait-for-webserver"],
+      "configurations": { "e2e": {} }
+    },
+    "e2e:anvil": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx playwright:test:anvil web",
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["preview", "wait-for-webserver"],
+      "configurations": { "e2e": {} }
+    },
+    "e2e:dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx playwright:test web",
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["dev:e2e", "wait-for-webserver"]
+    },
+    "e2e:no-anvil": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx playwright:test:no-anvil web",
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["preview", "wait-for-webserver"],
+      "configurations": { "e2e": {} }
+    },
+    "find:unused": {
+      "command": "bash scripts/delete-unused-assets.sh",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "format": {},
+    "format:check": {},
+    "graphql:generate": {
+      "command": "echo 'GraphQL generation handled by uniswap package'",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "lint": {},
+    "lint:fix": {},
+    "lint:oxlint": {},
+    "lint:oxlint:fast": {},
+    "lint:oxlint:fix": {},
+    "playwright:test": {
+      "command": "playwright test",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "playwright:test:anvil": {
+      "command": "playwright test --grep '\\.anvil\\.'",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "playwright:test:no-anvil": {
+      "command": "playwright test --grep-invert '\\.anvil\\.'",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prepare": {
+      "executor": "nx:noop",
+      "dependsOn": ["ajv"]
+    },
+    "preview": {
+      "command": "vite preview --port 3000 --outDir build/client",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "continuous": true,
+      "dependsOn": ["build"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "production": {},
+        "staging": {},
+        "e2e": {
+          "command": "SKIP_CSP=1 DISABLE_SOURCEMAP=true vite preview --port 3000 --outDir build/client"
+        }
+      }
+    },
+    "preview:e2e:no-build": {
+      "command": "SKIP_CSP=1 DISABLE_SOURCEMAP=true vite preview --port 3000 --outDir build/client",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "continuous": true
+    },
+    "sitemap:generate": {
+      "command": "bun run scripts/generate-sitemap.js",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": ["sourceFiles"],
+      "outputs": [
+        "{projectRoot}/public/sitemap.xml",
+        "{projectRoot}/public/app-sitemap.xml",
+        "{projectRoot}/public/tokens-sitemap.xml",
+        "{projectRoot}/public/pools-sitemap.xml",
+        "{projectRoot}/public/nfts-sitemap.xml"
+      ]
+    },
+    "snapshots": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest run -u",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "start": {
+      "command": "vite dev",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare", "config:pull"],
+      "continuous": true
+    },
+    "storybook:build": {
+      "command": "storybook build",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"],
+      "cache": true,
+      "inputs": ["storybookFiles", "^storybookFiles", "!{projectRoot}/storybook-static"],
+      "outputs": ["{projectRoot}/storybook-static"]
+    },
+    "storybook:run": {
+      "command": "storybook dev -p 6006",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "storybook:run:with-tests": {
+      "command": "concurrently -s second -n \"SB RUN,SB TEST WATCH\" -c \"magenta,blue\" \"bun run storybook:run --quiet\" \"wait-on tcp:127.0.0.1:6006 -t 600000 && bun run storybook:test --watch\"",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "storybook:test": {
+      "command": "test-storybook --excludeTags=\"no-tests\" --testTimeout 60000",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "storybook:test:standalone": {
+      "command": "concurrently -k -s first -n \"SB BUILD,SB TEST\" -c \"magenta,blue\" \"bun run storybook:build && http-server storybook-static --port 6006 --silent\" \"wait-on --timeout 600000 tcp:127.0.0.1:6006 && bun run storybook:test --maxWorkers=2\"",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"],
+      "cache": false
+    },
+    "test": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest run",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test:cloud": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest run functions --config functions/vitest.config.mts",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"]
+    },
+    "test:set1": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest run src/components",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"],
+      "inputs": ["sourceFiles", "^production", "{projectRoot}/**/*.test.*", "{projectRoot}/**/*.spec.*"],
+      "cache": true
+    },
+    "test:set2": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest run src/pages src/app/",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"],
+      "inputs": ["sourceFiles", "^production", "{projectRoot}/**/*.test.*", "{projectRoot}/**/*.spec.*"],
+      "cache": true
+    },
+    "test:set3": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest run src/hooks src/nft src/utils src/state src/features/Swap/state",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"],
+      "inputs": ["sourceFiles", "^production", "{projectRoot}/**/*.test.*", "{projectRoot}/**/*.spec.*"],
+      "cache": true
+    },
+    "test:set4": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest run src vite --exclude 'src/components/**' --exclude 'src/pages/**' --exclude 'src/app/**' --exclude 'src/state/**' --exclude 'src/features/Swap/state/**' --exclude 'src/hooks/**' --exclude 'src/nft/**' --exclude 'src/utils/**'",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare"],
+      "inputs": ["sourceFiles", "^production", "{projectRoot}/**/*.test.*", "{projectRoot}/**/*.spec.*"],
+      "cache": true
+    },
+    "test:watch": {
+      "command": "NODE_OPTIONS='--no-deprecation' vitest watch",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "typecheck": {
+      "dependsOn": ["prepare", "typecheck:cloud"]
+    },
+    "typecheck:cloud": {
+      "command": "tsc -p functions/tsconfig.json",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": ["{projectRoot}/functions/**/*.ts"]
+    },
+    "wait-for-webserver": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "wait-on http://localhost:3000 --timeout 120000 --interval 1000 --delay 5000"
+      }
+    }
+  }
+}

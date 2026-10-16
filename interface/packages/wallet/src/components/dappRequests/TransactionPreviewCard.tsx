@@ -1,0 +1,172 @@
+import { UniverseChainId } from '@universe/chains'
+import { Flex, Text, TouchableArea } from '@universe/mycelium'
+import { type ReactNode, useEffect, useMemo, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ContractInteraction, RotatableChevron } from 'ui/src/components/icons'
+import { TransactionRequestDetails } from 'uniswap/src/components/transactions/requests/TransactionRequestDetails'
+import { useBooleanState } from 'utilities/src/react/useBooleanState'
+import { ApprovalContractRow, type ApprovalContractInfo } from 'wallet/src/components/dappRequests/ApprovalContractRow'
+import { TransactionApprovingSection } from 'wallet/src/components/dappRequests/TransactionApprovingSection'
+import { TransactionDepositingSection } from 'wallet/src/components/dappRequests/TransactionDepositingSection'
+import { TransactionErrorSection } from 'wallet/src/components/dappRequests/TransactionErrorSection'
+import { TransactionReceivingSection } from 'wallet/src/components/dappRequests/TransactionReceivingSection'
+import { TransactionSendingSection } from 'wallet/src/components/dappRequests/TransactionSendingSection'
+import { TransactionWithdrawingSection } from 'wallet/src/components/dappRequests/TransactionWithdrawingSection'
+import {
+  type TransactionErrorType,
+  TransactionRiskLevel,
+  TransactionSection,
+  TransactionSectionType,
+} from 'wallet/src/features/dappRequests/types'
+
+interface TransactionPreviewCardProps {
+  sections?: TransactionSection[]
+  riskLevel: TransactionRiskLevel
+  // Transaction details
+  functionName?: string
+  contractName?: string
+  contractAddress?: string
+  rawData?: string
+  chainId: UniverseChainId
+  errorType?: TransactionErrorType
+  /** Spender contract pinned as an always-visible "Contract" row (approvals) */
+  approvalContract?: ApprovalContractInfo
+  // Custom content for signatures or other use cases
+  children?: ReactNode
+}
+
+export function TransactionPreviewCard({
+  sections = [],
+  riskLevel,
+  functionName,
+  contractName,
+  contractAddress,
+  rawData,
+  chainId,
+  errorType,
+  approvalContract,
+  children,
+}: TransactionPreviewCardProps): JSX.Element {
+  const { t } = useTranslation()
+
+  // State management - auto-expands when errorType is present
+  const { value: isDetailsExpanded, toggle: toggleDetails, setTrue: expandDetails } = useBooleanState(false)
+
+  // Track if we've already auto-expanded for an error
+  const hasAutoExpandedRef = useRef(false)
+
+  // Auto-expand details when error first appears
+  useEffect(() => {
+    if (errorType && !hasAutoExpandedRef.current) {
+      expandDetails()
+      hasAutoExpandedRef.current = true
+    }
+  }, [errorType, expandDetails])
+
+  // Determine border color based on risk level
+  const borderColor = useMemo(
+    () =>
+      riskLevel === TransactionRiskLevel.Critical
+        ? '$statusCritical'
+        : riskLevel === TransactionRiskLevel.Warning
+          ? '$statusWarning'
+          : '$surface3',
+    [riskLevel],
+  )
+
+  // The pinned contract row replaces the contract line inside the expandable details
+  const detailsContractName = approvalContract ? undefined : contractName
+  const hasDetails = Boolean(functionName || detailsContractName || rawData)
+  const showDetailsButton = hasDetails
+
+  // Sort sections: Approving first, then Earn (deposit/withdraw), then Sending, then Receiving
+  const sortedSections = useMemo(() => {
+    const order = {
+      [TransactionSectionType.Approving]: 0,
+      [TransactionSectionType.Depositing]: 1,
+      [TransactionSectionType.Withdrawing]: 1,
+      [TransactionSectionType.Sending]: 2,
+      [TransactionSectionType.Receiving]: 3,
+    }
+    return [...sections].sort((a, b) => order[a.type] - order[b.type])
+  }, [sections])
+
+  return (
+    <Flex
+      backgroundColor="$surface2"
+      borderColor={borderColor}
+      borderWidth="$spacing1"
+      borderRadius="$rounded16"
+      overflow="hidden"
+    >
+      <Flex gap="$spacing12" pb="$spacing12" pt="$spacing16">
+        {errorType && <TransactionErrorSection errorType={errorType} />}
+
+        {sortedSections.map((section, index) => (
+          <Flex key={`section-${section.type}-${index}`} mt={index > 0 ? '$spacing12' : undefined}>
+            {renderSection(section, riskLevel)}
+          </Flex>
+        ))}
+
+        {children}
+
+        {approvalContract && (
+          <Flex>
+            <Flex height={1} backgroundColor="$surface3" mb="$spacing12" />
+            <ApprovalContractRow contract={approvalContract} chainId={chainId} />
+          </Flex>
+        )}
+
+        {showDetailsButton && (
+          <Flex>
+            <Flex height={1} backgroundColor="$surface3" mb="$spacing12" />
+
+            <TouchableArea onPress={toggleDetails}>
+              <Flex row alignItems="center" justifyContent="space-between" px="$spacing16">
+                <Flex row gap="$spacing8" alignItems="center">
+                  <ContractInteraction color="$neutral2" size="$icon.16" />
+                  <Text color="$neutral2" variant="buttonLabel3">
+                    {isDetailsExpanded ? t('dapp.transaction.details.hide') : t('common.button.viewDetails')}
+                  </Text>
+                </Flex>
+                <RotatableChevron color="$neutral2" direction={isDetailsExpanded ? 'up' : 'down'} size="$icon.12" />
+              </Flex>
+            </TouchableArea>
+
+            {isDetailsExpanded && (
+              <Flex pt="$spacing12" px="$spacing16">
+                <TransactionRequestDetails
+                  functionName={functionName}
+                  contractName={detailsContractName}
+                  contractAddress={contractAddress}
+                  rawData={rawData}
+                  chainId={chainId}
+                  valueColor={riskLevel === TransactionRiskLevel.Warning ? '$statusWarning' : '$neutral1'}
+                />
+              </Flex>
+            )}
+          </Flex>
+        )}
+      </Flex>
+    </Flex>
+  )
+}
+
+/**
+ * Renders the appropriate section component for a given section type
+ */
+function renderSection(section: TransactionSection, riskLevel: TransactionRiskLevel): JSX.Element {
+  switch (section.type) {
+    case TransactionSectionType.Receiving:
+      return <TransactionReceivingSection assets={section.assets} riskLevel={riskLevel} />
+    case TransactionSectionType.Approving:
+      return <TransactionApprovingSection assets={section.assets} riskLevel={riskLevel} />
+    case TransactionSectionType.Depositing:
+      return <TransactionDepositingSection assets={section.assets} apyPercent={section.apyPercent} />
+    case TransactionSectionType.Withdrawing:
+      return <TransactionWithdrawingSection assets={section.assets} />
+    case TransactionSectionType.Sending:
+    default:
+      return <TransactionSendingSection assets={section.assets} riskLevel={riskLevel} />
+  }
+}

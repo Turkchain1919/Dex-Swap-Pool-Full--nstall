@@ -1,0 +1,161 @@
+import { SharedEventName } from '@uniswap/analytics-events'
+import { useEffect, useMemo, useState } from 'react'
+import { RwaTokenOption } from 'uniswap/src/components/lists/items/types'
+import { OnchainItemSectionName } from 'uniswap/src/components/lists/OnchainItemList/types'
+import { WarningSeverity } from 'uniswap/src/components/modals/WarningModal/types'
+import { OnSelectRwaToken } from 'uniswap/src/components/TokenSelector/types'
+import { CurrencyInfo } from 'uniswap/src/features/dataApi/types'
+import { ElementName } from 'uniswap/src/features/telemetry/constants'
+import { sendAnalyticsEvent } from 'uniswap/src/features/telemetry/send'
+import { useCurrencyInfos, useCurrencyInfoWithLoading } from 'uniswap/src/features/tokens/useCurrencyInfo'
+import { getTokenProtectionWarning, getTokenWarningSeverity } from 'uniswap/src/features/tokens/warnings/safetyUtils'
+import { useDismissedTokenWarnings } from 'uniswap/src/features/tokens/warnings/slice/hooks'
+import TokenWarningModal from 'uniswap/src/features/tokens/warnings/TokenWarningModal'
+import { buildCurrencyId } from 'uniswap/src/utils/currencyId'
+import { useEvent } from 'utilities/src/react/hooks'
+import { ONE_SECOND_MS } from 'utilities/src/time/time'
+
+// If the token query hangs past this, stop waiting and fail open (select without a warning).
+const PENDING_FETCH_TIMEOUT_MS = 3 * ONE_SECOND_MS
+
+/** Stable per-token key shared by the section rows and the hook's `pendingTokenKey`. */
+export function getStockKey(option: RwaTokenOption): string {
+  return `${option.chainId}-${option.address}`
+}
+
+/**
+ * Section-level selection logic for the Stocks row. Any tile/pill bubbles its tap here; the same `TokenWarningModal`
+ * the vertical rows use is hosted once for the whole section and shown before the selection commits.
+ *
+ * Intentionally narrower than the vertical rows: only the token-protection warning is handled, not the
+ * `BridgedAssetModal` path — stocks aren't bridged assets.
+ */
+export function useStocksSelectionWithWarning({
+  tokens,
+  onSelectRwaToken,
+  showTokenWarnings,
+}: {
+  tokens: RwaTokenOption[]
+  onSelectRwaToken: OnSelectRwaToken
+  showTokenWarnings: boolean
+}): {
+  onPressStock: (option: RwaTokenOption) => void
+  /** `getStockKey` of the tapped option while its token query is in flight, so the tile can show a pending state. */
+  pendingTokenKey: string | null
+  warningModal: JSX.Element | null
+} {
+  const [pendingOption, setPendingOption] = useState<RwaTokenOption | null>(null)
+
+  // One batched `GetTokens` query for the whole row. React Query has no normalized cache, so this can't warm the
+  // per-tap `GetToken` entry below (different query key); instead the tapped option is read straight out of this
+  // positional result, so a tap after it resolves commits with no pending gap.
+  const prefetchCurrencyIds = useMemo(
+    () => tokens.map((option) => buildCurrencyId(option.chainId, option.address)),
+    [tokens],
+  )
+  const prefetchedCurrencyInfos = useCurrencyInfos(prefetchCurrencyIds, { skip: !showTokenWarnings })
+  const pendingIndex = pendingOption
+    ? tokens.findIndex((option) => getStockKey(option) === getStockKey(pendingOption))
+    : -1
+  const prefetchedCurrencyInfo = pendingIndex >= 0 ? prefetchedCurrencyInfos[pendingIndex] : undefined
+
+  // Fallback for a tap before the batch resolves (or a token it didn't return): undefined currencyId skips the query,
+  // so nothing is fetched until it's needed. cache-first makes a repeat tap instant.
+  const currencyId =
+    pendingOption && !prefetchedCurrencyInfo ? buildCurrencyId(pendingOption.chainId, pendingOption.address) : undefined
+  const { data: fetchedCurrencyInfo, isLoading } = useCurrencyInfoWithLoading(currencyId)
+  const currencyInfo = prefetchedCurrencyInfo ?? fetchedCurrencyInfo
+
+  const [fetchTimedOut, setFetchTimedOut] = useState(false)
+  useEffect(() => {
+    setFetchTimedOut(false)
+    if (!pendingOption || !isLoading) {
+      return undefined
+    }
+    const timer = setTimeout(() => setFetchTimedOut(true), PENDING_FETCH_TIMEOUT_MS)
+    return () => clearTimeout(timer)
+  }, [pendingOption, isLoading])
+  const isFetching = isLoading && !fetchTimedOut
+
+  const severity = getTokenWarningSeverity(currencyInfo)
+  const tokenProtectionWarning = getTokenProtectionWarning(currencyInfo)
+  const { tokenWarningDismissed } = useDismissedTokenWarnings(currencyInfo?.currency, tokenProtectionWarning)
+
+  const isBlocked = severity === WarningSeverity.Blocked
+  const shouldShowWarningModal = isBlocked || (severity !== WarningSeverity.None && !tokenWarningDismissed)
+
+  const selectionContext = useEvent((option: RwaTokenOption): Parameters<OnSelectRwaToken>[1] => ({
+    sectionKey: OnchainItemSectionName.Stocks,
+    position: tokens.findIndex((candidate) => getStockKey(candidate) === getStockKey(option)) + 1,
+    suggestionCount: tokens.length,
+  }))
+
+  const commitSelection = useEvent(() => {
+    const option = pendingOption
+    setPendingOption(null)
+    if (option) {
+      onSelectRwaToken(option, selectionContext(option))
+    }
+  })
+
+  const cancelSelection = useEvent(() => setPendingOption(null))
+
+  const onPressStock = useEvent((option: RwaTokenOption) => {
+    const context = selectionContext(option)
+    // The press is logged separately from the selection because a warning modal can be cancelled in between, so
+    // the shelf's tap count and its selection count legitimately differ.
+    sendAnalyticsEvent(SharedEventName.ELEMENT_CLICKED, {
+      element: ElementName.TokenSelectorStocksShelfTile,
+      token_address: option.address,
+      token_symbol: option.symbol,
+      chain_id: option.chainId,
+    })
+    // Warnings gated off (e.g. Send flow) → select immediately, matching the vertical-row behavior.
+    if (!showTokenWarnings) {
+      onSelectRwaToken(option, context)
+      return
+    }
+    setPendingOption(option)
+  })
+
+  // Selection is deferred until the token query resolves. A failed fetch (timeout, error, or empty result) fails
+  // open — select with no warning rather than warn on fabricated data. Explicit product choice.
+  useEffect(() => {
+    if (!pendingOption || isFetching) {
+      return
+    }
+    if (!currencyInfo || !shouldShowWarningModal) {
+      commitSelection()
+    }
+  }, [pendingOption, isFetching, currencyInfo, shouldShowWarningModal, commitSelection])
+
+  const isModalVisible = Boolean(pendingOption && !isFetching && shouldShowWarningModal && currencyInfo)
+
+  // Keep the modal mounted with the last-shown info while it animates closed (matching TokenSelectorList), instead
+  // of unmounting it the moment the pending option clears.
+  const [displayedCurrencyInfo, setDisplayedCurrencyInfo] = useState<CurrencyInfo | null>(null)
+  useEffect(() => {
+    if (isModalVisible && currencyInfo) {
+      setDisplayedCurrencyInfo(currencyInfo)
+    }
+  }, [isModalVisible, currencyInfo])
+
+  // Stable element identity lets React bail out of re-rendering the mounted modal on unrelated section renders
+  // (pending-tile flips, dismissal-store changes).
+  const warningModal = useMemo(
+    () =>
+      displayedCurrencyInfo ? (
+        <TokenWarningModal
+          currencyInfo0={displayedCurrencyInfo}
+          isVisible={isModalVisible}
+          closeModalOnly={cancelSelection}
+          onAcknowledge={commitSelection}
+        />
+      ) : null,
+    [displayedCurrencyInfo, isModalVisible, cancelSelection, commitSelection],
+  )
+
+  const pendingTokenKey = pendingOption ? getStockKey(pendingOption) : null
+
+  return { onPressStock, pendingTokenKey, warningModal }
+}

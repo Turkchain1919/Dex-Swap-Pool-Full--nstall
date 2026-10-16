@@ -1,0 +1,201 @@
+# Korean (ko-KR) glossary.
+#
+# Verbatim from the Notion "style guide: Korean" term table. Authoritative team
+# source. Korean uses hangul phonetic transliteration for most crypto loanwords
+# (지갑 is native; 스왑/슬리피지/언랩 are transliterations). Core DNT brand terms
+# are inherited from ../core/crypto.yml.
+#
+# Voice (polite 높임말, -니다) lives in ../../style/locales/ko-KR.md.
+# NOTE: the Notion guide transliterates Uniswap → 유니스왑 in running Korean text,
+# which conflicts with the core do-not-translate rule for the brand name. NOT
+# enforced here — flagged for brand/legal review before overriding the core DNT.
+
+- term: wallet
+  preferred: { ko-KR: "지갑" }
+
+- term: smart wallet
+  preferred: { ko-KR: "스마트 월렛" }
+
+- term: token
+  preferred: { ko-KR: "토큰" }
+
+- term: transaction
+  preferred: { ko-KR: "트랜잭션" }
+  description: Transaction includes more than trades (also approve, etc.), so prefer 트랜잭션 over 거래.
+
+- term: network cost
+  preferred: { ko-KR: "네트워크 수수료" }
+
+- term: fee
+  preferred: { ko-KR: "수수료" }
+
+- term: crypto
+  preferred: { ko-KR: "암호화폐" }
+  description: Not 가상자산. 크립토 is for experts only, not general users.
+  forbidden: { ko-KR: ["가상자산"] }
+
+- term: cryptocurrency
+  preferred: { ko-KR: "암호화폐" }
+
+- term: market cap
+  preferred: { ko-KR: "시가총액" }
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym (total value locked).
+
+- term: seed phrase
+  preferred: { ko-KR: "시드 문구" }
+
+- term: recovery phrase
+  preferred: { ko-KR: "복구 문구" }
+
+- term: backup
+  preferred: { ko-KR: "백업" }
+
+- term: smart contract
+  preferred: { ko-KR: "스마트 컨트랙트" }
+  description: Older content also uses 스마트 계약; prefer 스마트 컨트랙트.
+
+- term: wrap
+  preferred: { ko-KR: "랩" }
+  description: wrapped → 랩드.
+
+- term: unwrap
+  preferred: { ko-KR: "언랩" }
+
+- term: swap
+  preferred: { ko-KR: "스왑" }
+
+- term: mint
+  preferred: { ko-KR: "민트" }
+  description: minting → 민팅.
+
+- term: slippage
+  preferred: { ko-KR: "슬리피지" }
+
+- term: max slippage
+  preferred: { ko-KR: "최대 슬리피지" }
+
+- term: function
+  preferred: { ko-KR: "기능" }
+  description: >
+    Ambiguous — can be 함수 (math/code function) or 기능 (feature). On the dapp transaction-
+    request screen it is the contract function; if "contract" is rendered 컨트랙트, match
+    pronunciation with 펑션.
+
+- term: trade
+  preferred: { ko-KR: "거래" }
+
+- term: transaction history
+  preferred: { ko-KR: "트랜잭션 내역" }
+
+- term: explore
+  preferred: { ko-KR: "탐색" }
+
+- term: extension
+  preferred: { ko-KR: "확장 프로그램" }
+  description: Google's official Korean term for browser extensions (익스텐션 also fine phonetically).
+
+- term: revoke
+  preferred: { ko-KR: "승인 취소" }
+
+- term: approval
+  preferred: { ko-KR: "승인" }
+
+- term: confirm
+  preferred: { ko-KR: "확인" }
+
+- term: rate
+  preferred: { ko-KR: "비율" }
+
+- term: pair
+  preferred: { ko-KR: "페어" }
+
+- term: activity
+  preferred: { ko-KR: "활동" }
+
+- term: limits
+  preferred: { ko-KR: "제한" }
+
+- term: trustless
+  preferred: { ko-KR: "무신뢰성" }
+  description: For longer text containers, 완전히 신뢰할 수 있는 is more precise.
+
+- term: sweep
+  preferred: { ko-KR: "스윕" }
+
+- term: passkey
+  preferred: { ko-KR: "패스키" }
+  forbidden: { ko-KR: ["passkey"] }
+  description: Apple's Korean term for passkey. Verify with native reviewer.
+
+- term: private keys
+  preferred: { ko-KR: "개인 키" }
+  description: Standard ko-KR term for private keys (coverage fill, audit 2026-06-23).
+
+- term: onchain
+  preferred: { ko-KR: "온체인" }
+  forbidden: { ko-KR: ["onchain", "on-chain"] }
+  description: >
+    Re-scoped from core/crypto.yml (2026-07-01): a blanket core DNT rule
+    wrongly forced English "onchain" into ko-KR, where the hangul
+    transliteration 온체인 is correct and far more readable for an
+    app-store audience. Forbidden catches the bare English so this
+    regression can't recur.
+
+# --- Earn / yield domain (TLM native review, 2026-07-28) ---
+- term: withdraw
+  preferred: { ko-KR: "출금" }
+  partOfSpeech: verb
+  termType: action
+  status: native-ratified
+  description: >
+    Fund withdrawal is 출금 — the standard banking/exchange term users expect
+    (e.g. "언제든지 출금할 수 있습니다"). 회수 means recover/retrieve and must
+    NOT be used for user fund withdrawal; current shipped Earn strings use it
+    (app-side fix ticketed). 회수 is deliberately NOT a forbidden scan — it is
+    the correct rendering for genuine recover/retrieve senses (cf. the fr-FR
+    wallet/portefeuille precedent); withdraw-context drift is caught by the
+    reviewer and the term-inconsistency linter. TLM native review
+    (Thomas Osmonson, 2026-07-28).
+
+- term: yield
+  preferred: { ko-KR: "수익" }
+  partOfSpeech: noun
+  termType: amount
+  status: draft
+  description: >
+    수익 is the working noun for earn/yield copy. Draft because the final
+    framing tracks the cross-locale legal/product decision on yield vs
+    earnings/rewards vs profit (see the core yield note). (TLM review +
+    second native review, 2026-07-28.)
+
+- term: Start Earning
+  preferred: { ko-KR: "수익 얻기" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  forbidden: { ko-KR: ["수익 창출 시작"] }
+  description: >
+    Earn CTA register — prefer verb-light UI forms: 수익 얻기, or 지금
+    시작하기 when the headline already carries the benefit. Avoid noun-heavy
+    corporate forms like 수익 창출 시작(하기); the forbidden scan catches
+    both the bare and -하기 variants via the shared prefix. Provenance:
+    native review r3 (2026-07-28), endorsed by TLM.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: Limit
+  preferred: { ko-KR: "지정가" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — 지정가 is the
+    established Korean financial term for a limit order (지정가 주문), NOT a
+    literal verb meaning "restrict" (제한). TLM ruling (2026-07-30); pending
+    native confirmation.

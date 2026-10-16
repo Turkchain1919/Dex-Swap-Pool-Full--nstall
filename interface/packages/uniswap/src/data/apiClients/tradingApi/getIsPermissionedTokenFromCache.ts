@@ -1,0 +1,97 @@
+import type { QueryClient } from '@tanstack/react-query'
+import { V1_TRADING_API_PATHS, type CheckPermissionsResponse } from '@universe/api'
+import { normalizeTokenAddressForCache } from '@universe/chains'
+import { hasKnownPermissionedToken } from 'uniswap/src/data/apiClients/tradingApi/permissionedTokenStatusCache'
+import { ReactQueryCacheKey } from 'utilities/src/reactQuery/cache'
+
+// Answers "is any of these tokens a permissioned token on this chain?" synchronously, without
+// issuing a network request, so the trading API header builder can pick the Universal Router
+// version (permissioned pools require a different version than standard pools). Two sources are
+// checked: the persistent "known permissioned tokens" cache, which survives reloads so a token
+// confirmed permissioned earlier is recognised on the very first quote, and the live
+// `/permissions` results populated by `useCheckPermissionsQuery` in the current session.
+//
+// Fails closed (returns false) when neither source knows yet, the header builder then uses the
+// default version, which is correct: we only override when we positively know a token is
+// permissioned.
+export function getIsPermissionedTokenFromCache({
+  queryClient,
+  tokenAddresses,
+  chainId,
+}: {
+  queryClient: QueryClient
+  tokenAddresses: (string | undefined)[]
+  chainId: number | undefined
+}): boolean {
+  return getIsPermissionedStatusFromCache({ queryClient, tokenAddresses, chainId }) === true
+}
+
+/**
+ * Tri-state variant for analytics, where `false` must mean "resolved and not permissioned",
+ * never "not known yet":
+ * - `true`: at least one token is confirmed permissioned
+ * - `false`: every token has a resolved `/permissions` answer and none is permissioned
+ * - `undefined`: the cache can't answer yet (cold cache, missing chainId, no tokens)
+ */
+export function getIsPermissionedStatusFromCache({
+  queryClient,
+  tokenAddresses,
+  chainId,
+}: {
+  queryClient: QueryClient
+  tokenAddresses: (string | undefined)[]
+  chainId: number | undefined
+}): boolean | undefined {
+  if (!chainId) {
+    return undefined
+  }
+
+  const targets = new Set(
+    tokenAddresses.filter((address): address is string => !!address).map((a) => normalizeTokenAddressForCache(a)),
+  )
+  if (targets.size === 0) {
+    return undefined
+  }
+
+  // SHORT-TERM: a token previously confirmed permissioned is remembered across reloads,
+  // so the first quote can select UR 2.2.0 before the wallet-keyed `/permissions` query resolves.
+  // See `permissionedTokenStatusCache`. Falls through to the live results below on a cold cache.
+  if (hasKnownPermissionedToken({ queryClient, chainId, tokenAddresses: Array.from(targets) })) {
+    return true
+  }
+
+  // Prefix match on the `useCheckPermissionsQuery` key: [TradingApi, checkPermissions, params].
+  const entries = queryClient.getQueriesData<CheckPermissionsResponse>({
+    queryKey: [ReactQueryCacheKey.TradingApi, V1_TRADING_API_PATHS.checkPermissions],
+  })
+
+  const resolved = new Set<string>()
+  for (const [queryKey, data] of entries) {
+    if (!data || getChainIdFromPermissionsKey(queryKey) !== chainId) {
+      continue
+    }
+    for (const result of data.results) {
+      const token = normalizeTokenAddressForCache(result.token)
+      if (!targets.has(token)) {
+        continue
+      }
+      if (result.isPermissioned) {
+        return true
+      }
+      resolved.add(token)
+    }
+  }
+
+  return resolved.size === targets.size ? false : undefined
+}
+
+// The query params (with `chainId`) are the third element of the `useCheckPermissionsQuery`
+// key. Read defensively since the key is typed only as `unknown[]`.
+function getChainIdFromPermissionsKey(queryKey: readonly unknown[]): number | undefined {
+  const params = queryKey[2]
+  if (typeof params !== 'object' || params === null) {
+    return undefined
+  }
+  const chainId = (params as Record<string, unknown>)['chainId']
+  return typeof chainId === 'number' ? chainId : undefined
+}

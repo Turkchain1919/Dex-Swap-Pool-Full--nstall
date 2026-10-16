@@ -1,0 +1,153 @@
+import type { EnhancedStore, PreloadedState } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
+import {
+  RenderHookOptions,
+  RenderHookResult,
+  RenderOptions,
+  RenderResult,
+  render as RNRender,
+  renderHook as RNRenderHook,
+} from '@testing-library/react-native'
+import React, { PropsWithChildren } from 'react'
+import { UniswapProvider } from 'uniswap/src/contexts/UniswapContext'
+import { createMockFn } from 'uniswap/src/test/mockFn'
+import { mockUniswapContext } from 'uniswap/src/test/render'
+import { WalletNavigationContextState, WalletNavigationProvider } from 'wallet/src/contexts/WalletNavigationContext'
+import { NativeWalletProvider } from 'wallet/src/features/wallet/providers/NativeWalletProvider'
+import { SharedWalletProvider } from 'wallet/src/providers/SharedWalletProvider'
+import { WalletStateReducersOnly, walletRootReducer } from 'wallet/src/state/walletReducer'
+
+// This type extends the default options for render from RTL, as well
+// as allows the user to specify other things such as initialState, store.
+type ExtendedRenderOptions = RenderOptions & {
+  preloadedState?: PreloadedState<WalletStateReducersOnly>
+  store?: EnhancedStore<WalletStateReducersOnly>
+}
+
+const mockNavigationFunctions: WalletNavigationContextState = {
+  navigateToAccountActivityList: createMockFn(),
+  navigateToAccountTokenList: createMockFn(),
+  navigateToBuyOrReceiveWithEmptyWallet: createMockFn(),
+  navigateToExternalProfile: createMockFn(),
+  navigateToFiatOnRamp: createMockFn(),
+  navigateToNftDetails: createMockFn(),
+  navigateToSwapFlow: createMockFn(),
+  navigateToTokenDetails: createMockFn(),
+  navigateToReceive: createMockFn(),
+  navigateToSend: createMockFn(),
+  handleShareToken: createMockFn(),
+  navigateToPoolDetails: createMockFn(),
+  navigateToAdvancedSettings: createMockFn(),
+  navigateToEarnVault: createMockFn(),
+}
+
+/**
+ *
+ * @param ui Component to render
+ * @param resolvers Custom resolvers that override the default ones
+ * @param preloadedState and store
+ * @returns `ui` wrapped with providers
+ */
+export function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = configureStore({
+      reducer: walletRootReducer,
+      preloadedState,
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    }),
+    ...renderOptions
+  }: ExtendedRenderOptions = {},
+): RenderResult & {
+  store: EnhancedStore
+} {
+  function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
+    return (
+      <SharedWalletProvider reduxStore={store}>
+        <NativeWalletProvider>
+          <UniswapProvider {...mockUniswapContext}>
+            <WalletNavigationProvider {...mockNavigationFunctions}>{children}</WalletNavigationProvider>
+          </UniswapProvider>
+        </NativeWalletProvider>
+      </SharedWalletProvider>
+    )
+  }
+
+  // Return an object with the store and all of RTL's query functions
+  return { store, ...RNRender(ui, { wrapper: Wrapper, ...renderOptions }) }
+}
+
+// This type extends the default options for render from RTL, as well
+// as allows the user to specify other things such as initialState, store.
+type ExtendedRenderHookOptions<P> = RenderHookOptions<P> & {
+  preloadedState?: PreloadedState<WalletStateReducersOnly>
+  store?: EnhancedStore<WalletStateReducersOnly>
+}
+
+type RenderHookWithProvidersResult<R, P extends any[] | undefined = undefined> = Omit<
+  RenderHookResult<R, P>,
+  'rerender'
+> & {
+  store: EnhancedStore
+  rerender: P extends any[] ? (args: P) => void : () => void
+}
+
+// Don't require hookOptions if hook doesn't take any arguments
+export function renderHookWithProviders<R>(
+  hook: () => R,
+  hookOptions?: ExtendedRenderHookOptions<undefined>,
+): RenderHookWithProvidersResult<R>
+
+// Require hookOptions if hook takes arguments
+export function renderHookWithProviders<R, P extends any[]>(
+  hook: (...args: P) => R,
+  hookOptions: ExtendedRenderHookOptions<P>,
+): RenderHookWithProvidersResult<R, P>
+
+/**
+ *
+ * @param hook Hook to render
+ * @param resolvers Custom resolvers that override the default ones
+ * @param preloadedState and store
+ * @returns `hook` wrapped with providers
+ */
+export function renderHookWithProviders<P extends any[], R>(
+  hook: (...args: P) => R,
+  hookOptions?: ExtendedRenderHookOptions<P>,
+): RenderHookWithProvidersResult<R, P> {
+  const {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = configureStore({
+      reducer: walletRootReducer,
+      preloadedState,
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    }),
+    ...renderOptions
+  } = (hookOptions ?? {}) as ExtendedRenderHookOptions<P>
+
+  function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
+    return (
+      <SharedWalletProvider reduxStore={store}>
+        <NativeWalletProvider>{children}</NativeWalletProvider>
+      </SharedWalletProvider>
+    )
+  }
+
+  const options: RenderHookOptions<P> = {
+    wrapper: Wrapper,
+    ...(renderOptions as RenderHookOptions<P>),
+  }
+
+  // oxlint-disable-next-line typescript/no-unnecessary-condition
+  const { rerender, ...rest } = RNRenderHook<R, P>((args: P) => hook(...(args ?? [])), options)
+
+  // Return an object with the store and all of RTL's query functions
+  return {
+    store,
+    rerender: rerender as P extends any[] ? (args: P) => void : () => void,
+    ...rest,
+  }
+}

@@ -1,0 +1,376 @@
+# Core glossary — terms that apply across every locale.
+#
+# These are the do-not-translate (DNT) terms: brand names and terms-of-art
+# that ship in English everywhere. The DNT masker replaces them with
+# placeholders before the model sees the source and restores them after, so
+# they are mechanically impossible to mistranslate. The audit caught the
+# failure mode this prevents: "calldata" → "通话数据" (phone-call data),
+# NFT → "非同质化代币" (the formal academic expansion nobody in crypto says).
+#
+# Locale files add `preferred`/`forbidden` and per-locale DNT on top of these.
+
+- term: calldata
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: EVM transaction input data. Keep English in DeFi register — never translate literally.
+
+- term: NFT
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym. Do not expand to a formal academic term.
+
+- term: Uniswap
+  doNotTranslate: true
+  caseSensitive: true
+  description: Brand name. Never translate or transliterate.
+
+- term: Uniswap Labs
+  doNotTranslate: true
+  caseSensitive: true
+  description: Brand / entity name. Never translate.
+
+- term: Unichain
+  doNotTranslate: true
+  caseSensitive: true
+  description: Brand name (Uniswap's L2). Never translate.
+
+- term: Ethereum
+  doNotTranslate: true
+  caseSensitive: true
+  description: Protocol / network name. Keep as-is.
+
+- term: gas
+  doNotTranslate: true
+  partOfSpeech: noun
+  description: Network gas. Keep English term-of-art unless a locale explicitly overrides.
+
+# Product name (distinct from the generic noun "wallet", which each locale
+# localizes or keeps per its own glossary). The masker masks the longer phrase
+# first, so "Uniswap Wallet" stays intact as a unit while a bare "Uniswap" and a
+# bare "wallet" are handled by their own rules.
+- term: Uniswap Wallet
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    The product name. Keep English everywhere so the app is referred to
+    consistently in body copy across locales (audit found "In-App Wallet" and
+    "Uniswap Wallet" left English in some locales but localized in others). The
+    generic noun "wallet" is NOT covered by this entry.
+
+- term: In-App Wallet
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Product/feature name (the embedded wallet surfaced inside partner
+    integrations). Keep English everywhere for the same consistency reason as
+    "Uniswap Wallet" — the audit found it split English/localized across
+    locales. The generic noun "wallet" is NOT covered by this entry.
+
+- term: Uniswap Web App
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Product/feature name (the web surface at app.uniswap.org, distinct from
+    the mobile/extension "Uniswap Wallet"). Keep English everywhere — the
+    audit found it split English/localized across locales.
+
+# --- Earn-domain policy note (a context note, not a matching rule) ---
+# Description-only entry: it has no doNotTranslate/preferred/forbidden, so it
+# resolves as a glossary CONTEXT NOTE — carried into the translator/reviewer
+# prompts as policy guidance for every locale, but never masking or scanning.
+# Locale files overlay their own renderings per-attribute.
+
+- term: yield
+  partOfSpeech: noun
+  status: draft
+  description: >
+    Earn-domain financial-concept taxonomy (TLM ruling 2026-07-30, supersedes
+    the open 2026-07-28 framing question). These are distinct concepts making
+    materially different promises — never treat them as stylistic synonyms:
+    yield = the return RATE of an asset/strategy (APY, rate comparisons;
+    termType rate); earnings = the AMOUNT accrued to the user (balances,
+    dollar figures; termType amount); rewards = incentives distributed under
+    a rewards mechanism (emissions, campaigns) — only for actual reward
+    programs; profit = gain after costs — AVOID in marketing unless the
+    product truly calculates profit; interest = contractual interest — use
+    only where the product legally constitutes interest. Source-side
+    defaults: marketing "Earn on your crypto" / "Put your crypto to work";
+    explanatory "Earn yield"; rate display "APY" / "Estimated APY"; amount
+    display "Earnings". Legal/product chooses WHICH concept a feature may
+    claim; localization chooses the natural realization of that concept —
+    per-locale renderings live in the locale files. Still draft: legal has
+    not signed off feature-level claims.
+
+# --- Product-name DNT family (TLM ruling 2026-07-30, vendor-coverage triage 2026-07-31) ---
+# Same masker-ordering note as "Uniswap Wallet": longer phrases mask first, so
+# these stay intact as units while bare "Uniswap" is handled by its own rule.
+
+- term: Uniswap Interface
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Feeds the web app's SEO <title> tag (interface.metatags.title) — same
+    surface as "Uniswap Web App". 12/14 shipped locales already keep it
+    English or reorder only. Does NOT apply to interface.metatags.description,
+    which stays translated prose. TLM ruling (2026-07-30).
+
+- term: Uniswap Mobile
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Product name. Already unanimously English across all 14 shipped locales.
+    TLM ruling (2026-07-30).
+
+- term: Uniswap Extension
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Product name. Distinct from the generic noun "extension", which each
+    locale renders per its own glossary. TLM ruling (2026-07-30).
+
+- term: Trading API
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Marketed product (own landing card + docs subdomain). "API" is
+    protocol-technical and never translates. TLM ruling (2026-07-30).
+
+- term: UniswapX
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Brand name — completeness gap alongside Uniswap/Unichain; vendor and our
+    corpus already agree to keep it English.
+
+- term: Twitter
+  doNotTranslate: true
+  caseSensitive: true
+  forbidden: { fr-FR: ["X"], id-ID: ["X (Twitter)"] }
+  description: >
+    Follow source: en-US still says "Twitter" everywhere (zero "X"
+    occurrences). Vendor data rebranding to "X" ran ahead of source — the
+    forbidden scan catches that mechanically. Transliterations (推特/트위터/
+    Твиттер) are also off-policy: brand stays Latin. Revisit when the source
+    rebrands. TLM ruling (2026-07-30).
+
+- term: Touch ID
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Apple brand — Apple never localizes Touch ID/Face ID in any locale
+    (Face ID has no literal string: it interpolates from the OS at runtime).
+    TLM ruling (2026-07-30).
+
+- term: Windows Hello
+  doNotTranslate: true
+  caseSensitive: true
+  description: Microsoft brand — never localized. Same class as Touch ID.
+
+- term: Apple Pay
+  doNotTranslate: true
+  caseSensitive: true
+  description: Payment brand — Apple keeps it English in every market, including zh.
+
+- term: Google Pay
+  doNotTranslate: true
+  caseSensitive: true
+  description: Payment brand — same class as Apple Pay.
+
+- term: PayPal
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Payment brand. PayPal retired its Chinese 贝宝 branding — "PayPal"
+    everywhere (vendor shipped 贝宝).
+
+# --- Protocol / trading terms of art (TLM rulings + triage 2026-07-31) ---
+
+- term: Tick
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Uniswap's concentrated-liquidity price-grid primitive — a term of art,
+    same class as calldata. CJK/ru transliterate per their own strategies
+    (ティック/틱/Тик). Vendor's spelled-out gloss ("Variation minimale du
+    cours") is the NFT-expansion anti-pattern. TLM ruling (2026-07-30).
+
+- term: Timelock
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Governance/contract mechanism name. caseSensitive also catches the stray
+    lowercase occurrence the fr-FR audit found. TLM ruling (2026-07-30).
+
+- term: Time lock
+  doNotTranslate: true
+  caseSensitive: true
+  description: Two-word source spelling of Timelock — same rule, sibling surface form.
+
+- term: "{{number}} TVL"
+  doNotTranslate: true
+  termType: phrase
+  description: >
+    Number+unit-tag construction (same class as "1 j" / "1 h") — masking the
+    whole phrase pins the order so it can never become the possessive misread
+    "TVL de {{number}}". Qualifier COMPOUNDS are different and DO reorder per
+    locale ("v2 TVL" → "TVL v2", "Uniswap TVL" → "TVL Uniswap" — the ratified
+    code-QR pattern); those are not masked by this entry. TLM ruling
+    (2026-07-30). Follow-up: consolidate the 15 per-locale TVL acronym
+    entries into core.
+
+- term: bps
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Basis-points unit tag in chart labels ("{{value}} / bps"). Vendor's
+    "pt de base" (fr) is a nonstandard abbreviation of "points de base".
+
+- term: FDV
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: >
+    Fully-diluted valuation — stat-tile acronym, same class as TVL. Never
+    expand in labels (vendor's "Volledig verwaterde waardering (FDV)" broke
+    the tile).
+
+- term: MC
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: >
+    Market-cap abbreviation on space-constrained stat tiles ("{{value}} MC").
+    Same acronym-on-tile pattern as TVL/FDV.
+
+- term: bug bounty
+  doNotTranslate: true
+  description: >
+    Security-industry term — HackerOne/YesWeHack use it untranslated in
+    es/fr. 3 of 5 vendor renderings lost the bounty concept entirely
+    ("Chasse aux bogues" = bug hunt, "Pencarian bug" = bug search).
+
+- term: Spread
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Depth-chart bid-ask spread label. caseSensitive: the capitalized label is
+    the term of art (fr/nl/vi/fil/id already carry per-locale entries);
+    lowercase prose "spread" stays free to translate. Vendor false senses:
+    pt-PT "Distribuição", nl "Spreiden", es "Diferencia".
+
+- term: Flags
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    v4 hook permission flags (HookDetailsModal "Flags" row) — technical
+    bitfield, not banners or marks. caseSensitive so lowercase prose "flags"
+    stays free. All four vendor renderings were false senses.
+
+- term: Call data
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Two-word Title-Case UI surface form of calldata (see that entry). Three
+    locales' vendor data independently hit the phone-call false friend
+    (Données d'appel / Data panggilan / Data ng pagtawag).
+
+- term: vault
+  doNotTranslate: true
+  status: draft
+  description: >
+    ERC-4626 yield vault. Keep-English draft preserving the shipped corpus.
+    ⚠️ DISPUTED — fr "coffre-fort" / nl "kluis" were argued as accurate
+    metaphors (nl pool entry forbids fonds/bassin but not kluis); the counter
+    is they read as physical safes. Native ratification decides; until then
+    the mask preserves the status quo.
+
+# --- Multi-locale preferred renderings (vendor-coverage triage 2026-07-31) ---
+
+- term: "N/A"
+  caseSensitive: true
+  preferred: { fr-FR: "S/O", ja-JP: "該当なし", id-ID: "T/A", vi-VN: "Không áp dụng" }
+  description: >
+    Not-applicable placeholder localizes per locale convention (fr "sans
+    objet" abbreviation; vendor had these right). Only the listed locales
+    carry a rule — for the rest this entry resolves to nothing and the
+    source "N/A" passes through ungoverned.
+
+- term: Uniswap Preview
+  caseSensitive: true
+  preferred:
+    ru-RU: "Предварительная версия Uniswap"
+    nl-NL: "Uniswap-preview"
+    zh-CN: "Uniswap 预览版"
+    zh-TW: "Uniswap 預覽版"
+    ja-JP: "Uniswap プレビュー"
+    ko-KR: "Uniswap 미리보기"
+    fil-PH: "Preview ng Uniswap"
+    pt-PT: "Prévia da Uniswap"
+  description: >
+    Passcode-gated beta modal title — NOT part of the product-name DNT family;
+    it translates normally (TLM ruling 2026-07-30). ru uses the software-beta
+    convention ("предварительная версия", Microsoft ru), not the
+    document-preview word ("предпросмотр").
+
+- term: explorer
+  preferred: { fr-FR: "explorateur", tr-TR: "gezgin" }
+  forbidden: { vi-VN: ["Trình duyệt"] }
+  description: >
+    Block explorer (Etherscan class). fr/tr translate per their crypto
+    community norms ("explorateur de blocs" / "blok gezgini"); vi keeps
+    English — "Trình duyệt" means web BROWSER, a false sense the forbidden
+    scan blocks. Other locales keep English.
+
+- term: username
+  preferred:
+    zh-CN: "用户名"
+    zh-TW: "使用者名稱"
+    ja-JP: "ユーザー名"
+    ko-KR: "사용자 이름"
+  description: >
+    Account handle / login identifier — NEVER the person's display name.
+    All four CJK vendor renderings mistranslated the unitags username
+    placeholder as a personal name (systemic false friend).
+
+- term: Auto
+  caseSensitive: true
+  preferred: { es-ES: "Automático", pt-PT: "Automático", nl-NL: "Automatisch", fil-PH: "Awtomatiko" }
+  description: >
+    Settings/toggle label (auto slippage, auto gas, appearance). fr keeps
+    compact "Auto" (valid French abbreviation) on toggles but uses the full
+    "Automatique" on the appearance setting per iOS fr convention — see
+    fr-FR style notes (a style rule, deliberately not an entry here). Only
+    the listed locales carry a rule — unmapped locales get no rule from
+    this entry.
+
+- term: Bio
+  caseSensitive: true
+  preferred: { fr-FR: "Biographie", pt-BR: "Biografia" }
+  description: Profile bio label (unitags). Full native word is unambiguous; adopted from vendor.
+
+# --- Context notes (description-only: prompt guidance, no masking/scanning) ---
+
+- term: Earn (Explore section label)
+  status: draft
+  description: >
+    The bare "Earn" section title (explore.earn.title, sibling of Tokens/
+    Pools) stays English — a feature label, not prose; mirrors the ratified
+    swap label/verb split. The VERB "earn" in CTAs and prose translates
+    normally ("Empezar a ganar"). Never render the label as a profit-claim
+    noun ("Ganancia") — see the yield taxonomy note. TLM ruling (2026-07-30).
+    Encoded as a context note (not DNT) because a mask on "Earn" would also
+    freeze the verb.
+
+- term: Open / High / Low / Close (chart price labels)
+  description: >
+    chart.price.label.* are OHLC PRICE NOUNS (opening/closing price), never
+    the verb senses — vendor rendered fil "Isara" (shut) and "Bukas"
+    (open/tomorrow), both false senses.
+
+- term: Max / Min (compact buttons)
+  description: >
+    Source-compact button/tile abbreviations stay compact: localized
+    abbreviations are fine ("Máx.", "Min."), full words are not ("Maximum",
+    "Minuten" expansions bloat fixed-width UI). Same applies to unit
+    abbreviations (min, s, h) inside timeout options.

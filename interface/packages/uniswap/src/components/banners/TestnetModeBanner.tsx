@@ -1,0 +1,51 @@
+import { isMobileApp, isWebApp, isWebPlatform } from '@universe/environment'
+import { Flex, type FlexCompatProps as FlexProps, Text, TouchableArea, zIndexes } from '@universe/mycelium'
+import { Wrench } from '@universe/mycelium/icons/Wrench'
+import { useTranslation } from 'react-i18next'
+// oxlint-disable-next-line no-restricted-imports -- legacy import will be migrated
+import { useDeviceInsets } from 'ui/src/hooks/useDeviceInsets'
+import { useUniswapContext } from 'uniswap/src/contexts/UniswapContext'
+import { useEnabledChains } from 'uniswap/src/features/chains/hooks/useEnabledChains'
+import { TESTNET_MODE_BANNER_HEIGHT } from 'uniswap/src/features/settings/hooks'
+
+export function TestnetModeBanner(props: FlexProps): JSX.Element | null {
+  const { isTestnetModeEnabled } = useEnabledChains()
+  const { navigateToAdvancedSettings } = useUniswapContext()
+  const { t } = useTranslation()
+
+  const { top } = useDeviceInsets()
+
+  if (!isTestnetModeEnabled) {
+    return null
+  }
+
+  return (
+    <TouchableArea
+      position={isMobileApp ? 'absolute' : 'relative'}
+      top={top}
+      zIndex={zIndexes.fixed}
+      width={isWebApp ? 'auto' : '100%'}
+      onPress={navigateToAdvancedSettings}
+    >
+      <Flex
+        row
+        centered
+        p="$padding12"
+        gap="$gap8"
+        backgroundColor="$statusSuccess2"
+        borderWidth={isWebPlatform ? '$none' : '$spacing1'}
+        borderBottomWidth="$spacing1"
+        height={TESTNET_MODE_BANNER_HEIGHT}
+        borderStyle="dashed"
+        borderColor="$surface3"
+        cursor="pointer"
+        {...props}
+      >
+        <Wrench color="$statusSuccess" size="$icon.20" />
+        <Text color="$statusSuccess" variant="body3">
+          {t('home.banner.testnetMode')}
+        </Text>
+      </Flex>
+    </TouchableArea>
+  )
+}

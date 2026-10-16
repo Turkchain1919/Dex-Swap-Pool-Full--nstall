@@ -1,0 +1,119 @@
+import { TestID } from '@universe/test'
+import { useId } from 'react'
+
+export const HERO_LOCKUP_SIZE = 48
+const TILE_SIZE = 28
+const TILE_RADIUS = 7
+// Arc sits 16px right and down from Robinhood (a 12px overlap), so the 44px pair centres 2px in.
+const ROBINHOOD_OFFSET = 2
+const ARC_OFFSET = 18
+// Knocked out of the Robinhood tile around Arc so the card background shows through.
+const ARC_HALO_WIDTH = 1.5
+const SINGLE_TILE_RADIUS = 12
+
+// Tile art at 28px, from the network lockup design; the mark paths are in 28×28 space.
+const ROBINHOOD_TILE_FILL = '#CCFF00'
+const ROBINHOOD_MARK_FILL = '#1C180D'
+const ROBINHOOD_MARK_PATH =
+  'M12.4797 19.5625L12.3635 19.6001C11.6148 19.8497 10.5073 20.2325 9.51594 20.6872C9.46124 20.7111 9.42706 20.7829 9.42706 20.7829C9.40997 20.8239 9.38604 20.8786 9.35869 20.9367L9.35527 20.9436C9.24246 21.1965 9.09206 21.5794 9.02369 21.7332L8.97241 21.8563C8.96557 21.8768 8.96899 21.8973 8.98608 21.911C8.99634 21.9212 9.0066 21.9246 9.02027 21.9246C9.02711 21.9246 9.03394 21.9246 9.0442 21.9178L9.16384 21.8597C9.43731 21.7298 9.77915 21.5349 10.1415 21.364L10.1552 21.3572C10.8423 21.0324 11.6148 20.6632 12.0831 20.4411C12.0831 20.4411 12.1584 20.4 12.196 20.3248L12.5446 19.6241C12.5549 19.607 12.5515 19.583 12.5378 19.5694C12.5207 19.5625 12.5002 19.5557 12.4797 19.5625ZM9.69027 18.4755C9.73813 18.3798 9.96716 17.9456 10.0184 17.8465L10.0287 17.8294C11.543 14.9716 13.3924 12.2745 15.5186 9.81669L15.5767 9.74832C15.5938 9.72781 15.5973 9.69705 15.5836 9.67312C15.5699 9.64919 15.5426 9.63552 15.5152 9.63893L15.4263 9.65261C14.0316 9.84404 12.6198 10.1107 11.2285 10.4423C11.0918 10.4799 11.0029 10.5722 10.9824 10.5927C9.93982 11.8404 8.95532 13.153 8.05286 14.4965C8.00843 14.5648 8.00159 14.7255 8.00159 14.7255C8.00159 14.7255 8.23062 16.4757 8.5622 17.7679C7.73495 20.13 7.00342 23.2475 7.00342 23.2475C6.99658 23.2681 7 23.2886 7.01367 23.3057C7.02735 23.3228 7.04444 23.333 7.06837 23.333H7.53669C7.56745 23.333 7.59138 23.3159 7.60164 23.2886L7.6324 23.1997C8.11098 21.8973 8.6545 20.6086 9.25614 19.3574C9.39629 19.0669 9.69027 18.4755 9.69027 18.4755ZM16.2023 10.3295V10.2406C16.2023 10.2132 16.1852 10.1859 16.1579 10.179C16.1305 10.1688 16.1032 10.1756 16.0827 10.1996L16.0246 10.2679C13.5462 13.1359 11.461 16.3185 9.83043 19.7266L9.79283 19.8052C9.77915 19.8292 9.78599 19.8599 9.80308 19.8804C9.81675 19.8941 9.83385 19.9009 9.85094 19.9009C9.85777 19.9009 9.86803 19.9009 9.87829 19.8975L9.96033 19.8633C11.3516 19.2856 12.7737 18.7865 14.1889 18.3798C14.2743 18.3558 14.3461 18.2977 14.3837 18.2191C15.0025 17.0124 16.4416 14.6742 16.4416 14.6742C16.4792 14.6229 16.4689 14.5443 16.4689 14.5443C16.4689 14.5443 16.216 11.7412 16.2023 10.3295ZM19.4053 6.29917C19.0532 5.99493 18.5439 5.85136 17.7508 5.83427C17.033 5.81717 16.175 5.97442 15.2076 6.29233C15.0606 6.34361 14.9478 6.42223 14.8418 6.52478C13.8573 7.45116 12.8967 8.43224 11.9909 9.44409L11.9225 9.52271C11.902 9.54322 11.902 9.5774 11.9156 9.60133C11.9293 9.62526 11.9601 9.63894 11.9874 9.6321L12.09 9.61159C13.5496 9.30051 15.0264 9.06123 16.4724 8.90398C16.5681 8.89373 16.6672 8.92449 16.7356 8.98944C16.8074 9.05439 16.8484 9.14669 16.845 9.24582C16.821 10.6815 16.8723 12.1241 17.0022 13.5325L17.009 13.6248C17.0125 13.6521 17.033 13.6761 17.0603 13.6829C17.0637 13.6829 17.0706 13.6863 17.0774 13.6863C17.0979 13.6863 17.1219 13.6761 17.1355 13.659L17.1902 13.5838C18.0038 12.4215 18.8926 11.29 19.8258 10.2201C19.9318 10.1004 19.9591 10.0252 19.9762 9.91924C20.2668 8.03913 19.8121 6.64784 19.4053 6.29917Z'
+const ARC_TILE_FILL = '#1B3158'
+const ARC_MARK_FILL = '#FFFFFF'
+const ARC_MARK_PATH =
+  'M14.2258 8C15.9428 8 17.469 9.48753 18.5237 12.1886C19.0723 13.5934 19.4758 15.2625 19.715 17.0783C19.7364 17.2405 19.7545 17.4053 19.7732 17.5698C19.7793 17.58 19.7829 17.5894 19.7817 17.5971C19.7817 17.5971 19.9222 18.4747 19.9521 20H19.9362C19.7278 19.8289 17.2697 17.8974 13.1948 18.4567C13.2563 17.7671 13.3409 17.0962 13.4501 16.453C13.4557 16.4202 13.4622 16.3884 13.4678 16.3558C15.066 16.3076 16.4649 16.4932 17.5376 16.7364C17.5336 16.711 17.5303 16.6848 17.5262 16.6594C17.3057 15.2863 16.9804 14.0292 16.561 12.9549C15.8752 11.1983 14.9803 10.107 14.2258 10.107C13.4714 10.107 12.5765 11.1984 11.8907 12.9549C11.7247 13.3798 11.5736 13.8329 11.4381 14.3109C11.2475 14.9806 11.0875 15.6986 10.9596 16.453C10.7704 17.5671 10.6522 18.762 10.6087 20H8.5C8.5973 17.0622 9.09538 14.3205 9.92795 12.1886C10.9824 9.48753 12.5089 8.00001 14.2258 8Z'
+
+function NetworkTile({
+  x,
+  y,
+  size,
+  radius,
+  tileFill,
+  markFill,
+  markPath,
+}: {
+  x: number
+  y: number
+  size: number
+  radius: number
+  tileFill: string
+  markFill: string
+  markPath: string
+}): JSX.Element {
+  return (
+    <>
+      <rect x={x} y={y} width={size} height={size} rx={radius} fill={tileFill} />
+      {/* Nested svg so the 28px mark scales with whatever size the tile renders at. */}
+      <svg x={x} y={y} width={size} height={size} viewBox={`0 0 ${TILE_SIZE} ${TILE_SIZE}`}>
+        <path d={markPath} fill={markFill} />
+      </svg>
+    </>
+  )
+}
+
+/**
+ * The hero's 48px network mark. With Arc on, a Robinhood + Arc lockup: two 28px tiles, Arc layered
+ * bottom-right with a 1.5px halo masked out of the Robinhood tile. Otherwise a single Robinhood tile
+ * filling the box. Decorative — the heading names the product.
+ */
+export function LaunchesHeroNetworkLockup({ showArc }: { showArc: boolean }): JSX.Element {
+  // Colons in React ids aren't valid inside url(#…) references.
+  const maskId = `${useId().replace(/:/g, '')}-arc-halo`
+
+  return (
+    <svg
+      width={HERO_LOCKUP_SIZE}
+      height={HERO_LOCKUP_SIZE}
+      viewBox={`0 0 ${HERO_LOCKUP_SIZE} ${HERO_LOCKUP_SIZE}`}
+      fill="none"
+      aria-hidden="true"
+      data-testid={TestID.LaunchesHeroNetworkLockup}
+    >
+      {showArc ? (
+        <>
+          <defs>
+            <mask id={maskId} maskUnits="userSpaceOnUse" x={0} y={0} width={HERO_LOCKUP_SIZE} height={HERO_LOCKUP_SIZE}>
+              <rect width={HERO_LOCKUP_SIZE} height={HERO_LOCKUP_SIZE} fill="white" />
+              <rect
+                x={ARC_OFFSET - ARC_HALO_WIDTH}
+                y={ARC_OFFSET - ARC_HALO_WIDTH}
+                width={TILE_SIZE + ARC_HALO_WIDTH * 2}
+                height={TILE_SIZE + ARC_HALO_WIDTH * 2}
+                rx={TILE_RADIUS + ARC_HALO_WIDTH}
+                fill="black"
+              />
+            </mask>
+          </defs>
+          <g mask={`url(#${maskId})`}>
+            <NetworkTile
+              x={ROBINHOOD_OFFSET}
+              y={ROBINHOOD_OFFSET}
+              size={TILE_SIZE}
+              radius={TILE_RADIUS}
+              tileFill={ROBINHOOD_TILE_FILL}
+              markFill={ROBINHOOD_MARK_FILL}
+              markPath={ROBINHOOD_MARK_PATH}
+            />
+          </g>
+          <NetworkTile
+            x={ARC_OFFSET}
+            y={ARC_OFFSET}
+            size={TILE_SIZE}
+            radius={TILE_RADIUS}
+            tileFill={ARC_TILE_FILL}
+            markFill={ARC_MARK_FILL}
+            markPath={ARC_MARK_PATH}
+          />
+        </>
+      ) : (
+        <NetworkTile
+          x={0}
+          y={0}
+          size={HERO_LOCKUP_SIZE}
+          radius={SINGLE_TILE_RADIUS}
+          tileFill={ROBINHOOD_TILE_FILL}
+          markFill={ROBINHOOD_MARK_FILL}
+          markPath={ROBINHOOD_MARK_PATH}
+        />
+      )}
+    </svg>
+  )
+}

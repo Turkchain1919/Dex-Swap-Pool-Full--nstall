@@ -1,0 +1,24 @@
+{
+  "chainId": 1919,
+  "confirmedBlock": 2627419,
+  "completed": true,
+  "errors": [],
+  "ranges": 263,
+  "contracts": [
+    {
+      "name": "V2Factory",
+      "address": "0x84355FacB2fC6A1C47679b5fa8dd4312546c7916",
+      "logs": []
+    },
+    {
+      "name": "V3Factory",
+      "address": "0xf976dEAa82B208A36C7D78Adb738e099dc017912",
+      "logs": []
+    },
+    {
+      "name": "V4PoolManager",
+      "address": "0xd5cd70a82739C4e54C5953c4c1Adf4D6F55B134b",
+      "logs": []
+    }
+  ]
+}

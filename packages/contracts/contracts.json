@@ -1,0 +1,139 @@
+{
+  "chainId": 1919,
+  "chainName": "Turkchain",
+  "source": "existing TurkDex registry",
+  "contracts": {
+    "WTURK": {
+      "address": "0x2C52471d39f35dFc6A930Ba276a027ECbfC09706",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "USDT": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V2Factory": {
+      "address": "0x84355FacB2fC6A1C47679b5fa8dd4312546c7916",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V2Router02": {
+      "address": "0xDC7B359f51aedE279A03cffECDb67a5e8a95d928",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V3Factory": {
+      "address": "0xf976dEAa82B208A36C7D78Adb738e099dc017912",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V3SwapRouter": {
+      "address": "0xd0c24D6eF4b67943CAbd3d357Df1917f1AE276B3",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "QuoterV2": {
+      "address": "0xBCf791CAaB9b485654C9a1C16c80E499ee4289A2",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "NFTDescriptor": {
+      "address": "0x591AF0516db8AC1587ADDe5542156Fd888138257",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V3PositionDescriptor": {
+      "address": "0xE69dda132dc502d83DE4390548893c194741D4eb",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V3PositionManager": {
+      "address": "0x5c94D023888eA4F845Fed5B83592f20cE4200945",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "TickLens": {
+      "address": "0x928F447397E6837B19bcB39619251d623E598C02",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V3Migrator": {
+      "address": "0x929316a598474070BA199a09CA0166161518C6AB",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "SwapRouter02": {
+      "address": "0x300A634c98fe0A91B3BE3b5e49AbeF397803F37B",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V4PoolManager": {
+      "address": "0xd5cd70a82739C4e54C5953c4c1Adf4D6F55B134b",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V4PositionManager": {
+      "address": "0x4546402D50386B42883BD15960054440B8E96B74",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V4PositionDescriptor": {
+      "address": "0xb725351445De7A6ebbE29FB5A69ac1BaA9edC457",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "StateView": {
+      "address": "0xddFdC2e0f5253B431093cAE4765C846D7f504B5A",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V4Quoter": {
+      "address": "0xfd71A80C0996C05cEcf7918811909982f2B67509",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "CREATE2Factory": {
+      "address": "0x4e59b44847b379578588920ca78fbf26c0b4956c",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "Permit2": {
+      "address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "UniversalRouter": {
+      "address": "0xeD871168347a8fA91d6503A5b1fe9A7Fd3C62FAb",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "UnsupportedProtocol": {
+      "address": "0xB737a1FC697b625d94811155F81F5DD1e3A2f8E6",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "Multicall3": {
+      "address": "0xa1aDc3aA84321958Ca4C48ADa734a0F7936E130c",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "InterfaceMulticall": {
+      "address": "0x0A6094d093DF0dfBa668B61C7Fa409925E5E6369",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "OrderQuoter": {
+      "address": "0xA88bc342feB1e934983Fe9940751bE4e4620686A",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "V3DutchOrderReactor": {
+      "address": "0x538Ea46E9C1d0f7E4761D77F01bd1B26904eF397",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "ContinuousClearingAuctionFactory": {
+      "address": "0x000000001F26a0044BaA66024e7b6599c61963F8",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "LiquidityLauncher": {
+      "address": "0x0000FffFBE8efE702c8703aE3477FF5dE3d319C0",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "TokenSplitter": {
+      "address": "0x8B7DCeb5639DB986FCf86606C74e6300C40FE3cd",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "LBPStrategy": {
+      "address": "0xb020C0524A98D4AdcB8C43e56751D9F62a63e000",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "UniversalRouterStrategy": {
+      "address": "0x6a05D87b583c36e8f48DD2d87c9516E2831d24C3",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "UERC20Factory": {
+      "address": "0xC71Ed088a57a086B549FA4Bf9369718261b740b5",
+      "verification": "pending-live-bytecode-audit"
+    },
+    "FeeOnTransferDetector": {
+      "address": "0x98aeecA4A7e4D0801Ccd2F69ae26D2Ae31bd0C15",
+      "verification": "pending-live-bytecode-audit"
+    }
+  }
+}

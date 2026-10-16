@@ -1,0 +1,307 @@
+# French (fr-FR) glossary.
+#
+# AUTHORITATIVE SOURCE (updated 2026-06-24): a native-speaker review by Guillaume
+# (team) SUPERSEDES the earlier Notion "i18n style guide: French" on two axes —
+# the Notion guide was drafted without sufficient platform evidence:
+#   1. Voice is now FORMAL `vous`, not informal `tu` (see ../../style/locales/fr-FR.md).
+#      Confirmed against Binance, OKX fr, Wise France, MetaMask, Ledger, CoinAcademy.fr —
+#      and our own fr-FR golden references, which were already written in `vous`.
+#   2. mint / wrap / unwrap (+ the `wrapped` adjective) are KEPT IN ENGLISH
+#      (doNotTranslate), not translated. No shipped French DeFi product uses
+#      frapper/envelopper/déballer as a UI label; all three are misleading
+#      false friends (frapper = to strike; déballer = unbox a parcel).
+#   3. `swap` was ALSO kept English in that review, then re-ruled 2026-07-30
+#      after bug-bash native feedback: actions localize to "Échanger"; the
+#      English "Swap" survives only as a branded feature label. See the swap
+#      entry for the full provenance chain.
+# ACTION: update the Notion French guide to match (vous + mint/wrap/unwrap English,
+# swap split by role). Until then, this file is the source of truth.
+#
+# Other terms below come from the Notion term table (where not contradicted above)
+# plus terms surfaced by the June-2026 quality audit (passkey, "all time", clearing
+# price, bid, order-filled, etc.), with forbidden-scans enforcing these choices.
+#
+# NOTE on `swap`: the English word is the UI/label term (buttons, nav). The verb
+# "échanger" stays acceptable in instructional PROSE, so it is deliberately NOT
+# forbidden — only the English source token is kept verbatim by the DNT masker.
+
+# --- Crypto term table (verbatim from the Notion French guide) ---
+
+- term: wallet
+  doNotTranslate: true
+  gender: masculine
+  description: >
+    Keep English — "un wallet" (masculine), per the guide. NOTE: "portefeuille" is deliberately
+    NOT forbidden globally — it is the correct French for "portfolio" (see the `portfolio` entry).
+    A wallet wrongly rendered as "portefeuille" is caught by the term-inconsistency linter and the
+    reviewer, not a blunt forbidden scan (which false-flagged 12 legitimate portfolio strings).
+
+- term: portfolio
+  preferred: { fr-FR: "portefeuille" }
+  description: A user's asset portfolio. "portefeuille" is the correct rendering here — distinct from "wallet" (kept English).
+
+- term: smart wallet
+  doNotTranslate: true
+  gender: masculine
+  description: Keep English — "un smart wallet" (masculine).
+
+- term: token
+  doNotTranslate: true
+  gender: masculine
+  description: Keep English — "un token" (masculine). The audit found "jeton(s)" in the WalletConnect dialog; it is a hard-fail.
+  forbidden: { fr-FR: ["jeton", "jetons"] }
+
+- term: network cost
+  preferred: { fr-FR: "frais de réseau" }
+  description: Blockchain network fees.
+
+- term: fee
+  preferred: { fr-FR: "frais" }
+  description: Uniswap Labs interface fee.
+
+- term: crypto
+  preferred: { fr-FR: "crypto" }
+
+- term: cryptocurrency
+  preferred: { fr-FR: "cryptomonnaie" }
+  description: One word, no hyphen (Académie française 2022). Guide lists the plural "cryptomonnaies".
+
+- term: market cap
+  preferred: { fr-FR: "capitalisation boursière" }
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym. Spelled-out phrase is "valeur totale bloquée".
+
+- term: seed phrase
+  preferred: { fr-FR: "phrase de récupération" }
+  description: >
+    Guide renders both "seed phrase" and "recovery phrase" as "phrase de récupération".
+    In security-critical strings never leave the bare English form.
+  forbidden: { fr-FR: ["seed phrase"] }
+
+- term: recovery phrase
+  preferred: { fr-FR: "phrase de récupération" }
+  description: >
+    Security-critical. The audit found "recovery phrase" left in English on 8 lock-screen /
+    password-reset strings — the strings a locked-out user reads. The English passthrough is a
+    hard-fail.
+  forbidden: { fr-FR: ["recovery phrase"] }
+
+- term: backup
+  preferred: { fr-FR: "sauvegarde" }
+
+- term: private keys
+  preferred: { fr-FR: "clés privées" }
+  description: Guide left this cell blank; "clés privées" is the standard French rendering (cf. es "llaves privadas", pt "chaves privadas").
+
+- term: smart contract
+  preferred: { fr-FR: "contrat intelligent" }
+
+# --- Protocol verbs: kept in English (reversed from Notion 2026-06-24, native review) ---
+# No shipped French DeFi product uses échanger/frapper/envelopper/déballer as a UI label.
+# These are masked by the DNT masker, so the English source token survives verbatim.
+
+- term: wrapped
+  doNotTranslate: true
+  partOfSpeech: adjective
+  description: >
+    Keep English — "Wrapped" (as in Wrapped Ether / wBTC). Same inflection family as `wrap`;
+    must stay English to avoid the wrap/wrapped split. Was "enveloppé"; reversed 2026-06-24.
+  forbidden: { fr-FR: ["enveloppé"] }
+
+- term: wrap
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English — "Wrap" is the UI/label term. CoinAcademy.fr defines "envelopper" once then
+    uses "Wrap" throughout; no shipped French DeFi product labels it "envelopper". Reversed from
+    the Notion "envelopper" on 2026-06-24 (Guillaume, native review).
+  forbidden: { fr-FR: ["envelopper", "enveloppement"] }
+
+- term: unwrap
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English — "Unwrap". "déballer" is the most dangerous false friend in the corpus — it
+    means physically unboxing a parcel, with zero DeFi attestation (the entry had already
+    self-flagged it). Reversed 2026-06-24 (Guillaume, native review).
+  forbidden: { fr-FR: ["déballer", "déballage", "déconversion"] }
+
+- term: swap
+  preferred: { fr-FR: "échanger" }
+  termType: action
+  status: native-ratified
+  description: >
+    Split by role — actions localize. Action labels, CTAs, and user
+    instructions: "Échanger". Ordinary nouns: "échange". Retain English
+    "Swap" ONLY where it names a branded feature, protocol primitive, or
+    immutable product label — never merely because the source key says
+    "swap", and never for corpus consistency alone. Provenance chain: Notion
+    guide said "échanger" → Guillaume's native review kept English
+    (2026-06-24, anchored to MetaMask fr) → bug-bash native feedback asked
+    for "échanger" again (2026-07-15) → TLM ruling (2026-07-30) reconciled
+    both: actions localize, the branded label stays. English "swap" is
+    deliberately NOT forbidden (branded usage is legitimate).
+
+- term: mint
+  doNotTranslate: true
+  partOfSpeech: verb
+  description: >
+    Keep English — "Mint". "frapper" reads as physically striking (its monetary sense is archaic
+    and opaque to DeFi users); no shipped French DeFi product uses it as a label. Reversed from
+    the Notion "frapper" on 2026-06-24 (Guillaume, native review).
+  forbidden: { fr-FR: ["frapper"] }
+
+- term: slippage
+  doNotTranslate: true
+  gender: masculine
+  description: >
+    Keep the English loanword — "le slippage" (masculine). Confirmed by Guillaume (2026-06-24),
+    CryptoAst.fr, and OKX fr. (Audit had proposed "glissement"; correctly kept English.)
+
+# --- Audit extensions: terms the Notion guide does not (yet) cover ---
+
+- term: passkey
+  preferred: { fr-FR: "clé d'accès" }
+  gender: feminine
+  description: >
+    Not in the Notion guide. Apple HIG (French), Google Passkeys FR, and FIDO Alliance FR all use
+    "clé d'accès" — the term French iOS users see in their system UI. The pipeline left "passkey"
+    in English across 20+ auth strings. Plural "clés d'accès"; feminine ("la clé d'accès").
+  forbidden: { fr-FR: ["passkey", "pass key"] }
+
+- term: all time
+  preferred: { fr-FR: "Depuis le début" }
+  description: >
+    Not in the Notion guide. "Tout le temps" is a French adverb of frequency ("constantly") and
+    cannot label a financial time range. Use "Depuis le début" for filter/activity contexts.
+  forbidden: { fr-FR: ["tout le temps"] }
+
+- term: clearing price
+  preferred: { fr-FR: "prix de compensation" }
+  description: 'Established AMF term. The pipeline produced the half-anglicism "prix de clearing".'
+  forbidden: { fr-FR: ["prix de clearing"] }
+
+- term: bid
+  preferred: { fr-FR: "enchère" }
+  description: 'Auction bid. Never "offre" when "supply" is also present in the same module (collision).'
+
+- term: order filled
+  preferred: { fr-FR: "exécuté" }
+  description: 'Filled order — "exécuté" (AMF/broker usage). "Rempli" (physically filled) is a false friend.'
+  forbidden: { fr-FR: ["rempli", "remplissage"] }
+
+- term: out of range
+  preferred: { fr-FR: "hors fourchette" }
+  description: '"Fourchette" is the price-band term; "plage" is for time/frequency ranges.'
+  forbidden: { fr-FR: ["hors plage"] }
+
+- term: in range
+  preferred: { fr-FR: "dans la fourchette" }
+
+- term: Disclosures
+  preferred: { fr-FR: "Mentions légales" }
+  description: '"Divulgations" is a false-friend calque (it means unauthorized disclosure). Legal term is "Mentions légales".'
+  forbidden: { fr-FR: ["Divulgations"] }
+
+- term: onchain
+  doNotTranslate: true
+  description: >
+    Keep English "onchain" — never translate literally. It fights fr-FR's own
+    policy of keeping crypto terms of art English (swap/wrap/token/slippage).
+    Re-scoped from core/crypto.yml to fr-FR directly (2026-07-01): the core DNT
+    rule wrongly forced English into CJK locales where native terms are
+    correct, so the rule now lives per-locale instead of globally. The
+    previous fr-FR rendering "en chaîne" is a false friend — it reads as "in a
+    row / back-to-back", not "on the blockchain". The legit noun "chain(s)" →
+    "chaîne(s)" is unaffected; only "onchain" is kept English.
+  forbidden: { fr-FR: ["en chaîne"] }
+
+- term: swappers
+  preferred: { fr-FR: "utilisateurs" }
+  description: >
+    "100M swappers" → "100M d'utilisateurs" (or "de traders"). The bare English
+    "swappers" is Franglais as a plural agent-noun and clashes with surrounding
+    French. Distinct from the DNT `swap` label verb (which stays English).
+  forbidden: { fr-FR: ["swappers"] }
+
+- term: spread
+  doNotTranslate: true
+  description: Universally used in French financial contexts (incl. AMF). Keep as the English term of art.
+
+- term: taps
+  preferred: { fr-FR: "appuis" }
+  description: >
+    Mobile "tap" (screen tap) is "appui", not "touche" (key/keystroke on a
+    physical or virtual keyboard) — the audit found "en quelques touches" for
+    "in a few taps", which reads as keyboard keystrokes, not touchscreen taps.
+
+# --- Earn / yield domain (TLM native review, 2026-07-28) ---
+
+- term: yield
+  preferred: { fr-FR: "rendement" }
+  partOfSpeech: noun
+  termType: amount
+  status: native-ratified
+  description: >
+    In headline/body copy the verb is "générer du rendement" (idiomatic), NOT
+    "gagner du rendement". This deliberately diverges from the shipped "Gagnez"
+    pattern; the CTA "Commencer à gagner" stands (see Start Earning). Second
+    native review, endorsed by TLM (Thomas Osmonson, 2026-07-28).
+
+- term: Start Earning
+  preferred: { fr-FR: "Commencer à gagner" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Earn CTA. TLM native review (Thomas Osmonson, 2026-07-28) from
+    the Earn marketing run. Body copy uses "générer du rendement" (see yield).
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: commodities
+  doNotTranslate: true
+  partOfSpeech: noun
+  status: native-ratified
+  description: >
+    Keep English — the TradFi register term; native review found it better
+    than any current translation. Provenance: bug-bash native feedback
+    (2026-07-15), ruled by TLM (2026-07-30).
+
+- term: trade
+  preferred: { fr-FR: "opérer" }
+  partOfSpeech: verb
+  status: native-ratified
+  description: >
+    The verb "to trade" renders as "opérer" (AMF/broker register), NOT the
+    anglicism "trader" as a verb. The NOUN "un trader" (the person) is
+    legitimate French and unaffected — deliberately no forbidden scan.
+    Provenance: bug-bash native feedback (2026-07-15).
+
+- term: auctions
+  preferred: { fr-FR: "enchères" }
+  partOfSpeech: noun
+  status: native-ratified
+  description: >
+    Explore nav label renders "Enchères". Deliberately shares the root with
+    `bid` → "enchère" (une enchère = one bid; les Enchères = the auctions
+    surface) — standard French auction vocabulary, not a collision.
+    Provenance: bug-bash native feedback (2026-07-15). The Auctions tab is
+    currently unkeyed app-side (universe bug) — this pre-encodes the
+    rendering for when the key lands.
+
+- term: Limit
+  preferred: { fr-FR: "Limite" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — the conventional
+    compact trading label, NOT the verb "Limiter" (reads as "restrict").
+    Where ambiguous outside the trading context, use the full "ordre limite".
+    TLM ruling (2026-07-30); pending native confirmation of the label.

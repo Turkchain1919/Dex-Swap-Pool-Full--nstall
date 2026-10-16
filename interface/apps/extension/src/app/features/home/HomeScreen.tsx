@@ -1,0 +1,404 @@
+import { useQueryClient } from '@tanstack/react-query'
+import { SharedEventName } from '@uniswap/analytics-events'
+import { FeatureFlags, useFeatureFlag } from '@universe/gating'
+import { Flex, spacing, Text, TouchableArea } from '@universe/mycelium'
+import { getIsNotificationServiceLocalOverrideEnabled } from '@universe/notifications'
+import { TestID } from '@universe/test'
+import React, { memo, useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { ActivityTab } from 'src/app/components/tabs/ActivityTab'
+import { NftsTab } from 'src/app/components/tabs/NftsTab'
+import { PoolsTab } from 'src/app/components/tabs/PoolsTab'
+import { useSmartWalletNudges } from 'src/app/context/SmartWalletNudgesContext'
+import { AnimatedTab } from 'src/app/features/home/AnimatedTab'
+import { HomeIntroCardStack } from 'src/app/features/home/introCards/HomeIntroCardStack'
+import { PortfolioActionButtons } from 'src/app/features/home/PortfolioActionButtons'
+import { PortfolioHeader } from 'src/app/features/home/PortfolioHeader'
+import { ExtensionTokenBalanceList } from 'src/app/features/home/TokenBalanceList'
+import { selectAlertsState } from 'src/app/features/onboarding/alerts/selectors'
+import { AlertName, closeAlert } from 'src/app/features/onboarding/alerts/slice'
+import { PinReminder } from 'src/app/features/onboarding/PinReminder'
+import { useOptimizedSearchParams } from 'src/app/hooks/useOptimizedSearchParams'
+import { HomeQueryParams, HomeTabs } from 'src/app/navigation/constants'
+import { navigate } from 'src/app/navigation/state'
+import { ExtensionNotificationServiceManager } from 'src/notification-service/ExtensionNotificationServiceManager'
+import { Coachmark, Loader } from 'ui/src'
+import { SMART_WALLET_UPGRADE_VIDEO } from 'ui/src/assets'
+import { NFT_QUERY_KEY_PREFIX } from 'uniswap/src/data/apiClients/dataApiService/nfts/queries'
+import { useEnabledChains } from 'uniswap/src/features/chains/hooks/useEnabledChains'
+import { usePortfolioTotalValue } from 'uniswap/src/features/dataApi/balances/balancesRest'
+import { DataApiOutageBanner } from 'uniswap/src/features/dataApi/outage/DataApiOutageBanner'
+import { DataApiOutageModalContent } from 'uniswap/src/features/dataApi/outage/DataApiOutageModalContent'
+import { useSelectAddressHasNotifications } from 'uniswap/src/features/notifications/slice/hooks'
+import { setNotificationStatus } from 'uniswap/src/features/notifications/slice/slice'
+import { PortfolioBalance } from 'uniswap/src/features/portfolio/PortfolioBalance/PortfolioBalance'
+import { usePoolsBalanceCoachmarkVisibility } from 'uniswap/src/features/portfolio/PortfolioBalance/usePoolsBalanceCoachmarkVisibility'
+import { usePoolsTabVisibility } from 'uniswap/src/features/positions/hooks/usePoolsTabVisibility'
+import { ModalName } from 'uniswap/src/features/telemetry/constants'
+import { sendAnalyticsEvent } from 'uniswap/src/features/telemetry/send'
+import { logger } from 'utilities/src/logger/logger'
+import { useEvent } from 'utilities/src/react/hooks'
+import { ONE_MINUTE_MS, ONE_SECOND_MS } from 'utilities/src/time/time'
+import { useTimeout } from 'utilities/src/time/timing'
+import { SmartWalletEnabledModal } from 'wallet/src/components/smartWallet/modals/SmartWalletEnabledModal'
+import { SmartWalletUpgradeModals } from 'wallet/src/components/smartWallet/modals/SmartWalletUpgradeModal'
+import { useOpenSmartWalletNudgeOnCompletedSwap } from 'wallet/src/components/smartWallet/smartAccounts/hooks'
+import { setIncrementNumPostSwapNudge } from 'wallet/src/features/behaviorHistory/slice'
+import { HomeScreenEarningSection } from 'wallet/src/features/earn/HomeScreenEarningSection'
+import { PendingNotificationBadge } from 'wallet/src/features/notifications/components/PendingNotificationBadge'
+import { useActiveAccountAddressWithThrow, useActiveAccountWithThrow } from 'wallet/src/features/wallet/hooks'
+import { setSmartWalletConsent } from 'wallet/src/features/wallet/slice'
+
+const MemoizedVideo = memo(() => (
+  <Flex borderRadius="$rounded12" overflow="hidden" height="auto" maxWidth="100%" aspectRatio="16 / 9">
+    <video
+      src={SMART_WALLET_UPGRADE_VIDEO}
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+      }}
+      autoPlay
+      muted
+    />
+  </Flex>
+))
+
+MemoizedVideo.displayName = 'MemoizedVideo'
+
+export const HomeScreen = memo(function HomeScreenInner(): JSX.Element {
+  const { t } = useTranslation()
+  const activeAccount = useActiveAccountWithThrow()
+  const [showTabs, setShowTabs] = useState(false)
+
+  const queryClient = useQueryClient()
+
+  // The tabs are too slow to render on the first load, so we delay them to speed up the perceived loading time.
+  useTimeout(() => setShowTabs(true), 0)
+
+  const address = useActiveAccountAddressWithThrow()
+  const [selectedTab, setSelectedTab] = useSelectedTabState()
+  const isSmartWalletEnabled = useFeatureFlag(FeatureFlags.SmartWallet)
+  const [isSmartWalletEnabledModalOpen, setIsSmartWalletEnabledModalOpen] = useState(false)
+  const dispatch = useDispatch()
+
+  // Notification service feature flag
+  const isNotificationServiceEnabledFlag = useFeatureFlag(FeatureFlags.NotificationService)
+  const isNotificationServiceEnabled =
+    getIsNotificationServiceLocalOverrideEnabled() || isNotificationServiceEnabledFlag
+
+  // Portfolio outage detection — shares the same React Query cache key as PortfolioBalance, no extra fetch
+  const { chains } = useEnabledChains()
+  const { error: portfolioError, dataUpdatedAt: portfolioDataUpdatedAt } = usePortfolioTotalValue({
+    evmAddress: address,
+    chainIds: chains,
+  })
+
+  const { shouldShowPoolsTab, openPoolPositionsCount } = usePoolsTabVisibility(address)
+
+  const { shouldShow: shouldShowPoolsCoachmark, dismiss: dismissPoolsCoachmark } = usePoolsBalanceCoachmarkVisibility({
+    evmAddress: address,
+  })
+
+  const [isOutageModalOpen, setIsOutageModalOpen] = useState(false)
+  const handleOutageBannerPress = useEvent(() => setIsOutageModalOpen(true))
+  const handleOutageModalClose = useEvent(() => setIsOutageModalOpen(false))
+
+  useEffect(() => {
+    if (selectedTab) {
+      sendAnalyticsEvent(SharedEventName.PAGE_VIEWED, {
+        screen: selectedTab,
+      })
+    }
+  }, [selectedTab])
+
+  // defaults to true, but store state will persist to future loads once updated
+  const { isOpen: isPinRequestOpen } = useSelector(selectAlertsState(AlertName.PinToToolbar))
+  const onClosePinRequest = useCallback(() => dispatch(closeAlert(AlertName.PinToToolbar)), [dispatch])
+
+  const handleSmartWalletEnable = useCallback(
+    (onComplete?: () => void): void => {
+      dispatch(setSmartWalletConsent({ address: activeAccount.address, smartWalletConsent: true }))
+      onComplete?.()
+      setIsSmartWalletEnabledModalOpen(true)
+    },
+    [dispatch, activeAccount.address],
+  )
+
+  // Handle the smart wallet nudge when a swap transaction is completed
+  const { openModal, activeModal } = useSmartWalletNudges()
+  useOpenSmartWalletNudgeOnCompletedSwap(
+    useEvent(() => {
+      if (!activeAccount.address) {
+        return
+      }
+      dispatch(setIncrementNumPostSwapNudge({ walletAddress: address }))
+      openModal(ModalName.SmartWalletNudge)
+    }),
+  )
+
+  useEffect(() => {
+    let intervalId: number
+    const checkExtensionPinnedStatus = async (): Promise<void> => {
+      const settings = await chrome.action.getUserSettings()
+      if (settings.isOnToolbar) {
+        onClosePinRequest()
+        // Clear interval once pinned
+        clearInterval(intervalId)
+      }
+    }
+
+    // Only set up the interval if the pin request is open
+    if (isPinRequestOpen) {
+      // Check immediately on mount
+      checkExtensionPinnedStatus().catch((e) => logger.error('Error checking if extension is pinned in Chrome', e))
+
+      intervalId = window.setInterval(checkExtensionPinnedStatus, ONE_SECOND_MS)
+    }
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId)
+      }
+    }
+  }, [isPinRequestOpen, onClosePinRequest])
+
+  const hasNotifications = useSelectAddressHasNotifications(address)
+  useEffect(() => {
+    if (selectedTab === HomeTabs.Activity && hasNotifications) {
+      dispatch(setNotificationStatus({ address, hasNotifications: false }))
+    }
+  }, [dispatch, address, hasNotifications, selectedTab])
+
+  // Fall back to Tokens if the Pools tab is no longer shown.
+  useEffect(() => {
+    if (selectedTab === HomeTabs.Pools && !shouldShowPoolsTab) {
+      setSelectedTab(HomeTabs.Tokens)
+    }
+  }, [selectedTab, shouldShowPoolsTab, setSelectedTab])
+
+  const [lastNftFetchTime, setLastNftFetchTime] = useState(0)
+
+  useEffect(() => {
+    // NFTs tab is first fetched on mount, so we need to set the last fetch time here
+    setLastNftFetchTime(Date.now())
+  }, [])
+
+  const shouldRefetchNfts = useCallback(() => {
+    const now = Date.now()
+    return now - lastNftFetchTime >= ONE_MINUTE_MS
+  }, [lastNftFetchTime])
+
+  const maybeRefetchNfts = useCallback(() => {
+    if (shouldRefetchNfts()) {
+      setLastNftFetchTime(Date.now())
+      queryClient.refetchQueries({ queryKey: NFT_QUERY_KEY_PREFIX }).catch((e) => {
+        logger.warn('HomeScreen', 'maybeRefetchNfts', 'Error refetching NFTs', e)
+      })
+    }
+  }, [queryClient, shouldRefetchNfts])
+
+  return (
+    <>
+      {portfolioError && <DataApiOutageBanner onPress={handleOutageBannerPress} />}
+      <Flex
+        fill
+        alignItems="center"
+        backgroundColor="$surface1"
+        px="$spacing12"
+        py={portfolioError ? '$spacing4' : '$spacing12'}
+      >
+        {address ? (
+          <Flex backgroundColor="$surface1" gap="$spacing12" width="100%">
+            {isPinRequestOpen && (
+              <Flex position="relative" width="100%">
+                <PinReminder style="popup" onClose={onClosePinRequest} />
+              </Flex>
+            )}
+            <Flex grow gap="$spacing8">
+              <Flex pl="$spacing4" position="relative" pt="$spacing4">
+                <PortfolioHeader address={address} />
+              </Flex>
+              <Flex pb="$spacing8" pl="$spacing4">
+                <Coachmark
+                  open={shouldShowPoolsCoachmark}
+                  onDismiss={dismissPoolsCoachmark}
+                  placement="bottom-start"
+                  offset={{ mainAxis: -spacing.spacing16 }}
+                  text={t('portfolio.poolsBalance.coachmark.body')}
+                  testID={TestID.PoolsBalanceCoachmark}
+                >
+                  <PortfolioBalance evmOwner={address} />
+                </Coachmark>
+              </Flex>
+
+              <PortfolioActionButtons />
+
+              <ExtensionNotificationServiceManager />
+
+              {!isNotificationServiceEnabled && <HomeIntroCardStack />}
+
+              <HomeScreenEarningSection evmAddress={address} mt="$spacing8" mb="$spacing8" />
+
+              <Flex flex={1} width="100%">
+                <Flex row gap="$spacing16" px="$spacing4" py="$spacing8">
+                  <TabButton isActive={selectedTab === HomeTabs.Tokens} onPress={() => setSelectedTab(HomeTabs.Tokens)}>
+                    {t('home.tokens.title')}
+                  </TabButton>
+
+                  <TabButton
+                    isActive={selectedTab === HomeTabs.NFTs}
+                    onPress={() => {
+                      setSelectedTab(HomeTabs.NFTs)
+                      maybeRefetchNfts()
+                    }}
+                  >
+                    {t('home.nfts.title')}
+                  </TabButton>
+
+                  {shouldShowPoolsTab && (
+                    <TabButton isActive={selectedTab === HomeTabs.Pools} onPress={() => setSelectedTab(HomeTabs.Pools)}>
+                      {t('common.pools')}
+                    </TabButton>
+                  )}
+
+                  <TabButton
+                    showPendingNotificationBadge
+                    isActive={selectedTab === HomeTabs.Activity}
+                    onPress={() => setSelectedTab(HomeTabs.Activity)}
+                  >
+                    {t('home.activity.title')}
+                  </TabButton>
+                </Flex>
+
+                <Flex row height="100%" width="100%">
+                  {showTabs ? (
+                    <>
+                      <AnimatedTab
+                        hideLeft={selectedTab !== HomeTabs.Tokens}
+                        isActive={selectedTab === HomeTabs.Tokens}
+                      >
+                        <ExtensionTokenBalanceList owner={address} />
+                      </AnimatedTab>
+
+                      <AnimatedTab
+                        hideLeft={selectedTab === HomeTabs.Pools || selectedTab === HomeTabs.Activity}
+                        hideRight={selectedTab === HomeTabs.Tokens}
+                        isActive={selectedTab === HomeTabs.NFTs}
+                      >
+                        <NftsTab owner={address} skip={selectedTab !== HomeTabs.NFTs} />
+                      </AnimatedTab>
+
+                      {shouldShowPoolsTab && (
+                        <AnimatedTab
+                          hideLeft={selectedTab === HomeTabs.Activity}
+                          hideRight={selectedTab === HomeTabs.Tokens || selectedTab === HomeTabs.NFTs}
+                          isActive={selectedTab === HomeTabs.Pools}
+                        >
+                          <PoolsTab
+                            address={address}
+                            skip={selectedTab !== HomeTabs.Pools}
+                            openPositionsCount={openPoolPositionsCount}
+                          />
+                        </AnimatedTab>
+                      )}
+
+                      <AnimatedTab
+                        hideRight={selectedTab !== HomeTabs.Activity}
+                        isActive={selectedTab === HomeTabs.Activity}
+                      >
+                        {/* The portfolio outage takes precedence; this only lets ActivityTab show its banner for its own relevant error. */}
+                        <ActivityTab
+                          address={address}
+                          skip={selectedTab !== HomeTabs.Activity}
+                          canShowOutageBanner={!portfolioError}
+                        />
+                      </AnimatedTab>
+                    </>
+                  ) : (
+                    <Flex fill mx="$spacing8">
+                      <Loader.Token withPrice repeat={6} />
+                    </Flex>
+                  )}
+                </Flex>
+              </Flex>
+            </Flex>
+          </Flex>
+        ) : (
+          <Text color="$statusCritical" variant="subheading1">
+            {t('home.extension.error')}
+          </Text>
+        )}
+        {isSmartWalletEnabled && !activeModal && (
+          <SmartWalletUpgradeModals
+            account={activeAccount}
+            video={<MemoizedVideo />}
+            onEnableSmartWallet={handleSmartWalletEnable}
+          />
+        )}
+
+        {isSmartWalletEnabledModalOpen && isSmartWalletEnabled ? (
+          <SmartWalletEnabledModal
+            isOpen
+            showReconnectDappPrompt={false}
+            onClose={() => setIsSmartWalletEnabledModalOpen(false)}
+          />
+        ) : undefined}
+        <DataApiOutageModalContent
+          isOpen={isOutageModalOpen}
+          lastUpdatedAt={portfolioDataUpdatedAt}
+          onClose={handleOutageModalClose}
+        />
+      </Flex>
+    </>
+  )
+})
+
+const TabButton = ({
+  isActive,
+  onPress,
+  children,
+  showPendingNotificationBadge = false,
+}: {
+  isActive: boolean
+  onPress: () => void
+  children: React.ReactNode
+  showPendingNotificationBadge?: boolean
+}): React.JSX.Element => {
+  return (
+    <TouchableArea alignItems="center" flexDirection="row" gap="$spacing4" p="$spacing2" onPress={onPress}>
+      <Text color={isActive ? '$neutral1' : '$neutral2'} userSelect="none" variant="subheading2">
+        {children}
+      </Text>
+      {showPendingNotificationBadge && !isActive && <PendingNotificationBadge />}
+    </TouchableArea>
+  )
+}
+
+// useNavigate/useSearchParams re-renders on every page change, so we avoid them here:
+// https://github.com/remix-run/react-router/issues/7634#issuecomment-1306650156
+function useSelectedTabState(): [HomeTabs | null, (tab: HomeTabs) => void] {
+  const searchParams = useOptimizedSearchParams()
+  const tab = searchParams.get(HomeQueryParams.Tab)
+
+  const setNewTab = useCallback(async (newTab: HomeTabs) => {
+    navigate(
+      {
+        search: `?${HomeQueryParams.Tab}=${newTab}`,
+      },
+      {
+        replace: true,
+      },
+    )
+  }, [])
+
+  if (isValidHomeTab(tab)) {
+    return [tab, setNewTab]
+  }
+
+  return [HomeTabs.Tokens, setNewTab]
+}
+
+function isValidHomeTab(tab: unknown): tab is HomeTabs {
+  return tab === HomeTabs.Tokens || tab === HomeTabs.NFTs || tab === HomeTabs.Pools || tab === HomeTabs.Activity
+}

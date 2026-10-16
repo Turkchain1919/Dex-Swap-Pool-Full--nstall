@@ -1,0 +1,40 @@
+/*
+ * ButtonCompat support CSS: import once from the Tailwind entry stylesheet,
+ * alongside `@import "@universe/mycelium/tailwind"` (which supplies the
+ * semantic color utilities the component's classes resolve against).
+ *
+ * Colors need no pins here: since #35388 the `@universe/tailwind` palette
+ * (neutral1, *-hovered, critical-secondary, warning-secondary, ...) matches the
+ * Tamagui theme value-for-value (verified 2026-07-28), except the
+ * default/primary cell — neutral1 vs legacy $accent3; see the ledger in
+ * labs/workbench/scripts/button-parity-exceptions.ts. The one remaining pin
+ * is the legacy button font stack (theme/fonts.ts baselMedium): the font-basel
+ * utility resolves to "Basel Grotesk" (different family name + fallbacks),
+ * which changes intrinsic button widths when the webfont isn't loaded.
+ *
+ * The "Basel" family itself is only declared by apps/web/index.html; every
+ * other consumer must also `@import "@universe/mycelium/fonts"` (all mycelium
+ * apps already do), which registers the same cuts under that name. Otherwise
+ * the pinned stack falls through to the system font, where weight 535 matches
+ * a Semibold/Bold cut and the label renders heavier than prod.
+ */
+:root {
+  --sbtn-font-button:
+    Basel, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+/* Matches ui/src/loading/SpinningLoader.web.tsx exactly (1s symmetric ease, not linear). */
+@keyframes sbtn-rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sbtn-spin {
+  animation: sbtn-rotate360 1s cubic-bezier(0.83, 0, 0.17, 1) infinite;
+  transform-origin: center center;
+}

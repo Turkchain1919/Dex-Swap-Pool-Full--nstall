@@ -1,0 +1,50 @@
+.popover-arrow {
+  width: 8px;
+  height: 8px;
+  z-index: 9998;
+}
+
+.popover-arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+  z-index: 9998;
+
+  content: '';
+  border: 1px solid var(--surface3);
+  transform: rotate(45deg);
+  background: var(--surface1);
+}
+
+.popover-arrow.arrow-top {
+  bottom: -4px;
+}
+.popover-arrow.arrow-top::before {
+  border-top: none;
+  border-left: none;
+}
+
+.popover-arrow.arrow-bottom {
+  top: -4px;
+}
+.popover-arrow.arrow-bottom::before {
+  border-bottom: none;
+  border-right: none;
+}
+
+.popover-arrow.arrow-left {
+  right: -4px;
+}
+.popover-arrow.arrow-left::before {
+  border-bottom: none;
+  border-left: none;
+}
+
+.popover-arrow.arrow-right {
+  left: -4px;
+}
+.popover-arrow.arrow-right::before {
+  border-right: none;
+  border-top: none;
+}

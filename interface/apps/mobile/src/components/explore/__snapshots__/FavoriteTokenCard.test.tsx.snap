@@ -1,0 +1,94 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FavoriteTokenCard > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    style="border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px;"
+  >
+    <button
+      android_ripple="[object Object]"
+      data-testid="favorite-token-card-undefined"
+      role="button"
+      style="background-color: transparent; border-radius: 16px; overflow: hidden;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="gap: 8px; padding: 12px 12px 12px 12px; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;"
+      >
+        <div
+          class="css-view-175oi2r"
+          style="gap: 4px;"
+        >
+          <div
+            class="css-view-175oi2r"
+            style="gap: 8px;"
+          >
+            <div
+              class="css-view-175oi2r r-position-bnwqim"
+            >
+              <div
+                class="css-view-175oi2r"
+              >
+                <div
+                  class="css-view-175oi2r"
+                  style="width: 20px; height: 20px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px;"
+                />
+              </div>
+            </div>
+            <div
+              class="css-text-146c3p1"
+              dir="auto"
+              style="font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+            />
+          </div>
+        </div>
+      </div>
+    </button>
+    <button
+      accessibilitystate="[object Object]"
+      android_ripple="[object Object]"
+      aria-disabled="true"
+      data-testid="explore/remove-button"
+      role="button"
+      style="width: 24px; height: 24px; border-radius: 999999px; opacity: 0; z-index: 1080;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="width: 10px; height: 2px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;"
+      />
+    </button>
+  </div>
+  <div
+    class="css-view-175oi2r"
+    style="gap: 2px;"
+  >
+    <div
+      class="css-view-175oi2r"
+    >
+      <div
+        class="css-view-175oi2r"
+      >
+        <div
+          class="css-view-175oi2r"
+          data-testid="loader/favorite/price"
+          style="width: 84px; height: 28px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;"
+        />
+      </div>
+    </div>
+    <div
+      class="css-view-175oi2r"
+    >
+      <div
+        class="css-view-175oi2r"
+      >
+        <div
+          class="css-view-175oi2r"
+          data-testid="loader/favorite/priceChange"
+          style="width: 60px; height: 20px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,142 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MultichainExplorerList > renders without error when no onExplorerPress is provided 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] grow-[1] shrink overflow-hidden relative media-md:grow-[var(--cE-grow)] media-md:shrink-[var(--cE-shrink)]"
+    style="--cE-grow: 0; --cE-shrink: 1;"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] grow-[1] shrink overflow-scroll [scrollbar-width:none]"
+    >
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[2px] py-[8px] media-md:gap-[var(--cE-gap)]"
+        style="--cE-gap: 4px;"
+      >
+        <a
+          class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] rounded-[12px] [cursor:pointer] bg-transparent [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] [text-decoration:none] group"
+          data-testid="multichain-explorer-link"
+          href="https://etherscan.io/token/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+          rel="noopener noreferrer"
+          role="button"
+          tabindex="0"
+          target="_blank"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[8px] px-[8px] py-[8px] w-[100%] rounded-[16px] media-md:gap-[var(--cE-gap)] media-md:px-[var(--cE-px)] media-md:h-[var(--cE-h)]"
+            style="--cE-gap: 12px; --cE-px: 0px; --cE-h: 48px;"
+          >
+            <div
+              class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center overflow-hidden z-[var(--c-z)]"
+              data-testid="network-logo-1"
+              style="--c-z: 10; width: 20px; height: 20px; border-radius: 6px; border-width: 0px;"
+            >
+              <div
+                class="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+                style="object-fit: contain; width: 21px; height: 21px;"
+              >
+                <div
+                  class="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+                  style="background-image: url(mock-asset-ETHEREUM_LOGO.png);"
+                />
+                <img
+                  alt=""
+                  class="css-accessibilityImage-9pa8cd"
+                  draggable="false"
+                  src="mock-asset-ETHEREUM_LOGO.png"
+                />
+              </div>
+            </div>
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap basis-[0px] grow-[1] shrink"
+            >
+              Ethereum
+            </span>
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[8px]"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-medium)] text-[14px] [line-height:16.1px] [font-weight:535] [color:var(--stext-neutral2)]"
+              >
+                Etherscan
+              </span>
+              <div
+                fill="none"
+                stroke-width="8"
+                style="width: 16px; height: 16px; color: rgba(255, 255, 255, 0.65);"
+                viewbox="0 0 24 24"
+              >
+                <div
+                  d="M21 4V9C21 9.552 20.553 10 20 10C19.447 10 19 9.552 19 9V6.41406L11.707 13.707C11.512 13.902 11.256 14 11 14C10.744 14 10.488 13.902 10.293 13.707C9.90197 13.316 9.90197 12.684 10.293 12.293L17.5859 5H15C14.447 5 14 4.552 14 4C14 3.448 14.447 3 15 3H20C20.13 3 20.2601 3.0269 20.3821 3.0769C20.6271 3.1779 20.8221 3.37292 20.9231 3.61792C20.9741 3.73992 21 3.87 21 4ZM20 12C19.447 12 19 12.448 19 13V17C19 18.439 18.439 19 17 19H7C5.561 19 5 18.439 5 17V7C5 5.561 5.561 5 7 5H11C11.553 5 12 4.552 12 4C12 3.448 11.553 3 11 3H7C4.458 3 3 4.458 3 7V17C3 19.542 4.458 21 7 21H17C19.542 21 21 19.542 21 17V13C21 12.448 20.553 12 20 12Z"
+                  fill="currentColor"
+                />
+              </div>
+            </div>
+          </div>
+        </a>
+        <a
+          class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] rounded-[12px] [cursor:pointer] bg-transparent [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] [text-decoration:none] group"
+          data-testid="multichain-explorer-link"
+          href="https://basescan.org/token/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+          rel="noopener noreferrer"
+          role="button"
+          tabindex="0"
+          target="_blank"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[8px] px-[8px] py-[8px] w-[100%] rounded-[16px] media-md:gap-[var(--cE-gap)] media-md:px-[var(--cE-px)] media-md:h-[var(--cE-h)]"
+            style="--cE-gap: 12px; --cE-px: 0px; --cE-h: 48px;"
+          >
+            <div
+              class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center overflow-hidden z-[var(--c-z)]"
+              data-testid="network-logo-8453"
+              style="--c-z: 10; width: 20px; height: 20px; border-radius: 6px; border-width: 0px;"
+            >
+              <div
+                class="css-view-175oi2r r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
+                style="object-fit: contain; width: 21px; height: 21px;"
+              >
+                <div
+                  class="css-view-175oi2r r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw r-backgroundSize-4gszlv"
+                  style="background-image: url(mock-asset-BASE_LOGO.png);"
+                />
+                <img
+                  alt=""
+                  class="css-accessibilityImage-9pa8cd"
+                  draggable="false"
+                  src="mock-asset-BASE_LOGO.png"
+                />
+              </div>
+            </div>
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap basis-[0px] grow-[1] shrink"
+            >
+              Base
+            </span>
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[8px]"
+            >
+              <span
+                class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-medium)] text-[14px] [line-height:16.1px] [font-weight:535] [color:var(--stext-neutral2)]"
+              >
+                BaseScan
+              </span>
+              <div
+                fill="none"
+                stroke-width="8"
+                style="width: 16px; height: 16px; color: rgba(255, 255, 255, 0.65);"
+                viewbox="0 0 24 24"
+              >
+                <div
+                  d="M21 4V9C21 9.552 20.553 10 20 10C19.447 10 19 9.552 19 9V6.41406L11.707 13.707C11.512 13.902 11.256 14 11 14C10.744 14 10.488 13.902 10.293 13.707C9.90197 13.316 9.90197 12.684 10.293 12.293L17.5859 5H15C14.447 5 14 4.552 14 4C14 3.448 14.447 3 15 3H20C20.13 3 20.2601 3.0269 20.3821 3.0769C20.6271 3.1779 20.8221 3.37292 20.9231 3.61792C20.9741 3.73992 21 3.87 21 4ZM20 12C19.447 12 19 12.448 19 13V17C19 18.439 18.439 19 17 19H7C5.561 19 5 18.439 5 17V7C5 5.561 5.561 5 7 5H11C11.553 5 12 4.552 12 4C12 3.448 11.553 3 11 3H7C4.458 3 3 4.458 3 7V17C3 19.542 4.458 21 7 21H17C19.542 21 21 19.542 21 17V13C21 12.448 20.553 12 20 12Z"
+                  fill="currentColor"
+                />
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

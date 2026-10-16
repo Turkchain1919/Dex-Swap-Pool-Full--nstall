@@ -1,0 +1,58 @@
+<!--
+-- UI entrypoint for web.
+--
+-- HTML document used to host any React content (popup, window, iframes, etc.)
+--
+-- Flow:
+--   1. Document is opened with url formatted for <Router />
+--   2. Document inserts index.js into a <script> tag
+--   3. index.js renders <App /> at #root
+--   4. react-router handles proper routing (e.g. onboarding, navigation, notifications, etc.)
+--
+-- ┌────────────────────────────┐
+-- │ content_window.html#/route │
+-- ├────────────────────────────┤
+-- │ <html>                     │
+-- │  <script src=content.js /> │
+-- └────┬───────────────────────┘
+--      │ {route}
+--      ▼
+-- ┌───────────────┐    ┌────────────────────┐
+-- │  content.js   │  ┌►│  <Router route>    │
+-- ├───────────────┤  │ ├────────────────────┤
+-- │ <Redux />     │  │ │ |<Onboarding/>     │
+-- │  <Tamagui />  │  │ │ |<WebNavigation /> │
+-- │   <GraphQl /> │  │ │ |<Notifications /> │
+-- │    <Router />─┼──┘ │ |...               │
+-- └───────────────┘    └────────────────────┘
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fonts (licensed Basel Grotesk + the Tamagui "Basel" alias) are registered in
+         src/app/tailwind.css so every entrypoint shares one source of truth. -->
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
+      }
+
+      html {
+        font-variant: none;
+        font-smooth: always;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+
+    <title>Uniswap Extension</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="loadSidebar.ts" async></script>
+  </body>
+</html>

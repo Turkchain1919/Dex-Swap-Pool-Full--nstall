@@ -1,0 +1,85 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GenericImportForm > renders a placeholder when there is no value 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    style="gap: 12px;"
+  >
+    <div
+      class="css-view-175oi2r"
+      style="padding: 16px 24px 16px 24px; width: 100%; min-height: 120px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;"
+    >
+      <div
+        class="css-view-175oi2r"
+      >
+        <textarea
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          class="css-textinput-11aywtz r-placeholderTextColor-6taxm2"
+          data-testid="import-account-input"
+          dir="auto"
+          enterkeyhint="done"
+          spellcheck="false"
+          style="--placeholderTextColor: rgba(19, 19, 19, 0.35); border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; background-color: rgba(0, 0, 0, 0); color: rgb(19, 19, 19); border-top-color: rgba(0,0,0,0.00); border-right-color: rgba(0,0,0,0.00); border-bottom-color: rgba(0,0,0,0.00); border-left-color: rgba(0,0,0,0.00); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; height: auto; min-width: 0px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; font-family: Basel Grotesk; font-size: 17px; font-weight: 500; flex-shrink: 1; text-align: left; line-height: 20.4px; padding: 0px 0px 0px 0px;"
+          virtualkeyboardpolicy="auto"
+        />
+      </div>
+      <div
+        class="css-view-175oi2r"
+        style="padding-top: 16px; padding-bottom: 16px; top: 0px; left: 24px;"
+      >
+        <div
+          class="css-text-146c3p1"
+          dir="auto"
+          style="pointer-events: none; font-size: 17px; line-height: 20.4px; font-family: Basel Grotesk; font-weight: 400;"
+        >
+          seed phrase
+        </div>
+      </div>
+      <div
+        class="css-view-175oi2r"
+        style="height: 0px; right: 0px; bottom: 0px; left: 0px;"
+      >
+        <div
+          class="css-view-175oi2r"
+        >
+          <button
+            android_ripple="[object Object]"
+            role="button"
+            style="padding: 8px; border-radius: 12px;"
+          >
+            <div
+              class="css-view-175oi2r"
+              style="gap: 4px;"
+            >
+              <div
+                class="css-text-146c3p1"
+                dir="auto"
+                style="font-size: 15px; line-height: 17.25px; font-family: Basel Grotesk; font-weight: 500;"
+              >
+                common.button.paste
+              </div>
+              <div
+                fill="currentColor"
+                stroke-width="8"
+                style="width: 16px; height: 16px; color: rgb(255, 55, 199);"
+                viewbox="0 0 16 16"
+              >
+                <div
+                  d="M14 4.24666V8.56665C14 8.71332 13.9866 8.86 13.9533 9H11.2533C10.0066 9 9 10.0067 9 11.2533V13.9534C8.86 13.9867 8.7134 14 8.56673 14H4.25326C2.74659 14 2 13.2467 2 11.7467V4.24666C2 2.74666 2.74659 2 4.25326 2H11.7467C13.2534 2 14 2.74666 14 4.24666ZM10 11.2533V13.48C10.06 13.44 10.1067 13.3933 10.16 13.34L13.34 10.16C13.3933 10.1067 13.44 10.06 13.48 10H11.2533C10.5599 10 10 10.56 10 11.2533Z"
+                  fill="currentColor"
+                />
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-view-175oi2r"
+    />
+  </div>
+</DocumentFragment>
+`;

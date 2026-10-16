@@ -1,0 +1,46 @@
+/* Mycelium Design System for Tailwind v4 */
+/* Usage: @import "@universe/mycelium/tailwind"; */
+/* For fonts: @import "@universe/mycelium/fonts"; */
+
+/* Design tokens now live in @universe/tailwind (shared across web + native). */
+/* Mycelium re-exports the web bundle so existing consumers stay unchanged. */
+@import "@universe/tailwind/tailwind";
+
+/* Scan roots for mycelium's own sources. Tailwind's scanner cannot see class
+ * strings inside node_modules unless a stylesheet registers them, and `@source`
+ * resolves relative to the declaring file — so declaring the roots here gives
+ * every consumer of this entry coverage with no app-side path to maintain. */
+@import "./tailwind-sources.css";
+
+/* The closed compat class set (INFRA-3217): every class the runtime compat
+ * compilers may emit (scope + escape hatches: src/compat/closed-set.ts docs).
+ * Regenerate: `bun nx run @universe/mycelium:generate:compat-classes`. */
+@source "./compat-classes.gen.txt";
+
+/* Accordion expand/collapse (mycelium Accordion). Defines the animate-accordion-*
+ * utilities here so they exist for every mycelium consumer, and overrides
+ * tw-animate-css's 0.2s ease-out default where that package is also imported
+ * (this file is declared later in the import graph, so it wins): slightly faster
+ * with a gentler deceleration so the motion reads less stiff. */
+@theme {
+  --animate-accordion-down: accordion-down 0.17s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --animate-accordion-up: accordion-up 0.17s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

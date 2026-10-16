@@ -1,0 +1,66 @@
+import { useMemo } from 'react'
+import { MAX_NUMBER_OF_TOKENS } from 'uniswap/src/components/CurrencyInputPanel/DefaultTokenOptions/constants'
+import { TokenOptionItem } from 'uniswap/src/components/CurrencyInputPanel/DefaultTokenOptions/TokenOptions/TokenOptionItem/TokenOptionItem'
+import { useCommonTokensOptionsWithFallback } from 'uniswap/src/components/TokenSelector/hooks/useCommonTokensOptionsWithFallback'
+import { usePortfolioBalancesForAddressById } from 'uniswap/src/components/TokenSelector/hooks/usePortfolioBalancesForAddressById'
+import { useActiveAddresses } from 'uniswap/src/features/accounts/store/hooks'
+import type { CurrencyInfo } from 'uniswap/src/features/dataApi/types'
+import { useSwapFormStoreDerivedSwapInfo } from 'uniswap/src/features/transactions/swap/stores/swapFormStore/useSwapFormStore'
+import type { CurrencyField } from 'uniswap/src/types/currency'
+
+const createKey = (currency: CurrencyInfo['currency']): string =>
+  currency.isNative ? `${currency.chainId}-native` : `${currency.chainId}-${currency.address}`
+
+const useCommonTokensOptionsInfo = (
+  maxTokens: number,
+): {
+  allCurrencyInfos: CurrencyInfo[]
+  numberOfCommonTokenOptions: number
+} => {
+  const addresses = useActiveAddresses()
+  const chainId = useSwapFormStoreDerivedSwapInfo((s) => s.chainId)
+  const portfolioData = usePortfolioBalancesForAddressById(addresses)
+
+  const { data: commonTokenOptions } = useCommonTokensOptionsWithFallback({
+    chainFilter: chainId,
+    portfolioData,
+  })
+
+  const allCurrencyInfos: CurrencyInfo[] = useMemo(() => {
+    return commonTokenOptions?.slice(0, maxTokens).map(({ currencyInfo }) => currencyInfo) ?? []
+  }, [commonTokenOptions, maxTokens])
+
+  return {
+    allCurrencyInfos,
+    numberOfCommonTokenOptions: allCurrencyInfos.length,
+  }
+}
+
+export const TokenOptions = ({
+  currencyField,
+  maxTokens = MAX_NUMBER_OF_TOKENS,
+}: {
+  currencyField: CurrencyField
+  maxTokens?: number
+}): JSX.Element => {
+  const { allCurrencyInfos, numberOfCommonTokenOptions } = useCommonTokensOptionsInfo(maxTokens)
+
+  return (
+    <>
+      {allCurrencyInfos.map((currencyInfo, index) => {
+        const { currency } = currencyInfo
+        const key = createKey(currency)
+
+        return (
+          <TokenOptionItem
+            key={key}
+            currencyField={currencyField}
+            currencyInfo={currencyInfo}
+            index={index}
+            numOptions={numberOfCommonTokenOptions}
+          />
+        )
+      })}
+    </>
+  )
+}

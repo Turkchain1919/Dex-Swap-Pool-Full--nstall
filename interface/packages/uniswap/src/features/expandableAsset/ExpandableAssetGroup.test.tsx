@@ -1,0 +1,220 @@
+import { RwaCategory } from '@uniswap/client-data-api/dist/data/v1/api_pb'
+import { UniverseChainId } from '@universe/chains'
+import { Flex } from '@universe/mycelium'
+import type { ReactNode } from 'react'
+import { createFocusedRowStore, FocusedRowStoreContext } from 'uniswap/src/components/lists/focusedRowStore'
+import { mapRankedRwa } from 'uniswap/src/data/apiClients/dataApiService/rwa/mapRankedRwa'
+import { makeRankedRwa } from 'uniswap/src/data/apiClients/dataApiService/rwa/rankedRwaTestHelpers'
+import type { Rwa } from 'uniswap/src/data/apiClients/dataApiService/rwa/types'
+import { ExpandableAssetGroup } from 'uniswap/src/features/expandableAsset/ExpandableAssetGroup'
+import type { RenderIssuerRowArgs } from 'uniswap/src/features/expandableAsset/types'
+import { render } from 'uniswap/src/test/test-utils'
+
+const ENABLED_CHAINS = [UniverseChainId.Mainnet, UniverseChainId.Base, UniverseChainId.ArbitrumOne]
+
+function makeIssuer(slug: string, symbol: string) {
+  return {
+    symbol,
+    name: `Tesla (${slug})`,
+    logoUrl: '',
+    issuer: slug,
+    priceUsd: 1,
+    volume24hUsd: 1,
+    marketCapUsd: 1,
+    chainTokens: [{ chainId: UniverseChainId.Base, address: `0x${slug}` }],
+  }
+}
+
+function rwaWithIssuers(issuers: Array<[string, string]>): Rwa {
+  const rwa = mapRankedRwa({
+    token: makeRankedRwa({ symbol: 'TSLA', issuerTokens: issuers.map(([slug, symbol]) => makeIssuer(slug, symbol)) }),
+    category: RwaCategory.STOCKS,
+  })
+  if (!rwa) {
+    throw new Error('failed to build Rwa test fixture')
+  }
+  return rwa
+}
+
+describe('ExpandableAssetGroup renderIssuerRow wiring', () => {
+  it('wraps the collapsed single-issuer identity with ownsTouchable=false + a controlled menuControl', () => {
+    const rwa = rwaWithIssuers([['xstocks', 'TSLAX']])
+    let captured: RenderIssuerRowArgs | undefined
+    const renderIssuerRow = vi.fn((args: RenderIssuerRowArgs): ReactNode => {
+      captured = args
+      return <Flex testID="injected">{args.children}</Flex>
+    })
+    render(
+      <FocusedRowStoreContext.Provider value={createFocusedRowStore(2)}>
+        <ExpandableAssetGroup
+          asset={rwa}
+          enabledChainIds={ENABLED_CHAINS}
+          isExpanded={false}
+          onToggle={vi.fn()}
+          onParentPress={vi.fn()}
+          focusedRowControl={{ rowIndex: 2, setFocusedRowIndex: vi.fn() }}
+          renderIssuerRow={renderIssuerRow}
+        />
+      </FocusedRowStoreContext.Provider>,
+    )
+    expect(renderIssuerRow).toHaveBeenCalledTimes(1)
+    expect(captured?.ownsTouchable).toBe(false)
+    expect(captured?.isRowFocused).toBe(true) // focusedRowIndex === rowIndex
+    expect(captured?.issuer).toBe(rwa.issuerTokens[0])
+    expect(captured?.menuControl?.isOpen).toBe(false)
+    expect(typeof captured?.menuControl?.openMenu).toBe('function')
+    expect(typeof captured?.menuControl?.closeMenu).toBe('function')
+  })
+
+  it('renders the category tag exactly once per placement on a collapsed single-issuer menu row', () => {
+    const rwa = rwaWithIssuers([['ondo', 'TSLAON']])
+    for (const placement of ['right', 'title'] as const) {
+      const { getAllByText, unmount } = render(
+        <ExpandableAssetGroup
+          asset={rwa}
+          enabledChainIds={ENABLED_CHAINS}
+          isExpanded={false}
+          categoryTagPlacement={placement}
+          onToggle={vi.fn()}
+          onParentPress={vi.fn()}
+          renderIssuerRow={(args) => <Flex testID="injected">{args.children}</Flex>}
+        />,
+      )
+      expect(getAllByText('Stocks')).toHaveLength(1)
+      unmount()
+    }
+  })
+
+  it('renders the category tag exactly once per placement on a multi-issuer parent row', () => {
+    const rwa = rwaWithIssuers([
+      ['xstocks', 'TSLAX'],
+      ['ondo', 'TSLAON'],
+    ])
+    for (const placement of ['right', 'title'] as const) {
+      const { getAllByText, unmount } = render(
+        <ExpandableAssetGroup
+          asset={rwa}
+          enabledChainIds={ENABLED_CHAINS}
+          isExpanded={false}
+          categoryTagPlacement={placement}
+          onToggle={vi.fn()}
+        />,
+      )
+      expect(getAllByText('Stocks')).toHaveLength(1)
+      unmount()
+    }
+  })
+
+  it('passes isRowFocused=false for a single-issuer row that is not the focused row', () => {
+    const rwa = rwaWithIssuers([['ondo', 'TSLAON']])
+    let captured: RenderIssuerRowArgs | undefined
+    render(
+      <FocusedRowStoreContext.Provider value={createFocusedRowStore(1)}>
+        <ExpandableAssetGroup
+          asset={rwa}
+          enabledChainIds={ENABLED_CHAINS}
+          isExpanded={false}
+          onToggle={vi.fn()}
+          onParentPress={vi.fn()}
+          focusedRowControl={{ rowIndex: 3, setFocusedRowIndex: vi.fn() }}
+          renderIssuerRow={(args) => {
+            captured = args
+            return <Flex testID="injected">{args.children}</Flex>
+          }}
+        />
+      </FocusedRowStoreContext.Provider>,
+    )
+    expect(captured?.isRowFocused).toBe(false)
+  })
+
+  it('does not wrap (or render sub-rows for) a collapsed multi-issuer parent row', () => {
+    const rwa = rwaWithIssuers([
+      ['xstocks', 'TSLAX'],
+      ['ondo', 'TSLAON'],
+    ])
+    const renderIssuerRow = vi.fn((): ReactNode => null)
+    render(
+      <ExpandableAssetGroup
+        asset={rwa}
+        enabledChainIds={ENABLED_CHAINS}
+        isExpanded={false}
+        onToggle={vi.fn()}
+        renderIssuerRow={renderIssuerRow}
+      />,
+    )
+    expect(renderIssuerRow).not.toHaveBeenCalled()
+  })
+
+  it('renders rightElement once in a multi-issuer parent row header', () => {
+    const rwa = rwaWithIssuers([
+      ['xstocks', 'TSLAX'],
+      ['ondo', 'TSLAON'],
+    ])
+    const { getAllByTestId } = render(
+      <ExpandableAssetGroup
+        asset={rwa}
+        enabledChainIds={ENABLED_CHAINS}
+        isExpanded={false}
+        rightElement={<Flex testID="right-slot" />}
+        onToggle={vi.fn()}
+      />,
+    )
+    expect(getAllByTestId('right-slot')).toHaveLength(1)
+  })
+
+  it('embeds rightElement inside the collapsed single-issuer menu row exactly once (not duplicated by the shell)', () => {
+    const rwa = rwaWithIssuers([['ondo', 'TSLAON']])
+    const { getAllByTestId, unmount } = render(
+      <ExpandableAssetGroup
+        asset={rwa}
+        enabledChainIds={ENABLED_CHAINS}
+        isExpanded={false}
+        rightElement={<Flex testID="right-slot" />}
+        onToggle={vi.fn()}
+        onParentPress={vi.fn()}
+        renderIssuerRow={(args) => <Flex testID="injected">{args.children}</Flex>}
+      />,
+    )
+    expect(getAllByTestId('right-slot')).toHaveLength(1)
+    unmount()
+    // A row that drops its children drops the right slot too — it lives in the row body, not the shell header.
+    const { queryByTestId } = render(
+      <ExpandableAssetGroup
+        asset={rwa}
+        enabledChainIds={ENABLED_CHAINS}
+        isExpanded={false}
+        rightElement={<Flex testID="right-slot" />}
+        onToggle={vi.fn()}
+        onParentPress={vi.fn()}
+        renderIssuerRow={() => <Flex testID="injected" />}
+      />,
+    )
+    expect(queryByTestId('right-slot')).toBeNull()
+  })
+
+  it('forwards renderIssuerRow to the expanded multi-issuer sub-rows with ownsTouchable=true (no menuControl)', () => {
+    const rwa = rwaWithIssuers([
+      ['xstocks', 'TSLAX'],
+      ['ondo', 'TSLAON'],
+    ])
+    const calls: RenderIssuerRowArgs[] = []
+    const renderIssuerRow = vi.fn((args: RenderIssuerRowArgs): ReactNode => {
+      calls.push(args)
+      return <Flex testID={`injected-${args.issuer.issuer}`}>{args.children}</Flex>
+    })
+    render(
+      <ExpandableAssetGroup
+        asset={rwa}
+        enabledChainIds={ENABLED_CHAINS}
+        isExpanded={true}
+        onToggle={vi.fn()}
+        onIssuerPress={vi.fn()}
+        renderIssuerRow={renderIssuerRow}
+      />,
+    )
+    expect(renderIssuerRow).toHaveBeenCalledTimes(2)
+    expect(calls.every((a) => a.ownsTouchable === true)).toBe(true)
+    expect(calls.every((a) => a.isRowFocused === false)).toBe(true)
+    expect(calls.every((a) => a.menuControl === undefined)).toBe(true)
+  })
+})

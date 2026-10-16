@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NftTransactionDetails Component > renders NftTransactionDetails without error 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 rounded-[20px] overflow-hidden"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[100%] [aspect-ratio:var(--c-ar)]"
+      style="--c-ar: 1;"
+    />
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 p-[12px] border-surface3 border-[1px] border-t-[0px] [border-bottom-left-radius:var(--c-bblr)] [border-bottom-right-radius:var(--c-bbrr)]"
+      style="--c-bblr: 20px; --c-bbrr: 20px;"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [line-height:20px] [font-weight:485] [color:var(--stext-neutral1)]"
+      >
+        voluptates repudiandae aliquid
+      </span>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row pr-[12px]"
+      >
+        <span
+          class="[display:inline] box-border m-0 [word-wrap:break-word] [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)] max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+        >
+          inventore qui fugiat
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

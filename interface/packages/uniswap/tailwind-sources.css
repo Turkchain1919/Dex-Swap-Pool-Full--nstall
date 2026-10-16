@@ -1,0 +1,17 @@
+/*
+ * Tailwind scan roots for this package, declared where the sources live.
+ * `@source` globs resolve relative to the stylesheet that declares them, so
+ * every app entry that imports this file gets coverage for class strings in
+ * uniswap sources (e.g. styled-factory conversions) without carrying a
+ * positional cross-package path of its own.
+ *
+ * Test files are NOT style sources: probe string literals in suites would
+ * otherwise be compiled into the shipped web stylesheets and the native
+ * bundle. Snapshot files freeze fully rendered output, so they are excluded
+ * too — today's scanner ignores them by extension; the exclusion makes that
+ * a guarantee instead of an implementation detail.
+ */
+@source "./src";
+@source not "./src/**/*.test.ts";
+@source not "./src/**/*.test.tsx";
+@source not "./src/**/__snapshots__/**";

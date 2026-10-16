@@ -1,0 +1,3013 @@
+{
+  "version": 1,
+  "locale": "id-ID",
+  "entries": [
+    [
+      "id-ID:i18next-json:account.passkey.backupLogin.add.apple",
+      {
+        "unitId": "account.passkey.backupLogin.add.apple",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "f223faa96f22916294922b171a2696d868fd1f9129302eb41a45b2a2ea2ebbfd",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Apple",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:account.passkey.backupLogin.add.email",
+      {
+        "unitId": "account.passkey.backupLogin.add.email",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "969ccbd3cf6300ecd5c880459d81ae9027df7517563184a1b8b15282db230621",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Email",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:account.passkey.backupLogin.add.google",
+      {
+        "unitId": "account.passkey.backupLogin.add.google",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "ce770667e5f9b0d8f55367bb79419689d90c48451bb33f079f3a9a72ae132de8",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Google",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:account.wallet.header.button.title",
+      {
+        "unitId": "account.wallet.header.button.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6756cc16dcfbe296a05eacc7714ecaa64c0de202358811d4bc45c13167886328",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Edit label",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:account.wallet.menu.edit.title",
+      {
+        "unitId": "account.wallet.menu.edit.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6756cc16dcfbe296a05eacc7714ecaa64c0de202358811d4bc45c13167886328",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Edit label",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:addLiquidity.tokenOne",
+      {
+        "unitId": "addLiquidity.tokenOne",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2e1bf2c7a137441ee39a42de05d4ad2004d62611621e0add6a2a619e0154c622",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token 1",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:addLiquidity.tokenTwo",
+      {
+        "unitId": "addLiquidity.tokenTwo",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7199a4ea4d19792bec804ed308dad2b1bb27df739dd2aa47e0c9616bbc76326e",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token 2",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:addressClaim.amountUni",
+      {
+        "unitId": "addressClaim.amountUni",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "cd1eb9a019a547ad65d9553dc9cd964cfed85ceae00c1bd1a39878cb85d68c7c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{amount}} UNI",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:chart.noData.price.title",
+      {
+        "unitId": "chart.noData.price.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a67ccbf5b6366d4b0681999abfb45864bffb0d314fb6694e542b2dacb5695265",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Data harga tidak tersedia",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-14T20-52-54Z",
+        "approvedAt": "2026-09-14T20:52:54.346Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:chart.noData.tokens.description",
+      {
+        "unitId": "chart.noData.tokens.description",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "4949909f21d332fcce6a434c130fa95a30e0db26aa18f6660b130f198ca25634",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Data historis token ini tidak cukup untuk menampilkan grafik.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-14T21-34-28Z",
+        "approvedAt": "2026-09-14T21:34:28.636Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:chart.noData.tvl.title",
+      {
+        "unitId": "chart.noData.tvl.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "18f5bd9ca6cf92b822086f5392b731391f13e841190b28e15e7bd6bc8472ce44",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Data TVL tidak tersedia",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-14T20-52-54Z",
+        "approvedAt": "2026-09-14T20:52:54.346Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:chart.noData.volume.title",
+      {
+        "unitId": "chart.noData.volume.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b97dfd27b26d32aeea0eb561da315c401787dbb733e4fddfc59ba4041592bcf1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Data volume tidak tersedia",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-14T20-52-54Z",
+        "approvedAt": "2026-09-14T20:52:54.346Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.beta",
+      {
+        "unitId": "common.beta",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "703390318bd55aef50b7823d2b90a846debff99e6e3d401a24a921b733912a6d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Beta",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.blog",
+      {
+        "unitId": "common.blog",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "8c6bc099534a0251b576f6b88bd2db124ae9497c64bd9242e92a6aec23e6a73a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Blog",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.button.edit",
+      {
+        "unitId": "common.button.edit",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "464c4ffd019e1e9691dcf0537c797353ef2b1c1d4833d3d463e5b74ae4547344",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Edit",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.button.ok",
+      {
+        "unitId": "common.button.ok",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "OK",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.chain",
+      {
+        "unitId": "common.chain",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "dae0896cbc2c67bfbf74f011e826f2fb06aac119ed2938ec2c2f049774a7b89c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Chain",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.default",
+      {
+        "unitId": "common.default",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "21b111cbfe6e8fca2d181c43f53ad548b22e38aca955b9824706a504b0a07a2d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Default",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.edit.button",
+      {
+        "unitId": "common.edit.button",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "464c4ffd019e1e9691dcf0537c797353ef2b1c1d4833d3d463e5b74ae4547344",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Edit",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.explorer",
+      {
+        "unitId": "common.explorer",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "c39d646f10769b078ae82be4da7a0079ca91182b241e749be4276e08c215c654",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Explorer",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.min",
+      {
+        "unitId": "common.min",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "dea79332147ffe1fb2a81cf9a5bdf0066ddcc625699996ede0ce140e5cb004b1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Min",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.pool",
+      {
+        "unitId": "common.pool",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "f13024272c385f73dd30cb84e0e88cbabc06ab39eedcdbe53c7e933df61d4849",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pool",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.protocol.v2",
+      {
+        "unitId": "common.protocol.v2",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "13df32b4b685329a8ab8a3e88ee60420c95433f2c497f820dee07832c30960d8",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Uniswap v2",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.protocol.v3",
+      {
+        "unitId": "common.protocol.v3",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2f3484072437fee01de2893c3c19d347514fb13750f45d7d84142372e5328c00",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Uniswap v3",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.protocol.v4",
+      {
+        "unitId": "common.protocol.v4",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a898cb035e37d52eac774bccb26ac636b5567925c087df4d82cacf8218ce1d72",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Uniswap v4",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.status",
+      {
+        "unitId": "common.status",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "920e413c7d411b61ef3e8c63b1cb6ad058d5f95f8b481dbafe60248387d8c355",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Status",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.tokenA",
+      {
+        "unitId": "common.tokenA",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "67e9698738d85966b9b6b5c9cc9820a3ed9301305a53e145931462e7b96d2628",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token A",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.tokenB",
+      {
+        "unitId": "common.tokenB",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e061d1004ffe787ef593c4974f5f37ec9fa37e10bab59abc72dab0874f9cdebc",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token B",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.total",
+      {
+        "unitId": "common.total",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "c9b3c38247f744e17dd26fda097d6a9ba9332586b6bdaa038bf8f313a863f2b8",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Total",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.transfer_one",
+      {
+        "unitId": "common.transfer_one",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "27f576cafbb263ed44be8bd094f66114da26877706f96c4c31d5a97ffebf2e29",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "transfer",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.unwrapped",
+      {
+        "unitId": "common.unwrapped",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "143ff891d55dd17ae9c0045521f9e59af37580638e26ef51dcf6b14ef820791b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Unwrapped",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "major",
+            "detail": "Shipped translation for this exact string is \"Unwrapped\" (kept English per the unwrap/wrapped DNT policy); the proposal invents a different rendering, breaking consistency with the shipped corpus.",
+            "evidence": {
+              "rule": "glossary: unwrap / wrapped — DO NOT TRANSLATE; shipped: Unwrapped → Unwrapped",
+              "sourceSpan": "Unwrapped",
+              "targetSpan": "Unwrap berhasil"
+            },
+            "alternative": "Unwrapped"
+          },
+          {
+            "category": "accuracy",
+            "severity": "minor",
+            "detail": "Source status label is just \"Unwrapped\"; \"berhasil\" (successfully) is added content not in the source.",
+            "evidence": {
+              "sourceSpan": "Unwrapped",
+              "targetSpan": "Unwrap berhasil"
+            },
+            "alternative": "Unwrapped"
+          }
+        ],
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:common.volume",
+      {
+        "unitId": "common.volume",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:currency.eur",
+      {
+        "unitId": "currency.eur",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "8bd0b436b489560e73e403e055dd0a15518a254cad0d9e2aa4771d1b561d78f6",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Euro",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:dapp.request.amountUnavailable",
+      {
+        "unitId": "dapp.request.amountUnavailable",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6ea97c53df001e76387ca3cd2a57c61aa2ffa0e12d752ff4f445556b31edd0b1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Jumlah tidak tersedia",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-18T15-34-03Z",
+        "approvedAt": "2026-09-18T15:34:03.720Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:explore.collections.single",
+      {
+        "unitId": "explore.collections.single",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7b790708ff1b171315a152018f3712e8c71c82f4f9000635f77a1336c34f1893",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Koleksi",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-17T17-29-50Z",
+        "approvedAt": "2026-09-17T17:29:50.578Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:explore.earn.title",
+      {
+        "unitId": "explore.earn.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a697f90fb199423119c503cd3d56739b8810dadcd832e037afbbc918927f713b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Earn",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:explore.tokens.metadata.marketCap",
+      {
+        "unitId": "explore.tokens.metadata.marketCap",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "1230c9498c484f532b94e32e64fa3b94521d62ae2225507495be88d5aad4304c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{number}} MCap",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:explore.tokens.metadata.volume",
+      {
+        "unitId": "explore.tokens.metadata.volume",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "9262aa57590070d0b5120f2d1d32a48933681867da2412488bf6d060ccb435b1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{number}} Vol",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:explore.tokens.sort.label.volume",
+      {
+        "unitId": "explore.tokens.sort.label.volume",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:fiatOnRamp.paymentMethods.bank",
+      {
+        "unitId": "fiatOnRamp.paymentMethods.bank",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "676c471bc8dc3d1324133cf087c20aa0137fc02348811e4162c79e560298fb11",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Bank",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:fiatOnRamp.paymentMethods.debit",
+      {
+        "unitId": "fiatOnRamp.paymentMethods.debit",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "ae224acb87e2e940b74478398ea002778f8d29538decc84156deb173a349f1e2",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Debit",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:fiatOnRamp.paymentMethods.venmo",
+      {
+        "unitId": "fiatOnRamp.paymentMethods.venmo",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a1593ecc5a13b7a066c20b6c85dd945ba178a9618c95d50bbe52e4a834b5082d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Venmo",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:landing.api",
+      {
+        "unitId": "landing.api",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "c8e5998f6a3955c21d858936fe05c69621724d7f825c6e17793002a0fa798bf9",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "API",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:launches.hero.subtitleArcRobinhoodWithWordmark",
+      {
+        "unitId": "launches.hero.subtitleArcRobinhoodWithWordmark",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "75668dd168d7ed3491d00a54ff57efceb54853536bda7849a7302edbec57a361",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Perdagangkan token baru Arc dan Robinhood Chain di <wordmark>Pools</wordmark>",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T22-39-08Z",
+        "approvedAt": "2026-09-15T22:39:08.272Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:launches.hero.subtitleRobinhoodWithWordmark",
+      {
+        "unitId": "launches.hero.subtitleRobinhoodWithWordmark",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b53e3274a1546eabe90235d83cf30d24426587059f598cdc54fe8ce6d44e1f95",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Perdagangkan token baru Robinhood Chain di <wordmark>Pools</wordmark>",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T22-39-08Z",
+        "approvedAt": "2026-09-15T22:39:08.272Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:launches.table.launchpad",
+      {
+        "unitId": "launches.table.launchpad",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "08c9188c5d641e944ca3c674f027a1c0186d00f69d1079c8ba1417aa6bfa2d51",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Launchpad",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:liquidityPool.positions.table.column.apr",
+      {
+        "unitId": "liquidityPool.positions.table.column.apr",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "4bc04668c1d32bda93f0842b49737604ab020722bf62c55127cd852f6baeeb95",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "APR",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:liquidityPool.positions.table.column.pool",
+      {
+        "unitId": "liquidityPool.positions.table.column.pool",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "f13024272c385f73dd30cb84e0e88cbabc06ab39eedcdbe53c7e933df61d4849",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pool",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:notification.auction.open.failed",
+      {
+        "unitId": "notification.auction.open.failed",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e4d2634ab0b23d0e9a07704b98f1b4ae2c8f1622a2f832297cba3b3ecd63be45",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tidak dapat membuka lelang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:pool.apr",
+      {
+        "unitId": "pool.apr",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "4bc04668c1d32bda93f0842b49737604ab020722bf62c55127cd852f6baeeb95",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "APR",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:pool.filter.button",
+      {
+        "unitId": "pool.filter.button",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "638e249f4a15ebb84957da130701d138a6e06d88dceeaa2e6dcd91db70cc1381",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Filter",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:pool.filter.buttonWithCount_one",
+      {
+        "unitId": "pool.filter.buttonWithCount_one",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b7214c3d0636ab7c7fa48e3f4b11db5d3a06f782cef0f4a1edf8141e4c2e8e48",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Filter ({{count}})",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:pool.filter.buttonWithCount_other",
+      {
+        "unitId": "pool.filter.buttonWithCount_other",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b7214c3d0636ab7c7fa48e3f4b11db5d3a06f782cef0f4a1edf8141e4c2e8e48",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Filter ({{count}})",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:pool.migrateLiquidityV2DisabledTooltip",
+      {
+        "unitId": "pool.migrateLiquidityV2DisabledTooltip",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "4489cb130e7c9aeed213fc1acaeb5925905fd6876095e3d2d840719e3ccc92c5",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Migrasi ke v3 tidak didukung di chain ini.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-29T16-53-49Z",
+        "approvedAt": "2026-09-29T16:53:49.142Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:pool.totalAPR",
+      {
+        "unitId": "pool.totalAPR",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7ce98ec8606d2644f02c68308a6b970f6113c9130039cb34cdc71373d2be59cd",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Total APR",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:pool.via",
+      {
+        "unitId": "pool.via",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "3e519e673662458301d5db97ec843122a637eb00e37ad01db5a802b85249a6ea",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{tokenPair}} via {{dex}}",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:portfolio.defi.title",
+      {
+        "unitId": "portfolio.defi.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "3871f97fc9a1fa1298ef55c7ec904392f630e41e2f7be2355bf92c400d4c3151",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "DeFi",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:reporting.token.data.options.volume.title",
+      {
+        "unitId": "reporting.token.data.options.volume.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:reporting.token.options.spam.title",
+      {
+        "unitId": "reporting.token.options.spam.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "c8ecaad495002dc2ed7bc8d38d61aae69d275cec374e626fe227f58a4d342e05",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Airdrop / spam",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.badges.badger.title",
+      {
+        "unitId": "rhcca.badges.badger.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "851a61441fc5f51b976431739402afbb30fe463a88a4026c7c4bc5a5a9bd7b28",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "The Badger",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.badges.frontrunner.title",
+      {
+        "unitId": "rhcca.badges.frontrunner.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "0773c1472ee54c746ad79733cf4597873871273cb6db3e74d0423ab4cdee22ab",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Frontrunner",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.badges.original.title",
+      {
+        "unitId": "rhcca.badges.original.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b09dddcd0984dad39850cc9129ad5d6b22f72ef64489e646e959ad3a37b46819",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "First Splash",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.column.volume",
+      {
+        "unitId": "rhcca.column.volume",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.create.feeRecipientLockedCrowdLaunch",
+      {
+        "unitId": "rhcca.create.feeRecipientLockedCrowdLaunch",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "3010c20d764d983a5e0650148d526e7e8c0371edcd541cbf58d593154c1bbee0",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Biaya kreator {{ccaMechanism}} masuk ke wallet yang meluncurkan.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T21-14-20Z",
+        "approvedAt": "2026-09-15T21:14:20.016Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.create.field.tickerSymbolPlaceholder",
+      {
+        "unitId": "rhcca.create.field.tickerSymbolPlaceholder",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a1efe92e5d394bfbfadb01f863c3ebb3503ed198f7b7ddd4d14da5bcbb850ae9",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "$TICKER",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.create.network.feeBuyback",
+      {
+        "unitId": "rhcca.create.network.feeBuyback",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2aeb5bffe13f0642efdcc282915dce6655af1d9f8ac54271b651b649bb20adbd",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Biaya perdagangan membeli kembali dan membakar token Anda",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.create.network.feeCompound",
+      {
+        "unitId": "rhcca.create.network.feeCompound",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "d2ea9546dd6d9ac5cadb72d731fa2f76c8d0735a246a245003437e1bca19c9bd",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Biaya perdagangan otomatis ditambahkan kembali sebagai likuiditas yang terkunci",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.creatorSettings.edit",
+      {
+        "unitId": "rhcca.creatorSettings.edit",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "464c4ffd019e1e9691dcf0537c797353ef2b1c1d4833d3d463e5b74ae4547344",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Edit",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.creatorSettings.feeSubOffBuyback",
+      {
+        "unitId": "rhcca.creatorSettings.feeSubOffBuyback",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2ce6112d34aa4d5bf2a949d0b9b0155b5526177099c7e5bbf01e888851ddc644",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Biaya kreator dinonaktifkan. Semua biaya perdagangan membeli kembali dan membakar token.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.drawer.demoTag",
+      {
+        "unitId": "rhcca.drawer.demoTag",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2a97516c354b68848cdbd8f54a226a0a55b21ed138e207ad6c5cbb9c00aa5aea",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "demo",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.explainer.subheaderBuyback",
+      {
+        "unitId": "rhcca.explainer.subheaderBuyback",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7ccf787e87768fefb8c1df86830dae3cc12a2688d385601852e8f00ab8cfe05d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Semua likuiditas dikunci selamanya. Biaya membeli kembali dan membakar {{ticker}}.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.fees.boughtBackBurned",
+      {
+        "unitId": "rhcca.fees.boughtBackBurned",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "8096aba338294dcacd7f14f185e299699d0917d2513d1baa39adc38087d82aa8",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Dibeli kembali & dibakar",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.fees.boughtBackBurnedNote",
+      {
+        "unitId": "rhcca.fees.boughtBackBurnedNote",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "3611a0fe318c4950c310678d351ed63dc84232bac02eeb25432053141fd6f455",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Digunakan untuk membeli kembali dan membakar {{ticker}} — bukan bagian dari penghasilan Anda dan tidak dapat diklaim.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.fees.disabledCopyBuyback",
+      {
+        "unitId": "rhcca.fees.disabledCopyBuyback",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e92196b7aa234c0d94cda11e15a2418325ff58c70566e97b0e17b317dd423dc6",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token ini diluncurkan dengan biaya kreator nonaktif, jadi tidak ada biaya yang dialihkan kepada Anda. Sebagai gantinya, setiap biaya membeli kembali dan membakar token.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "fluency",
+            "severity": "minor",
+            "detail": "Sentence starts lowercase ('token ini...'); Indonesian sentence-initial capitalization is required, especially in a financial UI.",
+            "evidence": {
+              "sourceSpan": "This token launched",
+              "targetSpan": "token ini diluncurkan"
+            },
+            "alternative": "Token ini diluncurkan..."
+          }
+        ],
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.fees.rowOffBuyback",
+      {
+        "unitId": "rhcca.fees.rowOffBuyback",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "3898516067d722263ac6d4d45fa024bdef32f7c368845a5bf868734e539c0085",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Biaya nonaktif · beli kembali & bakar",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-15T18-44-59Z",
+        "approvedAt": "2026-09-15T18:44:59.165Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.fees.transfer",
+      {
+        "unitId": "rhcca.fees.transfer",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "dde8bef78cbb720683fa1fe76bfb900592099ed4346ed995bcbc514e9aa67256",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Transfer",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.filter.clearActive",
+      {
+        "unitId": "rhcca.filter.clearActive",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2dc1c0755c9ec2716cbacc0a40d7babc53c889496a89b8c4495d09e38b95a758",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Hapus filter aktif",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-01T21-26-18Z",
+        "approvedAt": "2026-10-01T21:26:18.938Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.filter.crowdLaunch",
+      {
+        "unitId": "rhcca.filter.crowdLaunch",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "0c30868c94cf6a8ba6c34defe7b888c1498b30ad8ebd749476e80a1cae3fba5b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Crowd Launch",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.filter.instantLaunch",
+      {
+        "unitId": "rhcca.filter.instantLaunch",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "44b2da044269016fe547745dcdeef111551c2ea14fb21e5af07448d684de564b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Instant Launch",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.holders.estimated.tokens",
+      {
+        "unitId": "rhcca.holders.estimated.tokens",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "9d9bdee25659354ce340cd932624f66dd90ba1e838d48e18c4a76e971cf02671",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Est. {{amount}}",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.holders.label.burn",
+      {
+        "unitId": "rhcca.holders.label.burn",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "926c5b4314047434601585221956407b3818b5f1cda70febda6e25d04f204e4c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Burn",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.home.empty.noResults",
+      {
+        "unitId": "rhcca.home.empty.noResults",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7d7e360586090927c7aeee67c8a46d8354694e7aa4b722ff5b421347f798057a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tidak ada hasil ditemukan",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-01T21-26-18Z",
+        "approvedAt": "2026-10-01T21:26:18.938Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.mark.crowd",
+      {
+        "unitId": "rhcca.mark.crowd",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "f469beecc6e76fe41fc4556460ffbc64e57bc2161422a9d54657232e3c631e1b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Crowd",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.mark.instant",
+      {
+        "unitId": "rhcca.mark.instant",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e2861894f065ab75433a07f7a17a9b8df3ffdc01ff29e8723ba0d9ff8c2ec437",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Instant",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.slippage.edit",
+      {
+        "unitId": "rhcca.slippage.edit",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "d75c0ef2cdaea27a3d3ca5a657ac4c16449528e6eacc25c205d84760992432eb",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Edit max slippage",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:rhcca.trades.trader",
+      {
+        "unitId": "rhcca.trades.trader",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "907bdf2f550bb0b4237e97925f330d8af6f1a39a6066f203b1431f7b0fec6cc5",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Trader",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:scantastic.confirmation.label.browser",
+      {
+        "unitId": "scantastic.confirmation.label.browser",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "d31de1a5c5c8ba2a210a167cf0d0dc2425c57ea7525f4b73a4b7ab934af79dfc",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Browser",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:search.results.auction.timeRemaining",
+      {
+        "unitId": "search.results.auction.timeRemaining",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{time}} tersisa",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-30T16-15-09Z",
+        "approvedAt": "2026-09-30T16:15:09.392Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:search.results.stats.apr",
+      {
+        "unitId": "search.results.stats.apr",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "399e5130e4d208df7ae038b56cffa8f007c00974a639709a97d0cdd4bde10c0b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{apr}} APR",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:search.results.stats.apy",
+      {
+        "unitId": "search.results.stats.apy",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2893ffd5ee534dd0615007dd70af33d3a0c37197cf50a6592c563c6840d7e6bc",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{apy}} APY",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "Reordered to \"APY {{apy}}\" while the sibling pattern in this run (i=3086 \"{{apr}} APR\") and the corpus pattern (\"{{apy}} APY\" at i=934/1010) keep the value-then-unit order; inconsistent rendering of the same stat pattern.",
+            "evidence": {
+              "sourceSpan": "{{apy}} APY",
+              "targetSpan": "APY {{apy}}"
+            },
+            "alternative": "{{apy}} APY"
+          }
+        ],
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:search.results.stats.volume",
+      {
+        "unitId": "search.results.stats.volume",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "578b3d84b352dcf5445383e9529f4ea3bdab4a7e1878ea558dcfec7644eeece6",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{volume}} vol",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:send.qrCodeSelection.warning.details.chain",
+      {
+        "unitId": "send.qrCodeSelection.warning.details.chain",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "dae0896cbc2c67bfbf74f011e826f2fb06aac119ed2938ec2c2f049774a7b89c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Chain",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:send.warning.modal.button.cta.blocking",
+      {
+        "unitId": "send.warning.modal.button.cta.blocking",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "OK",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:send.warning.newAddress.details.ENS",
+      {
+        "unitId": "send.warning.newAddress.details.ENS",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "09ddf36201cda6a7b9c8ace9811b71087f9d38be4750f9e4706361dd2deb3787",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "ENS",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:settings.setting.notifications.row.priceAlerts.description",
+      {
+        "unitId": "settings.setting.notifications.row.priceAlerts.description",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "c5aeb5d1f60eab4d0e5416efd645ee6de258fd86bc5ee90abca9bdbae858360a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Perubahan harga token yang signifikan",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-05T16-58-30Z",
+        "approvedAt": "2026-10-05T16:58:30.249Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:settings.setting.notifications.row.priceAlerts.title",
+      {
+        "unitId": "settings.setting.notifications.row.priceAlerts.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "da1bea0919595b27553478f49c4fc929dc2a9e139573bada017d90cccf561802",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Peringatan harga",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-05T16-58-30Z",
+        "approvedAt": "2026-10-05T16:58:30.249Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:settings.setting.wallet.action.editLabel",
+      {
+        "unitId": "settings.setting.wallet.action.editLabel",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6756cc16dcfbe296a05eacc7714ecaa64c0de202358811d4bc45c13167886328",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Edit label",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:swap.details.slippage.total",
+      {
+        "unitId": "swap.details.slippage.total",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "9358d54232ffb36688c1443d709834132739e08e5956f1e4ab4ed8ec1ff153a4",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Total max slippage",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.chart.checkBack",
+      {
+        "unitId": "tdp.auction.chart.checkBack",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "538a0ddc9f9ef4ddd35f5572912fad05edce6e960345ec05015b9d5ca550ebf8",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Cek kembali setelah lelang {{symbol}} berakhir",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.chart.priceDiscovery",
+      {
+        "unitId": "tdp.auction.chart.priceDiscovery",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "d0715e5df8afb1209a733cc8f76d4ac8a510a9773cd4d97688fe488b9620b13a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Penemuan harga sedang berlangsung",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.ended",
+      {
+        "unitId": "tdp.auction.ended",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "ca39ca58747a7e918510277836e9cdbd742060cf4d708c39ed14eab6f987002a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Lelang berakhir",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.inProgress",
+      {
+        "unitId": "tdp.auction.inProgress",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2d50704771bb0b8d28e9ed2126dc45c0ba69623594da03c8ba6f71db517d4e6d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Lelang sedang berlangsung",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.launchInProgress",
+      {
+        "unitId": "tdp.auction.launchInProgress",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e48000ebad93aed54de3ea50a38bc6207ec7f03e550fdc2318eabe0ed90512eb",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Peluncuran sedang berlangsung",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.statusUnavailable",
+      {
+        "unitId": "tdp.auction.statusUnavailable",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "4a1959d064e31e165cb6d873bb83164237b0b5fc62ea4616a626778de53ab808",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Status lelang tidak tersedia",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.timeRemaining",
+      {
+        "unitId": "tdp.auction.timeRemaining",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{time}} tersisa",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auction.viewAuction",
+      {
+        "unitId": "tdp.auction.viewAuction",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2611222ae79f6e7a87bdc6cedbcd80b4936532114bd23c245f6c48b1b96bf8a1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Lihat lelang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.committed",
+      {
+        "unitId": "tdp.auctions.committed",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "dd9061853d8b1498557341a82186e1d9087de502101d830b5d1bc2d560399eb0",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Komitmen",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "fluency",
+            "severity": "minor",
+            "detail": "'Terkomit' is not a standard Indonesian word (not in KBBI); it reads as an ad-hoc coinage. As a stats label for committed volume, the established noun 'Komitmen' (or keeping the DeFi loan pattern) is more natural.",
+            "evidence": {
+              "sourceSpan": "Committed",
+              "targetSpan": "Terkomit"
+            },
+            "alternative": "Komitmen"
+          }
+        ],
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.failedToLaunch",
+      {
+        "unitId": "tdp.auctions.failedToLaunch",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7bcdf89acba1f37c3542c9fce70e5e3b303a104513ed0c5bab4f6b2eb333eee6",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Gagal diluncurkan",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.modalTitle",
+      {
+        "unitId": "tdp.auctions.modalTitle",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "923215eead9085089ba0a2637a4752957d671ca0e01441ab5939041386667ec5",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Lelang {{symbol}}",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.moreCount_one",
+      {
+        "unitId": "tdp.auctions.moreCount_one",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "48380badf7a45c74d3fac6b89d19d777585cb9052d135d1ec482b932bc99e98a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "+{{count}} lagi",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.moreCount_other",
+      {
+        "unitId": "tdp.auctions.moreCount_other",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "48380badf7a45c74d3fac6b89d19d777585cb9052d135d1ec482b932bc99e98a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "+{{count}} lagi",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.otherActive_one",
+      {
+        "unitId": "tdp.auctions.otherActive_one",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "f590255a2e2027e25969f6cf37a3ee335c66734bffd1d8bcacec5231e0d1c340",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{count}} lelang aktif lainnya",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.otherActive_other",
+      {
+        "unitId": "tdp.auctions.otherActive_other",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "827a4bc54015d974e0bc2bed619badaebebf2c15b21bd422238e3fbe7ceb44c8",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{count}} lelang aktif lainnya",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.auctions.raised",
+      {
+        "unitId": "tdp.auctions.raised",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b4a8bf1f6b295bba4c6f67f5e1a02db62acd5dac20aee193984d7d3ef7bea0fe",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Terkumpul",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.claim.action",
+      {
+        "unitId": "tdp.claim.action",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "4ca41db0282537009663db9b9ae8142e0e6b60812996d07075e5a9291d3d91bf",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Klaim",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.claim.receivedFromAuction",
+      {
+        "unitId": "tdp.claim.receivedFromAuction",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "ed1de60dff6c30802d8300c8417b6f45c64c4a1c3d6b5fa4731942904692696d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Diterima dari lelang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.claim.refundAvailable",
+      {
+        "unitId": "tdp.claim.refundAvailable",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e5f4e63ae3c60cab9e3c74f766a9eaf9f9c0f8b068504569415c148ec9114743",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pengembalian dana lelang tersedia",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.claim.unavailable",
+      {
+        "unitId": "tdp.claim.unavailable",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "4dc5ccbce22b7b38115ff6589bb5c1497e3fd9680c18567cd70df0c00097dbf3",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Kami tidak dapat memuat alokasi lelang Anda",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.provenance.auctionHistory",
+      {
+        "unitId": "tdp.provenance.auctionHistory",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "43c72d3ec03e034da668875565b2195ffe7e3b51b485605a55a7435c5536e29c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Riwayat lelang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.provenance.createdBy",
+      {
+        "unitId": "tdp.provenance.createdBy",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "374cd9d220fbeb7a793416ff812502e11f49c06070d2e730676daccd2b6a6b87",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Dibuat oleh",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.provenance.launchDate",
+      {
+        "unitId": "tdp.provenance.launchDate",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "87a01519dba4c4429cc399e509f348093780cba20afab322adb5110b4229e51b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tanggal peluncuran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.provenance.launchMethod",
+      {
+        "unitId": "tdp.provenance.launchMethod",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "c611b5ef80308b76cbc6b63f3802c130a4d0367017db551e5b0c09aeda732b30",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Metode peluncuran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.provenance.launchpad",
+      {
+        "unitId": "tdp.provenance.launchpad",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "08c9188c5d641e944ca3c674f027a1c0186d00f69d1079c8ba1417aa6bfa2d51",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Launchpad",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.provenance.raised",
+      {
+        "unitId": "tdp.provenance.raised",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e7e2fdd8458e6629ca789959ea040dc5754392a079bc915a0788d1dfae4b2105",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{amount}} terkumpul",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tdp.relatedTokens.single.meme",
+      {
+        "unitId": "tdp.relatedTokens.single.meme",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "5d50c37d0e22df692382d024d383cd6de38e22892329896263ac00a939a2ff6b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token meme lainnya",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-30T16-04-11Z",
+        "approvedAt": "2026-09-30T16:04:11.932Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:token.hoverCard.volume24h",
+      {
+        "unitId": "token.hoverCard.volume24h",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7f80d74af2310969ce5a164897f87c4bd5aedbae8dbdd7ce05e6ddc78f461d2a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{amount}} vol 24 jam",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-30T20-35-47Z",
+        "approvedAt": "2026-09-30T20:35:47.584Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tokens.selector.categoryFilter.clear_one",
+      {
+        "unitId": "tokens.selector.categoryFilter.clear_one",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "302e166d28e6486729e3034dbcac7dbcaa86f594e4acddb0a21c7433cc5186bd",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Hapus filter aktif",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-23T16-11-16Z",
+        "approvedAt": "2026-09-23T16:11:16.420Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tokens.selector.categoryFilter.clear_other",
+      {
+        "unitId": "tokens.selector.categoryFilter.clear_other",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2dc1c0755c9ec2716cbacc0a40d7babc53c889496a89b8c4495d09e38b95a758",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Hapus filter aktif",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-23T16-11-16Z",
+        "approvedAt": "2026-09-23T16:11:16.420Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:tokens.selector.categoryFilter.myTokens",
+      {
+        "unitId": "tokens.selector.categoryFilter.myTokens",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "16f6f49ce8ba3114b5b5495524ad01dc739a58e7405110fa38669d4d23443f0c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token saya",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-23T16-11-16Z",
+        "approvedAt": "2026-09-23T16:11:16.420Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.biddingClosed",
+      {
+        "unitId": "toucan.auction.biddingClosed",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "dab4f89cb166fd7798684f2e64ffc1d2ad73fa2d24ede047ba62e9133fedbff1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Penawaran kini ditutup",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.endedOn",
+      {
+        "unitId": "toucan.auction.endedOn",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "73988725620dc90b856b12cb96dfece96728f0e071bba609f58176c43e5db792",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Lelang berakhir {{date}}",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.introBanner.remaining",
+      {
+        "unitId": "toucan.auction.introBanner.remaining",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{time}} tersisa",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.introBanner.timelineAndDetails",
+      {
+        "unitId": "toucan.auction.introBanner.timelineAndDetails",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "797b81c9cbcbd002fd55f3c046c05c7f67f495e9552652ac5c45737b6ff8cc63",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Linimasa & detail",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.nowTradingCard.fdv",
+      {
+        "unitId": "toucan.auction.nowTradingCard.fdv",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a88fc94a8c65608df080363d9a6eddacc0d6fdcffd13ea23fe3cdb49cae70fe9",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "FDV <value>{{fdv}}</value>",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-24T11-50-54Z",
+        "approvedAt": "2026-09-24T11:50:54.206Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.nowTradingCard.title",
+      {
+        "unitId": "toucan.auction.nowTradingCard.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "79e6d37dc36a5b282ff78e93a02f58b32dcdfc1fe1de59e414199252a06d6c1f",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{symbol}} kini diperdagangkan",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.nowTradingCard.trade",
+      {
+        "unitId": "toucan.auction.nowTradingCard.trade",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "3f67c276590bef9320fc9e9c2999b18935d0d9c6e2713c0d41e05962432bb3ad",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Perdagangkan {{symbol}} →",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.nowTradingCard.volume24h",
+      {
+        "unitId": "toucan.auction.nowTradingCard.volume24h",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6f49d846eb0dc8ff08cc032696fc0a2e5cab201a7bba4eccb3c054b1e15d0a4a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "<value>{{volume}}</value> vol 24 jam",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.auction.tradeTokenBanner.buyOrSell",
+      {
+        "unitId": "toucan.auction.tradeTokenBanner.buyOrSell",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a43ddcd7960258306b756bd6f58f620d058bb3eb80009fe429a8fe21001c470c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Beli atau jual {{symbol}}",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.bidReview.networkErrorDescription",
+      {
+        "unitId": "toucan.bidReview.networkErrorDescription",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "5fca6f81a3bd9b9a7951a0a350833450dbd0a432f3cc3437a9d5af79c80d8093",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Kami tidak dapat menjangkau jaringan untuk memverifikasi penawaran Anda. Periksa koneksi Anda dan coba lagi.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.bidReview.networkErrorTitle",
+      {
+        "unitId": "toucan.bidReview.networkErrorTitle",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2a33d984de88157305b38d8c13bc9d85880a40f84eec3683507785fdc2bfd48d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Kesalahan jaringan",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.bidReview.perToken",
+      {
+        "unitId": "toucan.bidReview.perToken",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6032faaea0ba4b604e9589ed9bc3641933efb5706f6ebf71ae05a851d3aca53c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "{{amount}} per token",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.bidReview.perTokenSuffix",
+      {
+        "unitId": "toucan.bidReview.perTokenSuffix",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "d75f1fb45b4ca8e5bcdb8d45fdd3972a6eb1b2766a3991a5db55094a03c76b00",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "per token",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.bidReview.simulationErrorDescription",
+      {
+        "unitId": "toucan.bidReview.simulationErrorDescription",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "779665ad0b4bfa480e80812c9bc2eb823ff80f0aa140c83a8a7327bb7d51a17a",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Terjadi masalah saat memverifikasi penawaran Anda. Silakan coba lagi.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.bidReview.simulationErrorTitle",
+      {
+        "unitId": "toucan.bidReview.simulationErrorTitle",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "f0ad46c32019b07dd91ad277ede77cee3201cd280c9517a97933cf033d90e85f",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tidak dapat memverifikasi penawaran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "d0d34a7e3abfec0e4af45d5a20a1f14e0df2e5efe8f2508d6c7205ceb38d40c1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Periode pra-penawaran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.add",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.add",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "57dbd479fb4aa9d5526f59cbfcab40d023383d04a1c5489f8f1d9b57a8f5da7d",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tambahkan periode pra-penawaran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.description",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.description",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "1b82234a5328430b862fd6644a87bd5e42b1829a0e92337d0f1edc2db5a215b7",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pengguna dapat mengajukan penawaran selama periode pra-penawaran, tetapi token tidak dirilis hingga tanggal mulai lelang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.endDate",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.endDate",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a5a7488402f3ef3a2ec3e343f780b64c36a18b9e0756e69bf20a2508d96f6424",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tanggal berakhir pra-penawaran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.range.error",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.range.error",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6d64b3a80bdfd7f64d6fc9d041c157993717477726d7c329268f787cad1a5b9b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pra-penawaran harus dimulai sebelum tanggal mulai lelang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.remove",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.remove",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "b1a336caaf8c47a5d38280d4ef6b91fed2d4a38e84ca57437680eb2e16d7592c",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Hapus periode pra-penawaran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.startDate",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startDate",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "ddf4fb33930653cda0348a1d0755c78a490931d18dd36316edf109d75907c755",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tanggal mulai pra-penawaran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.startDate.placeholder",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startDate.placeholder",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "ce591ddf839d668ab46070a0bc3d88f815adae3c4b36a180398de67edb9c55be",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pilih tanggal mulai pra-penawaran",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.preBid.startTime.error",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startTime.error",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "e37e7fdbac10d6a014349bdfcb72f862a6406c0afc9400f0a57b6b75b56e976f",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pra-penawaran harus dimulai minimal {{time}} dari sekarang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T01-49-28Z",
+        "approvedAt": "2026-09-12T01:49:28.348Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.configureAuction.priceSettings.description.singleRaiseCurrency",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.priceSettings.description.singleRaiseCurrency",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "dd49668d1e2c03fd9753909ccb26f4d41886335e847c70c605dcb4da58a3b050",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Tetapkan harga dasar untuk lelang Anda.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-12T00-40-39Z",
+        "approvedAt": "2026-09-12T00:40:39.802Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.createAuction.step.tokenInfo.tickerPlaceholder",
+      {
+        "unitId": "toucan.createAuction.step.tokenInfo.tickerPlaceholder",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "a1efe92e5d394bfbfadb01f863c3ebb3503ed198f7b7ddd4d14da5bcbb850ae9",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "$TICKER",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.filter.status",
+      {
+        "unitId": "toucan.filter.status",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "920e413c7d411b61ef3e8c63b1cb6ad058d5f95f8b481dbafe60248387d8c355",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Status",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.crowd",
+      {
+        "unitId": "toucan.launchMethod.crowd",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "0c30868c94cf6a8ba6c34defe7b888c1498b30ad8ebd749476e80a1cae3fba5b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Crowd Launch",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.crowd.description",
+      {
+        "unitId": "toucan.launchMethod.crowd.description",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "1a29c138738225944360ee41d9d119899b1a5ae620536e730cec4e93b28ef158",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Peluncuran terstandar yang menghasilkan likuiditas terkunci dan mendistribusikan token secara adil melalui crowdfunding pra-peluncuran. Diluncurkan via pools.xyz.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "The source uses the lowercase domain 'pools.xyz'; the proposal capitalizes it to 'Pools.xyz'. Domain/brand strings should be reproduced verbatim.",
+            "evidence": {
+              "sourceSpan": "pools.xyz",
+              "targetSpan": "Pools.xyz"
+            },
+            "alternative": "pools.xyz"
+          }
+        ],
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.crowd.title",
+      {
+        "unitId": "toucan.launchMethod.crowd.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "280c70ebebbbc7e0b7a65d2f88fa764a7c1ccf9474ede08bc9273c9ef47518c1",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Crowd Launch",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.custom",
+      {
+        "unitId": "toucan.launchMethod.custom",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "26c0eec7a150863465a9d2a64d4e462e24cafd6d6d8cbbe57b0c7945e3397fca",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Lelang kustom",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.custom.description",
+      {
+        "unitId": "toucan.launchMethod.custom.description",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "cbb9694a13b77fb5d5ea311da28461fdceb919e0483f9802c4e357876574e92b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Peluncuran token yang dapat dikustomisasi sepenuhnya untuk membangun likuiditas dan mendistribusikan token secara adil, didukung oleh protokol CCA Uniswap.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.custom.title",
+      {
+        "unitId": "toucan.launchMethod.custom.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "8552081d0306fba41472f2001fbc869673fa28e24e9b40285435ddc0c602d175",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Lelang Kustom",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.exploreAuctions",
+      {
+        "unitId": "toucan.launchMethod.exploreAuctions",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "7a4d35a06d9a616af63ee66f2bf557f7e221279d3e4b4c91cbacd287810dec8b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Jelajahi lelang",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.instant",
+      {
+        "unitId": "toucan.launchMethod.instant",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "44b2da044269016fe547745dcdeef111551c2ea14fb21e5af07448d684de564b",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Instant Launch",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.instant.description",
+      {
+        "unitId": "toucan.launchMethod.instant.description",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "75c4c546d125f49141c3ec887e723a67a7d469da7affc62de5b2d720984d2dae",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Peluncuran terstandar yang langsung dapat diperdagangkan. Harga ditentukan dengan bonding curve, dengan biaya masuk ke likuiditas terkunci. Diluncurkan via pools.xyz.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "The source uses the lowercase domain 'pools.xyz'; the proposal capitalizes it to 'Pools.xyz'. Domain/brand strings should be reproduced verbatim.",
+            "evidence": {
+              "sourceSpan": "pools.xyz",
+              "targetSpan": "Pools.xyz"
+            },
+            "alternative": "pools.xyz"
+          }
+        ],
+        "agentRunId": "id-ID-2026-09-28T18-47-56Z",
+        "approvedAt": "2026-09-28T18:47:56.051Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchMethod.instant.title",
+      {
+        "unitId": "toucan.launchMethod.instant.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "2990da5554ed8b8d80ca9d06f4f23b0566a88a1ffd4f4eb7be58788afea54016",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Instant Launch",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.launchToken.pools.title",
+      {
+        "unitId": "toucan.launchToken.pools.title",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "6836fec847c82e18c57a8f6726d1b9772f7417eded592146d144170dc6735a37",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Pools.trade",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.timeline.tokensClaimable.noPool",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "02d94f483919d16205cf038955d0129791be8f8148ddfd62841001b24a78bfbb",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Token tersedia untuk diklaim",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.timeline.tokensClaimable.noPool.description",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool.description",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "23d043e17df938b730efb01015c6e91984c81d590641b446db0181754ffe8cfc",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Jendela klaim telah dibuka. Penawar yang telah keluar dari penawarannya kini dapat mengklaim token mereka. Perdagangan dibuka setelah pool aktif.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:toucan.timeline.tokensClaimable.noPool.description.future",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool.description.future",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "5bbcb65f274ab081feb7a2a47288ad81c541371b9302cfb483569c461b253632",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Jendela klaim akan dibuka. Penawar yang telah keluar dari penawarannya akan dapat mengklaim token mereka. Perdagangan akan dibuka setelah pool aktif.",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-09-16T16-25-29Z",
+        "approvedAt": "2026-09-16T16:25:29.573Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:uniswapx.item",
+      {
+        "unitId": "uniswapx.item",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "962676d110660f838984054682f7fb2116294fc38804fc6ad9b9ea221579f563",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "<icon /> <gradient>UniswapX</gradient> <info />",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "id-ID:i18next-json:unitags.profile.bio.label",
+      {
+        "unitId": "unitags.profile.bio.label",
+        "providerId": "i18next-json",
+        "locale": "id-ID",
+        "domain": "product-ui",
+        "sourceHash": "3933b1802161254f41c59f2909f61ac994c086e1cde03848c4c310f45b5b4999",
+        "glossaryHash": "90d2ac3760399ad93e40943fbfe1121c3f6668acc8400cefde6ae6bc136bc115",
+        "styleHash": "2b178614670ac7151f1567ff65a92b269b1bcbdff5059ff513e3a1e961aa2d62",
+        "translation": "Bio",
+        "status": "clean",
+        "agentRunId": "id-ID-2026-10-06T18-08-32Z",
+        "approvedAt": "2026-10-06T18:08:32.709Z",
+        "approvedBy": "agent"
+      }
+    ]
+  ]
+}

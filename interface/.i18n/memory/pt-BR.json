@@ -1,0 +1,3201 @@
+{
+  "version": 1,
+  "locale": "pt-BR",
+  "entries": [
+    [
+      "pt-BR:i18next-json:account.passkey.backupLogin.add.apple",
+      {
+        "unitId": "account.passkey.backupLogin.add.apple",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "f223faa96f22916294922b171a2696d868fd1f9129302eb41a45b2a2ea2ebbfd",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Apple",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:account.passkey.backupLogin.add.google",
+      {
+        "unitId": "account.passkey.backupLogin.add.google",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "ce770667e5f9b0d8f55367bb79419689d90c48451bb33f079f3a9a72ae132de8",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Google",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:addLiquidity.tokenOne",
+      {
+        "unitId": "addLiquidity.tokenOne",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2e1bf2c7a137441ee39a42de05d4ad2004d62611621e0add6a2a619e0154c622",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Token 1",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:addLiquidity.tokenTwo",
+      {
+        "unitId": "addLiquidity.tokenTwo",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7199a4ea4d19792bec804ed308dad2b1bb27df739dd2aa47e0c9616bbc76326e",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Token 2",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:addressClaim.amountUni",
+      {
+        "unitId": "addressClaim.amountUni",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "cd1eb9a019a547ad65d9553dc9cd964cfed85ceae00c1bd1a39878cb85d68c7c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{amount}} UNI",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:beta.preview.title",
+      {
+        "unitId": "beta.preview.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4c6bea9de4145a8853cf64a1e7e5680f1fd302f05ccbf4c1c6a5ebcbfec763d1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Uniswap Preview",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:bridging.estimatedTime.minutesAndSeconds",
+      {
+        "unitId": "bridging.estimatedTime.minutesAndSeconds",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "114304fa41f7f10dc2eb50077eded3c1de3f7621dcad08eaaf277352973b1a64",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "~{{minutes}}min {{seconds}}s",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:bridging.estimatedTime.minutesOnly",
+      {
+        "unitId": "bridging.estimatedTime.minutesOnly",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "608ff980d5c89986ce014149c6c09c808aae7c80fa1c3ce898fe9cd424cd8761",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "~{{minutes}}min",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:bridging.estimatedTime.secondsOnly",
+      {
+        "unitId": "bridging.estimatedTime.secondsOnly",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "5cae6ffbe1d4d10a7dc098b8c6026aeaca63c26dc6b3f6e3c04f14b0e3cb120c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "~{{seconds}}s",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:chart.noData.price.title",
+      {
+        "unitId": "chart.noData.price.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a67ccbf5b6366d4b0681999abfb45864bffb0d314fb6694e542b2dacb5695265",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Nenhum dado de preço disponível",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-14T20-53-49Z",
+        "approvedAt": "2026-09-14T20:53:49.498Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:chart.noData.tokens.description",
+      {
+        "unitId": "chart.noData.tokens.description",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4949909f21d332fcce6a434c130fa95a30e0db26aa18f6660b130f198ca25634",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Não há dados históricos suficientes deste token para exibir um gráfico.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-14T21-35-27Z",
+        "approvedAt": "2026-09-14T21:35:27.427Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:chart.noData.tvl.title",
+      {
+        "unitId": "chart.noData.tvl.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "18f5bd9ca6cf92b822086f5392b731391f13e841190b28e15e7bd6bc8472ce44",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Nenhum dado de TVL disponível",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-14T20-53-49Z",
+        "approvedAt": "2026-09-14T20:53:49.498Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:chart.noData.volume.title",
+      {
+        "unitId": "chart.noData.volume.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b97dfd27b26d32aeea0eb561da315c401787dbb733e4fddfc59ba4041592bcf1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Nenhum dado de volume disponível",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-14T20-53-49Z",
+        "approvedAt": "2026-09-14T20:53:49.498Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.beta",
+      {
+        "unitId": "common.beta",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "703390318bd55aef50b7823d2b90a846debff99e6e3d401a24a921b733912a6d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Beta",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.blog",
+      {
+        "unitId": "common.blog",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "8c6bc099534a0251b576f6b88bd2db124ae9497c64bd9242e92a6aec23e6a73a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Blog",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.button.ok",
+      {
+        "unitId": "common.button.ok",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "OK",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.commodities",
+      {
+        "unitId": "common.commodities",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "ee35b0629f9336cd8266cfb711418df01900cb6ccd706931b95020c41bbef467",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Commodities",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.docs",
+      {
+        "unitId": "common.docs",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7af023c43013b9a53fbff7dd4b5821588bba3319308878229740489152c43f6d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Docs",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.etfs",
+      {
+        "unitId": "common.etfs",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c6d29ec0e75160d962bffa0711cd50fd617811845735e45f67433edb0a2c0946",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "ETFs",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.explorer",
+      {
+        "unitId": "common.explorer",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c39d646f10769b078ae82be4da7a0079ca91182b241e749be4276e08c215c654",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Explorer",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.links",
+      {
+        "unitId": "common.links",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Links",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.oneDay.short",
+      {
+        "unitId": "common.oneDay.short",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "065387c9635840b850255bbca50faa931fbc6e68cb69af08b8146eadafccbd25",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "1D",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.oneHour.short",
+      {
+        "unitId": "common.oneHour.short",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "0166c7ec13e72cdd14ad7a02182f00119378abed713338f2e22e6202ff77b34f",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "1H",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "Time-range abbreviation lowercased to \"1h\", inconsistent with the shipped rendering \"1H\" and with sibling \"1D\" (i=597) in the same chart selector; same-source term rendered differently within the run.",
+            "evidence": {
+              "rule": "shipped: 1H → 1H",
+              "sourceSpan": "1H",
+              "targetSpan": "1h"
+            },
+            "alternative": "1H"
+          }
+        ],
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.permit",
+      {
+        "unitId": "common.permit",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "db1da349bb63856ac479d4ce5a576e1e9fa451bd15368122e393cf84a713ae2e",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Permit",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.pool",
+      {
+        "unitId": "common.pool",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "f13024272c385f73dd30cb84e0e88cbabc06ab39eedcdbe53c7e933df61d4849",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Pool",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.pools",
+      {
+        "unitId": "common.pools",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "d46fbd72dc2e190c274d789641af87891a05bed069ed01c7f80f79161423e52e",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Pools",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.protocol.v2",
+      {
+        "unitId": "common.protocol.v2",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "13df32b4b685329a8ab8a3e88ee60420c95433f2c497f820dee07832c30960d8",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Uniswap v2",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.protocol.v3",
+      {
+        "unitId": "common.protocol.v3",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2f3484072437fee01de2893c3c19d347514fb13750f45d7d84142372e5328c00",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Uniswap v3",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.protocol.v4",
+      {
+        "unitId": "common.protocol.v4",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a898cb035e37d52eac774bccb26ac636b5567925c087df4d82cacf8218ce1d72",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Uniswap v4",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.status",
+      {
+        "unitId": "common.status",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "920e413c7d411b61ef3e8c63b1cb6ad058d5f95f8b481dbafe60248387d8c355",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Status",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.time.past.days.short",
+      {
+        "unitId": "common.time.past.days.short",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a27aa0363591527e42690794586930b1499c738ddf66817ac21c3c259f24598d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{days}}d",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.time.past.hours.short",
+      {
+        "unitId": "common.time.past.hours.short",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "31a27385799ac28e05a53612b1a35b70327165cedb98b93f893bda6972c992c2",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{hours}}h",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.time.past.seconds.short",
+      {
+        "unitId": "common.time.past.seconds.short",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c98e00945ab1f6c3908f62d4a198875f8eea59b34ed9dd5d67e2d78bfa8cc53b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{seconds}}s",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.token.plural",
+      {
+        "unitId": "common.token.plural",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a039dfb9628b53ddaebcfe8ef0793e3fdf19867601295f00d192acef59050869",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Tokens",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.tokenA",
+      {
+        "unitId": "common.tokenA",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "67e9698738d85966b9b6b5c9cc9820a3ed9301305a53e145931462e7b96d2628",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Token A",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.tokenB",
+      {
+        "unitId": "common.tokenB",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e061d1004ffe787ef593c4974f5f37ec9fa37e10bab59abc72dab0874f9cdebc",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Token B",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.total",
+      {
+        "unitId": "common.total",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c9b3c38247f744e17dd26fda097d6a9ba9332586b6bdaa038bf8f313a863f2b8",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Total",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:common.volume",
+      {
+        "unitId": "common.volume",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:currency.eur",
+      {
+        "unitId": "currency.eur",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "8bd0b436b489560e73e403e055dd0a15518a254cad0d9e2aa4771d1b561d78f6",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Euro",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:dapp.request.amountUnavailable",
+      {
+        "unitId": "dapp.request.amountUnavailable",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "6ea97c53df001e76387ca3cd2a57c61aa2ffa0e12d752ff4f445556b31edd0b1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Valor indisponível",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-18T15-34-56Z",
+        "approvedAt": "2026-09-18T15:34:56.415Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:dapp.request.url.viaFormat",
+      {
+        "unitId": "dapp.request.url.viaFormat",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "96c49586dcd5b36606379cf4bc6ac3e6b624b6b2dcf0b82d0ffecf2fb154ffc3",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{frameUrl}} via {{parentUrl}}",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:explore.collections.single",
+      {
+        "unitId": "explore.collections.single",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7b790708ff1b171315a152018f3712e8c71c82f4f9000635f77a1336c34f1893",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Coleção",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-17T17-30-35Z",
+        "approvedAt": "2026-09-17T17:30:35.762Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:explore.earn.apy",
+      {
+        "unitId": "explore.earn.apy",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2893ffd5ee534dd0615007dd70af33d3a0c37197cf50a6592c563c6840d7e6bc",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{apy}} APY",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:explore.earn.title",
+      {
+        "unitId": "explore.earn.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a697f90fb199423119c503cd3d56739b8810dadcd832e037afbbc918927f713b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Earn",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:explore.earn.vault.rateValue",
+      {
+        "unitId": "explore.earn.vault.rateValue",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2893ffd5ee534dd0615007dd70af33d3a0c37197cf50a6592c563c6840d7e6bc",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{apy}} APY",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:explore.tokens.metadata.marketCap",
+      {
+        "unitId": "explore.tokens.metadata.marketCap",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "1230c9498c484f532b94e32e64fa3b94521d62ae2225507495be88d5aad4304c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{number}} MCap",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:explore.tokens.metadata.volume",
+      {
+        "unitId": "explore.tokens.metadata.volume",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "9262aa57590070d0b5120f2d1d32a48933681867da2412488bf6d060ccb435b1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{number}} Vol",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:explore.tokens.sort.label.volume",
+      {
+        "unitId": "explore.tokens.sort.label.volume",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:fiatOnRamp.paymentMethods.venmo",
+      {
+        "unitId": "fiatOnRamp.paymentMethods.venmo",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a1593ecc5a13b7a066c20b6c85dd945ba178a9618c95d50bbe52e4a834b5082d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Venmo",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:home.nfts.title",
+      {
+        "unitId": "home.nfts.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "d185ae0e6c3b67114195dc2bf8cc7f8873dc67c3cf4e7f4efbc9a3ab38928708",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "NFTs",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:home.tokens.title",
+      {
+        "unitId": "home.tokens.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a039dfb9628b53ddaebcfe8ef0793e3fdf19867601295f00d192acef59050869",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Tokens",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:landing.api",
+      {
+        "unitId": "landing.api",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c8e5998f6a3955c21d858936fe05c69621724d7f825c6e17793002a0fa798bf9",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "API",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:launches.hero.subtitleArcRobinhoodWithWordmark",
+      {
+        "unitId": "launches.hero.subtitleArcRobinhoodWithWordmark",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "75668dd168d7ed3491d00a54ff57efceb54853536bda7849a7302edbec57a361",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Negocie os novos tokens da Arc e da Robinhood Chain no <wordmark>Pools</wordmark>",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T22-40-01Z",
+        "approvedAt": "2026-09-15T22:40:01.976Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:launches.hero.subtitleRobinhoodWithWordmark",
+      {
+        "unitId": "launches.hero.subtitleRobinhoodWithWordmark",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b53e3274a1546eabe90235d83cf30d24426587059f598cdc54fe8ce6d44e1f95",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Negocie os novos tokens da Robinhood Chain no <wordmark>Pools</wordmark>",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T22-40-01Z",
+        "approvedAt": "2026-09-15T22:40:01.976Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:launches.table.launchpad",
+      {
+        "unitId": "launches.table.launchpad",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "08c9188c5d641e944ca3c674f027a1c0186d00f69d1079c8ba1417aa6bfa2d51",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Launchpad",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:liquidityPool.positions.table.column.apr",
+      {
+        "unitId": "liquidityPool.positions.table.column.apr",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4bc04668c1d32bda93f0842b49737604ab020722bf62c55127cd852f6baeeb95",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "APR",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:liquidityPool.positions.table.column.pool",
+      {
+        "unitId": "liquidityPool.positions.table.column.pool",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "f13024272c385f73dd30cb84e0e88cbabc06ab39eedcdbe53c7e933df61d4849",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Pool",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:notification.auction.open.failed",
+      {
+        "unitId": "notification.auction.open.failed",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e4d2634ab0b23d0e9a07704b98f1b4ae2c8f1622a2f832297cba3b3ecd63be45",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Não foi possível abrir o leilão",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:pool.apr",
+      {
+        "unitId": "pool.apr",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4bc04668c1d32bda93f0842b49737604ab020722bf62c55127cd852f6baeeb95",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "APR",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:pool.apr.24h",
+      {
+        "unitId": "pool.apr.24h",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "caab27fa42ef62b73f5bb268a1c415965d1a4d8a26d7c5bc130d9742e2f144cd",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "APR (24h)",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:pool.filter.tvl.100kTo1m",
+      {
+        "unitId": "pool.filter.tvl.100kTo1m",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2bde4ae66f43f83dc98f25972663ca37b52b383729b1b949d2f3407bd9eaf990",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "$100k – $1M",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:pool.filter.tvl.over10m",
+      {
+        "unitId": "pool.filter.tvl.over10m",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c14d724557ce1ef957f37a7440d3f62efb66238b03b6463bb8341ee5ec505f28",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "$10M+",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:pool.filter.tvl.under100k",
+      {
+        "unitId": "pool.filter.tvl.under100k",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "de65242505dcdf02f64b917650c9ccac0152ef72ad1f921e56722c3a20659c66",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "<$100k",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:pool.migrateLiquidityV2DisabledTooltip",
+      {
+        "unitId": "pool.migrateLiquidityV2DisabledTooltip",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4489cb130e7c9aeed213fc1acaeb5925905fd6876095e3d2d840719e3ccc92c5",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "A migração para a v3 não é compatível com esta rede.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-29T16-54-43Z",
+        "approvedAt": "2026-09-29T16:54:43.528Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:pool.via",
+      {
+        "unitId": "pool.via",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "3e519e673662458301d5db97ec843122a637eb00e37ad01db5a802b85249a6ea",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{tokenPair}} via {{dex}}",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:portfolio.defi.title",
+      {
+        "unitId": "portfolio.defi.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "3871f97fc9a1fa1298ef55c7ec904392f630e41e2f7be2355bf92c400d4c3151",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "DeFi",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:portfolio.nfts.title",
+      {
+        "unitId": "portfolio.nfts.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "d185ae0e6c3b67114195dc2bf8cc7f8873dc67c3cf4e7f4efbc9a3ab38928708",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "NFTs",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:reporting.token.data.options.volume.title",
+      {
+        "unitId": "reporting.token.data.options.volume.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.activity.tokens",
+      {
+        "unitId": "rhcca.activity.tokens",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a039dfb9628b53ddaebcfe8ef0793e3fdf19867601295f00d192acef59050869",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Tokens",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.badges.badger.title",
+      {
+        "unitId": "rhcca.badges.badger.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "851a61441fc5f51b976431739402afbb30fe463a88a4026c7c4bc5a5a9bd7b28",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "The Badger",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.badges.frontrunner.title",
+      {
+        "unitId": "rhcca.badges.frontrunner.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "0773c1472ee54c746ad79733cf4597873871273cb6db3e74d0423ab4cdee22ab",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Frontrunner",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.column.change1d",
+      {
+        "unitId": "rhcca.column.change1d",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "065387c9635840b850255bbca50faa931fbc6e68cb69af08b8146eadafccbd25",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "1D",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.column.change1h",
+      {
+        "unitId": "rhcca.column.change1h",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "0166c7ec13e72cdd14ad7a02182f00119378abed713338f2e22e6202ff77b34f",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "1H",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "Lowercased \"1h\" diverges from shipped \"1H\" and from sibling \"1D\" (i=2370) in the same time-window selector; intra-run inconsistency for the same source term.",
+            "evidence": {
+              "rule": "shipped: 1H → 1H",
+              "sourceSpan": "1H",
+              "targetSpan": "1h"
+            },
+            "alternative": "1H"
+          }
+        ],
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.column.volume",
+      {
+        "unitId": "rhcca.column.volume",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b10fb966d72063f534774c7c6b404f4decca76ac283093ae65fef78d07c1b75e",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Volume",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.create.feeRecipientLockedCrowdLaunch",
+      {
+        "unitId": "rhcca.create.feeRecipientLockedCrowdLaunch",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "3010c20d764d983a5e0650148d526e7e8c0371edcd541cbf58d593154c1bbee0",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "As tarifas de criador de {{ccaMechanism}} vão para a carteira que fez o lançamento.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T21-15-16Z",
+        "approvedAt": "2026-09-15T21:15:16.015Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.create.field.tickerSymbolPlaceholder",
+      {
+        "unitId": "rhcca.create.field.tickerSymbolPlaceholder",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a1efe92e5d394bfbfadb01f863c3ebb3503ed198f7b7ddd4d14da5bcbb850ae9",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "$TICKER",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.create.network.feeBuyback",
+      {
+        "unitId": "rhcca.create.network.feeBuyback",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2aeb5bffe13f0642efdcc282915dce6655af1d9f8ac54271b651b649bb20adbd",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "As tarifas de negociação recompram e queimam seu token",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.create.network.feeCompound",
+      {
+        "unitId": "rhcca.create.network.feeCompound",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "d2ea9546dd6d9ac5cadb72d731fa2f76c8d0735a246a245003437e1bca19c9bd",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "As tarifas de negociação são reinvestidas automaticamente como liquidez bloqueada",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.creatorSettings.feeSubOffBuyback",
+      {
+        "unitId": "rhcca.creatorSettings.feeSubOffBuyback",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2ce6112d34aa4d5bf2a949d0b9b0155b5526177099c7e5bbf01e888851ddc644",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Tarifas do criador desativadas. Todas as tarifas de negociação recompram e queimam o token.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.drawer.demoTag",
+      {
+        "unitId": "rhcca.drawer.demoTag",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2a97516c354b68848cdbd8f54a226a0a55b21ed138e207ad6c5cbb9c00aa5aea",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "demo",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.explainer.subheaderBuyback",
+      {
+        "unitId": "rhcca.explainer.subheaderBuyback",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7ccf787e87768fefb8c1df86830dae3cc12a2688d385601852e8f00ab8cfe05d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Toda a liquidez fica bloqueada para sempre. As tarifas recompram e queimam {{ticker}}.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.fees.boughtBackBurned",
+      {
+        "unitId": "rhcca.fees.boughtBackBurned",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "8096aba338294dcacd7f14f185e299699d0917d2513d1baa39adc38087d82aa8",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Recomprado e queimado",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.fees.boughtBackBurnedNote",
+      {
+        "unitId": "rhcca.fees.boughtBackBurnedNote",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "3611a0fe318c4950c310678d351ed63dc84232bac02eeb25432053141fd6f455",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Usado para recomprar e queimar {{ticker}} — não faz parte dos seus ganhos e não pode ser resgatado.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.fees.disabledCopyBuyback",
+      {
+        "unitId": "rhcca.fees.disabledCopyBuyback",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e92196b7aa234c0d94cda11e15a2418325ff58c70566e97b0e17b317dd423dc6",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Este token foi lançado com as tarifas do criador desativadas, então nenhuma tarifa vai para você. Em vez disso, cada tarifa recompra e queima o token.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.fees.rowOffBuyback",
+      {
+        "unitId": "rhcca.fees.rowOffBuyback",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "3898516067d722263ac6d4d45fa024bdef32f7c368845a5bf868734e539c0085",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Tarifas desativadas · recompra e queima",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-15T18-45-52Z",
+        "approvedAt": "2026-09-15T18:45:52.645Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.filter.clearActive",
+      {
+        "unitId": "rhcca.filter.clearActive",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2dc1c0755c9ec2716cbacc0a40d7babc53c889496a89b8c4495d09e38b95a758",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Limpar filtros ativos",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-01T21-27-13Z",
+        "approvedAt": "2026-10-01T21:27:13.534Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.filter.crowdLaunch",
+      {
+        "unitId": "rhcca.filter.crowdLaunch",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "0c30868c94cf6a8ba6c34defe7b888c1498b30ad8ebd749476e80a1cae3fba5b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Crowd Launch",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.filter.instantLaunch",
+      {
+        "unitId": "rhcca.filter.instantLaunch",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "44b2da044269016fe547745dcdeef111551c2ea14fb21e5af07448d684de564b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Instant Launch",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.holders.estimated.tokens",
+      {
+        "unitId": "rhcca.holders.estimated.tokens",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "9d9bdee25659354ce340cd932624f66dd90ba1e838d48e18c4a76e971cf02671",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{amount}} est.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-30T20-36-37Z",
+        "approvedAt": "2026-09-30T20:36:37.110Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.home.empty.noResults",
+      {
+        "unitId": "rhcca.home.empty.noResults",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7d7e360586090927c7aeee67c8a46d8354694e7aa4b722ff5b421347f798057a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Nenhum resultado encontrado",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-01T21-27-13Z",
+        "approvedAt": "2026-10-01T21:27:13.534Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.mark.crowd",
+      {
+        "unitId": "rhcca.mark.crowd",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "f469beecc6e76fe41fc4556460ffbc64e57bc2161422a9d54657232e3c631e1b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Crowd",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.mark.instant",
+      {
+        "unitId": "rhcca.mark.instant",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e2861894f065ab75433a07f7a17a9b8df3ffdc01ff29e8723ba0d9ff8c2ec437",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Instant",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.portfolio.tokens",
+      {
+        "unitId": "rhcca.portfolio.tokens",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a039dfb9628b53ddaebcfe8ef0793e3fdf19867601295f00d192acef59050869",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Tokens",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.shelf.layout",
+      {
+        "unitId": "rhcca.shelf.layout",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a511909161e1b84fb81b52028fc2ce79525a96b40ccda823caa4a66ee64772b5",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Layout",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:rhcca.trades.trader",
+      {
+        "unitId": "rhcca.trades.trader",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "907bdf2f550bb0b4237e97925f330d8af6f1a39a6066f203b1431f7b0fec6cc5",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Trader",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:search.results.auction.timeRemaining",
+      {
+        "unitId": "search.results.auction.timeRemaining",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{time}} restantes",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-30T16-15-59Z",
+        "approvedAt": "2026-09-30T16:15:59.796Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:search.results.stats.apr",
+      {
+        "unitId": "search.results.stats.apr",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "399e5130e4d208df7ae038b56cffa8f007c00974a639709a97d0cdd4bde10c0b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{apr}} APR",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:search.results.stats.apy",
+      {
+        "unitId": "search.results.stats.apy",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2893ffd5ee534dd0615007dd70af33d3a0c37197cf50a6592c563c6840d7e6bc",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{apy}} APY",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:search.results.stats.volume",
+      {
+        "unitId": "search.results.stats.volume",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "578b3d84b352dcf5445383e9529f4ea3bdab4a7e1878ea558dcfec7644eeece6",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{volume}} vol",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:send.warning.modal.button.cta.blocking",
+      {
+        "unitId": "send.warning.modal.button.cta.blocking",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "OK",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:send.warning.newAddress.details.ENS",
+      {
+        "unitId": "send.warning.newAddress.details.ENS",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "09ddf36201cda6a7b9c8ace9811b71087f9d38be4750f9e4706361dd2deb3787",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "ENS",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:settings.setting.deviceAccessTimeout.30minutes",
+      {
+        "unitId": "settings.setting.deviceAccessTimeout.30minutes",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "f69fa291de134e3cc5a4ec09c12bccefa66e9c87dbc5516a504757326cec17ce",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "30 min",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:settings.setting.deviceAccessTimeout.5minutes",
+      {
+        "unitId": "settings.setting.deviceAccessTimeout.5minutes",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "53bc57cdb69279bbfe2fc05f6964a89862ff636724f5c3c2016e8894c2be609c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "5 min",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:settings.setting.notifications.row.priceAlerts.description",
+      {
+        "unitId": "settings.setting.notifications.row.priceAlerts.description",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c5aeb5d1f60eab4d0e5416efd645ee6de258fd86bc5ee90abca9bdbae858360a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Variações significativas no preço de token",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-05T16-59-14Z",
+        "approvedAt": "2026-10-05T16:59:14.305Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:settings.setting.notifications.row.priceAlerts.title",
+      {
+        "unitId": "settings.setting.notifications.row.priceAlerts.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "da1bea0919595b27553478f49c4fc929dc2a9e139573bada017d90cccf561802",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Alertas de preço",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-05T16-59-14Z",
+        "approvedAt": "2026-10-05T16:59:14.305Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:smartWallets",
+      {
+        "unitId": "smartWallets",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "9bb1a88307aa4a702d3c003647a4639b253fe842271045fbf58b2f713edc007c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Smart Wallets",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.chart.checkBack",
+      {
+        "unitId": "tdp.auction.chart.checkBack",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "538a0ddc9f9ef4ddd35f5572912fad05edce6e960345ec05015b9d5ca550ebf8",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Volte quando o leilão de {{symbol}} terminar",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.chart.priceDiscovery",
+      {
+        "unitId": "tdp.auction.chart.priceDiscovery",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "d0715e5df8afb1209a733cc8f76d4ac8a510a9773cd4d97688fe488b9620b13a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Descoberta de preço em andamento",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.ended",
+      {
+        "unitId": "tdp.auction.ended",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "ca39ca58747a7e918510277836e9cdbd742060cf4d708c39ed14eab6f987002a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Leilão encerrado",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.inProgress",
+      {
+        "unitId": "tdp.auction.inProgress",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2d50704771bb0b8d28e9ed2126dc45c0ba69623594da03c8ba6f71db517d4e6d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Leilão em andamento",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.launchInProgress",
+      {
+        "unitId": "tdp.auction.launchInProgress",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e48000ebad93aed54de3ea50a38bc6207ec7f03e550fdc2318eabe0ed90512eb",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Lançamento em andamento",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.statusUnavailable",
+      {
+        "unitId": "tdp.auction.statusUnavailable",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4a1959d064e31e165cb6d873bb83164237b0b5fc62ea4616a626778de53ab808",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Status do leilão indisponível",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.timeRemaining",
+      {
+        "unitId": "tdp.auction.timeRemaining",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{time}} restantes",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auction.viewAuction",
+      {
+        "unitId": "tdp.auction.viewAuction",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2611222ae79f6e7a87bdc6cedbcd80b4936532114bd23c245f6c48b1b96bf8a1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Ver leilão",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.committed",
+      {
+        "unitId": "tdp.auctions.committed",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "dd9061853d8b1498557341a82186e1d9087de502101d830b5d1bc2d560399eb0",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Comprometido",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.failedToLaunch",
+      {
+        "unitId": "tdp.auctions.failedToLaunch",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7bcdf89acba1f37c3542c9fce70e5e3b303a104513ed0c5bab4f6b2eb333eee6",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Falha no lançamento",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.modalTitle",
+      {
+        "unitId": "tdp.auctions.modalTitle",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "923215eead9085089ba0a2637a4752957d671ca0e01441ab5939041386667ec5",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Leilões de {{symbol}}",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.moreCount_one",
+      {
+        "unitId": "tdp.auctions.moreCount_one",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "48380badf7a45c74d3fac6b89d19d777585cb9052d135d1ec482b932bc99e98a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "+{{count}} mais",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.moreCount_other",
+      {
+        "unitId": "tdp.auctions.moreCount_other",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "48380badf7a45c74d3fac6b89d19d777585cb9052d135d1ec482b932bc99e98a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "+{{count}} mais",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.otherActive_one",
+      {
+        "unitId": "tdp.auctions.otherActive_one",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "f590255a2e2027e25969f6cf37a3ee335c66734bffd1d8bcacec5231e0d1c340",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{count}} outro leilão ativo",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.otherActive_other",
+      {
+        "unitId": "tdp.auctions.otherActive_other",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "827a4bc54015d974e0bc2bed619badaebebf2c15b21bd422238e3fbe7ceb44c8",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{count}} outros leilões ativos",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.auctions.raised",
+      {
+        "unitId": "tdp.auctions.raised",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b4a8bf1f6b295bba4c6f67f5e1a02db62acd5dac20aee193984d7d3ef7bea0fe",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Arrecadado",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.claim.action",
+      {
+        "unitId": "tdp.claim.action",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4ca41db0282537009663db9b9ae8142e0e6b60812996d07075e5a9291d3d91bf",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Resgatar",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.claim.receivedFromAuction",
+      {
+        "unitId": "tdp.claim.receivedFromAuction",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "ed1de60dff6c30802d8300c8417b6f45c64c4a1c3d6b5fa4731942904692696d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Recebido do leilão",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.claim.refundAvailable",
+      {
+        "unitId": "tdp.claim.refundAvailable",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e5f4e63ae3c60cab9e3c74f766a9eaf9f9c0f8b068504569415c148ec9114743",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Reembolso do leilão disponível",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.claim.unavailable",
+      {
+        "unitId": "tdp.claim.unavailable",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "4dc5ccbce22b7b38115ff6589bb5c1497e3fd9680c18567cd70df0c00097dbf3",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Não foi possível carregar sua alocação do leilão",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.provenance.auctionHistory",
+      {
+        "unitId": "tdp.provenance.auctionHistory",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "43c72d3ec03e034da668875565b2195ffe7e3b51b485605a55a7435c5536e29c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Histórico do leilão",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.provenance.createdBy",
+      {
+        "unitId": "tdp.provenance.createdBy",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "374cd9d220fbeb7a793416ff812502e11f49c06070d2e730676daccd2b6a6b87",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Criado por",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.provenance.launchDate",
+      {
+        "unitId": "tdp.provenance.launchDate",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "87a01519dba4c4429cc399e509f348093780cba20afab322adb5110b4229e51b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Data de lançamento",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.provenance.launchMethod",
+      {
+        "unitId": "tdp.provenance.launchMethod",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c611b5ef80308b76cbc6b63f3802c130a4d0367017db551e5b0c09aeda732b30",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Método de lançamento",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.provenance.launchpad",
+      {
+        "unitId": "tdp.provenance.launchpad",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "08c9188c5d641e944ca3c674f027a1c0186d00f69d1079c8ba1417aa6bfa2d51",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Launchpad",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.provenance.raised",
+      {
+        "unitId": "tdp.provenance.raised",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e7e2fdd8458e6629ca789959ea040dc5754392a079bc915a0788d1dfae4b2105",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{amount}} arrecadado",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tdp.relatedTokens.single.meme",
+      {
+        "unitId": "tdp.relatedTokens.single.meme",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "5d50c37d0e22df692382d024d383cd6de38e22892329896263ac00a939a2ff6b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Mais tokens de meme",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-30T16-04-53Z",
+        "approvedAt": "2026-09-30T16:04:53.856Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:token.hoverCard.volume24h",
+      {
+        "unitId": "token.hoverCard.volume24h",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7f80d74af2310969ce5a164897f87c4bd5aedbae8dbdd7ce05e6ddc78f461d2a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{amount}} vol 24H",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-30T20-36-37Z",
+        "approvedAt": "2026-09-30T20:36:37.110Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:token.links.title",
+      {
+        "unitId": "token.links.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Links",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:token.priceExplorer.timeRangeLabel.day",
+      {
+        "unitId": "token.priceExplorer.timeRangeLabel.day",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "065387c9635840b850255bbca50faa931fbc6e68cb69af08b8146eadafccbd25",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "1D",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:token.priceExplorer.timeRangeLabel.hour",
+      {
+        "unitId": "token.priceExplorer.timeRangeLabel.hour",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "0166c7ec13e72cdd14ad7a02182f00119378abed713338f2e22e6202ff77b34f",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "1H",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "Lowercased \"1h\" diverges from shipped \"1H\" and from siblings \"1D\" (i=3750) and \"1M\" (i=3753) in the same chart-timeframe set; intra-run inconsistency for the same source term.",
+            "evidence": {
+              "rule": "shipped: 1H → 1H",
+              "sourceSpan": "1H",
+              "targetSpan": "1h"
+            },
+            "alternative": "1H"
+          }
+        ],
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:token.priceExplorer.timeRangeLabel.month",
+      {
+        "unitId": "token.priceExplorer.timeRangeLabel.month",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "c04d86ca1b234dae2539f44a3ea605b8ed59fb65ec5ded09937ebacbfa100264",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "1M",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tokens.selector.categoryFilter.clear_one",
+      {
+        "unitId": "tokens.selector.categoryFilter.clear_one",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "302e166d28e6486729e3034dbcac7dbcaa86f594e4acddb0a21c7433cc5186bd",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Limpar filtro ativo",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-23T16-12-01Z",
+        "approvedAt": "2026-09-23T16:12:01.205Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tokens.selector.categoryFilter.clear_other",
+      {
+        "unitId": "tokens.selector.categoryFilter.clear_other",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2dc1c0755c9ec2716cbacc0a40d7babc53c889496a89b8c4495d09e38b95a758",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Limpar filtros ativos",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-23T16-12-01Z",
+        "approvedAt": "2026-09-23T16:12:01.205Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:tokens.selector.categoryFilter.myTokens",
+      {
+        "unitId": "tokens.selector.categoryFilter.myTokens",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "16f6f49ce8ba3114b5b5495524ad01dc739a58e7405110fa38669d4d23443f0c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Meus tokens",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-23T16-12-01Z",
+        "approvedAt": "2026-09-23T16:12:01.205Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.biddingClosed",
+      {
+        "unitId": "toucan.auction.biddingClosed",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "dab4f89cb166fd7798684f2e64ffc1d2ad73fa2d24ede047ba62e9133fedbff1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Lances encerrados",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.endedOn",
+      {
+        "unitId": "toucan.auction.endedOn",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "73988725620dc90b856b12cb96dfece96728f0e071bba609f58176c43e5db792",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Leilão encerrado em {{date}}",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.introBanner.remaining",
+      {
+        "unitId": "toucan.auction.introBanner.remaining",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "432b31f5ddfb9e4413ab9146cfd77639a106b7cc940280adb6b30e5cb065ab70",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{time}} restantes",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.introBanner.timelineAndDetails",
+      {
+        "unitId": "toucan.auction.introBanner.timelineAndDetails",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "797b81c9cbcbd002fd55f3c046c05c7f67f495e9552652ac5c45737b6ff8cc63",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Cronograma e detalhes",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.nowTradingCard.fdv",
+      {
+        "unitId": "toucan.auction.nowTradingCard.fdv",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a88fc94a8c65608df080363d9a6eddacc0d6fdcffd13ea23fe3cdb49cae70fe9",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "<value>{{fdv}}</value> FDV",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.nowTradingCard.title",
+      {
+        "unitId": "toucan.auction.nowTradingCard.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "79e6d37dc36a5b282ff78e93a02f58b32dcdfc1fe1de59e414199252a06d6c1f",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "{{symbol}} já está sendo negociado",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.nowTradingCard.trade",
+      {
+        "unitId": "toucan.auction.nowTradingCard.trade",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "3f67c276590bef9320fc9e9c2999b18935d0d9c6e2713c0d41e05962432bb3ad",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Negociar {{symbol}} →",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.nowTradingCard.volume24h",
+      {
+        "unitId": "toucan.auction.nowTradingCard.volume24h",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "6f49d846eb0dc8ff08cc032696fc0a2e5cab201a7bba4eccb3c054b1e15d0a4a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "<value>{{volume}}</value> vol 24H",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.auction.tradeTokenBanner.buyOrSell",
+      {
+        "unitId": "toucan.auction.tradeTokenBanner.buyOrSell",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a43ddcd7960258306b756bd6f58f620d058bb3eb80009fe429a8fe21001c470c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Compre ou venda {{symbol}}",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.bidReview.networkErrorDescription",
+      {
+        "unitId": "toucan.bidReview.networkErrorDescription",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "5fca6f81a3bd9b9a7951a0a350833450dbd0a432f3cc3437a9d5af79c80d8093",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Não foi possível acessar a rede para verificar seu lance. Verifique sua conexão e tente novamente.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.bidReview.networkErrorTitle",
+      {
+        "unitId": "toucan.bidReview.networkErrorTitle",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2a33d984de88157305b38d8c13bc9d85880a40f84eec3683507785fdc2bfd48d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Erro de rede",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.bidReview.simulationErrorDescription",
+      {
+        "unitId": "toucan.bidReview.simulationErrorDescription",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "779665ad0b4bfa480e80812c9bc2eb823ff80f0aa140c83a8a7327bb7d51a17a",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Algo deu errado ao verificar seu lance. Tente novamente.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.bidReview.simulationErrorTitle",
+      {
+        "unitId": "toucan.bidReview.simulationErrorTitle",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "f0ad46c32019b07dd91ad277ede77cee3201cd280c9517a97933cf033d90e85f",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Não foi possível verificar o lance",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "d0d34a7e3abfec0e4af45d5a20a1f14e0df2e5efe8f2508d6c7205ceb38d40c1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Período de pré-lance",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.add",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.add",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "57dbd479fb4aa9d5526f59cbfcab40d023383d04a1c5489f8f1d9b57a8f5da7d",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Adicionar período de pré-lance",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.description",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.description",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "1b82234a5328430b862fd6644a87bd5e42b1829a0e92337d0f1edc2db5a215b7",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Os usuários podem dar lances durante o período de pré-lance, mas os tokens só são liberados na data de início do leilão",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.endDate",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.endDate",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a5a7488402f3ef3a2ec3e343f780b64c36a18b9e0756e69bf20a2508d96f6424",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Data de término do pré-lance",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.range.error",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.range.error",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "6d64b3a80bdfd7f64d6fc9d041c157993717477726d7c329268f787cad1a5b9b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "O pré-lance deve começar antes da data de início do leilão",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.remove",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.remove",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "b1a336caaf8c47a5d38280d4ef6b91fed2d4a38e84ca57437680eb2e16d7592c",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Remover período de pré-lance",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.startDate",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startDate",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "ddf4fb33930653cda0348a1d0755c78a490931d18dd36316edf109d75907c755",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Data de início do pré-lance",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.startDate.placeholder",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startDate.placeholder",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "ce591ddf839d668ab46070a0bc3d88f815adae3c4b36a180398de67edb9c55be",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Escolha uma data de início do pré-lance",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.preBid.startTime.error",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.preBid.startTime.error",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "e37e7fdbac10d6a014349bdfcb72f862a6406c0afc9400f0a57b6b75b56e976f",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "O início do pré-lance deve ocorrer pelo menos {{time}} a partir de agora",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "fluency",
+            "severity": "minor",
+            "detail": "'deve ser de pelo menos {{time}} a partir de agora' is slightly awkward Portuguese for a time constraint; 'deve ocorrer pelo menos {{time}} a partir de agora' reads more naturally.",
+            "evidence": {
+              "sourceSpan": "must be at least {{time}} from now",
+              "targetSpan": "deve ser de pelo menos {{time}} a partir de agora"
+            },
+            "alternative": "O início do pré-lance deve ocorrer pelo menos {{time}} a partir de agora"
+          }
+        ],
+        "agentRunId": "pt-BR-2026-09-12T01-50-32Z",
+        "approvedAt": "2026-09-12T01:50:32.744Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.configureAuction.priceSettings.description.singleRaiseCurrency",
+      {
+        "unitId": "toucan.createAuction.step.configureAuction.priceSettings.description.singleRaiseCurrency",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "dd49668d1e2c03fd9753909ccb26f4d41886335e847c70c605dcb4da58a3b050",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Defina um preço mínimo para o seu leilão.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-12T00-41-45Z",
+        "approvedAt": "2026-09-12T00:41:45.661Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.createAuction.step.tokenInfo.tickerPlaceholder",
+      {
+        "unitId": "toucan.createAuction.step.tokenInfo.tickerPlaceholder",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a1efe92e5d394bfbfadb01f863c3ebb3503ed198f7b7ddd4d14da5bcbb850ae9",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "$TICKER",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.filter.status",
+      {
+        "unitId": "toucan.filter.status",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "920e413c7d411b61ef3e8c63b1cb6ad058d5f95f8b481dbafe60248387d8c355",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Status",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.crowd",
+      {
+        "unitId": "toucan.launchMethod.crowd",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "0c30868c94cf6a8ba6c34defe7b888c1498b30ad8ebd749476e80a1cae3fba5b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Crowd Launch",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.crowd.description",
+      {
+        "unitId": "toucan.launchMethod.crowd.description",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "1a29c138738225944360ee41d9d119899b1a5ae620536e730cec4e93b28ef158",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Lançamentos padronizados que geram liquidez bloqueada e distribuem tokens de forma justa por meio de financiamento coletivo pré-lançamento. Lançados via pools.xyz.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "The domain \"pools.xyz\" was recapitalized to \"Pools.xyz\"; a URL/domain is an identifier and should be kept verbatim as in the source.",
+            "evidence": {
+              "sourceSpan": "pools.xyz",
+              "targetSpan": "Pools.xyz"
+            },
+            "alternative": "pools.xyz"
+          }
+        ],
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.crowd.title",
+      {
+        "unitId": "toucan.launchMethod.crowd.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "280c70ebebbbc7e0b7a65d2f88fa764a7c1ccf9474ede08bc9273c9ef47518c1",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Crowd Launches",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.custom",
+      {
+        "unitId": "toucan.launchMethod.custom",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "26c0eec7a150863465a9d2a64d4e462e24cafd6d6d8cbbe57b0c7945e3397fca",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Leilão personalizado",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.custom.description",
+      {
+        "unitId": "toucan.launchMethod.custom.description",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "cbb9694a13b77fb5d5ea311da28461fdceb919e0483f9802c4e357876574e92b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Lançamentos de token totalmente personalizáveis para inicializar liquidez e distribuir tokens de forma justa, com a tecnologia do protocolo CCA da Uniswap.",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.custom.title",
+      {
+        "unitId": "toucan.launchMethod.custom.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "8552081d0306fba41472f2001fbc869673fa28e24e9b40285435ddc0c602d175",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Leilões personalizados",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.exploreAuctions",
+      {
+        "unitId": "toucan.launchMethod.exploreAuctions",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "7a4d35a06d9a616af63ee66f2bf557f7e221279d3e4b4c91cbacd287810dec8b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Explorar leilões",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.instant",
+      {
+        "unitId": "toucan.launchMethod.instant",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "44b2da044269016fe547745dcdeef111551c2ea14fb21e5af07448d684de564b",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Instant Launch",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.instant.description",
+      {
+        "unitId": "toucan.launchMethod.instant.description",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "75c4c546d125f49141c3ec887e723a67a7d469da7affc62de5b2d720984d2dae",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Lançamentos padronizados que podem ser negociados imediatamente. Precificados por uma bonding curve, com tarifas destinadas à liquidez bloqueada. Lançados via pools.xyz.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "Same domain-casing drift as i=4416: \"pools.xyz\" rendered as \"Pools.xyz\".",
+            "evidence": {
+              "sourceSpan": "pools.xyz",
+              "targetSpan": "Pools.xyz"
+            },
+            "alternative": "pools.xyz"
+          }
+        ],
+        "agentRunId": "pt-BR-2026-09-28T18-49-04Z",
+        "approvedAt": "2026-09-28T18:49:04.147Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchMethod.instant.title",
+      {
+        "unitId": "toucan.launchMethod.instant.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "2990da5554ed8b8d80ca9d06f4f23b0566a88a1ffd4f4eb7be58788afea54016",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Instant Launches",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.launchToken.pools.title",
+      {
+        "unitId": "toucan.launchToken.pools.title",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "6836fec847c82e18c57a8f6726d1b9772f7417eded592146d144170dc6735a37",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Pools.trade",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.timeline.tokensClaimable.noPool",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "02d94f483919d16205cf038955d0129791be8f8148ddfd62841001b24a78bfbb",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Token disponível para resgate",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.timeline.tokensClaimable.noPool.description",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool.description",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "23d043e17df938b730efb01015c6e91984c81d590641b446db0181754ffe8cfc",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "A janela de resgate está aberta. Licitantes que saíram de seus lances já podem resgatar seus tokens. A negociação abre assim que um pool estiver ativo.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "Shipped translations of the sibling claim-window strings (e.g. \"Bidders who have exited their bids can now claim their tokens\") render the subject as \"Licitantes que saíram de seus lances já podem resgatar seus tokens\". The proposal uses \"Quem encerrou seus lances já pode resgatar\", introducing a second rendering of the same fixed sentence within the app and a different verb for \"exited\" (encerrar vs sair de).",
+            "evidence": {
+              "sourceSpan": "Bidders who have exited their bids can now claim their tokens.",
+              "targetSpan": "Quem encerrou seus lances já pode resgatar seus tokens.",
+              "rule": "Consistency with shipped rendering: \"Licitantes que saíram de seus lances já podem resgatar seus tokens\""
+            },
+            "alternative": "Licitantes que saíram de seus lances já podem resgatar seus tokens."
+          }
+        ],
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:toucan.timeline.tokensClaimable.noPool.description.future",
+      {
+        "unitId": "toucan.timeline.tokensClaimable.noPool.description.future",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "5bbcb65f274ab081feb7a2a47288ad81c541371b9302cfb483569c461b253632",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "A janela de resgate será aberta. Licitantes que saíram de seus lances poderão resgatar seus tokens. A negociação abrirá assim que um pool estiver ativo.",
+        "status": "finalized",
+        "judgeIssues": [
+          {
+            "category": "terminology",
+            "severity": "minor",
+            "detail": "Same inconsistency as the present-tense sibling: shipped strings render \"Bidders who have exited their bids will be able to claim their tokens\" as \"Licitantes que saíram de seus lances poderão resgatar seus tokens\", while the proposal uses \"Quem encerrar seus lances poderá resgatar\". Note the proposal's \"encerrar\" (future subjunctive) also subtly shifts the meaning from bidders who have already exited to those who will exit.",
+            "evidence": {
+              "sourceSpan": "Bidders who have exited their bids will be able to claim their tokens.",
+              "targetSpan": "Quem encerrar seus lances poderá resgatar seus tokens.",
+              "rule": "Consistency with shipped rendering: \"Licitantes que saíram de seus lances poderão resgatar seus tokens\""
+            },
+            "alternative": "Licitantes que saíram de seus lances poderão resgatar seus tokens."
+          }
+        ],
+        "agentRunId": "pt-BR-2026-09-16T16-26-49Z",
+        "approvedAt": "2026-09-16T16:26:49.395Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:uniswapx.item",
+      {
+        "unitId": "uniswapx.item",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "962676d110660f838984054682f7fb2116294fc38804fc6ad9b9ea221579f563",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "<icon /> <gradient>UniswapX</gradient> <info />",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ],
+    [
+      "pt-BR:i18next-json:walletConnect.request.details.label.tokens",
+      {
+        "unitId": "walletConnect.request.details.label.tokens",
+        "providerId": "i18next-json",
+        "locale": "pt-BR",
+        "domain": "product-ui",
+        "sourceHash": "a039dfb9628b53ddaebcfe8ef0793e3fdf19867601295f00d192acef59050869",
+        "glossaryHash": "3977bfd18da0d0ec2710c266be86f786a26266e236903da031cc59310ad3099d",
+        "styleHash": "16f364d0e5c63fbfb744519584187e756ca28671189cc00291095b8675030289",
+        "translation": "Tokens",
+        "status": "clean",
+        "agentRunId": "pt-BR-2026-10-06T18-09-00Z",
+        "approvedAt": "2026-10-06T18:09:00.748Z",
+        "approvedBy": "agent"
+      }
+    ]
+  ]
+}

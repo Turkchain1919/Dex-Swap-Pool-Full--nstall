@@ -1,0 +1,394 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignore": [
+    "**/*.native.ts",
+    "**/*.web.ts",
+    "**/*.native.tsx",
+    "**/*.web.tsx"
+  ],
+  "ignoreDependencies": [
+    "typescript",
+    "oxlint",
+    "@types/.+",
+    "@vitest/coverage-v8"
+  ],
+  "workspaces": {
+    ".": {
+      "ignoreDependencies": [
+        "@graphql-codegen/.+",
+        "@commitlint/.+",
+        "@nx/devkit",
+        "@nx/js",
+        "@nx/plugin",
+        "@nx/workspace",
+        "@slack/types",
+        "@swc/helpers",
+        "@ethersproject/keccak256",
+        "bufferutil",
+        "utf-8-validate",
+        "clipanion",
+        "dd-trace",
+        "i18next",
+        "moti",
+        "react-router",
+        "semver",
+        "typanion"
+      ]
+    },
+    "apps/cli": {
+      "ignoreDependencies": [
+        "ink",
+        "ink-box",
+        "ink-gradient",
+        "ink-select-input",
+        "ink-spinner",
+        "ink-text-input",
+        "react"
+      ]
+    },
+    "apps/dev-portal": {
+      "ignoreDependencies": [
+        "@babel/preset-typescript",
+        "babel-plugin-react-compiler"
+      ]
+    },
+    "apps/extension": {
+      "entry": [
+        "src/entrypoints/**/*.{ts,tsx}"
+      ],
+      "ignoreDependencies": [
+        "@svgr/webpack",
+        "@tailwindcss/vite",
+        "@testing-library/dom",
+        "@wxt-dev/module-react",
+        "concurrently",
+        "css-loader",
+        "dotenv",
+        "esbuild-loader",
+        "react-native-web",
+        "serve",
+        "style-loader",
+        "swc-loader",
+        "vite",
+        "vite-plugin-commonjs",
+        "vite-plugin-node-polyfills",
+        "vite-plugin-svgr",
+        "vite-tsconfig-paths",
+        "webpack-cli"
+      ]
+    },
+    "apps/mobile": {
+      "metro": false,
+      "ignoreDependencies": [
+        "@react-native/metro-config",
+        "react-native-svg-transformer",
+        "@amplitude/analytics-react-native",
+        "@datadog/datadog-ci",
+        "@ethersproject/shims",
+        "@expo/fingerprint",
+        "@formatjs/intl-getcanonicallocales",
+        "@formatjs/intl-locale",
+        "react-native-quick-base64",
+        "react-native-quick-crypto",
+        "@react-native-community/cli",
+        "@react-native-community/cli-platform-android",
+        "@react-native-community/cli-platform-ios",
+        "@react-native-masked-view/masked-view",
+        "@shopify/react-native-skia",
+        "@uniswap/ethers-rs-mobile",
+        "agent-device",
+        "babel-loader",
+        "babel-plugin-react-native-web",
+        "babel-plugin-transform-remove-console",
+        "cross-fetch",
+        "dotenv",
+        "eas-build-cache-provider",
+        "esbuild",
+        "expo-dev-client",
+        "expo-image",
+        "expo-linking",
+        "expo-localization",
+        "expo-modules-core",
+        "expo-secure-store",
+        "inquirer",
+        "postinstall-postinstall",
+        "react-native-argon2",
+        "react-native-asset",
+        "react-native-clean-project",
+        "react-native-image-colors",
+        "react-native-passkey",
+        "react-native-restart",
+        "sp-react-native-in-app-updates",
+        "ts-node",
+        "@ethersproject/shims",
+        "@formatjs/intl-getcanonicallocales",
+        "@formatjs/intl-locale",
+        "react-native-quick-base64",
+        "react-native-quick-crypto"
+      ]
+    },
+    "apps/web": {
+      "entry": [
+        "src/index.tsx",
+        "src/setupTests.ts",
+        "src/setupRive.ts",
+        "src/sideEffects.ts",
+        "src/polyfills.ts",
+        "functions/**/*.ts",
+        "scripts/anvil-fork-headers.ts"
+      ],
+      "vite": false,
+      "ignoreDependencies": [
+        "@babel/preset-env",
+        "@tailwindcss/vite",
+        "vite-plugin-bundlesize",
+        "vite-plugin-commonjs",
+        "vite-plugin-node-polyfills",
+        "vite-plugin-svgr",
+        "vite-tsconfig-paths",
+        "@chromatic-com/storybook",
+        "@datadog/datadog-ci",
+        "@ethersproject/.+",
+        "@graphql-codegen/.+",
+        "@hono/node-server",
+        "@metamask/connect-evm",
+        "@rive-app/canvas",
+        "@safe-global/safe-apps-provider",
+        "@safe-global/safe-apps-sdk",
+        "@storybook/.+",
+        "@svgr/webpack",
+        "@swc/core",
+        "@testing-library/dom",
+        "@typechain/ethers-v5",
+        "@universe/config",
+        "@vercel/og",
+        "@walletconnect/ethereum-provider",
+        "@web3-react/eip1193",
+        "@web3-react/empty",
+        "agentation-mcp",
+        "ajv-formats",
+        "babel-plugin-react-compiler",
+        "buffer",
+        "case-sensitive-paths-webpack-plugin",
+        "concurrently",
+        "dd-trace",
+        "detect-package-manager",
+        "dotenv-cli",
+        "expo-crypto",
+        "hono",
+        "html-entities",
+        "http-server",
+        "jpeg-js",
+        "lint-staged",
+        "mini-css-extract-plugin",
+        "playwright",
+        "png-ts",
+        "postinstall-postinstall",
+        "process",
+        "prop-types",
+        "react-compiler-runtime",
+        "react-scripts",
+        "resize-observer-polyfill",
+        "source-map-explorer",
+        "start-server-and-test",
+        "storybook-addon-pseudo-states",
+        "swc-loader",
+        "terser-webpack-plugin",
+        "ts-loader",
+        "wait-on",
+        "workbox-expiration",
+        "workbox-strategies",
+        "ws"
+      ]
+    },
+    "labs/sandbox": {
+      "ignoreDependencies": [
+        "@hookform/resolvers",
+        "@radix-ui/.+",
+        "@tanstack/react-virtual",
+        "autoprefixer",
+        "canvas-confetti",
+        "cmdk",
+        "date-fns",
+        "hono",
+        "input-otp",
+        "moti",
+        "party-js",
+        "react-day-picker",
+        "react-flip-numbers",
+        "react-hook-form",
+        "react-resizable-panels",
+        "rolldown",
+        "sonner",
+        "vaul",
+        "ws"
+      ]
+    },
+    "labs/workbench": {
+      "entry": [
+        "functions/vercel-entry.ts",
+        "scripts/build-vercel.ts",
+        "scripts/vercel-ignore.ts"
+      ],
+      "ignore": [
+        "app/components/ui/**"
+      ]
+    },
+    "config/vitest-presets": {
+      "ignoreDependencies": [
+        "identity-obj-proxy"
+      ]
+    },
+    "packages/api": {
+      "ignoreDependencies": [
+        "expo-secure-store"
+      ]
+    },
+    "packages/compliance": {
+      "ignoreDependencies": [
+        "@universe/api",
+        "@universe/environment"
+      ]
+    },
+    "packages/config-cli": {
+      "entry": [
+        "src/main.ts"
+      ]
+    },
+    "packages/embedded-wallet": {
+      "ignoreDependencies": [
+        "react-native-argon2",
+        "react-native-passkey"
+      ]
+    },
+    "packages/environment": {
+      "ignoreDependencies": [
+        "react-native",
+        "react-native-device-info"
+      ]
+    },
+    "packages/gating": {
+      "ignoreDependencies": [
+        "@statsig/react-native-bindings",
+        "react"
+      ]
+    },
+    "packages/mycelium": {
+      "ignoreDependencies": [
+        "@legendapp/list",
+        "@rn-primitives/portal",
+        "@testing-library/react",
+        "camelcase",
+        "cheerio",
+        "expo-image",
+        "expo-linear-gradient",
+        "react-native",
+        "react-native-gesture-handler",
+        "react-native-image-colors",
+        "react-native-reanimated",
+        "react-native-safe-area-context",
+        "react-native-svg",
+        "react-native-webview",
+        "tailwindcss",
+        "uniwind",
+        "uppercamelcase",
+        "utilities"
+      ],
+      "ignore": [
+        "src/components/icons/**"
+      ]
+    },
+    "packages/notifications": {
+      "ignoreDependencies": []
+    },
+    "packages/prices": {
+      "ignoreDependencies": [
+        "@testing-library/react"
+      ]
+    },
+    "packages/sessions": {
+      "ignoreDependencies": [
+        "@bufbuild/protobuf",
+        "@tanstack/react-query",
+        "openapi-typescript-codegen"
+      ]
+    },
+    "packages/transactional": {
+      "ignoreDependencies": [
+        "@react-email/preview-server",
+        "@universe/mycelium",
+        "@universe/tailwind"
+      ]
+    },
+    "packages/ui": {
+      "ignore": [
+        "src/components/icons/**",
+        "src/components/logos/**"
+      ],
+      "ignoreDependencies": [
+        "@react-native-masked-view/masked-view",
+        "@shopify/react-native-skia",
+        "camelcase",
+        "cheerio",
+        "esbuild-register",
+        "expo-linear-gradient",
+        "fs-extra",
+        "moti",
+        "react-native-keyboard-controller",
+        "uniwind",
+        "uppercamelcase"
+      ]
+    },
+    "packages/uniswap": {
+      "ignoreDependencies": [
+        "@graphql-codegen/.+",
+        "@react-native-masked-view/masked-view",
+        "@redux-devtools/extension",
+        "@typechain/ethers-v5",
+        "expo-blur",
+        "expo-file-system",
+        "expo-linear-gradient",
+        "i18next-resources-for-ts",
+        "react-native-appsflyer",
+        "react-native-context-menu-view",
+        "react-native-device-info",
+        "react-native-mmkv"
+      ]
+    },
+    "packages/utilities": {
+      "ignoreDependencies": [
+        "@amplitude/analytics-react-native",
+        "@datadog/mobile-react-native",
+        "expo-clipboard",
+        "promise",
+        "react-native-device-info"
+      ]
+    },
+    "packages/wallet": {
+      "ignoreDependencies": [
+        "@universe/tailwind",
+        "react-native-context-menu-view",
+        "react-native-image-picker",
+        "react-native-restart",
+        "sp-react-native-in-app-updates"
+      ]
+    },
+    "packages/websocket": {
+      "ignoreDependencies": [
+        "partysocket"
+      ]
+    },
+    "tools/uniswap-nx": {
+      "ignoreDependencies": [
+        "@nx/devkit",
+        "tslib"
+      ]
+    },
+    "packages/tailwind": {
+      "ignoreDependencies": [
+        "@tailwindcss/node",
+        "@tailwindcss/oxide"
+      ]
+    }
+  }
+}

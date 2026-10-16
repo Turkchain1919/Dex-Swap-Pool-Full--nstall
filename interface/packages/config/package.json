@@ -1,0 +1,29 @@
+{
+  "name": "@universe/config",
+  "version": "0.0.0",
+  "dependencies": {
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.17",
+    "vitest": "3.2.1",
+    "vitest-presets": "workspace:^"
+  },
+  "scripts": {
+    "typecheck": "nx typecheck config",
+    "check": "nx check config",
+    "check:fast": "nx check:fast config",
+    "check:deps:usage": "nx check:deps:usage config",
+    "format": "nx run config:format",
+    "format:check": "nx run config:format:check",
+    "lint": "nx lint config",
+    "lint:fix": "nx lint:fix config",
+    "test": "nx test config"
+  },
+  "nx": {
+    "includedScripts": []
+  },
+  "main": "src/index.ts",
+  "private": true,
+  "sideEffects": false
+}

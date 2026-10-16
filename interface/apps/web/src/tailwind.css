@@ -1,0 +1,35 @@
+/* Tailwind v4 + shared Universe design tokens. */
+/* Fonts are loaded via index.html, so @universe/tailwind/fonts is intentionally omitted. */
+@import "tailwindcss";
+/* Mycelium entry re-exports @universe/tailwind/tailwind plus mycelium-wide utilities
+   (accordion keyframes etc.) — the standard entry for apps that render mycelium
+   components (dev-portal precedent). */
+@import "@universe/mycelium/tailwind";
+/*
+ * Mycelium compat side-car stylesheets: define the --stext- and --sbtn- custom
+ * properties and the keyframes that the safelist's compat classes and compat
+ * components dereference at runtime. The mycelium entry above only makes
+ * Tailwind EMIT those classes; without these definitions the emitted rules
+ * resolve to nothing — TextCompat colors fall back to inheritance (e.g. accent
+ * pink inside anchors) and compat text ships silently unstyled (INFRA-3262
+ * found the same hole in apps/extension). Gated by the custom-property
+ * resolution check in scripts/check-client-build.ts.
+ */
+@import "@universe/mycelium/text-compat.css";
+@import "@universe/mycelium/shimmer.css";
+@import "@universe/mycelium/button-compat.css";
+/* Package scan roots are declared by the packages themselves — `@source`
+   resolves relative to the declaring stylesheet, so this entry carries no
+   cross-package paths. Mycelium's roots (and its test-file exclusions, which
+   check:client-build's probe-leak canaries gate) arrive via the mycelium entry
+   above; uniswap and wallet ship class-bearing sources too (styled-factory
+   conversions, and wallet's Tamagui-to-mycelium conversions, are class-select
+   by construction), so import their registrations here. */
+@import "uniswap/tailwind-sources.css";
+@import "wallet/tailwind-sources.css";
+
+/* Tailwind's base paints <body> with the shadcn --background token; point it at
+   surface1 so the page ground matches surface1-backed components in both schemes. */
+:root {
+  --background: var(--surface1);
+}

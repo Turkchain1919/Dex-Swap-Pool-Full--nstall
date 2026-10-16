@@ -1,0 +1,806 @@
+vi.mock('@universe/gating', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@universe/gating')>()
+  return {
+    ...actual,
+    getFeatureFlag: vi.fn(),
+    getExperimentValueFromLayer: vi.fn(),
+    waitForStatsigReady: vi.fn().mockResolvedValue(undefined),
+  }
+})
+
+vi.mock('uniswap/src/data/apiClients/tradingApi/getIsPermissionedTokenFromCache', () => ({
+  getIsPermissionedTokenFromCache: vi.fn(),
+}))
+
+const mockFetch = vi.fn()
+global.fetch = mockFetch
+
+import { TRADING_API_PATHS, TradingApi } from '@universe/api'
+import { UniverseChainId } from '@universe/chains'
+import { EXPERIMENTS_HEADER_NAME, getExperimentsClient } from '@universe/experiments'
+import {
+  EthAsErc20UniswapXProperties,
+  FeatureFlags,
+  getExperimentValueFromLayer,
+  getFeatureFlag,
+  Layers,
+} from '@universe/gating'
+import { getIsPermissionedTokenFromCache } from 'uniswap/src/data/apiClients/tradingApi/getIsPermissionedTokenFromCache'
+import {
+  checkWalletDelegation,
+  getFeatureFlaggedHeaders,
+  TradingApiClient,
+  TradingApiHeaders,
+} from 'uniswap/src/data/apiClients/tradingApi/TradingApiClient'
+import { toTradingApiSupportedChainId } from 'uniswap/src/features/transactions/swap/utils/tradingApi'
+import type { MockedFunction } from 'vitest'
+
+// Helper function to create a mock Response
+const createMockResponse = (data: TradingApi.WalletCheckDelegationResponseBody): Partial<Response> => ({
+  ok: true,
+  status: 200,
+  json: vi.fn().mockResolvedValue(data),
+})
+
+const mockCheckWalletDelegationWithoutBatching = mockFetch
+
+describe('checkWalletDelegation', () => {
+  const mockAddress1 = '0x1234567890abcdef1234567890abcdef12345678' as Address
+  const mockAddress2 = '0xabcdef1234567890abcdef1234567890abcdef12' as Address
+  const mockAddress3 = '0x9876543210fedcba9876543210fedcba98765432' as Address
+
+  const mockChainId1 = 1 as TradingApi.ChainId
+  const mockChainId2 = 137 as TradingApi.ChainId
+
+  const mockDelegationResponse: TradingApi.WalletCheckDelegationResponseBody = {
+    requestId: 'test-request-id',
+    delegationDetails: {
+      [mockAddress1]: {
+        '1': {
+          isWalletDelegatedToUniswap: true,
+          currentDelegationAddress: '0xdeadbeef',
+          latestDelegationAddress: '0xdeadbeef',
+        },
+      },
+    },
+  }
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  describe('when no wallet addresses are provided', () => {
+    it('should return empty delegation details without making API call', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [],
+        chainIds: [mockChainId1],
+      }
+
+      const result = await checkWalletDelegation(params)
+
+      expect(result).toEqual({
+        requestId: '',
+        delegationDetails: {},
+      })
+      expect(mockCheckWalletDelegationWithoutBatching).not.toHaveBeenCalled()
+    })
+
+    it('should return empty delegation details when walletAddresses is undefined', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        chainIds: [mockChainId1],
+      }
+
+      const result = await checkWalletDelegation(params)
+
+      expect(result).toEqual({
+        requestId: '',
+        delegationDetails: {},
+      })
+      expect(mockCheckWalletDelegationWithoutBatching).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when request is under batch threshold', () => {
+    it('should make single API call for small request', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1],
+        chainIds: [mockChainId1],
+      }
+
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(createMockResponse(mockDelegationResponse))
+
+      const result = await checkWalletDelegation(params)
+
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(1)
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          body: JSON.stringify(params),
+        }),
+      )
+      expect(result).toEqual(mockDelegationResponse)
+    })
+
+    it('should make single API call when total combinations equal threshold', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1],
+        chainIds: [mockChainId1],
+      }
+
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(createMockResponse(mockDelegationResponse))
+
+      // Set threshold to exactly match the combinations (1 wallet * 1 chain = 1)
+      const result = await checkWalletDelegation(params, 1)
+
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(1)
+      expect(result).toEqual(mockDelegationResponse)
+    })
+  })
+
+  describe('when request exceeds batch threshold', () => {
+    it('should split into multiple batches and merge responses', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1, mockAddress2, mockAddress3],
+        chainIds: [mockChainId1, mockChainId2],
+      }
+
+      const response1: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'batch-1',
+        delegationDetails: {
+          [mockAddress1]: {
+            '1': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xdeadbeef',
+              latestDelegationAddress: '0xdeadbeef',
+            },
+            '137': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xfeedface',
+            },
+          },
+        },
+      }
+
+      const response2: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'batch-2',
+        delegationDetails: {
+          [mockAddress2]: {
+            '1': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xdeadbeef',
+            },
+            '137': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xfeedface',
+              latestDelegationAddress: '0xfeedface',
+            },
+          },
+        },
+      }
+
+      const response3: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'batch-3',
+        delegationDetails: {
+          [mockAddress3]: {
+            '1': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xbadcafe',
+              latestDelegationAddress: '0xbadcafe',
+            },
+            '137': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xcafebabe',
+            },
+          },
+        },
+      }
+
+      mockCheckWalletDelegationWithoutBatching
+        .mockResolvedValueOnce(createMockResponse(response1))
+        .mockResolvedValueOnce(createMockResponse(response2))
+        .mockResolvedValueOnce(createMockResponse(response3))
+
+      // Set threshold to 2 (should create 3 batches: 1 wallet per batch since 1 wallet * 2 chains = 2)
+      const result = await checkWalletDelegation(params, 2)
+
+      const expectedMergedResponse: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: response1.requestId,
+        delegationDetails: {
+          ...response1.delegationDetails,
+          ...response2.delegationDetails,
+          ...response3.delegationDetails,
+        },
+      }
+
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(3)
+      expect(result).toEqual(expectedMergedResponse)
+    })
+
+    it('should handle batching with custom threshold', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1, mockAddress2],
+        chainIds: [mockChainId1, mockChainId2],
+      }
+
+      const response1: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'batch-1',
+        delegationDetails: {
+          [mockAddress1]: {
+            '1': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xdeadbeef',
+              latestDelegationAddress: '0xdeadbeef',
+            },
+            '137': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xfeedface',
+            },
+          },
+        },
+      }
+
+      const response2: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'batch-2',
+        delegationDetails: {
+          [mockAddress2]: {
+            '1': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xdeadbeef',
+            },
+            '137': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xfeedface',
+              latestDelegationAddress: '0xfeedface',
+            },
+          },
+        },
+      }
+
+      mockCheckWalletDelegationWithoutBatching
+        .mockResolvedValueOnce(createMockResponse(response1))
+        .mockResolvedValueOnce(createMockResponse(response2))
+
+      // 2 wallets * 2 chains = 4 combinations, threshold = 3, so should batch
+      const result = await checkWalletDelegation(params, 3)
+
+      const expectedMergedResponse: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: response1.requestId,
+        delegationDetails: {
+          ...response1.delegationDetails,
+          ...response2.delegationDetails,
+        },
+      }
+
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(2)
+      expect(result).toEqual(expectedMergedResponse)
+    })
+  })
+
+  describe('edge cases', () => {
+    it('should handle empty response properly', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1],
+        chainIds: [mockChainId1],
+      }
+
+      const emptyResponse: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'empty-request',
+        delegationDetails: {},
+      }
+
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(createMockResponse(emptyResponse))
+
+      const result = await checkWalletDelegation(params)
+
+      expect(result).toEqual(emptyResponse)
+    })
+
+    it('should handle single wallet with multiple chains', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1],
+        chainIds: [mockChainId1, mockChainId2],
+      }
+
+      const response: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'multi-chain',
+        delegationDetails: {
+          [mockAddress1]: {
+            '1': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xdeadbeef',
+              latestDelegationAddress: '0xdeadbeef',
+            },
+            '137': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xfeedface',
+            },
+          },
+        },
+      }
+
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(createMockResponse(response))
+
+      const result = await checkWalletDelegation(params)
+
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(1)
+      expect(result).toEqual(response)
+    })
+
+    it('should handle multiple wallets with single chain', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1, mockAddress2],
+        chainIds: [mockChainId1],
+      }
+
+      const response: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'multi-wallet',
+        delegationDetails: {
+          [mockAddress1]: {
+            '1': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xdeadbeef',
+              latestDelegationAddress: '0xdeadbeef',
+            },
+          },
+          [mockAddress2]: {
+            '1': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xdeadbeef',
+            },
+          },
+        },
+      }
+
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(createMockResponse(response))
+
+      const result = await checkWalletDelegation(params)
+
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(1)
+      expect(result).toEqual(response)
+    })
+  })
+
+  describe('error handling', () => {
+    it('should propagate API errors', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1],
+        chainIds: [mockChainId1],
+      }
+
+      const apiError = new Error('API Error')
+      mockCheckWalletDelegationWithoutBatching.mockRejectedValue(apiError)
+
+      await expect(checkWalletDelegation(params)).rejects.toThrow('API Error')
+    })
+
+    it('should use chainIds.length as effective threshold when batchThreshold is smaller', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1],
+        chainIds: [mockChainId1, mockChainId2], // 2 chains
+      }
+
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(createMockResponse(mockDelegationResponse))
+
+      // Pass batchThreshold of 1, which is less than chainIds.length (2)
+      // Should use 2 as effective threshold (1 wallet * 2 chains = 2, which equals effective threshold)
+      const result = await checkWalletDelegation(params, 1)
+
+      // Should make a single API call since combinations (2) equals effective threshold (2)
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(1)
+      expect(result).toEqual(mockDelegationResponse)
+    })
+
+    it('should handle partial batch failures', async () => {
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: [mockAddress1, mockAddress2],
+        chainIds: [mockChainId1, mockChainId2],
+      }
+
+      const response1: TradingApi.WalletCheckDelegationResponseBody = {
+        requestId: 'batch-1',
+        delegationDetails: {
+          [mockAddress1]: {
+            '1': {
+              isWalletDelegatedToUniswap: true,
+              currentDelegationAddress: '0xdeadbeef',
+              latestDelegationAddress: '0xdeadbeef',
+            },
+            '137': {
+              isWalletDelegatedToUniswap: false,
+              currentDelegationAddress: null,
+              latestDelegationAddress: '0xfeedface',
+            },
+          },
+        },
+      }
+
+      mockCheckWalletDelegationWithoutBatching
+        .mockResolvedValueOnce(createMockResponse(response1))
+        .mockRejectedValueOnce(new Error('Batch 2 failed'))
+
+      // Should fail if any batch fails
+      await expect(checkWalletDelegation(params, 2)).rejects.toThrow('Batch 2 failed')
+    })
+  })
+
+  describe('default threshold behavior', () => {
+    it('should use default threshold when not provided', async () => {
+      // Create a request that would exceed the default threshold (140)
+      const manyWallets = Array.from({ length: 15 }, (_, i) => `0x${i.toString().padStart(40, '0')}` as Address)
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: manyWallets,
+        chainIds: [
+          mockChainId1,
+          mockChainId2,
+          42 as TradingApi.ChainId,
+          56 as TradingApi.ChainId,
+          100 as TradingApi.ChainId,
+        ], // 5 chains
+      }
+
+      // 15 wallets * 5 chains = 75 combinations, under default threshold of 140, should be single call
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(
+        createMockResponse({
+          requestId: 'single-call',
+          delegationDetails: {},
+        }),
+      )
+
+      await checkWalletDelegation(params)
+
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(1)
+    })
+
+    it('should batch when exceeding default threshold', async () => {
+      // Create a request that would exceed the default threshold (140)
+      const manyWallets = Array.from({ length: 30 }, (_, i) => `0x${i.toString().padStart(40, '0')}` as Address)
+      const params: TradingApi.WalletCheckDelegationRequestBody = {
+        walletAddresses: manyWallets,
+        chainIds: [
+          mockChainId1, // 1 (Ethereum)
+          mockChainId2, // 137 (Polygon)
+          10 as TradingApi.ChainId, // Optimism
+          56 as TradingApi.ChainId, // BNB
+          42161 as TradingApi.ChainId, // Arbitrum - using a supported chain instead of 100
+        ], // 5 supported EVM chains
+      }
+
+      // 30 wallets * 5 chains = 150 combinations, exceeds default threshold of 140, should batch
+      mockCheckWalletDelegationWithoutBatching.mockResolvedValue(
+        createMockResponse({
+          requestId: 'batch-response',
+          delegationDetails: {},
+        }),
+      )
+
+      await checkWalletDelegation(params)
+
+      // Should make multiple calls (150 combinations / 5 chains = 30 wallets, but max per batch is 140/5 = 28)
+      expect(mockCheckWalletDelegationWithoutBatching).toHaveBeenCalledTimes(2)
+    })
+  })
+})
+
+describe('getFeatureFlaggedHeaders', () => {
+  const mockGetFeatureFlag = getFeatureFlag as MockedFunction<typeof getFeatureFlag>
+  const mockGetExperimentValueFromLayer = getExperimentValueFromLayer as MockedFunction<
+    typeof getExperimentValueFromLayer
+  >
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+    mockGetFeatureFlag.mockReturnValue(false)
+    mockGetExperimentValueFromLayer.mockReturnValue(false)
+  })
+
+  getAllTradingApiPaths().forEach((path) => {
+    it('should always include these headers for all endpoints', async () => {
+      mockGetFeatureFlag.mockImplementation(
+        (flag) => flag === FeatureFlags.ViemProviderEnabled || flag === FeatureFlags.UniquoteEnabled,
+      )
+      const expectedHeaders: Record<string, string> = {
+        [TradingApiHeaders.UniversalRouterVersion]: TradingApi.UniversalRouterVersion._2_0,
+        [TradingApiHeaders.ViemProviderEnabled]: 'true',
+        [TradingApiHeaders.UniquoteEnabled]: 'true',
+      }
+      if (path === TRADING_API_PATHS.quote || path === TRADING_API_PATHS.swap7702) {
+        expectedHeaders[TradingApiHeaders.UniroutePulumiEnabled] = 'true'
+      }
+      const headers = await getFeatureFlaggedHeaders(path)
+      expect(headers).toEqual(expectedHeaders)
+    })
+
+    it(`Endpoint: ${path} should use UniversalRouterVersion 2.1.1 when UseUniversalRouterVersion211 flag is enabled`, async () => {
+      mockGetFeatureFlag.mockImplementation((flag) => flag === FeatureFlags.UseUniversalRouterVersion211)
+      const headers = await getFeatureFlaggedHeaders(path, {
+        chainId: toTradingApiSupportedChainId(UniverseChainId.Mainnet),
+      })
+      expect(headers).toHaveProperty(TradingApiHeaders.UniversalRouterVersion, TradingApi.UniversalRouterVersion._2_1_1)
+    })
+
+    it(`Endpoint: ${path} should fall back to UniversalRouterVersion 2.0 on ZkSync even when flag is enabled`, async () => {
+      mockGetFeatureFlag.mockImplementation((flag) => flag === FeatureFlags.UseUniversalRouterVersion211)
+      const headers = await getFeatureFlaggedHeaders(path, {
+        chainId: toTradingApiSupportedChainId(UniverseChainId.Zksync),
+      })
+      expect(headers).toHaveProperty(TradingApiHeaders.UniversalRouterVersion, TradingApi.UniversalRouterVersion._2_0)
+    })
+
+    it(`Endpoint: ${path} should/should not UnirouteEnabled header when feature flag is enabled`, async () => {
+      mockGetFeatureFlag.mockImplementation((flag) => flag === FeatureFlags.UnirouteEnabled)
+      const headers = await getFeatureFlaggedHeaders(path)
+      switch (path) {
+        case TRADING_API_PATHS.swap7702:
+        case TRADING_API_PATHS.quote:
+          expect(headers).toHaveProperty(TradingApiHeaders.UnirouteEnabled, 'true')
+          break
+        default:
+          expect(headers).not.toHaveProperty(TradingApiHeaders.UnirouteEnabled)
+          break
+      }
+    })
+
+    it(`Endpoint: ${path} should/should not include Erc20EthEnabled header when experiment is enabled`, async () => {
+      mockGetExperimentValueFromLayer.mockImplementation(
+        ({ layerName, param }: { layerName: string; param: string }) => {
+          if (layerName === Layers.SwapPage && param === EthAsErc20UniswapXProperties.EthAsErc20UniswapXEnabled) {
+            return true
+          }
+          return false
+        },
+      )
+      const headers = await getFeatureFlaggedHeaders(path)
+      switch (path) {
+        case TRADING_API_PATHS.quote:
+        case TRADING_API_PATHS.order:
+        case TRADING_API_PATHS.plan:
+        case TRADING_API_PATHS.swap7702:
+          expect(headers).toHaveProperty(TradingApiHeaders.Erc20EthEnabled, 'true')
+          break
+        default:
+          expect(headers).not.toHaveProperty(TradingApiHeaders.Erc20EthEnabled)
+          break
+      }
+    })
+
+    it(`Endpoint: ${path} should/should not include ChainedActionsEnabled header when feature flag is enabled`, async () => {
+      mockGetFeatureFlag.mockImplementation((flag) => flag === FeatureFlags.ChainedActions)
+      const headers = await getFeatureFlaggedHeaders(path)
+      switch (path) {
+        case TRADING_API_PATHS.quote:
+        case TRADING_API_PATHS.plan:
+          expect(headers).toHaveProperty(TradingApiHeaders.ChainedActionsEnabled, 'true')
+          break
+        default:
+          expect(headers).not.toHaveProperty(TradingApiHeaders.ChainedActionsEnabled)
+          break
+      }
+    })
+
+    it(`Endpoint: ${path} should/should not include RequestSwapSteps header when feature flag is enabled`, async () => {
+      mockGetFeatureFlag.mockImplementation((flag) => flag === FeatureFlags.RequestSwapSteps)
+      const headers = await getFeatureFlaggedHeaders(path)
+      switch (path) {
+        case TRADING_API_PATHS.quote:
+          expect(headers).toHaveProperty(TradingApiHeaders.RequestSwapSteps, 'true')
+          break
+        default:
+          expect(headers).not.toHaveProperty(TradingApiHeaders.RequestSwapSteps)
+          break
+      }
+    })
+  })
+})
+
+/**
+ * On web the session lives in an HttpOnly cookie, so every trading API request
+ * must run with credentials: 'include' for the backend to see the session.
+ * Guards against regressing to a fetch client that drops the cookie.
+ */
+describe('TradingApiClient web session credentials', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('sends credentials: include on fetchQuote so the session cookie reaches the backend', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: vi.fn().mockResolvedValue({ routing: TradingApi.Routing.CLASSIC, quote: {} }),
+    })
+
+    await TradingApiClient.fetchQuote({
+      type: TradingApi.TradeType.EXACT_INPUT,
+      amount: '1000000000000000000',
+      tokenInChainId: 1 as TradingApi.ChainId,
+      tokenOutChainId: 1 as TradingApi.ChainId,
+      tokenIn: '0x1234567890abcdef1234567890abcdef12345678',
+      tokenOut: '0xabcdef1234567890abcdef1234567890abcdef12',
+      swapper: '0x9876543210fedcba9876543210fedcba98765432',
+    })
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      expect.stringContaining('/quote'),
+      expect.objectContaining({ credentials: 'include' }),
+    )
+  })
+})
+
+/**
+ * Smoke tests for the x-experiments wiring on TradingFetchClient:
+ * the active set rides out as `x-experiments` (FE→BE) and echoed experiments
+ * are absorbed off the response (BE→FE) — without throwing on a response
+ * that has no headers at all (the shape most mocks in this file use).
+ */
+describe('TradingApiClient x-experiments wiring', () => {
+  const quoteRequest = {
+    type: TradingApi.TradeType.EXACT_INPUT,
+    amount: '1000000000000000000',
+    tokenInChainId: 1 as TradingApi.ChainId,
+    tokenOutChainId: 1 as TradingApi.ChainId,
+    tokenIn: '0x1234567890abcdef1234567890abcdef12345678',
+    tokenOut: '0xabcdef1234567890abcdef1234567890abcdef12',
+    swapper: '0x9876543210fedcba9876543210fedcba98765432',
+  }
+
+  const mockQuoteResponse = (headers?: Headers): Partial<Response> => ({
+    ok: true,
+    status: 200,
+    json: vi.fn().mockResolvedValue({ routing: TradingApi.Routing.CLASSIC, quote: {} }),
+    ...(headers ? { headers } : {}),
+  })
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+    getExperimentsClient().clear()
+  })
+
+  afterEach(() => {
+    getExperimentsClient().clear()
+  })
+
+  it('sends the active experiments set as x-experiments on fetchQuote', async () => {
+    mockFetch.mockResolvedValue(mockQuoteResponse())
+    getExperimentsClient().set('smoke-test-exp', { groupName: 'treatment', value: { enabled: true } })
+
+    await TradingApiClient.fetchQuote(quoteRequest)
+
+    const quoteCall = mockFetch.mock.calls.find(([url]) => String(url).includes('/quote'))
+    expect(quoteCall).toBeDefined()
+    const sentHeaders = new Headers((quoteCall?.[1] as RequestInit).headers)
+    expect(sentHeaders.get(EXPERIMENTS_HEADER_NAME)).toBe(
+      JSON.stringify({ 'smoke-test-exp': { groupName: 'treatment', value: { enabled: true } } }),
+    )
+  })
+
+  it('sends no x-experiments header when the active set is empty', async () => {
+    mockFetch.mockResolvedValue(mockQuoteResponse())
+
+    await TradingApiClient.fetchQuote(quoteRequest)
+
+    const quoteCall = mockFetch.mock.calls.find(([url]) => String(url).includes('/quote'))
+    const sentHeaders = new Headers((quoteCall?.[1] as RequestInit).headers)
+    expect(sentHeaders.get(EXPERIMENTS_HEADER_NAME)).toBeNull()
+  })
+
+  it('absorbs experiments echoed by the backend on the response', async () => {
+    const echoed = { 'backend-exp': { groupName: 'control', value: { ratio: 2 } } }
+    mockFetch.mockResolvedValue(mockQuoteResponse(new Headers({ [EXPERIMENTS_HEADER_NAME]: JSON.stringify(echoed) })))
+
+    await TradingApiClient.fetchQuote(quoteRequest)
+
+    expect(getExperimentsClient().snapshot()).toEqual(echoed)
+  })
+
+  it('tolerates a response without headers — absorbs nothing and does not throw', async () => {
+    mockFetch.mockResolvedValue(mockQuoteResponse())
+
+    await expect(TradingApiClient.fetchQuote(quoteRequest)).resolves.toBeDefined()
+
+    expect(getExperimentsClient().snapshot()).toEqual({})
+  })
+})
+
+describe('getFeatureFlaggedHeaders permissioned Universal Router 2.2.0 override', () => {
+  const mockGetFeatureFlag = getFeatureFlag as MockedFunction<typeof getFeatureFlag>
+  const mockGetExperimentValueFromLayer = getExperimentValueFromLayer as MockedFunction<
+    typeof getExperimentValueFromLayer
+  >
+  const mockGetIsPermissionedTokenFromCache = getIsPermissionedTokenFromCache as MockedFunction<
+    typeof getIsPermissionedTokenFromCache
+  >
+  const mainnetChainId = toTradingApiSupportedChainId(UniverseChainId.Mainnet)
+  const PERMISSIONED_VERSION = '2.2.0'
+  const tokenAddresses = ['0xbf56488c857a881ae7e3bed27cf99c10a7ab7e50']
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+    mockGetFeatureFlag.mockReturnValue(false)
+    mockGetExperimentValueFromLayer.mockReturnValue(false)
+    mockGetIsPermissionedTokenFromCache.mockReturnValue(false)
+  })
+
+  it('uses 2.2.0 for a quote when a request token is permissioned', async () => {
+    mockGetIsPermissionedTokenFromCache.mockReturnValue(true)
+
+    const headers = await getFeatureFlaggedHeaders(TRADING_API_PATHS.quote, {
+      chainId: mainnetChainId,
+      permissionCheckTokenAddresses: tokenAddresses,
+    })
+
+    expect(headers).toHaveProperty(TradingApiHeaders.UniversalRouterVersion, PERMISSIONED_VERSION)
+    expect(mockGetIsPermissionedTokenFromCache).toHaveBeenCalledWith(
+      expect.objectContaining({ tokenAddresses, chainId: UniverseChainId.Mainnet }),
+    )
+  })
+
+  it('uses 2.2.0 for a swap when isPermissionedToken is true', async () => {
+    const headers = await getFeatureFlaggedHeaders(TRADING_API_PATHS.swap5792, {
+      chainId: mainnetChainId,
+      isPermissionedToken: true,
+    })
+
+    expect(headers).toHaveProperty(TradingApiHeaders.UniversalRouterVersion, PERMISSIONED_VERSION)
+    // Swap requests pre-resolve permissioned status, so the cache resolver is never consulted.
+    expect(mockGetIsPermissionedTokenFromCache).not.toHaveBeenCalled()
+  })
+
+  it('uses 2.2.0 for a permissioned token even when the 2.1.1 flag is enabled', async () => {
+    mockGetFeatureFlag.mockImplementation((flag) => flag === FeatureFlags.UseUniversalRouterVersion211)
+
+    const headers = await getFeatureFlaggedHeaders(TRADING_API_PATHS.swap5792, {
+      chainId: mainnetChainId,
+      isPermissionedToken: true,
+    })
+
+    expect(headers).toHaveProperty(TradingApiHeaders.UniversalRouterVersion, PERMISSIONED_VERSION)
+  })
+
+  it('keeps the existing version selection when no token is permissioned', async () => {
+    const headers = await getFeatureFlaggedHeaders(TRADING_API_PATHS.quote, {
+      chainId: mainnetChainId,
+      permissionCheckTokenAddresses: tokenAddresses,
+    })
+
+    expect(headers).toHaveProperty(TradingApiHeaders.UniversalRouterVersion, TradingApi.UniversalRouterVersion._2_0)
+    expect(mockGetIsPermissionedTokenFromCache).toHaveBeenCalled()
+  })
+
+  it('uses the existing 2.1.1 selection for a non-permissioned quote when the 2.1.1 flag is enabled', async () => {
+    mockGetFeatureFlag.mockImplementation((flag) => flag === FeatureFlags.UseUniversalRouterVersion211)
+
+    const headers = await getFeatureFlaggedHeaders(TRADING_API_PATHS.quote, {
+      chainId: mainnetChainId,
+      permissionCheckTokenAddresses: tokenAddresses,
+    })
+
+    // Load-bearing version assertion: a regression that fired the override here would yield 2.2.0.
+    expect(headers).toHaveProperty(TradingApiHeaders.UniversalRouterVersion, TradingApi.UniversalRouterVersion._2_1_1)
+  })
+})
+
+// oxlint-disable-next-line jest/no-export -- suppressed
+export function getAllTradingApiPaths(): Array<(typeof TRADING_API_PATHS)[keyof typeof TRADING_API_PATHS]> {
+  const paths: Array<(typeof TRADING_API_PATHS)[keyof typeof TRADING_API_PATHS]> = []
+
+  for (const value of Object.values(TRADING_API_PATHS)) {
+    if (typeof value === 'string') {
+      paths.push(value)
+    } else if (typeof value === 'object') {
+      for (const nestedValue of Object.values(value)) {
+        if (typeof nestedValue === 'string') {
+          paths.push(nestedValue)
+        }
+      }
+    }
+  }
+
+  return paths
+}

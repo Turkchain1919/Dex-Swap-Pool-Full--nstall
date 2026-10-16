@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AnimatedText > renders without error 1`] = `
+<DocumentFragment>
+  <input
+    autocapitalize="sentences"
+    autocomplete="on"
+    autocorrect="on"
+    class="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-padding-t60dpp"
+    dir="auto"
+    readonly=""
+    rows="1"
+    spellcheck="true"
+    style="color: rgb(19, 19, 19); font-family: Basel Grotesk; font-size: 17px; font-weight: 400; line-height: 22px;"
+    value="Rendered"
+    virtualkeyboardpolicy="auto"
+  />
+</DocumentFragment>
+`;

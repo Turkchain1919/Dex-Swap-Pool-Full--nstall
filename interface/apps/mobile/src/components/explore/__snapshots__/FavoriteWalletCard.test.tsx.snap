@@ -1,0 +1,96 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FavoriteWalletCard > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    style="border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px;"
+  >
+    <button
+      android_ripple="[object Object]"
+      data-testid="favorite-wallet-card"
+      role="button"
+      style="background-color: transparent; margin: 4px; border-radius: 16px; overflow: hidden;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="gap: 4px; padding: 12px 12px 12px 12px; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;"
+      >
+        <div
+          class="css-view-175oi2r"
+          style="gap: 8px;"
+        >
+          <div
+            class="css-view-175oi2r"
+            data-testid="account-icon"
+            style="width: 20px; height: 20px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px;"
+          >
+            <div
+              class="css-view-175oi2r"
+            >
+              <div
+                class="css-view-175oi2r"
+                style="width: 20px; height: 20px;"
+              >
+                <div
+                  height="20"
+                  viewbox="0 0 20 20"
+                  width="20"
+                >
+                  <div
+                    cx="10"
+                    cy="10"
+                    fill="#00C3A0"
+                    opacity="0.1216"
+                    r="10"
+                  />
+                  <div
+                    transform="translate(3.333333333333333, 3.333333333333333) scale(0.2777777777777778)"
+                  >
+                    <div
+                      clip-rule="evenodd"
+                      d="M20.9454 0.0175773C22.4936 -0.167833 23.763 1.13917 23.763 2.72944V21.3625C23.763 22.9527 22.4993 24.2419 20.9405 24.2419L2.67549 24.2419C1.11665 24.2419 -0.16452 22.9469 0.0172307 21.3675C1.30306 10.1936 9.99222 1.32931 20.9454 0.0175773Z"
+                      fill="#00C3A0"
+                      fill-rule="evenodd"
+                    />
+                    <div
+                      clip-rule="evenodd"
+                      d="M27.0546 47.9824C25.5064 48.1678 24.237 46.8608 24.237 45.2706V26.6375C24.237 25.0473 25.5007 23.7581 27.0595 23.7581L45.3245 23.7581C46.8833 23.7581 48.1645 25.0531 47.9828 26.6325C46.6969 37.8064 38.0078 46.6707 27.0546 47.9824Z"
+                      fill="#00C3A0"
+                      fill-rule="evenodd"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="css-view-175oi2r"
+          >
+            <div
+              class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a"
+              dir="auto"
+              style="flex-shrink: 1; font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+            >
+              0x​82D5...3Fa6
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
+    <button
+      accessibilitystate="[object Object]"
+      android_ripple="[object Object]"
+      aria-disabled="true"
+      data-testid="explore/remove-button"
+      role="button"
+      style="width: 24px; height: 24px; border-radius: 999999px; opacity: 0; z-index: 1080;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="width: 10px; height: 2px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;

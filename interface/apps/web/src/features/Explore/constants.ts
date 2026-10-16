@@ -1,0 +1,1 @@
+export const EXPLORE_CHART_HEIGHT_PX = 356

@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders selection circle 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    style="width: 20px; height: 20px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;"
+  >
+    <div
+      class="css-view-175oi2r"
+      style="width: 10px; height: 10px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; opacity: 1;"
+    />
+  </div>
+</DocumentFragment>
+`;

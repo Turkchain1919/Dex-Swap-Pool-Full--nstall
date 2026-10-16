@@ -1,0 +1,253 @@
+# Spanish (es-ES) glossary.
+#
+# Seeded from the Notion "i18n style guide: Spanish (Español)" term table and
+# hardened with the March-2026 audit's wrong-word findings as `forbidden`.
+# Voice (informal tú, never usted) lives in ../../style/locales/es-ES.md.
+#
+# `preferred` here is the per-locale value the cascade resolves; `forbidden`
+# is the deterministic post-translation hard-fail scan. Where a term is kept
+# in English for Spanish, `doNotTranslate: true` masks it for THIS locale only
+# (the core entries it overlays may translate it for other locales).
+
+# --- Loanwords kept in English for es-ES (regional-neutral choice) ---
+- term: wallet
+  doNotTranslate: true
+  gender: feminine
+  description: Keep English. Use as feminine — "una wallet". Avoid regional billetera/cartera/monedero.
+
+- term: smart wallet
+  doNotTranslate: true
+  gender: feminine
+  description: Keep English. Use as feminine — "una smart wallet".
+
+- term: token
+  doNotTranslate: true
+  gender: masculine
+  description: Keep English. Use as masculine — "un token".
+
+- term: TVL
+  doNotTranslate: true
+  caseSensitive: true
+  partOfSpeech: acronym
+  description: Keep the acronym. The spelled-out phrase is "valor total bloqueado".
+
+- term: onchain
+  doNotTranslate: true
+  description: >
+    Keep English "onchain". The literal calque "en cadena" is a false friend —
+    it reads as "in a row / in a chain (sequence)", not "on the blockchain".
+    Re-scoped from core (2026-07-01): the core DNT rule wrongly forced English
+    into CJK locales where native terms are correct; es-ES is one of the Latin
+    locales where keeping English is actually right.
+
+# --- Preferred renderings ---
+- term: network cost
+  preferred: { es-ES: "costo de red" }
+  description: Blockchain network fees.
+
+- term: fee
+  preferred: { es-ES: "tarifa" }
+  description: Uniswap Labs interface fee.
+
+- term: crypto
+  preferred: { es-ES: "cripto" }
+
+- term: cryptocurrency
+  preferred: { es-ES: "criptomoneda" }
+
+- term: market cap
+  preferred: { es-ES: "capitalización de mercado" }
+
+- term: seed phrase
+  preferred: { es-ES: "frase de recuperación" }
+
+- term: recovery phrase
+  preferred: { es-ES: "frase de recuperación" }
+
+- term: backup
+  preferred: { es-ES: "respaldo" }
+  forbidden: { es-ES: ["copia de seguridad"] }
+  description: Prefer the shorter "respaldo" over "copia de seguridad".
+
+- term: private keys
+  preferred: { es-ES: "llaves privadas" }
+
+- term: smart contract
+  preferred: { es-ES: "contrato inteligente" }
+
+- term: wrapped
+  preferred: { es-ES: "envuelto" }
+
+- term: wrap
+  preferred: { es-ES: "envolver" }
+  partOfSpeech: verb
+
+- term: unwrap
+  preferred: { es-ES: "desenvolver" }
+  forbidden: { es-ES: ["Desenvoltura"] }
+  partOfSpeech: verb
+  description: Audit bug — "Desenvoltura" (composure) was shipped for Unwrap. Never use it.
+
+- term: swap
+  preferred: { es-ES: "cambiar" }
+  termType: action
+  status: native-ratified
+  description: >
+    Split by grammatical role — never one locale-wide mapping. Standalone
+    action labels and CTAs: "Cambiar". Nouns ("swap details", "swap
+    completed"): "intercambio". Prose: "cambiar X por Y" or "intercambiar",
+    whichever reads naturally (Uniswap's own es educational copy already uses
+    intercambio-noun / intercambiar-action). Never the noun "Intercambio" as
+    a verb-style CTA (context-dependent, so deliberately no forbidden scan).
+    Supersedes the earlier bare "intercambio" mapping. Provenance: bug-bash
+    native feedback (2026-07-15) + TLM ruling (2026-07-30).
+
+- term: bridge
+  doNotTranslate: true
+  description: >
+    Cross-chain bridge — keep English "bridge" (DeFi register, like pool/swap),
+    e.g. "hacer bridge entre cadenas". Audit found es-ES softening it to
+    "Conecta cadenas" while es-MX kept "bridge"; this aligns the two.
+
+- term: mint
+  preferred: { es-ES: "acuñar" }
+  partOfSpeech: verb
+  description: Use "acuñar". Do not use the invented verb "mintear".
+
+- term: slippage
+  preferred: { es-ES: "deslizamiento" }
+
+# --- Audit wrong-word bugs (not in the Notion table, but es-ES known bugs) ---
+- term: browser
+  preferred: { es-ES: "Navegador" }
+  forbidden: { es-ES: ["Buscador"] }
+  description: Audit bug — "Buscador" (search engine) was shipped for browser.
+
+- term: pool
+  doNotTranslate: true
+  forbidden: { es-ES: ["fondo"] }
+  description: Keep "pool" in the DeFi register. Audit found "fondo" used inconsistently.
+
+- term: passkey
+  preferred: { es-ES: "clave de acceso" }
+  gender: feminine
+  forbidden: { es-ES: ["passkey"] }
+  description: Apple's Spanish term for passkey ("la clave de acceso"). Verify with native reviewer.
+
+- term: monitor
+  preferred: { es-ES: "monitorizar" }
+  description: >
+    Peninsular Spanish verb form. The audit found the LatAm form "monitorear"
+    shipped in es-ES; "monitorizar" is the correct Spain rendering (cf. es-MX,
+    which pins "monitorear" for the same term).
+
+# --- Earn / yield domain (TLM native review, 2026-07-28) ---
+- term: yield
+  preferred: { es-ES: "rendimientos" }
+  partOfSpeech: noun
+  termType: amount
+  status: native-ratified
+  description: >
+    Plural "rendimientos" in marketing copy. TLM native review
+    (Thomas Osmonson, 2026-07-28) from the Earn marketing run.
+
+- term: Start Earning
+  preferred: { es-ES: "Empezar a ganar" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  forbidden: { es-ES: ["ganar dinero"] }
+  description: >
+    Earn CTA. Never append "dinero" — "ganar dinero" (earn money) is a legally
+    loaded claim and is a hard-fail. TLM native review
+    (Thomas Osmonson, 2026-07-28).
+
+# --- Round-3 native review (2026-07-28) ---
+
+- term: "New:"
+  preferred: { es-ES: "Novedad:" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Marketing-label prefix for feature announcements. "Novedad:" over
+    "Nuevo:" — a PREFERENCE at the optional-polish tier, not a hard rule:
+    do not hard-fail "Nuevo:" (deliberately no forbidden scan). Provenance:
+    native review r3 (2026-07-28), endorsed by TLM.
+
+- term: in a few taps
+  preferred: { es-ES: "en pocos toques" }
+  partOfSpeech: phrase
+  termType: phrase
+  status: native-ratified
+  description: >
+    Subtitle phrasing — "en pocos toques" preferred over "con unos (pocos)
+    toques". A PREFERENCE, not a hard-fail (deliberately no forbidden scan).
+    Provenance: native review r3 (2026-07-28), endorsed by TLM.
+
+# --- Bug bash 2026-07-15 → TLM rulings 2026-07-30 ---
+
+- term: commodities
+  doNotTranslate: true
+  partOfSpeech: noun
+  status: native-ratified
+  description: >
+    Keep English — the TradFi register term; native review found it better
+    than any current translation. Provenance: bug-bash native feedback
+    (2026-07-15), ruled by TLM (2026-07-30).
+
+- term: portfolio
+  doNotTranslate: true
+  gender: masculine
+  status: native-ratified
+  description: >
+    Keep English "Portfolio" ("el portfolio") — native review flagged the nav
+    "Portafolio" and asked for the English product-surface name. Fits the
+    es-ES selective-keep-English strategy. NOTE: diverges deliberately from
+    fr-FR (portefeuille). Provenance: bug-bash native feedback (2026-07-15).
+
+- term: auctions
+  preferred: { es-ES: "subastas" }
+  partOfSpeech: noun
+  status: native-ratified
+  description: >
+    Explore nav label renders "Subastas" (title case in the nav). Provenance:
+    bug-bash native feedback (2026-07-15). The Auctions tab is currently
+    unkeyed app-side (universe bug) — this entry pre-encodes the rendering
+    for when the key lands.
+
+- term: Limit
+  preferred: { es-ES: "Límite" }
+  caseSensitive: true
+  partOfSpeech: noun
+  termType: name
+  status: draft
+  description: >
+    Names the limit-order workflow (nav tab / trade mode) — translate as the
+    shortest conventional local label for a limit order, NOT as a literal
+    restrict-verb ("Limitar" sounds like restricting something). Where
+    ambiguous outside the trading context, use the full "orden límite".
+    TLM ruling (2026-07-30); pending native confirmation of the label.
+
+- term: balance
+  preferred: { es-ES: "saldo" }
+  forbidden: { es-ES: ["balance"] }
+  description: >
+    Account/token balance = "saldo" (the banking standard). Spanish "balance"
+    means balance sheet / assessment — a false friend the forbidden scan
+    blocks. Plural: "saldos". Vendor had this right; adopted 2026-07-31.
+
+- term: OK
+  caseSensitive: true
+  preferred: { es-ES: "Aceptar" }
+  description: >
+    Dialog-confirm button. Apple and Microsoft es both use "Aceptar" — the
+    platform norm. Other locales keep "OK".
+
+- term: Spread
+  doNotTranslate: true
+  caseSensitive: true
+  description: >
+    Depth-chart bid-ask spread label (core entry mirrors this; kept here for
+    parity with the fr/nl/vi/fil/id per-locale entries). Vendor's
+    "Diferencia" is too generic for the term of art.

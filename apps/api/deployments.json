@@ -1,0 +1,14 @@
+{
+  "V3PositionManager": {
+    "address": "0x5c94d023888ea4f845fed5b83592f20ce4200945",
+    "blockNumber": 2569917,
+    "blockHash": "0x67f0888a4d25035cbee2d96cf8cdca38bdf6ea5072b805c14bc9312f13b533bb",
+    "transactionHash": "0x7b41c34e39c1398776166fcef1df8ef680f9539a949028c1ff2e6da9250aab6b"
+  },
+  "V4PositionManager": {
+    "address": "0x4546402d50386b42883bd15960054440b8e96b74",
+    "blockNumber": 2568708,
+    "blockHash": "0x9b59fe106114d8bd7aab7d70dde379762aa33a9bf7b8c5c22c4fe97571d056d2",
+    "transactionHash": "0x2e8a1a01eb8fbe63762a439789d7c5fbbed970f40d1925864806e866c7858b0c"
+  }
+}

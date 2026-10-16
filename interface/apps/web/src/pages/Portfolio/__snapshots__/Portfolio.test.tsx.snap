@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Portfolio > should render connected view correctly 1`] = `
+<div>
+  <div
+    data-testid="portfolio-page-inner"
+  >
+    Portfolio Page Inner Mock
+  </div>
+</div>
+`;
+
+exports[`Portfolio > should render demo view correctly when user is not connected 1`] = `
+<div>
+  <div
+    data-mb="160"
+    data-testid="portfolio-page-inner"
+  >
+    Portfolio Page Inner Mock
+  </div>
+</div>
+`;

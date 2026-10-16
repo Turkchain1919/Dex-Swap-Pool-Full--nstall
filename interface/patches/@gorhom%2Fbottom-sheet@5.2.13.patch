@@ -1,0 +1,127 @@
+diff --git a/node_modules/@gorhom/bottom-sheet/.bun-tag-f0bf87353a616a52 b/.bun-tag-f0bf87353a616a52
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/src/components/bottomSheet/BottomSheet.tsx b/src/components/bottomSheet/BottomSheet.tsx
+index 4ff4142222473696351fa7180aba8187972916c3..b8285dafb6265b72ff8df3f21e46f5ce03cf193c 100644
+--- a/src/components/bottomSheet/BottomSheet.tsx
++++ b/src/components/bottomSheet/BottomSheet.tsx
+@@ -1783,6 +1783,32 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
+ 
+       handleSnapToIndex(_providedIndex);
+     }, [animateOnMount, _providedIndex, didAnimateOnMount, handleSnapToIndex]);
++
++    /**
++     * Mount-animation watchdog. On Reanimated 4, reactions/derived values can miss
++     * `.modify` updates to the layout state, so the detents/isLayoutCalculated chain
++     * never fires OnSnapPointChange and the sheet stays parked off screen with its
++     * backdrop up. The values themselves are correct (`.modify` does update them) —
++     * only the notification is lost — so re-assigning the layout state as a whole
++     * value re-fires every dependent. Only runs while the mount animation is pending.
++     */
++    // eslint-disable-next-line react-hooks/exhaustive-deps
++    useEffect(() => {
++      if (!animateOnMount) {
++        return undefined;
++      }
++      let attempts = 0;
++      const interval = setInterval(() => {
++        attempts += 1;
++        if (didAnimateOnMount.get() || attempts > 10) {
++          clearInterval(interval);
++          return;
++        }
++        animatedLayoutState.set(Object.assign({}, animatedLayoutState.get()));
++      }, 100);
++      return () => clearInterval(interval);
++      // eslint-disable-next-line react-hooks/exhaustive-deps -- mount-only watchdog
++    }, []);
+     //#endregion
+ 
+     // render
+diff --git a/src/components/bottomSheet/BottomSheetContent.tsx b/src/components/bottomSheet/BottomSheetContent.tsx
+index 4a69a6892ff553836b72216b598451c56f6284cc..204a8ddb792a35777d44da64263b1e95c3147dea 100644
+--- a/src/components/bottomSheet/BottomSheetContent.tsx
++++ b/src/components/bottomSheet/BottomSheetContent.tsx
+@@ -1,5 +1,6 @@
+ import React, { memo, useMemo } from 'react';
+ import type { ViewProps, ViewStyle } from 'react-native';
++import { State } from 'react-native-gesture-handler';
+ import Animated, {
+   type AnimatedStyle,
+   useAnimatedStyle,
+@@ -50,6 +51,8 @@ function BottomSheetContentComponent({
+     animatedDetentsState,
+     animatedSheetHeight,
+     animatedKeyboardState,
++    animatedContentGestureState,
++    animatedHandleGestureState,
+     isInTemporaryPosition,
+   } = useBottomSheetInternal();
+   //#endregion
+@@ -199,6 +202,26 @@ function BottomSheetContentComponent({
+     const paddingBottom = detached ? 0 : animatedPaddingBottom.get();
+     const height = animatedContentHeightMax.get() + paddingBottom;
+ 
++    /**
++     * While a pan gesture drives the sheet, this geometry changes every frame
++     * (the over-drag padding tracks `animatedPosition`), so routing it through
++     * `animate` restarts a timing animation on a layout prop 60x a second and
++     * the mask can end up parked on a stale value mid-drag — the sheet then
++     * renders collapsed until the gesture ends. Track the value directly while
++     * dragging; keep the animation for programmatic changes (snap points,
++     * keyboard) where it is a real transition.
++     */
++    const contentGestureState = animatedContentGestureState.get();
++    const handleGestureState = animatedHandleGestureState.get();
++    if (
++      contentGestureState === State.ACTIVE ||
++      contentGestureState === State.BEGAN ||
++      handleGestureState === State.ACTIVE ||
++      handleGestureState === State.BEGAN
++    ) {
++      return { paddingBottom, height };
++    }
++
+     return {
+       paddingBottom: animate({
+         point: paddingBottom,
+@@ -219,7 +242,9 @@ function BottomSheetContentComponent({
+     overrideReduceMotion,
+     animatedLayoutState,
+     animatedContentHeightMax,
+-    animatedLayoutState,
++    animatedPaddingBottom,
++    animatedContentGestureState,
++    animatedHandleGestureState,
+   ]);
+   const contentContainerStyle = useMemo(
+     () => [
+diff --git a/src/components/bottomSheetHostingContainer/BottomSheetHostingContainer.tsx b/src/components/bottomSheetHostingContainer/BottomSheetHostingContainer.tsx
+index 879061dec2ecf791e91da8141805789bcbbf96a8..6d8a5408922080ed53fb9205ff085bde3dd917ef 100644
+--- a/src/components/bottomSheetHostingContainer/BottomSheetHostingContainer.tsx
++++ b/src/components/bottomSheetHostingContainer/BottomSheetHostingContainer.tsx
+@@ -8,6 +8,7 @@ import {
+   View,
+   type ViewStyle,
+ } from 'react-native';
++import { INITIAL_LAYOUT_VALUE } from '../../constants';
+ import { print } from '../../utilities';
+ import { styles } from './styles';
+ import type { BottomSheetHostingContainerProps } from './types';
+@@ -61,6 +62,16 @@ function BottomSheetHostingContainerComponent({
+         layoutState.modify(state => {
+           'worklet';
+           state.rawContainerHeight = height;
++          // `useAnimatedLayout` mirrors `rawContainerHeight` into `containerHeight`
++          // through a `useAnimatedReaction`. On Reanimated 4 that reaction can miss
++          // the initial `INITIAL_LAYOUT_VALUE` -> height transition (the handler does
++          // not fire for the first `modify`), leaving `containerHeight` at the
++          // sentinel so snap points never normalize and the sheet stays off screen.
++          // Seed a non-sentinel value here so layout can complete; the reaction still
++          // refines it (e.g. modal vertical inset) whenever it runs.
++          if (state.containerHeight === INITIAL_LAYOUT_VALUE) {
++            state.containerHeight = height;
++          }
+           return state;
+         });
+       }

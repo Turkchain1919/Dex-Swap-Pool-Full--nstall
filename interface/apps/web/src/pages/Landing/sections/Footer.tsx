@@ -1,0 +1,172 @@
+import { isMobileWeb } from '@universe/environment'
+import { Anchor, Flex, type FlexCompatProps as FlexProps, Separator, Text } from '@universe/mycelium'
+import { iconSizes } from '@universe/mycelium/tokens'
+import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ElementName, ModalName } from 'uniswap/src/features/telemetry/constants'
+import { Wiggle } from '~/components/animations/Wiggle'
+import { MobileTouchableArea } from '~/components/MobileTouchableArea'
+import { MenuItem, MenuSectionTitle, useMenuContent } from '~/components/NavBar/CompanyMenu/Content'
+import { MenuLink } from '~/components/NavBar/CompanyMenu/MenuLink'
+import { useModalState } from '~/hooks/useModalState'
+import { Discord, Github, Twitter } from '~/pages/Landing/components/Icons'
+
+const SOCIAL_ICONS_SIZE = `${iconSizes.icon32}px`
+
+// Wiggle is already a mycelium component, so the legacy styled() call was a
+// prop passthrough (cursor/flex land on Wiggle's compat Flex); keep exactly that.
+const SocialIcon = forwardRef<ComponentRef<typeof Wiggle>, ComponentPropsWithoutRef<typeof Wiggle>>(
+  function SocialIcon(props, ref) {
+    return <Wiggle ref={ref} cursor="pointer" flex={0} {...props} />
+  },
+)
+
+function PolicyLink(props: ComponentPropsWithoutRef<typeof Text>) {
+  return (
+    <Text
+      variant="body3"
+      color="$neutral2"
+      cursor="pointer"
+      hoverStyle={{ color: '$neutral1' }}
+      // Unscoped 100ms transition kept for render parity — it animates the hover color change.
+      style={{ transition: '100ms' }}
+      {...props}
+    />
+  )
+}
+
+const socialTapPadding = isMobileWeb ? '$spacing12' : undefined
+
+export function Socials({
+  iconSize,
+  gap,
+  iconPadding = socialTapPadding,
+  flushLastRight = false,
+}: {
+  iconSize?: string
+  gap?: FlexProps['gap']
+  iconPadding?: FlexProps['p']
+  flushLastRight?: boolean
+}) {
+  return (
+    <Flex row gap={gap ?? '$spacing24'} maxHeight={isMobileWeb ? undefined : iconSize} alignItems="flex-start">
+      <MobileTouchableArea p={iconPadding}>
+        <SocialIcon iconColor="#00C32B">
+          <Anchor href="https://github.com/Uniswap" target="_blank">
+            <Github size={iconSize} fill="inherit" />
+          </Anchor>
+        </SocialIcon>
+      </MobileTouchableArea>
+      <MobileTouchableArea p={iconPadding}>
+        <SocialIcon iconColor="#20BAFF">
+          <Anchor href="https://x.com/Uniswap" target="_blank">
+            <Twitter size={iconSize} fill="inherit" />
+          </Anchor>
+        </SocialIcon>
+      </MobileTouchableArea>
+      <MobileTouchableArea p={iconPadding} pr={flushLastRight ? '$none' : undefined}>
+        <SocialIcon iconColor="#5F51FF">
+          <Anchor href="https://discord.com/invite/uniswap" target="_blank">
+            <Discord size={iconSize} fill="inherit" />
+          </Anchor>
+        </SocialIcon>
+      </MobileTouchableArea>
+    </Flex>
+  )
+}
+
+function FooterSection({ title, items }: { title: string; items: MenuItem[] }) {
+  return (
+    <Flex width={130} $md={{ width: '100%' }} flexGrow={0} flexShrink={1} flexBasis="auto" gap={8}>
+      <Text variant="buttonLabel2">{title}</Text>
+      <Flex gap={5}>
+        {items.map((item, index) => (
+          <MenuLink
+            key={`footer_${title}_${index}}`}
+            label={item.label}
+            href={item.href}
+            internal={item.internal}
+            overflow={item.overflow}
+            elementName={item.elementName}
+            textVariant="body2"
+            color="$neutral2"
+          />
+        ))}
+      </Flex>
+    </Flex>
+  )
+}
+
+export function Footer() {
+  const { t } = useTranslation()
+  const { toggleModal: togglePrivacyPolicy } = useModalState(ModalName.PrivacyPolicy)
+  const { toggleModal: toggleDisclosures } = useModalState(ModalName.Disclosures)
+  const sectionContent = useMenuContent()
+  const productsSection = sectionContent[MenuSectionTitle.Products]
+  const protocolSection = sectionContent[MenuSectionTitle.Protocol]
+  const companySection = sectionContent[MenuSectionTitle.Company]
+  const needHelpSection = sectionContent[MenuSectionTitle.NeedHelp]
+  const brandAssets: MenuItem = {
+    label: t('common.brandAssets'),
+    href: 'https://github.com/Uniswap/brand-assets/raw/main/Uniswap%20Brand%20Assets.zip',
+    internal: false,
+    elementName: ElementName.NavbarCompanyMenuBrandAssets,
+  }
+  const currentYear = new Date().getFullYear()
+
+  return (
+    <Flex
+      maxWidth="100vw"
+      width="100%"
+      gap="$spacing24"
+      pt="$none"
+      px="$spacing48"
+      pb={40}
+      $lg={{ px: '$spacing40' }}
+      $sm={{ px: '$spacing24' }}
+    >
+      <Flex display="none" $sm={{ display: 'flex' }}>
+        <Separator />
+      </Flex>
+      <Flex row $md={{ flexDirection: 'column' }} justifyContent="space-between" gap="$spacing32">
+        <Flex height="100%" gap="$spacing60">
+          <Flex $md={{ display: 'none' }}>
+            <Socials iconSize={SOCIAL_ICONS_SIZE} />
+          </Flex>
+        </Flex>
+        <Flex row $md={{ flexDirection: 'column' }} height="100%" gap="$spacing16">
+          <Flex row gap="$spacing16" justifyContent="space-between" $md={{ width: 'auto' }}>
+            {productsSection && <FooterSection title={productsSection.title} items={productsSection.items} />}
+            {protocolSection && <FooterSection title={protocolSection.title} items={protocolSection.items} />}
+          </Flex>
+          <Flex row gap="$spacing16" $md={{ width: 'auto' }}>
+            {companySection && (
+              <FooterSection title={companySection.title} items={[...companySection.items, brandAssets]} />
+            )}
+            {needHelpSection && <FooterSection title={needHelpSection.title} items={needHelpSection.items} />}
+          </Flex>
+        </Flex>
+        <Flex $md={{ display: 'flex' }} display="none">
+          <Socials iconSize={SOCIAL_ICONS_SIZE} />
+        </Flex>
+      </Flex>
+      <Separator />
+      <Flex
+        row
+        alignItems="center"
+        $md={{ flexDirection: 'column', alignItems: 'flex-start' }}
+        width="100%"
+        justifyContent="space-between"
+      >
+        <Text variant="body3">© {currentYear} - Uniswap Labs</Text>
+        <Flex row alignItems="center" gap="$spacing16">
+          <PolicyLink onPress={toggleDisclosures}>{t('common.disclosures')}</PolicyLink>
+          <PolicyLink onPress={togglePrivacyPolicy}>{t('common.privacyPolicy')}</PolicyLink>
+          <Anchor textDecorationLine="none" href="https://uniswap.org/trademark" target="_blank">
+            <PolicyLink>{t('common.trademarkPolicy')}</PolicyLink>
+          </Anchor>
+        </Flex>
+      </Flex>
+    </Flex>
+  )
+}

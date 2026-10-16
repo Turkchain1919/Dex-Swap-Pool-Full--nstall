@@ -1,0 +1,203 @@
+{
+  "name": "@universe/mycelium",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./testing": "./src/testing/index.ts",
+    "./tailwind": "./tailwind.css",
+    "./tailwind-sources.css": "./tailwind-sources.css",
+    "./fonts": "./fonts.css",
+    "./cn": {
+      "types": "./src/cn.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./icons": "./src/components/icons/index.ts",
+    "./icons/*": "./src/components/icons/*.tsx",
+    "./logos": "./src/components/logos/index.ts",
+    "./logos/*": "./src/components/logos/*.tsx",
+    "./components": {
+      "types": "./src/components/index.ts",
+      "default": "./src/components/index.ts"
+    },
+    "./animatable-copy-icon-compat": "./src/animatable-copy-icon-compat/index.ts",
+    "./animate-presence-pager": "./src/animate-presence-pager/index.ts",
+    "./animated-flex-compat": "./src/animated-flex-compat/index.ts",
+    "./dynamic-size-text": "./src/dynamic-size-text/index.ts",
+    "./flex-compat": "./src/flex-compat/index.ts",
+    "./flex-loader-compat": "./src/flex-loader-compat/index.ts",
+    "./loader-compat": "./src/loader-compat/index.ts",
+    "./floating-overlay": "./src/floating-overlay/index.ts",
+    "./height-animator": "./src/height-animator/index.ts",
+    "./width-animator": "./src/width-animator/index.ts",
+    "./touchable-area": "./src/touchable-area/index.ts",
+    "./view-compat": "./src/view-compat/index.ts",
+    "./shadcn": "./src/shadcn/index.ts",
+    "./popover-compat": "./src/popover-compat/index.ts",
+    "./presence": "./src/presence/index.ts",
+    "./portal": "./src/portal/index.ts",
+    "./menu-compat": "./src/menu-compat/index.ts",
+    "./option-list-compat": "./src/option-list-compat/index.ts",
+    "./trigger-button-compat": "./src/trigger-button-compat/index.ts",
+    "./network-selector-compat": "./src/network-selector-compat/index.ts",
+    "./filter-select-compat": "./src/filter-select-compat/index.ts",
+    "./compat": "./src/compat/index.ts",
+    "./compat/primitive-marker": "./src/compat/primitive-marker.ts",
+    "./compat/native-style": "./src/compat/native-style.ts",
+    "./segmented-control-compat": "./src/segmented-control-compat/index.ts",
+    "./shimmer": "./src/shimmer/index.ts",
+    "./shimmer.css": "./src/shimmer/shimmer.css",
+    "./text-loader-wrapper": "./src/text-loader-wrapper/index.ts",
+    "./styled": "./src/styled/index.ts",
+    "./tokens": "./src/tokens.ts",
+    "./tooltip-compat": "./src/tooltip-compat/index.ts",
+    "./text-compat": "./src/text-compat/index.ts",
+    "./theme-hooks-compat": "./src/theme-hooks-compat/index.ts",
+    "./text-compat.css": "./src/text-compat/text-compat.css",
+    "./text-compat-native.css": "./src/text-compat/spore-text-colors-native.generated.css",
+    "./button-compat": "./src/button-compat/index.ts",
+    "./button-frame-compat": "./src/button-frame-compat/index.ts",
+    "./button-compat.css": "./src/button-compat/button-compat.css",
+    "./checkbox-compat": "./src/checkbox-compat/index.ts",
+    "./avatar-compat": "./src/avatar-compat/index.ts",
+    "./input-compat": "./src/input-compat/index.ts",
+    "./separator-compat": "./src/separator-compat/index.ts",
+    "./switch-compat": "./src/switch-compat/index.ts",
+    "./spinning-loader-compat": "./src/spinning-loader-compat/index.ts",
+    "./modal-close-icon": "./src/modal-close-icon/index.ts",
+    "./anchor-compat": "./src/anchor-compat/index.ts",
+    "./refresh-button-compat": "./src/refresh-button-compat/index.ts",
+    "./element-after-text": "./src/element-after-text/index.ts",
+    "./web-bottom-sheet-compat": "./src/web-bottom-sheet-compat/index.ts",
+    "./touchable-text-link": "./src/touchable-text-link/index.ts",
+    "./universal-image": "./src/universal-image/index.ts",
+    "./universal-image/testing": "./src/universal-image/testing/universal-image-mock.tsx",
+    "./linear-gradient-compat": "./src/linear-gradient-compat/index.ts",
+    "./scroll-view-compat": "./src/scroll-view-compat/index.ts"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.6.0",
+    "@legendapp/list": "3.4.0",
+    "@radix-ui/react-accordion": "1.2.12",
+    "@radix-ui/react-aspect-ratio": "1.1.8",
+    "@radix-ui/react-avatar": "1.1.11",
+    "@radix-ui/react-checkbox": "1.3.3",
+    "@radix-ui/react-dialog": "1.1.15",
+    "@radix-ui/react-dropdown-menu": "2.1.15",
+    "@radix-ui/react-focus-scope": "1.1.7",
+    "@radix-ui/react-label": "2.1.8",
+    "@radix-ui/react-popover": "1.1.15",
+    "@radix-ui/react-radio-group": "1.3.8",
+    "@radix-ui/react-select": "2.2.6",
+    "@radix-ui/react-separator": "1.1.8",
+    "@radix-ui/react-slot": "1.2.4",
+    "@radix-ui/react-switch": "1.2.6",
+    "@radix-ui/react-tabs": "1.1.13",
+    "@radix-ui/react-tooltip": "1.2.8",
+    "@tanstack/react-query": "5.90.20",
+    "@universe/config": "workspace:^",
+    "@universe/environment": "workspace:^",
+    "@universe/logger": "workspace:^",
+    "@universe/tailwind": "workspace:*",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.554.0",
+    "react-native": "0.85.3",
+    "tailwind-merge": "3.3.1",
+    "uniwind": "1.7.0",
+    "utilities": "workspace:^",
+    "vaul": "1.1.2",
+    "viem": "2.49.0"
+  },
+  "peerDependencies": {
+    "@rn-primitives/portal": ">=1.5.0",
+    "expo-image": ">=56.0.0",
+    "expo-linear-gradient": ">=56.0.0",
+    "react": ">=18.0.0",
+    "react-native-gesture-handler": ">=3.0.0",
+    "react-native-image-colors": ">=1.5.0",
+    "react-native-reanimated": ">=4.0.0",
+    "react-native-safe-area-context": ">=5.0.0",
+    "react-native-svg": ">=15.0.0",
+    "react-native-webview": ">=13.0.0",
+    "tailwindcss": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@rn-primitives/portal": {
+      "optional": true
+    },
+    "expo-image": {
+      "optional": true
+    },
+    "expo-linear-gradient": {
+      "optional": true
+    },
+    "react-native-webview": {
+      "optional": true
+    },
+    "react-native-gesture-handler": {
+      "optional": true
+    },
+    "react-native-image-colors": {
+      "optional": true
+    },
+    "react-native-reanimated": {
+      "optional": true
+    },
+    "react-native-safe-area-context": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@rn-primitives/portal": "1.5.2",
+    "@tailwindcss/oxide": "4.3.2",
+    "@testing-library/react": "16.3.0",
+    "@types/node": "22.19.17",
+    "@types/react-dom": "19.0.6",
+    "@types/react-test-renderer": "19.1.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "camelcase": "6.3.0",
+    "cheerio": "1.0.0-rc.12",
+    "expo-image": "56.0.9",
+    "expo-linear-gradient": "56.0.4",
+    "jsdom": "20.0.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native-gesture-handler": "3.2.1",
+    "react-native-image-colors": "1.5.2",
+    "react-native-reanimated": "4.4.3",
+    "react-native-safe-area-context": "5.7.0",
+    "react-native-svg": "15.12.1",
+    "react-native-webview": "13.15.0",
+    "react-test-renderer": "19.2.3",
+    "tailwindcss": "4.3.2",
+    "uppercamelcase": "3.0.0",
+    "vitest": "3.2.1",
+    "vitest-presets": "workspace:^"
+  },
+  "scripts": {
+    "build:icons": "nx build:icons @universe/mycelium",
+    "build:icons:missing": "nx build:icons:missing @universe/mycelium",
+    "typecheck": "nx typecheck @universe/mycelium",
+    "check": "nx check @universe/mycelium",
+    "check:fast": "nx check:fast @universe/mycelium",
+    "check:deps:usage": "nx check:deps:usage @universe/mycelium",
+    "format": "nx run @universe/mycelium:format",
+    "format:check": "nx run @universe/mycelium:format:check",
+    "lint": "nx lint @universe/mycelium",
+    "lint:fix": "nx lint:fix @universe/mycelium",
+    "test": "nx test @universe/mycelium",
+    "generate:compat-classes": "nx generate:compat-classes @universe/mycelium",
+    "generate:compat-classes:native": "nx generate:compat-classes:native @universe/mycelium"
+  },
+  "nx": {
+    "includedScripts": []
+  }
+}

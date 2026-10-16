@@ -1,0 +1,140 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { queries } from '@testing-library/dom'
+import { RenderHookOptions, RenderOptions, render, renderHook } from '@testing-library/react'
+import { SharedQueryClient } from '@universe/api'
+import { ComplianceClientProvider, type ComplianceV2Client } from '@universe/compliance'
+import { PriceServiceProvider } from '@universe/prices'
+import { NuqsTestingAdapter } from 'nuqs/adapters/testing'
+import { ComponentType, PropsWithChildren, ReactElement, ReactNode } from 'react'
+import { HelmetProvider } from 'react-helmet-async/lib/index'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router'
+import { ReactRouterUrlProvider } from 'uniswap/src/contexts/UrlContext'
+import { MismatchContextProvider } from 'uniswap/src/features/smartWallet/mismatch/MismatchContext'
+import { WebUniswapProvider } from '~/app/WebUniswapContext'
+import { TestWeb3Provider } from '~/components/Web3Provider/TestWeb3Provider'
+import { WebAccountsStoreProvider } from '~/features/accounts/store/provider'
+import { WebAccountsStoreUpdater } from '~/features/accounts/store/updater'
+import { TransactionWatcherProvider } from '~/features/transactions/TransactionWatcherProvider'
+import { ConnectWalletMutationProvider } from '~/features/wallet/connection/hooks/useConnectWalletMutation'
+import { ExternalWalletProvider } from '~/features/wallet/providers/ExternalWalletProvider'
+import { BlockNumberContext } from '~/lib/hooks/useBlockNumber'
+import store from '~/state'
+import { ColorSchemeProvider } from '~/theme/colorSchemeProvider'
+
+const queryClient = new QueryClient()
+
+// Mirrors the ComplianceClientProvider mounted at the web root (index.tsx) so components that read
+// useIsFeatureGated / useTokenComplianceStatus (e.g. the swap token selector) render in tests. The stub
+// fails open (nothing gated) and makes no network calls.
+const complianceClientStub = {
+  gatedFeatures: async () => ({ features: [] }),
+  featureGatedTokens: async () => ({ tokens: [] }),
+  setTokenAcknowledgement: async () => ({}),
+} as unknown as ComplianceV2Client
+
+const BLOCK_NUMBER_CONTEXT = { fastForward: () => {}, block: 1234, mainnetBlock: 1234 }
+function MockedBlockNumberProvider({ children }: PropsWithChildren) {
+  return <BlockNumberContext.Provider value={BLOCK_NUMBER_CONTEXT}>{children}</BlockNumberContext.Provider>
+}
+
+function MockedMismatchProvider({ children }: PropsWithChildren) {
+  return (
+    <MismatchContextProvider
+      address={undefined}
+      chainId={undefined}
+      mismatchCallback={() => Promise.resolve({ [String(1)]: false })}
+      onHasAnyMismatch={() => {}}
+      chains={[1]}
+      defaultChainId={1}
+      isTestnetModeEnabled={false}
+    >
+      {children}
+    </MismatchContextProvider>
+  )
+}
+
+function CommonTestProviders({ children }: PropsWithChildren) {
+  return (
+    <ComplianceClientProvider client={complianceClientStub}>
+      <TransactionWatcherProvider>
+        <ReactRouterUrlProvider>
+          <MockedBlockNumberProvider>
+            <ColorSchemeProvider>
+              <PriceServiceProvider queryClient={SharedQueryClient}>
+                <WebAccountsStoreUpdater />
+                <MockedMismatchProvider>{children}</MockedMismatchProvider>
+              </PriceServiceProvider>
+            </ColorSchemeProvider>
+          </MockedBlockNumberProvider>
+        </ReactRouterUrlProvider>
+      </TransactionWatcherProvider>
+    </ComplianceClientProvider>
+  )
+}
+
+function BaseWrapper({
+  children,
+  includeUniswapContext = false,
+}: PropsWithChildren<{ includeUniswapContext?: boolean }>) {
+  return (
+    <HelmetProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <NuqsTestingAdapter>
+              <TestWeb3Provider>
+                <ConnectWalletMutationProvider>
+                  <WebAccountsStoreProvider>
+                    <ExternalWalletProvider>
+                      {/* TODO: figure out how to properly mock `WebUniswapProvider` so that we can include it in all tests */}
+                      {includeUniswapContext ? (
+                        <WebUniswapProvider>
+                          <CommonTestProviders>{children}</CommonTestProviders>
+                        </WebUniswapProvider>
+                      ) : (
+                        <CommonTestProviders>{children}</CommonTestProviders>
+                      )}
+                    </ExternalWalletProvider>
+                  </WebAccountsStoreProvider>
+                </ConnectWalletMutationProvider>
+              </TestWeb3Provider>
+            </NuqsTestingAdapter>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </Provider>
+    </HelmetProvider>
+  )
+}
+
+const WithProviders = ({ children }: { children?: ReactNode }) => <BaseWrapper>{children}</BaseWrapper>
+const WithUniswapProviders = ({ children }: { children?: ReactNode }) => (
+  <BaseWrapper includeUniswapContext>{children}</BaseWrapper>
+)
+
+type CustomRenderOptions = Omit<RenderOptions, 'wrapper'>
+
+const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
+  return render<typeof queries>(ui, { ...options, wrapper: WithProviders })
+}
+
+const customRenderWithUniswapContext = (ui: ReactElement, options?: CustomRenderOptions) => {
+  return render<typeof queries>(ui, { ...options, wrapper: WithUniswapProviders })
+}
+
+type CustomRenderHookOptions<Props> = Omit<RenderHookOptions<Props>, 'wrapper'>
+const customRenderHook = <Result, Props>(
+  hook: (initialProps: Props) => Result,
+  options?: CustomRenderHookOptions<Props>,
+) => {
+  return renderHook(hook, { ...options, wrapper: WithProviders as ComponentType<PropsWithChildren<unknown>> })
+}
+
+// Testing utils may export *.
+// oxlint-disable-next-line no-restricted-syntax
+export * from '@testing-library/react'
+export {
+  customRender as render,
+  customRenderWithUniswapContext as renderWithUniswapContext,
+  customRenderHook as renderHook,
+}

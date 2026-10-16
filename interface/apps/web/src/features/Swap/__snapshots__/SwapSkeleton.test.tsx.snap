@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SwapSkeleton.tsx > renders a skeleton 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 justify-between gap-[4px] p-[8px] bg-surface1 border-surface3 border-[1px] rounded-[16px] [border-style:solid]"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 p-[8px]"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral1)]"
+      >
+        Swap
+      </span>
+    </div>
+    <div
+      class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-col gap-[var(--c-gap)] px-[12px] py-[48px] bg-surface2 rounded-[16px]"
+      style="--c-gap: 30px;"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[60px] h-[36px] bg-surface3 rounded-[4px]"
+        />
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[36px] bg-surface3 rounded-[16px]"
+          style="--c-w: 100px;"
+        />
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 relative"
+    >
+      <div
+        class="flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 flex mt-[var(--c-mt)] mb-[var(--c-mb)] ml-[auto] mr-[auto] w-[40px] h-[40px] bg-surface2 border-surface1 border-[length:var(--c-border)] rounded-[12px] relative z-[var(--c-z)] [border-style:solid]"
+        style="--c-mt: -18px; --c-mb: -18px; --c-border: 4px; --c-z: 2;"
+      >
+        <div
+          class="flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center inline-flex w-[100%] h-[100%]"
+        >
+          <svg
+            fill="none"
+            stroke-width="8"
+            style="width: 16px; height: 16px; color: rgba(19, 19, 19, 0.35);"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 5V19"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M19 12L12 19L5 12"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-col gap-[var(--c-gap)] px-[12px] py-[48px] bg-surface2 rounded-[16px]"
+        style="--c-gap: 30px;"
+      >
+        <div
+          class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[60px] h-[36px] bg-surface3 rounded-[4px]"
+          />
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[36px] bg-surface3 rounded-[16px]"
+            style="--c-w: 100px;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[100%] h-[var(--c-h)] bg-surface2 rounded-[16px]"
+      style="--c-h: 56px;"
+    />
+  </div>
+</DocumentFragment>
+`;

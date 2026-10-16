@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FavoriteHeaderRow > when editing > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    data-testid="favorite-token-header"
+    style="gap: 16px; margin-bottom: 8px;"
+  >
+    <div
+      class="css-text-146c3p1"
+      dir="auto"
+      style="font-size: 17px; line-height: 20px; font-family: Basel Grotesk; font-weight: 400;"
+    >
+      Editing Title
+    </div>
+    <button
+      android_ripple="[object Object]"
+      hitslop="16"
+      role="button"
+      style="background-color: transparent;"
+    >
+      <div
+        class="css-text-146c3p1"
+        data-testid="done"
+        dir="auto"
+        style="font-size: 17px; line-height: 19.549999999999997px; font-family: Basel Grotesk; font-weight: 500;"
+      >
+        common.button.done
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FavoriteHeaderRow > when not editing > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    data-testid="favorite-token-header"
+    style="gap: 16px; margin-bottom: 8px;"
+  >
+    <div
+      class="css-text-146c3p1"
+      dir="auto"
+      style="font-size: 17px; line-height: 20px; font-family: Basel Grotesk; font-weight: 400;"
+    >
+      Title
+    </div>
+    <button
+      android_ripple="[object Object]"
+      data-testid="edit"
+      hitslop="16"
+      role="button"
+      style="background-color: transparent;"
+    >
+      <div
+        fill="none"
+        stroke-linecap="round"
+        stroke-width="1"
+        style="color: rgba(19, 19, 19, 0.63); width: 20px; height: 20px;"
+        viewbox="0 0 18 4"
+      >
+        <div
+          d="M9 3C9.55228 3 10 2.55228 10 2C10 1.44772 9.55228 1 9 1C8.44772 1 8 1.44772 8 2C8 2.55228 8.44772 3 9 3Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+        <div
+          d="M16 3C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1C15.4477 1 15 1.44772 15 2C15 2.55228 15.4477 3 16 3Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+        <div
+          d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
+`;

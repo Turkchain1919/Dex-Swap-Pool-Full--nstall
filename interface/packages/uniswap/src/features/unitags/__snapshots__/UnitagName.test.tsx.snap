@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders UnitagName with a name 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center self-center opacity-[1]"
+    data-testid="testing.uni.eth"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[12px] [font-weight:var(--c-fowe)] [line-height:40px] [color:var(--stext-neutral1)]"
+      style="--c-fowe: 400;"
+    >
+      testing
+    </span>
+    <div
+      class="flex items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 flex-row ml-[4px] absolute top-[var(--c-top)] right-[var(--c-right)]"
+      style="--c-top: -4px; --c-right: -24px;"
+    >
+      <img
+        height="24"
+        src="mock-asset-UNITAG_DARK_SMALL.png"
+        style="vertical-align: sub;"
+        width="24"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders UnitagName without a name 1`] = `
+<DocumentFragment>
+  <div
+    class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center self-center opacity-[1]"
+    data-testid="undefined.uni.eth"
+  >
+    <span
+      class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[12px] [font-weight:var(--c-fowe)] [line-height:40px] [color:var(--stext-neutral1)]"
+      style="--c-fowe: 400;"
+    />
+    <div
+      class="flex items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 flex-row ml-[4px] absolute top-[var(--c-top)] right-[var(--c-right)]"
+      style="--c-top: -4px; --c-right: -24px;"
+    >
+      <img
+        height="24"
+        src="mock-asset-UNITAG_DARK_SMALL.png"
+        style="vertical-align: sub;"
+        width="24"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

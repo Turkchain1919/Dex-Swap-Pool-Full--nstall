@@ -1,0 +1,24 @@
+/* White/black primitives, not `--color-background`: that var is shadcn's
+   oklch(0.145) in dark (#0a0a0a), not the black this rule has always used. */
+html {
+  color: var(--neutral1);
+  background-color: var(--color-white, #fff) !important;
+}
+
+html.dark {
+  background-color: var(--color-black, #000) !important;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* `components`, not unlayered: this must stay the DEFAULT link color, so an
+   explicit color on the anchor still wins. Layer order comes from the `@layer`
+   statement Tailwind emits into src/tailwind.css, so this file has to be
+   imported after it. */
+@layer components {
+  a {
+    color: var(--accent1);
+  }
+}

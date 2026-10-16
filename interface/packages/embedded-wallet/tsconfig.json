@@ -1,0 +1,48 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.json"],
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "types": ["node", "vitest/globals"],
+    "paths": {}
+  },
+  "references": [
+    {
+      "path": "../uniswap"
+    },
+    {
+      "path": "../../config/vitest-presets"
+    },
+    {
+      "path": "../api"
+    },
+    {
+      "path": "../cryptography"
+    },
+    {
+      "path": "../encoding"
+    },
+    {
+      "path": "../environment"
+    },
+    {
+      "path": "../gating"
+    },
+    {
+      "path": "../ui"
+    },
+    {
+      "path": "../utilities"
+    },
+    {
+      "path": "../chains"
+    },
+    {
+      "path": "../mycelium"
+    },
+    {
+      "path": "../test"
+    }
+  ]
+}

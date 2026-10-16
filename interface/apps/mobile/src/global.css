@@ -1,0 +1,59 @@
+/*
+ * React Native (uniwind) Tailwind v4 entry.
+ *
+ * uniwind compiles this at build time via its Metro transformer — oklch/hex are
+ * resolved to RN-consumable colors and var() chains become runtime thunks driven
+ * by Uniwind.setTheme() (see AppInner in src/app/App.tsx).
+ *
+ * @universe/tailwind/native shares the SAME palette as the web bundle and adds
+ * the Mycelium semantic tokens (bg-surface1, text-neutral1, …) in uniwind's
+ * theme dialect. App className usages under src/ are auto-scanned (uniwind's
+ * scanner only auto-detects from this file's directory); workspace packages
+ * that ship className-styled native components declare their own scan roots in
+ * a stylesheet imported below — uniwind honors `@source` inside imported
+ * stylesheets, resolved relative to the declaring file, so this entry carries
+ * no cross-package scan paths.
+ */
+@import "tailwindcss";
+@import "uniwind";
+@import "@universe/tailwind/native";
+/* TextCompat's pinned --stext-* palette in uniwind's theme dialect — the web
+   .dark block never reaches uniwind's dark bucket (INFRA-3238). */
+@import "@universe/mycelium/text-compat-native.css";
+/* Package-declared scan roots (each also excludes its own test files: probe
+   string literals in suites would otherwise be compiled into the NATIVE
+   stylesheet module inside main.jsbundle — measured at tens of KB of dead RN
+   style rules for mycelium alone). */
+@import "@universe/mycelium/tailwind-sources.css";
+@import "uniswap/tailwind-sources.css";
+
+/* The closed compat class set: every class the mycelium compat compilers can
+   emit at runtime. The compilers select classes from token maps rather than
+   writing them as literals, so mycelium's imported scan roots above cannot see
+   them — that scan finds only what mycelium's own sources spell out (measured:
+   234 classes). @universe/mycelium/tailwind registers the web set for web, but
+   this entry imports @universe/tailwind/native and never that stylesheet, so
+   native needs its own registration.
+
+   NATIVE-SAFE VARIANT, not the web one: two tiers of the web safelist
+   cannot work under uniwind and are actively harmful once registered.
+   Theme-then-pseudo composites lose their theme gate (uniwind's CSS processor
+   overwrites the inherited theme when it recurses into the nested pseudo
+   rule). And the var-indirection twin matrix — classes reading a `--c*` custom
+   property fed from the DOM style attribute — is a WEB contract: React Native
+   has no style attribute that carries custom properties and the native compat
+   legs resolve out-of-set values into RN style objects at emission instead,
+   so a registered twin only ever OWNS its property with an undefined value in
+   BOTH themes, wiping whatever an earlier class set. (A third tier —
+   negated-theme spellings, which compile to nothing on native — is empty since
+   INFRA-3263 respelled `$theme-light` from `not-dark:` to `light:`; the filter
+   rule remains as vocabulary armor.) 8,259 of 9,365 excluded (1,106
+   registered); the only defined values ever measured among the excluded were
+   uniwind's missing-border-color injection supplying a solid black edge on
+   composite border twins — nothing that paints is lost.
+   Derived from the web artifact by rules in
+   packages/mycelium/src/compat/native-safe.ts — regenerate with
+   `bun nx run @universe/mycelium:generate:compat-classes:native`; pinned by
+   packages/tailwind/src/parity/mobile-compat-reachability and
+   packages/tailwind/src/parity/native-theme-composite. */
+@source "../../../packages/mycelium/compat-classes.native.gen.txt";

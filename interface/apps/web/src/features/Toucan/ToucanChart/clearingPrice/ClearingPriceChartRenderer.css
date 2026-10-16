@@ -1,0 +1,21 @@
+/* Override lightweight-charts inline overflow:hidden to prevent x-axis label cutoff */
+.clearing-price-chart-container .tv-lightweight-charts,
+.clearing-price-xaxis-container .tv-lightweight-charts {
+  overflow: visible !important;
+}
+
+/* Clip the main plot area to prevent chart content from overflowing into X-axis */
+.clearing-price-chart-container .tv-lightweight-charts table tr:first-child td:nth-child(2),
+.clearing-price-xaxis-container .tv-lightweight-charts table tr:first-child td:nth-child(2) {
+  overflow: hidden;
+}
+
+/* Match x-axis background to app surface color */
+.clearing-price-chart-container .tv-lightweight-charts table tr:last-child td,
+.clearing-price-xaxis-container .tv-lightweight-charts table tr:last-child td {
+  background-color: var(--surface1);
+}
+
+.clearing-price-data-container .tv-lightweight-charts {
+  overflow: hidden !important;
+}

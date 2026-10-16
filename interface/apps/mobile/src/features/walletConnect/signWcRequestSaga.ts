@@ -1,0 +1,262 @@
+import { UniverseChainId } from '@universe/chains'
+import { buildAuthObject, getSdkError } from '@walletconnect/utils'
+import { providers } from 'ethers'
+import { wcWeb3Wallet } from 'src/features/walletConnect/walletConnectClient'
+import {
+  isBatchedTransactionRequest,
+  isUserOpRequest,
+  TransactionRequest,
+  WalletSendCallsEncodedRequest,
+  WalletSendCallsUserOperationRequest,
+} from 'src/features/walletConnect/walletConnectSlice'
+import { call, put } from 'typed-redux-saga'
+import { SignerMnemonicAccountMeta } from 'uniswap/src/features/accounts/types'
+import { EthMethod, EthSignMethod } from 'uniswap/src/features/dappRequests/types'
+import { isSignTypedDataMethod } from 'uniswap/src/features/dappRequests/utils'
+import { pushNotification } from 'uniswap/src/features/notifications/slice/slice'
+import { AppNotificationType } from 'uniswap/src/features/notifications/slice/types'
+import {
+  TransactionOriginType,
+  TransactionType,
+  TransactionTypeInfo,
+} from 'uniswap/src/features/transactions/types/transactionDetails'
+import { DappRequestInfo, DappRequestType, WalletConnectEvent } from 'uniswap/src/types/walletConnect'
+import { createSaga } from 'uniswap/src/utils/saga'
+import { logger } from 'utilities/src/logger/logger'
+import { addWalletCallTransaction } from 'wallet/src/features/batchedTransactions/slice'
+import { SendCallsResult } from 'wallet/src/features/dappRequests/types'
+import {
+  ExecuteTransactionParams,
+  executeTransaction,
+} from 'wallet/src/features/transactions/executeTransaction/executeTransactionSaga'
+import type { ExecuteUserOpParams } from 'wallet/src/features/transactions/executeTransaction/services/TransactionService/transactionService'
+import { createTransactionSagaDependencies } from 'wallet/src/features/transactions/factories/createTransactionSagaDependencies'
+import { createTransactionServices } from 'wallet/src/features/transactions/factories/createTransactionServices'
+import { DelegationType } from 'wallet/src/features/transactions/types/transactionSagaDependencies'
+import { Account } from 'wallet/src/features/wallet/accounts/types'
+import { getSignerManager } from 'wallet/src/features/wallet/context'
+import { signMessage, signTypedDataMessage } from 'wallet/src/features/wallet/signing/signing'
+
+type SignMessageParams = {
+  sessionId: string
+  requestInternalId: string
+  message: string
+  account: Account
+  method: EthSignMethod
+  dappRequestInfo: DappRequestInfo
+  chainId: UniverseChainId
+}
+
+type SignTransactionParams = {
+  sessionId: string
+  requestInternalId: string
+  transaction: providers.TransactionRequest
+  account: SignerMnemonicAccountMeta
+  method: EthMethod.EthSendTransaction | EthMethod.WalletSendCalls
+  dappRequestInfo: DappRequestInfo
+  chainId: UniverseChainId
+  request: TransactionRequest | WalletSendCallsEncodedRequest | WalletSendCallsUserOperationRequest
+}
+
+function* signWcRequest(params: SignMessageParams | SignTransactionParams) {
+  const { sessionId, requestInternalId, account, method, chainId } = params
+  try {
+    const signerManager = yield* call(getSignerManager)
+    let result: string | SendCallsResult = ''
+    if (method === EthMethod.PersonalSign || method === EthMethod.EthSign) {
+      // For personal_sign, pass signAsString=true to keep the message as a string for proper EIP-191 hashing
+      result = yield* call(signMessage, {
+        message: params.message,
+        account,
+        signerManager,
+        signAsString: method === EthMethod.PersonalSign,
+      })
+    } else if ('message' in params && isSignTypedDataMethod(params.method)) {
+      result = yield* call(signTypedDataMessage, {
+        message: params.message,
+        account: params.account,
+        signerManager,
+        expectedChainId: params.chainId,
+      })
+    } else if (method === EthMethod.EthSendTransaction) {
+      const txParams: ExecuteTransactionParams = {
+        chainId,
+        account,
+        options: {
+          request: params.transaction,
+        },
+        typeInfo: {
+          type: TransactionType.WCConfirm,
+          dappRequestInfo: params.dappRequestInfo,
+        },
+        transactionOriginType: TransactionOriginType.External,
+      }
+      const { transactionHash } = yield* call(executeTransaction, txParams)
+      result = transactionHash
+
+      // Trigger a pending transaction notification after we send the transaction to chain
+      yield* put(
+        pushNotification({
+          type: AppNotificationType.TransactionPending,
+          chainId: txParams.chainId,
+        }),
+      )
+    } else if (method === EthMethod.WalletSendCalls && isUserOpRequest(params.request)) {
+      // 4337 UserOp path — gas-sponsored dapp request
+      const typeInfo: TransactionTypeInfo = {
+        type: TransactionType.SendCalls,
+        unsignedUserOperation: params.request.unsignedUserOperation,
+        dappInfo: {
+          name: params.dappRequestInfo.name,
+          icon: params.dappRequestInfo.icon ?? undefined,
+        },
+      }
+      // TransactionService.executeUserOp registers the pending tx, submits the userOp, persists the
+      // userOpHash, and finalizes on failure — no manual addTransaction needed. addWalletCallTransaction
+      // stays below: it tracks the EIP-5792 batchId → userOpHash mapping, which is dapp-specific.
+      const { transactionService } = yield* call(createTransactionServices, createTransactionSagaDependencies(), {
+        account,
+        chainId: params.request.chainId,
+        submitViaPrivateRpc: false,
+        delegationType: DelegationType.Auto,
+        includeUserOpServices: true,
+      })
+
+      const userOpParams: ExecuteUserOpParams = {
+        userOp: params.request.unsignedUserOperation,
+        account,
+        chainId: params.request.chainId,
+        typeInfo,
+        transactionOriginType: TransactionOriginType.External,
+        requestUniswapGasSponsorship: false,
+        options: { userSubmissionTimestampMs: Date.now(), isSmartWalletTransaction: true },
+      }
+      const { userOpHash } = yield* call([transactionService, transactionService.executeUserOp], userOpParams)
+
+      result = { id: params.request.id }
+
+      yield* put(
+        addWalletCallTransaction({
+          batchId: params.request.id,
+          userOpHash,
+          requestId: params.request.requestId,
+          chainId: params.request.chainId,
+        }),
+      )
+
+      yield* put(
+        pushNotification({
+          type: AppNotificationType.TransactionPending,
+          chainId: params.request.chainId,
+        }),
+      )
+    } else if (method === EthMethod.WalletSendCalls && isBatchedTransactionRequest(params.request)) {
+      // 7702 encoded transaction path
+      const txParams: ExecuteTransactionParams = {
+        chainId: params.request.chainId,
+        account,
+        options: {
+          request: params.transaction,
+        },
+        typeInfo: {
+          type: TransactionType.WCConfirm,
+          dappRequestInfo: params.dappRequestInfo,
+        },
+        transactionOriginType: TransactionOriginType.External,
+      }
+
+      const { transactionHash } = yield* call(executeTransaction, txParams)
+      result = {
+        id: params.request.id,
+        capabilities: {
+          caip345: {
+            caip2: `eip155:${params.request.chainId}`,
+            transactionHashes: [transactionHash],
+          },
+        },
+      }
+
+      // Store the batch transaction in Redux
+      yield* put(
+        addWalletCallTransaction({
+          batchId: params.request.id,
+          txHashes: [transactionHash],
+          requestId: params.request.encodedRequestId,
+          chainId: params.request.chainId,
+        }),
+      )
+
+      // Trigger a pending transaction notification after we send the transaction to chain
+      yield* put(
+        pushNotification({
+          type: AppNotificationType.TransactionPending,
+          chainId: txParams.chainId,
+        }),
+      )
+    }
+
+    if (params.dappRequestInfo.requestType === DappRequestType.WalletConnectAuthenticationRequest) {
+      const iss = `eip155:${chainId}:${account.address}`
+
+      // Check if signature is a string, if not throw an error
+      if (typeof result !== 'string') {
+        throw new Error('Expected signature to be a string in WalletConnectAuthenticationRequest')
+      }
+
+      const auth = buildAuthObject(
+        params.dappRequestInfo.authPayload,
+        {
+          t: 'eip191',
+          s: result,
+        },
+        iss,
+      )
+      yield* call(wcWeb3Wallet.approveSessionAuthenticate, {
+        id: Number(sessionId),
+        auths: [auth],
+      })
+    } else {
+      yield* call(wcWeb3Wallet.respondSessionRequest, {
+        topic: sessionId,
+        response: {
+          id: Number(requestInternalId),
+          jsonrpc: '2.0',
+          result,
+        },
+      })
+    }
+  } catch (error) {
+    if (params.dappRequestInfo.requestType === DappRequestType.WalletConnectSessionRequest) {
+      yield* call(wcWeb3Wallet.respondSessionRequest, {
+        topic: sessionId,
+        response: {
+          id: Number(requestInternalId),
+          jsonrpc: '2.0',
+          error: { code: 5000, message: `Signing error: ${error}` },
+        },
+      })
+    } else {
+      yield* call(wcWeb3Wallet.rejectSessionAuthenticate, {
+        id: Number(sessionId),
+        reason: getSdkError('USER_REJECTED'),
+      })
+    }
+
+    yield* put(
+      pushNotification({
+        type: AppNotificationType.WalletConnect,
+        event: WalletConnectEvent.TransactionFailed,
+        dappName: params.dappRequestInfo.name,
+        imageUrl: params.dappRequestInfo.icon ?? null,
+        chainId,
+        address: account.address,
+      }),
+    )
+    logger.error(error, { tags: { file: 'walletConnect/saga', function: 'signWcRequest' } })
+  }
+}
+
+export const { wrappedSaga: signWcRequestSaga, actions: signWcRequestActions } = createSaga(
+  signWcRequest,
+  'signWalletConnect',
+)

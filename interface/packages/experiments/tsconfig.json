@@ -1,0 +1,21 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "src/global.d.ts"],
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "types": ["node", "vitest/globals"],
+    "paths": {}
+  },
+  "references": [
+    {
+      "path": "../utilities"
+    },
+    {
+      "path": "../gating"
+    },
+    {
+      "path": "../sessions"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SendRecipientForm > should render correctly with no verified recipient 1`] = `
+<div
+  data-slot="ui-popover-anchor"
+  style="align-items: stretch; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; margin: 0px; min-height: 0; min-width: 0; padding: 0px; position: relative;"
+>
+  <div
+    class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] gap-[4px] p-[16px] bg-surface2 border-transparent border-[1px] rounded-[16px] opacity-[1] [cursor:text] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)] [user-select:none]"
+      >
+        To
+      </span>
+      <input
+        autocapitalize="none"
+        autocomplete="off"
+        autocorrect="off"
+        data-uds-placeholder=""
+        dir="auto"
+        enterkeyhint="done"
+        placeholder="Wallet address or ENS name"
+        spellcheck="false"
+        style="box-sizing: border-box; margin: 0px; padding: 0px 0px 0px 0px; border-width: 0px; border-style: solid; appearance: none; resize: none; outline-width: 0; background-color: transparent; color: rgb(19, 19, 19); width: 100%; font-size: 16px; font-weight: 500; line-height: 24px; outline-style: none; --uds-input-placeholder: rgba(19, 19, 19, 0.35);"
+        value="hayden.eth"
+        virtualkeyboardpolicy="auto"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SendRecipientForm > should render correctly with verified recipient 1`] = `
+<div
+  data-slot="ui-popover-anchor"
+  style="align-items: stretch; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; margin: 0px; min-height: 0; min-width: 0; padding: 0px; position: relative;"
+>
+  <div
+    class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] [cursor:pointer] gap-[4px] p-[16px] bg-surface2 border-transparent border-[1px] rounded-[16px] opacity-[1] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between py-[6px]"
+    >
+      <div
+        class="[container-name:true] flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] rounded-[12px] [cursor:pointer] bg-transparent flex-row items-center gap-[12px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+        role="button"
+        tabindex="0"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[36px] h-[36px] border-transparent border-[0px] rounded-[999999px] relative"
+          data-testid="account-icon"
+        >
+          <div
+            class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink items-center justify-center opacity-[0] [transition:var(--c-t)]"
+            style="--c-t: opacity 100ms cubic-bezier(0.17, 0.67, 0.45, 1);"
+          >
+            <span
+              data-testid="unicon"
+            >
+              🔵
+            </span>
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[4px]"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px]"
+          >
+            <span
+              class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)]"
+            >
+              hayden.eth
+            </span>
+          </div>
+          <span
+            class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[12px] [line-height:16px] [font-weight:485] [color:var(--stext-neutral2)]"
+          >
+            0x9984...9103
+          </span>
+        </div>
+      </div>
+      <div
+        class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] rounded-[12px] [cursor:pointer] bg-transparent [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+        role="button"
+        tabindex="0"
+      >
+        <svg
+          fill="none"
+          stroke-width="8"
+          style="width: 20px; height: 20px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M12.5303 4.53033C12.8232 4.23744 12.8232 3.76256 12.5303 3.46967C12.2374 3.17678 11.7626 3.17678 11.4697 3.46967L12.5303 4.53033ZM3.46967 11.4697C3.17678 11.7626 3.17678 12.2374 3.46967 12.5303C3.76256 12.8232 4.23744 12.8232 4.53033 12.5303L3.46967 11.4697ZM4.53033 3.46967C4.23744 3.17678 3.76256 3.17678 3.46967 3.46967C3.17678 3.76256 3.17678 4.23744 3.46967 4.53033L4.53033 3.46967ZM11.4697 12.5303C11.7626 12.8232 12.2374 12.8232 12.5303 12.5303C12.8232 12.2374 12.8232 11.7626 12.5303 11.4697L11.4697 12.5303ZM11.4697 3.46967L3.46967 11.4697L4.53033 12.5303L12.5303 4.53033L11.4697 3.46967ZM3.46967 4.53033L11.4697 12.5303L12.5303 11.4697L4.53033 3.46967L3.46967 4.53033Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SendRecipientForm > should render placeholder values 1`] = `
+<div
+  data-slot="ui-popover-anchor"
+  style="align-items: stretch; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; margin: 0px; min-height: 0; min-width: 0; padding: 0px; position: relative;"
+>
+  <div
+    class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] gap-[4px] p-[16px] bg-surface2 border-transparent border-[1px] rounded-[16px] opacity-[1] [cursor:text] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+    >
+      <span
+        class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)] [user-select:none]"
+      >
+        To
+      </span>
+      <input
+        autocapitalize="none"
+        autocomplete="off"
+        autocorrect="off"
+        data-uds-placeholder=""
+        dir="auto"
+        enterkeyhint="done"
+        placeholder="Wallet address or ENS name"
+        spellcheck="false"
+        style="box-sizing: border-box; margin: 0px; padding: 0px 0px 0px 0px; border-width: 0px; border-style: solid; appearance: none; resize: none; outline-width: 0; background-color: transparent; color: rgb(19, 19, 19); width: 100%; font-size: 16px; font-weight: 500; line-height: 24px; outline-style: none; --uds-input-placeholder: rgba(19, 19, 19, 0.35);"
+        value=""
+        virtualkeyboardpolicy="auto"
+      />
+    </div>
+  </div>
+</div>
+`;

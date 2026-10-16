@@ -1,0 +1,68 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EdgeFade > Mobile Implementation > renders mobile implementation correctly with left side 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 overflow-hidden absolute top-[0px] bottom-[0px] left-[0px] z-[var(--c-z)] [pointer-events:none]"
+    style="--c-z: 1;"
+  >
+    <div
+      style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 0;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`EdgeFade > Mobile Implementation > renders mobile implementation correctly with right side 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 overflow-hidden absolute top-[0px] right-[0px] bottom-[0px] z-[var(--c-z)] [pointer-events:none]"
+    style="--c-z: 1;"
+  >
+    <div
+      style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 0;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`EdgeFade > Mobile Implementation > renders with additional flex props 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[24px] overflow-hidden absolute top-[0px] bottom-[0px] left-[0px] z-[var(--c-z)] [pointer-events:none]"
+    style="--c-z: 1;"
+  >
+    <div
+      style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 0;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`EdgeFade > Web Implementation > renders web implementation correctly with left side 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 absolute top-[0px] bottom-[0px] left-[0px] z-[var(--c-z)] [pointer-events:none]"
+    style="--c-z: 1;"
+  />
+</DocumentFragment>
+`;
+
+exports[`EdgeFade > Web Implementation > renders web implementation correctly with right side 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 absolute top-[0px] right-[0px] bottom-[0px] z-[var(--c-z)] [pointer-events:none]"
+    style="--c-z: 1;"
+  />
+</DocumentFragment>
+`;
+
+exports[`EdgeFade > Web Implementation > renders with additional flex props 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 w-[24px] absolute top-[0px] bottom-[0px] left-[0px] z-[var(--c-z)] [pointer-events:none]"
+    data-testid="web-edge-fade"
+    style="--c-z: 1;"
+  />
+</DocumentFragment>
+`;

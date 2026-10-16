@@ -1,0 +1,169 @@
+diff --git a/node_modules/react-native/.bun-tag-1f1dbb49f3ec71fa b/.bun-tag-1f1dbb49f3ec71fa
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/react-native/.bun-tag-309eb2906bb5c072 b/.bun-tag-309eb2906bb5c072
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/react-native/.bun-tag-903d1218d2699ce6 b/.bun-tag-903d1218d2699ce6
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/react-native/.bun-tag-ac83a3313839b126 b/.bun-tag-ac83a3313839b126
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/react-native/.bun-tag-c93559098db1df87 b/.bun-tag-c93559098db1df87
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/Libraries/Text/TextInput/Singleline/RCTUITextField.mm b/Libraries/Text/TextInput/Singleline/RCTUITextField.mm
+index 052c003476d18c7c75b1ae2890d0d221af5b57e3..d19892b1d047c8cd9aa455234730c9721369d0fd 100644
+--- a/Libraries/Text/TextInput/Singleline/RCTUITextField.mm
++++ b/Libraries/Text/TextInput/Singleline/RCTUITextField.mm
+@@ -93,7 +93,16 @@ - (void)setDefaultTextAttributes:(NSDictionary<NSAttributedStringKey, id> *)defa
+   }
+ 
+   _defaultTextAttributes = defaultTextAttributes;
+-  [super setDefaultTextAttributes:defaultTextAttributes];
++  // UIKit merges into the field's existing attributes, so a recycled field keeps a previous owner's paragraph
++  // style (lineHeight) unless the replacement names one; reset it explicitly when the new attributes omit it.
++  if (defaultTextAttributes[NSParagraphStyleAttributeName] == nil) {
++    NSMutableDictionary<NSAttributedStringKey, id> *attributes =
++        [defaultTextAttributes mutableCopy] ?: [NSMutableDictionary new];
++    attributes[NSParagraphStyleAttributeName] = [NSParagraphStyle defaultParagraphStyle];
++    [super setDefaultTextAttributes:attributes];
++  } else {
++    [super setDefaultTextAttributes:defaultTextAttributes];
++  }
+   [self _updatePlaceholder];
+ }
+ 
+@@ -163,6 +172,12 @@ - (void)setDisableKeyboardShortcuts:(BOOL)disableKeyboardShortcuts
+   NSMutableDictionary<NSAttributedStringKey, id> *textAttributes =
+       [_defaultTextAttributes mutableCopy] ?: [NSMutableDictionary new];
+ 
++  // The placeholder label caches its last paragraph style; name one explicitly so a recycled field
++  // does not typeset the new placeholder with a previous owner's lineHeight.
++  if (textAttributes[NSParagraphStyleAttributeName] == nil) {
++    textAttributes[NSParagraphStyleAttributeName] = [NSParagraphStyle defaultParagraphStyle];
++  }
++
+   if (self.placeholderColor) {
+     [textAttributes setValue:self.placeholderColor forKey:NSForegroundColorAttributeName];
+   } else {
+diff --git a/ReactCommon/react/renderer/components/textinput/BaseTextInputShadowNode.h b/ReactCommon/react/renderer/components/textinput/BaseTextInputShadowNode.h
+index 8fef1a5f9571cbfe116a3527005c64b3dbf0d0a3..89a881e6ba9bb2cf951871640fd55ade20ac7db4 100644
+--- a/ReactCommon/react/renderer/components/textinput/BaseTextInputShadowNode.h
++++ b/ReactCommon/react/renderer/components/textinput/BaseTextInputShadowNode.h
+@@ -211,7 +211,12 @@ class BaseTextInputShadowNode
+       }
+     }
+ 
+-    auto attributedString = meaningfulState ? AttributedString{} : getAttributedString(layoutContext);
++    // Measure the props text whenever updateStateIfNeeded will push it (Android's rule); otherwise the
++    // empty native state wins, so an uncontrolled input the user cleared still measures as empty.
++    auto reactTreeAttributedString = getAttributedString(layoutContext);
++    bool stateIsCurrent = meaningfulState &&
++        BaseShadowNode::getStateData().reactTreeAttributedString.isContentEqual(reactTreeAttributedString);
++    auto attributedString = stateIsCurrent ? AttributedString{} : std::move(reactTreeAttributedString);
+ 
+     if (attributedString.isEmpty()) {
+       attributedString = getPlaceholderAttributedString(layoutContext);
+diff --git a/ReactCommon/react/renderer/components/view/YogaLayoutableShadowNode.cpp b/ReactCommon/react/renderer/components/view/YogaLayoutableShadowNode.cpp
+index bd327efc351234daee2ca569f2bd52fc0079c6ad..3b69d45a24fb8ab44a742576b6dc6dcb16199fa8 100644
+--- a/ReactCommon/react/renderer/components/view/YogaLayoutableShadowNode.cpp
++++ b/ReactCommon/react/renderer/components/view/YogaLayoutableShadowNode.cpp
+@@ -699,6 +699,16 @@ void YogaLayoutableShadowNode::layout(LayoutContext layoutContext) {
+     react_native_assert(&childNode.yogaNode_ == childYogaNode);
+ 
+     if (childYogaNode->getHasNewLayout()) {
++      // A child yoga node owned by another tree generation is shared, not
++      // ours to consume: reading it here (and clearing hasNewLayout below)
++      // steals the layout notification from the owning tree, which then never
++      // applies metrics — views render invisible while React state stays
++      // mounted. Skip it and let the owning generation deliver the layout.
++      // Upstream: https://github.com/facebook/react-native/issues/52349
++      if (YGNodeGetOwner(childYogaNode) != &yogaNode_) {
++        continue;
++      }
++
+       childYogaNode->setHasNewLayout(false);
+ 
+       // Reading data from a dirtied node does not make sense.
+diff --git a/sdks/hermes-engine/hermes-engine.podspec b/sdks/hermes-engine/hermes-engine.podspec
+index 58e003985c6dc3cd664d434339bf68ec09bce5bd..30f3ef2f9ed76f5002274a3aaaa29058e4f0d8aa 100644
+--- a/sdks/hermes-engine/hermes-engine.podspec
++++ b/sdks/hermes-engine/hermes-engine.podspec
+@@ -4,6 +4,7 @@
+ # LICENSE file in the root directory of this source tree.
+ 
+ require "json"
++require "pathname"
+ require_relative "./hermes-utils.rb"
+ 
+ begin
+@@ -92,8 +93,14 @@ Pod::Spec.new do |spec|
+         "require.resolve(\"hermes-compiler\", {paths: [\"#{react_native_path}\"]})", __dir__]).strip
+       )
+ 
++      # Use a path relative to PODS_ROOT so the absolute home-directory path isn't baked into the
++      # generated podspec JSON, which would make Podfile.lock checksums differ per machine/CI.
++      # See https://github.com/facebook/react-native/issues/54891
++      hermesc_absolute_path = "#{hermes_compiler_path}/hermesc/osx-bin/hermesc"
++      relative_hermesc_path = Pathname.new(hermesc_absolute_path).relative_path_from(Pod::Config.instance.sandbox_root)
++
+       spec.user_target_xcconfig = {
+-        'HERMES_CLI_PATH' => "#{hermes_compiler_path}/hermesc/osx-bin/hermesc"
++        'HERMES_CLI_PATH' => "${PODS_ROOT}/#{relative_hermesc_path}"
+       }
+     end
+ 
+diff --git a/src/types/globals.d.ts b/src/types/globals.d.ts
+index 4082da3528042aca95d74c2818a43e575cfa9da1..2e36f92121467124396a640e390f921fef06c46c 100644
+--- a/src/types/globals.d.ts
++++ b/src/types/globals.d.ts
+@@ -198,9 +198,45 @@ declare global {
+         type?: string | undefined;
+       };
+ 
++  // PATCHED (universe): React Native declares this class inside `declare global`, so it also
++  // becomes the return type of the globally-merged `Body.formData()` — including in web apps that
++  // only reach these types transitively (dev-portal, mission-control consume @universe/mycelium,
++  // whose cross-platform props reference react-native types). Upstream's shape is a strict subset
++  // of the DOM's, so `await request.formData()` lost `get`/`set`/`has`/`delete` and stopped being
++  // assignable to `FormData`. The members below mirror lib.dom's `FormData` so DOM/SSR form
++  // handling typechecks. `getParts()` is kept for React Native's own callers.
++  //
++  // NOTE: React Native's runtime FormData (Libraries/Network/FormData.js) really only implements
++  // append/getAll/getParts. The DOM members are declared for type compatibility — do not call
++  // them from native code paths.
+   class FormData {
+-    append(key: string, value: any): void;
+-    getAll(key: string): Array<FormDataValue>;
++    append(name: string, value: string | Blob): void;
++    append(name: string, blobValue: Blob, filename?: string): void;
++    // React Native's own multipart form-part shape ({ uri, name?, type? }). Upstream typed this
++    // as `value: any`, which sat first in the overload list and swallowed every 2-arg call, so
++    // nothing was actually checked.
++    append(name: string, value: FormDataValue): void;
++    delete(name: string): void;
++    get(name: string): FormDataEntryValue | null;
++    getAll(name: string): Array<FormDataEntryValue>;
++    has(name: string): boolean;
++    set(name: string, value: string | Blob): void;
++    set(name: string, blobValue: Blob, filename?: string): void;
++    forEach(
++      callbackfn: (
++        value: FormDataEntryValue,
++        key: string,
++        parent: FormData,
++      ) => void,
++      thisArg?: any,
++    ): void;
++    // Element types are narrowed to `string` so these satisfy both lib.dom's
++    // FormDataIterator<[string, FormDataEntryValue]> and the undici-backed
++    // IterableIterator<[string, string]> that @types/node merges into the global FormData.
++    entries(): FormDataIterator<[string, string]>;
++    keys(): FormDataIterator<string>;
++    values(): FormDataIterator<string>;
++    [Symbol.iterator](): FormDataIterator<[string, string]>;
+     getParts(): Array<FormDataPart>;
+   }
+ 

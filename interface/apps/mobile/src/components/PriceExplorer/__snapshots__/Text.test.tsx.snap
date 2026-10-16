@@ -1,0 +1,228 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DatetimeText > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    style="margin-top: 12px; opacity: 1;"
+  >
+    <input
+      autocapitalize="sentences"
+      autocomplete="on"
+      autocorrect="on"
+      class="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-padding-t60dpp"
+      dir="auto"
+      readonly=""
+      rows="1"
+      spellcheck="true"
+      style="color: rgba(19, 19, 19, 0.63); font-family: Basel Grotesk; font-size: 15px; font-weight: 400; line-height: 18px;"
+      value="10/31/2023, 8:00:00 PM"
+      virtualkeyboardpolicy="auto"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`PriceText > renders loading state 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    data-testid="price-text"
+  >
+    <input
+      autocapitalize="sentences"
+      autocomplete="on"
+      autocorrect="on"
+      class="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-padding-t60dpp"
+      data-testid="wholePart"
+      dir="auto"
+      readonly=""
+      rows="1"
+      spellcheck="true"
+      style="font-family: Basel Grotesk; font-weight: 400; line-height: 50px; color: rgb(19, 19, 19); font-size: 0px;"
+      value="-"
+      virtualkeyboardpolicy="auto"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`PriceText > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    data-testid="price-text"
+  >
+    <input
+      autocapitalize="sentences"
+      autocomplete="on"
+      autocorrect="on"
+      class="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-padding-t60dpp"
+      data-testid="wholePart"
+      dir="auto"
+      readonly=""
+      rows="1"
+      spellcheck="true"
+      style="font-family: Basel Grotesk; font-weight: 400; line-height: 50px; color: rgb(19, 19, 19); font-size: 0px;"
+      value="$55"
+      virtualkeyboardpolicy="auto"
+    />
+    <input
+      autocapitalize="sentences"
+      autocomplete="on"
+      autocorrect="on"
+      class="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-padding-t60dpp"
+      data-testid="decimalPart"
+      dir="auto"
+      readonly=""
+      rows="1"
+      spellcheck="true"
+      style="font-family: Basel Grotesk; font-weight: 400; line-height: 50px; color: rgba(19, 19, 19, 0.35); font-size: 0px;"
+      value=".00"
+      virtualkeyboardpolicy="auto"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`PriceText > renders without error less than a dollar 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    data-testid="price-text"
+  >
+    <input
+      autocapitalize="sentences"
+      autocomplete="on"
+      autocorrect="on"
+      class="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-padding-t60dpp"
+      data-testid="wholePart"
+      dir="auto"
+      readonly=""
+      rows="1"
+      spellcheck="true"
+      style="font-family: Basel Grotesk; font-weight: 400; line-height: 50px; color: rgb(19, 19, 19); font-size: 0px;"
+      value="$0"
+      virtualkeyboardpolicy="auto"
+    />
+    <input
+      autocapitalize="sentences"
+      autocomplete="on"
+      autocorrect="on"
+      class="css-textinput-11aywtz r-placeholderTextColor-6taxm2 r-padding-t60dpp"
+      data-testid="decimalPart"
+      dir="auto"
+      readonly=""
+      rows="1"
+      spellcheck="true"
+      style="font-family: Basel Grotesk; font-weight: 400; line-height: 50px; color: rgba(19, 19, 19, 0.35); font-size: 0px;"
+      value=".0500"
+      virtualkeyboardpolicy="auto"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RelativeChangeText > renders loading state 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    data-testid="relative-price-change"
+    style="gap: 2px; margin-top: 2px;"
+  >
+    <div
+      class="css-view-175oi2r"
+      data-testid="text-placeholder"
+      style="flex-direction: row; align-items: center;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="flex-direction: row; align-items: center;"
+      >
+        <div
+          class="css-view-175oi2r"
+        >
+          <div
+            class="css-text-146c3p1"
+            dir="auto"
+            style="opacity: 0; font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+          >
+            00.00%
+          </div>
+        </div>
+        <div
+          class="css-view-175oi2r"
+          style="position: absolute; top: 5%; right: 0px; bottom: 5%; left: 0px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px;"
+        />
+      </div>
+    </div>
+    <div
+      style="opacity: 0;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="gap: 2px;"
+      >
+        <div
+          fill="none"
+          stroke-width="2"
+          style="color: rgb(225, 15, 15); width: 16px; height: 16px; transform: [object Object];"
+          viewbox="0 0 24 24"
+        >
+          <div
+            d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+            fill="currentColor"
+          />
+        </div>
+        <div
+          class="css-text-146c3p1"
+          data-testid="relative-change-text"
+          dir="auto"
+          style="font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+        >
+          10.00%
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RelativeChangeText > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    data-testid="relative-price-change"
+    style="gap: 2px; margin-top: 2px;"
+  >
+    <div
+      style="opacity: 0;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="gap: 2px;"
+      >
+        <div
+          fill="none"
+          stroke-width="2"
+          style="color: rgb(225, 15, 15); width: 16px; height: 16px; transform: [object Object];"
+          viewbox="0 0 24 24"
+        >
+          <div
+            d="M10.6979 16.2453L6.31787 9.75247C5.58184 8.66118 6.2058 7 7.35185 7L16.6482 7C17.7942 7 18.4182 8.66243 17.6821 9.75247L13.3021 16.2453C12.623 17.2516 11.377 17.2516 10.6979 16.2453Z"
+            fill="currentColor"
+          />
+        </div>
+        <div
+          class="css-text-146c3p1"
+          data-testid="relative-change-text"
+          dir="auto"
+          style="font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+        >
+          10.00%
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

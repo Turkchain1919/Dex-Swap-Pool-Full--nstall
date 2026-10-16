@@ -1,0 +1,32 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "../../index.d.ts"],
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "paths": {
+      "@universe/notifications/*": ["./*"]
+    },
+    "types": ["node"]
+  },
+  "references": [
+    {
+      "path": "../../config/vitest-presets"
+    },
+    {
+      "path": "../utilities"
+    },
+    {
+      "path": "../api"
+    },
+    {
+      "path": "../ui"
+    },
+    {
+      "path": "../environment"
+    },
+    {
+      "path": "../mycelium"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+import { GraphQLApi, TradingApi } from '@universe/api'
+import { UniverseChainId, Platform } from '@universe/chains'
+import { ETH_LOGO, UNICHAIN_LOGO, UNICHAIN_SEPOLIA_LOGO } from 'ui/src/assets'
+import { ALL_APPS_CHAIN_SUPPORTED_APPS } from 'uniswap/src/features/chains/chainAppSupport'
+import { CHAIN_ID_TO_URL_PARAM } from 'uniswap/src/features/chains/chainUrlParam'
+import {
+  DEFAULT_NATIVE_ADDRESS_LEGACY,
+  getQuicknodeEndpointUrl,
+  getUniRpcEndpointUrl,
+} from 'uniswap/src/features/chains/evm/rpc'
+import { buildChainTokens } from 'uniswap/src/features/chains/evm/tokens'
+import { GENERIC_L2_GAS_CONFIG } from 'uniswap/src/features/chains/gasDefaults'
+import { GqlChainId, NetworkLayer, RPCType, UniverseChainInfo } from 'uniswap/src/features/chains/types'
+import { ElementName } from 'uniswap/src/features/telemetry/constants'
+import { buildUSDC } from 'uniswap/src/features/tokens/stablecoin'
+import { unichainSepolia } from 'wagmi/chains'
+
+const tokens = buildChainTokens({
+  stables: {
+    USDC: buildUSDC('0x078D782b760474a361dDA0AF3839290b0EF57AD6', UniverseChainId.Unichain),
+  },
+})
+
+export const UNICHAIN_CHAIN_INFO = {
+  // ...unichain, // TODO update once available from viem
+  name: 'Unichain',
+  id: UniverseChainId.Unichain,
+  platform: Platform.EVM,
+  supportedApps: ALL_APPS_CHAIN_SUPPORTED_APPS,
+  assetRepoNetworkName: 'unichain',
+  backendChain: {
+    chain: GraphQLApi.Chain.Unichain as GqlChainId,
+    backendSupported: true,
+    nativeTokenBackendAddress: undefined,
+  },
+  blockPerMainnetEpochForChainId: 6,
+  blockWaitMsBeforeWarning: undefined,
+  bridge: 'https://www.unichain.org/bridge',
+  docs: 'https://docs.unichain.org',
+  elementName: ElementName.ChainUnichain,
+  explorer: {
+    name: 'Uniscan',
+    url: 'https://uniscan.xyz/',
+  },
+  openseaName: 'unichain',
+  interfaceName: 'unichain',
+  searchAliases: ['uni chain'],
+  label: 'Unichain',
+  logo: UNICHAIN_LOGO,
+  nativeCurrency: {
+    name: 'Unichain ETH',
+    symbol: 'ETH',
+    decimals: 18,
+    address: DEFAULT_NATIVE_ADDRESS_LEGACY,
+    logo: ETH_LOGO,
+  },
+  networkLayer: NetworkLayer.L2,
+  blockTimeMs: 1000,
+  pendingTransactionsRetryOptions: undefined,
+  rpcUrls: {
+    [RPCType.Public]: { http: [getUniRpcEndpointUrl(UniverseChainId.Unichain)] },
+    [RPCType.Default]: { http: ['https://mainnet.unichain.org'] },
+    [RPCType.Interface]: { http: [getQuicknodeEndpointUrl(UniverseChainId.Unichain)] },
+  },
+  tokens,
+  statusPage: undefined,
+  subblockTimeMs: 200,
+  supportedURVersions: [TradingApi.UniversalRouterVersion._2_0, TradingApi.UniversalRouterVersion._2_1_1],
+  supportsV4: true,
+  supportsNFTs: true,
+  urlParam: CHAIN_ID_TO_URL_PARAM[UniverseChainId.Unichain],
+  wrappedNativeCurrency: {
+    name: 'Wrapped Ether',
+    symbol: 'WETH',
+    decimals: 18,
+    address: '0x4200000000000000000000000000000000000006',
+  },
+  testnet: false,
+  gasConfig: GENERIC_L2_GAS_CONFIG,
+  tradingApiPollingIntervalMs: 150,
+  acrossProtocolAddress: '0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64',
+} as const satisfies UniverseChainInfo
+
+const testnetTokens = buildChainTokens({
+  stables: {
+    USDC: buildUSDC('0x31d0220469e10c4E71834a79b1f276d740d3768F', UniverseChainId.UnichainSepolia),
+  },
+})
+
+export const UNICHAIN_SEPOLIA_CHAIN_INFO = {
+  ...unichainSepolia,
+  name: 'Unichain Sepolia',
+  testnet: true,
+  id: UniverseChainId.UnichainSepolia,
+  platform: Platform.EVM,
+  supportedApps: ALL_APPS_CHAIN_SUPPORTED_APPS,
+  assetRepoNetworkName: undefined,
+  backendChain: {
+    chain: GraphQLApi.Chain.AstrochainSepolia as GqlChainId,
+    backendSupported: true,
+    nativeTokenBackendAddress: undefined,
+  },
+  blockPerMainnetEpochForChainId: 1,
+  blockWaitMsBeforeWarning: undefined,
+  bridge: undefined,
+  docs: 'https://docs.unichain.org/',
+  elementName: ElementName.ChainUnichainSepolia,
+  explorer: {
+    name: 'Uniscan Sepolia',
+    url: 'https://sepolia.uniscan.xyz/',
+  },
+  interfaceName: 'unichain_sepolia',
+  label: 'Unichain Sepolia',
+  logo: UNICHAIN_SEPOLIA_LOGO,
+  nativeCurrency: {
+    name: 'Unichain Sepolia ETH',
+    symbol: 'ETH',
+    decimals: 18,
+    address: DEFAULT_NATIVE_ADDRESS_LEGACY,
+    logo: ETH_LOGO,
+  },
+  networkLayer: NetworkLayer.L2,
+  blockTimeMs: 1000,
+  pendingTransactionsRetryOptions: undefined,
+  rpcUrls: {
+    [RPCType.Public]: {
+      http: [getUniRpcEndpointUrl(UniverseChainId.UnichainSepolia)],
+    },
+    // Default feeds wallet-connector rpc maps (cookieless). Unkeyed, CSP-allowed public endpoint.
+    [RPCType.Default]: {
+      http: ['https://unichain-sepolia.drpc.org'],
+    },
+    [RPCType.Interface]: {
+      http: [getQuicknodeEndpointUrl(UniverseChainId.UnichainSepolia)],
+    },
+  },
+  tokens: testnetTokens,
+  statusPage: undefined,
+  subblockTimeMs: 200,
+  supportedURVersions: [TradingApi.UniversalRouterVersion._2_0, TradingApi.UniversalRouterVersion._2_1_1],
+  supportsV4: true,
+  supportsNFTs: false,
+  urlParam: CHAIN_ID_TO_URL_PARAM[UniverseChainId.UnichainSepolia],
+  wrappedNativeCurrency: {
+    name: 'Wrapped Ether',
+    symbol: 'WETH',
+    decimals: 18,
+    address: '0x4200000000000000000000000000000000000006',
+  },
+  gasConfig: GENERIC_L2_GAS_CONFIG,
+  tradingApiPollingIntervalMs: 150,
+} as const satisfies UniverseChainInfo

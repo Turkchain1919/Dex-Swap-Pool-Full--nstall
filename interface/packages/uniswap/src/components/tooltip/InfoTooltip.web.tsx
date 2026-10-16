@@ -1,0 +1,77 @@
+import { isWebPlatform } from '@universe/environment'
+import { Flex, Text } from '@universe/mycelium'
+import { useMedia } from '@universe/mycelium/theme-hooks-compat'
+import type { PopoverCompatPlacement as TooltipPlacement } from '@universe/mycelium/tooltip-compat'
+import { TooltipCompat as Tooltip } from '@universe/mycelium/tooltip-compat'
+import { PropsWithChildren } from 'react'
+import { InfoTooltipProps } from 'uniswap/src/components/tooltip/InfoTooltipProps'
+
+const TOOLTIP_REST_MS = 20
+const TOOLTIP_CLOSE_MS = 100
+
+export function InfoTooltip({
+  title,
+  text,
+  icon,
+  button,
+  trigger,
+  triggerPlacement = 'end',
+  children,
+  maxWidth,
+  placement,
+  open,
+  enabled = true,
+  onOpenChange,
+}: PropsWithChildren<InfoTooltipProps>): JSX.Element {
+  // On xsmall screens, if tooltip placement is right or left
+  // Override b/c the tooltip will overflow off the screen
+  const media = useMedia()
+  const alignmentsToOverride = ['left', 'right'] as TooltipPlacement[]
+
+  if (placement && alignmentsToOverride.includes(placement) && media.xs) {
+    placement = 'top'
+  }
+
+  return (
+    <Flex row shrink alignItems="center" gap="$spacing4">
+      {triggerPlacement === 'end' && children}
+      <Tooltip
+        open={enabled ? open : false}
+        delay={{ close: TOOLTIP_CLOSE_MS, open: 0 }}
+        placement={placement}
+        restMs={TOOLTIP_REST_MS}
+        onOpenChange={onOpenChange}
+      >
+        <Flex shrink>
+          <Tooltip.Trigger>{trigger}</Tooltip.Trigger>
+          {(text || button) && (
+            <Tooltip.Content pointerEvents="auto" maxWidth={maxWidth ?? (isWebPlatform ? 280 : '100%')} mx="$spacing24">
+              <Flex row alignItems="center" gap="$spacing8">
+                {icon && <Flex grow>{icon}</Flex>}
+                <Flex shrink gap="$spacing4">
+                  {title && (
+                    <Text alignSelf="flex-start" variant="body4">
+                      {title}
+                    </Text>
+                  )}
+                  {text && (
+                    <Text color="$neutral2" variant="body4">
+                      {text}
+                    </Text>
+                  )}
+                  {button && (
+                    <Flex alignSelf="flex-start" width="100%">
+                      {button}
+                    </Flex>
+                  )}
+                </Flex>
+              </Flex>
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          )}
+        </Flex>
+      </Tooltip>
+      {triggerPlacement === 'start' && children}
+    </Flex>
+  )
+}

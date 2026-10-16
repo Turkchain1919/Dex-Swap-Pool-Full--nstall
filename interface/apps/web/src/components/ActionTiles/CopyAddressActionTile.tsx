@@ -1,0 +1,52 @@
+import { AnimatableCopyIcon, Flex } from '@universe/mycelium'
+import type { FlexCompatProps as FlexProps } from '@universe/mycelium'
+import { TestID } from '@universe/test'
+import { useTranslation } from 'react-i18next'
+import { ElementName } from 'uniswap/src/features/telemetry/constants'
+import Trace from 'uniswap/src/features/telemetry/Trace'
+import { useEvent } from 'utilities/src/react/hooks'
+import { useBooleanState } from 'utilities/src/react/useBooleanState'
+import { useCopyClipboard } from 'utilities/src/react/useCopyClipboard'
+import { ONE_SECOND_MS } from 'utilities/src/time/time'
+import { ActionTile } from '~/components/AccountDrawer/ActionTile'
+import { Wiggle } from '~/components/animations/Wiggle'
+
+interface CopyAddressActionTileProps {
+  address: string
+  padding?: FlexProps['p']
+}
+
+export function CopyAddressActionTile({ address, padding = '$spacing12' }: CopyAddressActionTileProps): JSX.Element {
+  const { t } = useTranslation()
+  const [isCopied, copyToClipboard] = useCopyClipboard(ONE_SECOND_MS)
+  const { value: isHovered, setTrue: setIsHovered, setFalse: setIsHoveredFalse } = useBooleanState(false)
+
+  const onPressCopy = useEvent(() => {
+    copyToClipboard(address)
+  })
+
+  return (
+    <Trace logPress element={ElementName.PortfolioActionCopyAddress}>
+      <Flex onHoverIn={setIsHovered} onHoverOut={setIsHoveredFalse}>
+        <ActionTile
+          dataTestId={TestID.PortfolioActionTileCopyAddress}
+          Icon={
+            <Wiggle
+              isAnimating={isHovered && !isCopied}
+              width="max-content"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              wiggleAmount={10}
+            >
+              <AnimatableCopyIcon isCopied={isCopied} size={24} textColor="$accent1" />
+            </Wiggle>
+          }
+          name={t('common.copy.address')}
+          onClick={onPressCopy}
+          padding={padding}
+        />
+      </Flex>
+    </Trace>
+  )
+}

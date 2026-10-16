@@ -1,0 +1,143 @@
+import '~/test-utils/tokens/mocks'
+import { useDynamicConfigValue } from '@universe/gating'
+import { DAI } from 'uniswap/src/constants/tokens'
+import { SwapTab } from 'uniswap/src/types/screens/interface'
+import { shortenAddress } from 'utilities/src/addresses'
+import { SwapAndLimitContext } from '~/features/Swap/state/types'
+import { tryParseCurrencyAmount } from '~/lib/utils/tryParseCurrencyAmount'
+import { SendReviewModalInner } from '~/pages/Swap/Send/SendReviewModal'
+import { SendContext, SendContextType } from '~/pages/Swap/Send/state/SendContext'
+import { MultichainContext } from '~/state/multichain/types'
+import { render, screen } from '~/test-utils/render'
+
+const useDynamicConfigValueMock = vi.mocked(useDynamicConfigValue)
+
+const mockMultichainContextValue = {
+  reset: vi.fn(),
+  setSelectedChainId: vi.fn(),
+  setIsUserSelectedToken: vi.fn(),
+  isSwapAndLimitContext: true,
+  isUserSelectedToken: false,
+  isMultichainContext: true,
+}
+
+const mockSwapAndLimitContextValue = {
+  currencyState: {
+    inputCurrency: DAI,
+    outputCurrency: undefined,
+  },
+  setCurrencyState: vi.fn(),
+  currentTab: SwapTab.Limit,
+  setCurrentTab: vi.fn(),
+}
+
+const mockedSendContextFiatInput: SendContextType = {
+  sendState: {
+    exactAmountToken: undefined,
+    exactAmountFiat: '1000',
+    recipient: 'hayden.eth',
+    inputCurrency: DAI,
+    inputInFiat: true,
+  },
+  derivedSendInfo: {
+    exactAmountOut: '100',
+    parsedTokenAmount: tryParseCurrencyAmount('100', DAI),
+    recipientData: {
+      address: '0x9984b4b4E408e8D618A879e5315BD30952c89103',
+      ensName: 'hayden.eth',
+    },
+  },
+  setSendState: vi.fn(),
+}
+
+const mockedSendContextTokenInput: SendContextType = {
+  sendState: {
+    exactAmountToken: '1',
+    exactAmountFiat: undefined,
+    recipient: '',
+    inputCurrency: DAI,
+    inputInFiat: false,
+  },
+  derivedSendInfo: {
+    exactAmountOut: '100',
+    parsedTokenAmount: tryParseCurrencyAmount('1', DAI),
+    recipientData: {
+      address: '0x9984b4b4E408e8D618A879e5315BD30952c89103',
+      ensName: 'hayden.eth',
+    },
+  },
+  setSendState: vi.fn(),
+}
+
+describe('SendReviewModal', () => {
+  beforeEach(() => {
+    useDynamicConfigValueMock.mockImplementation((opts: { defaultValue?: unknown }) => {
+      if (opts.defaultValue !== undefined && opts.defaultValue !== null) {
+        return opts.defaultValue
+      }
+      return 100
+    })
+  })
+
+  it('should render input in fiat correctly', () => {
+    render(
+      <MultichainContext.Provider value={mockMultichainContextValue}>
+        <SwapAndLimitContext.Provider value={mockSwapAndLimitContextValue}>
+          <SendContext.Provider value={mockedSendContextFiatInput}>
+            <SendReviewModalInner onDismiss={vi.fn()} onConfirm={vi.fn()} hasError={false} />
+          </SendContext.Provider>
+        </SwapAndLimitContext.Provider>
+      </MultichainContext.Provider>,
+    )
+    expect(screen.getByText('$1,000.00')).toBeVisible()
+    expect(screen.getByText('100.00 DAI')).toBeVisible()
+    expect(screen.getByText('hayden.eth')).toBeVisible()
+    expect(screen.getByText(shortenAddress({ address: '0x9984b4b4E408e8D618A879e5315BD30952c89103' }))).toBeVisible()
+    const modalComponent = screen.getByTestId('send-review-modal')
+    expect(modalComponent).toMatchSnapshot()
+  })
+
+  it('should render input in token amount correctly', () => {
+    render(
+      <MultichainContext.Provider value={mockMultichainContextValue}>
+        <SwapAndLimitContext.Provider value={mockSwapAndLimitContextValue}>
+          <SendContext.Provider value={mockedSendContextTokenInput}>
+            <SendReviewModalInner onDismiss={vi.fn()} onConfirm={vi.fn()} hasError={false} />
+          </SendContext.Provider>
+        </SwapAndLimitContext.Provider>
+      </MultichainContext.Provider>,
+    )
+    expect(screen.getByText('$100.00')).toBeVisible()
+    expect(screen.getByText('1.00 DAI')).toBeVisible()
+    expect(screen.getByText('hayden.eth')).toBeVisible()
+    expect(screen.getByText(shortenAddress({ address: '0x9984b4b4E408e8D618A879e5315BD30952c89103' }))).toBeVisible()
+    const modalComponent = screen.getByTestId('send-review-modal')
+    expect(modalComponent).toMatchSnapshot()
+  })
+
+  it('renders the inline error text when a send error is present', () => {
+    render(
+      <MultichainContext.Provider value={mockMultichainContextValue}>
+        <SwapAndLimitContext.Provider value={mockSwapAndLimitContextValue}>
+          <SendContext.Provider value={mockedSendContextTokenInput}>
+            <SendReviewModalInner onDismiss={vi.fn()} onConfirm={vi.fn()} hasError={true} />
+          </SendContext.Provider>
+        </SwapAndLimitContext.Provider>
+      </MultichainContext.Provider>,
+    )
+    expect(screen.getByText('Transfer failed. Please try again.')).toBeVisible()
+  })
+
+  it('does not render the error text in the non-error state', () => {
+    render(
+      <MultichainContext.Provider value={mockMultichainContextValue}>
+        <SwapAndLimitContext.Provider value={mockSwapAndLimitContextValue}>
+          <SendContext.Provider value={mockedSendContextTokenInput}>
+            <SendReviewModalInner onDismiss={vi.fn()} onConfirm={vi.fn()} hasError={false} />
+          </SendContext.Provider>
+        </SwapAndLimitContext.Provider>
+      </MultichainContext.Provider>,
+    )
+    expect(screen.queryByText('Transfer failed. Please try again.')).not.toBeInTheDocument()
+  })
+})

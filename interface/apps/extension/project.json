@@ -1,0 +1,216 @@
+{
+  "tags": ["scope:extension", "type:app"],
+  "targets": {
+    "build": {
+      "command": "echo 'Specify a configuration, e.g. nx build extension -c production' && exit 1",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare", "config:pull"],
+      "cache": true,
+      "inputs": ["production", "^production", "!{projectRoot}/.output"],
+      "outputs": ["{projectRoot}/.output"],
+      "configurations": {
+        "production": {
+          "command": "wxt build",
+          "env": { "NODE_ENV": "production" }
+        },
+        "development": {
+          "command": "wxt build",
+          "env": { "NODE_ENV": "production" }
+        },
+        "staging": {
+          "command": "wxt build",
+          "env": { "NODE_ENV": "production" }
+        },
+        "e2e": {
+          "command": "wxt build -b chrome --mode production",
+          "env": { "NODE_ENV": "production", "BUILD_ENV": "dev", "BUILD_NUM": "0" }
+        },
+        "chrome": {
+          "command": "wxt build"
+        },
+        "firefox": {
+          "command": "wxt build -b firefox"
+        }
+      }
+    },
+    "check:deps:usage": {},
+    "clean": {
+      "command": "wxt clean",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "dev": {
+      "command": "wxt",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare", "config:pull"],
+      "configurations": {
+        "dev-firefox": {
+          "command": "wxt -b firefox"
+        }
+      }
+    },
+    "format": {},
+    "format:check": {},
+    "lint:oxlint": {},
+    "lint:oxlint:fix": {},
+    "lint:oxlint:fast": {},
+    "lint": {},
+    "lint:fix": {},
+    "check": {},
+    "check:fast": {},
+    "prepare": {
+      "command": "wxt prepare",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/wxt.config.ts",
+        "{projectRoot}/config/**",
+        "{projectRoot}/src/entrypoints/**/*",
+        "{projectRoot}/package.json",
+        "{projectRoot}/.env.*"
+      ],
+      "outputs": ["{projectRoot}/.wxt/types", "{projectRoot}/.wxt/tsconfig.json", "{projectRoot}/.wxt/wxt.d.ts"]
+    },
+    "config:pull": {
+      "command": "if [ \"$SKIP_CONFIG_PULL\" != \"true\" ]; then bun config:pull extension --env \"${CONFIG_ENV:-development}\" --soft; fi",
+      "options": { "cwd": "{workspaceRoot}" },
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {},
+        "staging": { "env": { "CONFIG_ENV": "staging" } },
+        "production": { "env": { "CONFIG_ENV": "production" } },
+        "chrome": { "env": { "CONFIG_ENV": "production" } },
+        "firefox": { "env": { "CONFIG_ENV": "production" } },
+        "e2e": { "env": { "CONFIG_ENV": "production" } }
+      }
+    },
+    "snapshots": {
+      "command": "vitest run -u",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "start": {
+      "command": "wxt",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^prepare", "prepare", "config:pull"],
+      "configurations": {
+        "absolute": {
+          "command": "bun run scripts/startAbsolute.ts"
+        },
+        "absolute-no-browser": {
+          "command": "bun run scripts/startAbsolute.ts",
+          "env": {
+            "WXT_NO_OPEN_BROWSER": "true"
+          }
+        },
+        "absolute-mac": {
+          "command": "WXT_ABSOLUTE_OUTDIR=/Users/Shared/stretch wxt"
+        },
+        "absolute-windows": {
+          "command": "WXT_ABSOLUTE_OUTDIR=C:/ProgramData/stretch wxt"
+        },
+        "absolute-linux": {
+          "command": "WXT_ABSOLUTE_OUTDIR=/var/tmp/stretch wxt"
+        }
+      }
+    },
+    "test": {
+      "command": "vitest run",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "typecheck": {},
+    "zip": {
+      "command": "wxt zip",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "zip:firefox": {
+      "command": "wxt zip -b firefox",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "playwright:test": {
+      "command": "playwright test --config=e2e/config/playwright.config.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "playwright:test:smoke": {
+      "command": "playwright test --config=e2e/config/playwright.config.ts e2e/tests/smoke/",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "playwright:test:publish-gate": {
+      "command": "playwright test --config=e2e/config/playwright.config.ts --grep @publish-gate",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "playwright:ui": {
+      "command": "playwright test --ui --config=e2e/config/playwright.config.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "e2e": {
+      "command": "nx playwright:test extension",
+      "dependsOn": ["build"],
+      "configurations": { "e2e": {} }
+    },
+    "e2e:smoke": {
+      "command": "nx playwright:test:smoke extension",
+      "dependsOn": ["build"],
+      "configurations": { "e2e": {} }
+    },
+    "e2e:ui": {
+      "command": "nx playwright:ui extension",
+      "dependsOn": ["build"],
+      "configurations": { "e2e": {} }
+    },
+    "validate:build": {
+      "command": "bun run scripts/validateBuildOutput.ts",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["build"],
+      "configurations": { "chrome": {} }
+    },
+    "validate:build:dev": {
+      "command": "bun run scripts/validateBuildOutput.ts --dev",
+      "options": {
+        "cwd": "{projectRoot}"
+      }
+    },
+    "validate:build:prod": {
+      "command": "bun run scripts/validateBuildOutput.ts --prod",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["build"],
+      "configurations": { "chrome": {} }
+    },
+    "validate:compat-css": {
+      "command": "bun run scripts/checkCompatCss.ts --prod",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["build"],
+      "configurations": { "e2e": {} }
+    }
+  }
+}

@@ -1,0 +1,201 @@
+import { DappVerificationStatus } from '@universe/api'
+import type { UniverseChainId } from '@universe/chains'
+import { z } from 'zod'
+
+export const CapabilitySchema = z.record(z.string(), z.unknown())
+
+// CAIP-345 response enrichment schema for wallet_sendCalls
+export const Caip345Schema = z.object({
+  caip2: z.string(), // Chain identifier in CAIP-2 format (e.g., "eip155:1")
+  transactionHashes: z.array(z.string()), // Array of transaction hashes
+})
+
+export const CallSchema = z.object({
+  to: z.string().optional(),
+  data: z.string().optional(),
+  value: z.string().optional(),
+  capabilities: z.record(z.string(), CapabilitySchema).optional(),
+})
+
+export const BatchIdSchema = z
+  .string()
+  .regex(/^0x/, { message: "String must start with '0x'" })
+  .max(8194, { message: "String must not exceed 8194 characters including '0x' prefix" })
+
+export const SendCallsParamsSchema = z.object({
+  version: z.string(),
+  id: BatchIdSchema.optional(),
+  from: z.string().optional(),
+  chainId: z.string(),
+  calls: z.array(CallSchema),
+  capabilities: z.record(z.string(), CapabilitySchema).optional(),
+})
+
+export const SendCallsResultSchema = z.object({
+  id: z.string(),
+  capabilities: z
+    .looseObject({
+      caip345: Caip345Schema.optional(),
+    }) // Allow other capability fields for future extensibility
+    .optional(),
+})
+
+export const GetCallsStatusParamsSchema = BatchIdSchema
+
+export const GetCallsStatusTransactionReceiptLogSchema = z.object({
+  address: z.string(),
+  data: z.string(),
+  topics: z.array(z.string()),
+})
+
+export const GetCallsStatusTransactionReceiptSchema = z.object({
+  // logs/blockHash/blockNumber/gasUsed are optional: the embedded-wallet web flow
+  // resolves status via the Trading API `/swaps` feed, which returns the tx hash
+  // and success/failure but not the full receipt. Store-backed (mobile/extension)
+  // receipts still populate them.
+  logs: z.array(GetCallsStatusTransactionReceiptLogSchema).optional(),
+  status: z.string(), // Hex 1 or 0 for success or failure
+  blockHash: z.string().optional(),
+  blockNumber: z.string().optional(),
+  gasUsed: z.string().optional(),
+  transactionHash: z.string(),
+})
+
+export const GetCallsStatusResultSchema = z.object({
+  version: z.string(),
+  id: z.string(),
+  chainId: z.string(),
+  status: z.number(), // Status codes as per EIP-5792
+  atomic: z.boolean().optional(),
+  receipts: z.array(GetCallsStatusTransactionReceiptSchema).optional(),
+  capabilities: z
+    .looseObject({
+      caip345: Caip345Schema.optional(),
+    })
+    .optional(),
+})
+
+// Export types for use in other files
+export type Capability = z.infer<typeof CapabilitySchema>
+export type Caip345 = z.infer<typeof Caip345Schema>
+export type Call = z.infer<typeof CallSchema>
+export type SendCallsParams = z.infer<typeof SendCallsParamsSchema>
+export type SendCallsResult = z.infer<typeof SendCallsResultSchema>
+export type GetCallsStatusTransactionReceiptLog = z.infer<typeof GetCallsStatusTransactionReceiptLogSchema>
+export type GetCallsStatusTransactionReceipt = z.infer<typeof GetCallsStatusTransactionReceiptSchema>
+export type GetCallsStatusParams = z.infer<typeof GetCallsStatusParamsSchema>
+export type GetCallsStatusResult = z.infer<typeof GetCallsStatusResultSchema>
+
+export { DappVerificationStatus }
+
+export interface DappConnectionInfo {
+  name: string
+  url: string
+  icon: string | null
+  frameUrl?: string
+}
+
+/**
+ * Local errors that can replace or supplement a Blockaid transaction preview.
+ */
+export enum TransactionErrorType {
+  DecodeMessage = 'decode_message',
+  DecodeTransaction = 'decode_transaction',
+  ContractInteraction = 'contract_interaction',
+  UnverifiedRecipient = 'unverified_recipient',
+  ScanFailed = 'scan_failed',
+  /** The scan cannot succeed for this request, so retrying it will not help. */
+  ScanUnavailable = 'scan_unavailable',
+}
+
+/**
+ * Risk level derived from Blockaid validation classification
+ */
+export enum TransactionRiskLevel {
+  /** No risk detected - benign transaction */
+  None = 'none',
+  /** Warning level - potentially risky but not malicious */
+  Warning = 'warning',
+  /** Critical/Malicious - high risk transaction */
+  Critical = 'critical',
+}
+
+export enum TransactionApprovalScope {
+  SingleToken = 'single-token',
+  Collection = 'collection',
+}
+
+export enum TransactionApprovalAction {
+  Grant = 'grant',
+  Revoke = 'revoke',
+  Change = 'change',
+}
+
+/**
+ * Minimal view of a normalized request call — `EthTransaction` and the sendCalls `Call` both
+ * satisfy it.
+ */
+export interface DappRequestCall {
+  to?: string
+  data?: string
+  value?: string
+}
+
+/**
+ * Asset information to display in transaction sections
+ */
+export interface TransactionAsset {
+  /** Asset type (ERC20, NATIVE, NFT, etc.) */
+  type: string
+  /** Contract address */
+  address: string
+  /** Chain ID */
+  chainId: UniverseChainId
+  /** Token/NFT symbol or name */
+  symbol?: string
+  /** Token/NFT name */
+  name?: string
+  /** Amount as formatted string */
+  amount?: string
+  /** USD value as formatted string */
+  usdValue?: string
+  /** Logo/image URL */
+  logoUrl?: string
+  /** Spender address (for approvals) */
+  spenderAddress?: string
+  /** NFT token identifier (for a token-specific approval) */
+  tokenId?: string
+  /** Scope of an NFT approval change */
+  approvalScope?: TransactionApprovalScope
+  /** Whether the approval is granted, revoked, or changed with an ambiguous direction */
+  approvalAction?: TransactionApprovalAction
+}
+
+/**
+ * Transaction section types that can be displayed in the transaction preview
+ */
+export enum TransactionSectionType {
+  Sending = 'sending',
+  Receiving = 'receiving',
+  Approving = 'approving',
+  Depositing = 'depositing',
+  Withdrawing = 'withdrawing',
+}
+
+/**
+ * A transaction section to display (e.g., "Sending", "Receiving", "Approving")
+ */
+export interface TransactionSection {
+  type: TransactionSectionType
+  assets: TransactionAsset[]
+  /** Net APY for an Earn deposit, shown as an "Earning" row beneath the Depositing section. */
+  apyPercent?: number
+}
+
+/**
+ * Parsed transaction data for UI display
+ */
+export interface ParsedTransactionData {
+  sections: TransactionSection[]
+  riskLevel: TransactionRiskLevel
+}

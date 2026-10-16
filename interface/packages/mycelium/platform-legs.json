@@ -1,0 +1,189 @@
+{
+  "$comment": "Platform-leg manifest for @universe/mycelium entry points (INFRA-3517). Declares, per package.json exports subpath, whether the web and native implementations are real, deliberate throwing stubs, or missing entirely. universe-custom/no-throwing-stub-imports (config/oxlint-plugins/) is generated from this file: web-bundled projects may not import entries whose web leg throws/is missing, native-reachable projects may not import entries whose native leg throws/is missing. Statuses: 'real' (working implementation), 'throws' (deliberate throwing stub), 'missing' (no leg for that platform — the bundler resolves the other platform's code). Optional webNote/nativeNote strings are appended to the lint message. namedExports scopes a status to individual named exports of an otherwise-real entry. Keep aligned with package.json exports — config/oxlint-plugins/mycelium-platform-legs.test.ts fails when an entry point is added or removed without a matching row here.",
+  "entryPoints": {
+    ".": {
+      "web": "real",
+      "native": "real"
+    },
+    "./testing": {
+      "web": "real",
+      "native": "real",
+      "nativeNote": "MyceliumThemeTestWrapper toggles a document.documentElement class, a web-only theming mechanism; it no-ops (guarded by a `typeof document` check) rather than throwing when rendered under RN's test environment."
+    },
+    "./cn": { "web": "real", "native": "real" },
+    "./icons": {
+      "web": "real",
+      "native": "real",
+      "namedExports": {
+        "BackArrow": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): the RTL check reads document.documentElement.dir."
+        },
+        "CloseIconWithHover": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): renders the div-based Flex with DOM mouse/keyboard hover handlers."
+        },
+        "OSDynamicCloudIcon": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): the web port is a GoogleDrive passthrough of the legacy per-OS icon (iOS branch unported)."
+        },
+        "Unitag": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): renders <img> and watches the root class via MutationObserver."
+        }
+      }
+    },
+    "./icons/*": {
+      "web": "real",
+      "native": "real",
+      "namedExports": {
+        "BackArrow": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): the RTL check reads document.documentElement.dir."
+        },
+        "CloseIconWithHover": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): renders the div-based Flex with DOM mouse/keyboard hover handlers."
+        },
+        "OSDynamicCloudIcon": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): the web port is a GoogleDrive passthrough of the legacy per-OS icon (iOS branch unported)."
+        },
+        "Unitag": {
+          "native": "missing",
+          "nativeNote": "Web-only holdout (INFRA-3285): renders <img> and watches the root class via MutationObserver."
+        }
+      }
+    },
+    "./logos": {
+      "web": "real",
+      "native": "missing",
+      "nativeNote": "mycelium logos have no native leg: the sole logo GoogleChromeLogo renders raw lowercase SVG tags (<defs>, <linearGradient>, <stop>, <circle>, <path>) that react-native-svg cannot draw. Use ui/src logos in native-reachable code."
+    },
+    "./logos/*": {
+      "web": "real",
+      "native": "missing",
+      "nativeNote": "mycelium logos have no native leg: the sole logo GoogleChromeLogo renders raw lowercase SVG tags (<defs>, <linearGradient>, <stop>, <circle>, <path>) that react-native-svg cannot draw. Use ui/src logos in native-reachable code."
+    },
+    "./components": {
+      "web": "real",
+      "native": "missing",
+      "nativeNote": "The components barrel is web-only DOM (Radix/cva); only UniversalList has native legs and it is exported from the package root."
+    },
+    "./animate-presence-pager": { "web": "real", "native": "real" },
+    "./animated-flex-compat": { "web": "real", "native": "real" },
+    "./dynamic-size-text": { "web": "real", "native": "real" },
+    "./flex-compat": { "web": "real", "native": "real" },
+    "./flex-loader-compat": { "web": "real", "native": "real" },
+    "./loader-compat": { "web": "real", "native": "real" },
+    "./floating-overlay": {
+      "web": "throws",
+      "native": "real",
+      "webNote": "Permanent by design (INFRA-2965): web floating UI rides the Base UI engine — use the popover-compat / shadcn recipes instead."
+    },
+    "./height-animator": { "web": "real", "native": "real" },
+    "./width-animator": { "web": "real", "native": "real" },
+    "./touchable-area": { "web": "real", "native": "real" },
+    "./view-compat": { "web": "real", "native": "real" },
+    "./scroll-view-compat": { "web": "real", "native": "real" },
+    "./shadcn": {
+      "web": "real",
+      "native": "missing",
+      "nativeNote": "shadcn recipes are web-only DOM (Radix); there is no native leg."
+    },
+    "./popover-compat": {
+      "web": "real",
+      "native": "real",
+      "namedExports": {
+        "AdaptiveWebPopoverContentCompat": {
+          "native": "throws",
+          "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy ui/src implementation."
+        },
+        "adaptiveWebPopoverContentCompatClassName": {
+          "native": "throws",
+          "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy ui/src implementation."
+        },
+        "PopoverCompat": {
+          "native": "throws",
+          "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy ui/src implementation."
+        },
+        "mapPlacementToAnchorPosition": {
+          "native": "throws",
+          "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy ui/src implementation."
+        },
+        "mapOffsetToAnchorPosition": {
+          "native": "throws",
+          "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy ui/src implementation."
+        }
+      }
+    },
+    "./presence": { "web": "real", "native": "real" },
+    "./portal": {
+      "web": "real",
+      "native": "throws",
+      "nativeNote": "The native leg is real code but throws until a PortalProvider is mounted, and no native app mounts one yet (INFRA-2958). Native portals keep the legacy ui/src/components/portal/Portal implementation until that provider lands; this leg renders through the same primitive (@rn-primitives/portal into a provider-owned host), so repointing them is an import swap rather than a behavior change."
+    },
+    "./menu-compat": {
+      "web": "real",
+      "native": "throws",
+      "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy ContextMenu.native implementation."
+    },
+    "./option-list-compat": {
+      "web": "real",
+      "native": "throws",
+      "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy NetworkFilter/ContextMenu implementations."
+    },
+    "./trigger-button-compat": {
+      "web": "real",
+      "native": "throws",
+      "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514)."
+    },
+    "./network-selector-compat": {
+      "web": "real",
+      "native": "throws",
+      "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps the legacy NetworkFilterV2.native implementation."
+    },
+    "./filter-select-compat": {
+      "web": "real",
+      "native": "throws",
+      "nativeNote": "Native leg deferred per INFRA-3021 (tracked in INFRA-3514); native keeps ActionSheetDropdown."
+    },
+    "./compat": { "web": "real", "native": "real" },
+    "./compat/native-style": { "web": "real", "native": "real" },
+    "./compat/primitive-marker": { "web": "real", "native": "real" },
+    "./anchor-compat": { "web": "real", "native": "real" },
+    "./web-bottom-sheet-compat": { "web": "real", "native": "real" },
+    "./segmented-control-compat": { "web": "real", "native": "real" },
+    "./shimmer": { "web": "real", "native": "real" },
+    "./tokens": {
+      "web": "real",
+      "native": "real",
+      "nativeNote": "`fonts` is platform-resolved (src/font-tokens.{ts,web.ts,native.ts}): the native leg applies ui's +1px adjustedSize ramp and names the real RN font family. Every other family here is platform-invariant. Recorded because these statuses cannot express 'resolves but returns the wrong platform's values'. Device columns (iOS and Android): packages/tailwind/src/parity/fonts-token/native-parity.test.ts."
+    },
+    "./touchable-text-link": { "web": "real", "native": "real" },
+    "./universal-image": { "web": "real", "native": "real" },
+    "./universal-image/testing": { "web": "real", "native": "real" },
+    "./styled": { "web": "real", "native": "real" },
+    "./tooltip-compat": { "web": "real", "native": "real" },
+    "./text-compat": { "web": "real", "native": "real" },
+    "./text-loader-wrapper": { "web": "real", "native": "real" },
+    "./element-after-text": { "web": "real", "native": "real" },
+    "./theme-hooks-compat": { "web": "real", "native": "real" },
+    "./button-compat": { "web": "real", "native": "real" },
+    "./button-frame-compat": { "web": "real", "native": "real" },
+    "./checkbox-compat": { "web": "real", "native": "real" },
+    "./avatar-compat": { "web": "real", "native": "real" },
+    "./input-compat": { "web": "real", "native": "real" },
+    "./separator-compat": { "web": "real", "native": "real" },
+    "./switch-compat": { "web": "real", "native": "real" },
+    "./spinning-loader-compat": { "web": "real", "native": "real" },
+    "./linear-gradient-compat": { "web": "real", "native": "real" },
+    "./modal-close-icon": { "web": "real", "native": "real" },
+    "./animatable-copy-icon-compat": { "web": "real", "native": "real" },
+    "./refresh-button-compat": {
+      "web": "real",
+      "native": "throws",
+      "nativeNote": "Native leg deferred (INFRA-3489); the sole consumer web-guards the render. Legacy reference: ui/src/components/RefreshButton/RefreshButton.native.tsx."
+    }
+  }
+}

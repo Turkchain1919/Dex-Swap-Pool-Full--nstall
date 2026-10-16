@@ -1,0 +1,17 @@
+{
+  "extends": "../../config/tsconfig/app.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "env.d.ts"],
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "paths": {
+      "@universe/sessions/*": ["./src/*"]
+    },
+    "types": ["chrome", "node"]
+  },
+  "references": [
+    {
+      "path": "../utilities"
+    }
+  ]
+}

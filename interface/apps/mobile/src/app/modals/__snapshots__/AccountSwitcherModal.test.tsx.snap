@@ -1,0 +1,202 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AccountSwitcher > renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    style="padding-bottom: 16px; max-height: -36px;"
+  >
+    <div
+      class="css-view-175oi2r"
+      style="gap: 16px; margin-right: 12px; margin-left: 12px; padding-top: 12px; padding-bottom: 16px;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="gap: 8px;"
+      >
+        <div
+          class="css-view-175oi2r"
+        >
+          <div
+            class="css-view-175oi2r"
+            data-testid="account-icon"
+            style="width: 56px; height: 56px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px;"
+          >
+            <div
+              class="css-view-175oi2r"
+            >
+              <div
+                class="css-view-175oi2r"
+                style="width: 56px; height: 56px;"
+              >
+                <div
+                  height="56"
+                  viewbox="0 0 56 56"
+                  width="56"
+                >
+                  <div
+                    cx="28"
+                    cy="28"
+                    fill="#00C3A0"
+                    opacity="0.1216"
+                    r="28"
+                  />
+                  <div
+                    transform="translate(9.333333333333332, 9.333333333333332) scale(0.7777777777777778)"
+                  >
+                    <div
+                      clip-rule="evenodd"
+                      d="M20.9454 0.0175773C22.4936 -0.167833 23.763 1.13917 23.763 2.72944V21.3625C23.763 22.9527 22.4993 24.2419 20.9405 24.2419L2.67549 24.2419C1.11665 24.2419 -0.16452 22.9469 0.0172307 21.3675C1.30306 10.1936 9.99222 1.32931 20.9454 0.0175773Z"
+                      fill="#00C3A0"
+                      fill-rule="evenodd"
+                    />
+                    <div
+                      clip-rule="evenodd"
+                      d="M27.0546 47.9824C25.5064 48.1678 24.237 46.8608 24.237 45.2706V26.6375C24.237 25.0473 25.5007 23.7581 27.0595 23.7581L45.3245 23.7581C46.8833 23.7581 48.1645 25.0531 47.9828 26.6325C46.6969 37.8064 38.0078 46.6707 27.0546 47.9824Z"
+                      fill="#00C3A0"
+                      fill-rule="evenodd"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="css-view-175oi2r"
+          style="gap: 0px; max-width: 100%;"
+        >
+          <div
+            class="css-view-175oi2r"
+            style="gap: 12px;"
+          >
+            <div
+              class="css-view-175oi2r"
+              style="flex-shrink: 1; gap: 4px;"
+            >
+              <div
+                class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a"
+                data-testid="address-display/name/undefined"
+                dir="auto"
+                style="flex-shrink: 1; font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+              />
+            </div>
+          </div>
+          <div
+            class="css-view-175oi2r"
+          >
+            <div
+              class="css-view-175oi2r"
+              style="margin-top: 0px; padding: 0px 0px 0px 0px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px;"
+            >
+              <button
+                android_ripple="[object Object]"
+                data-testid="copy"
+                role="button"
+                style="background-color: transparent; gap: 4px;"
+              >
+                <div
+                  class="css-view-175oi2r"
+                  style="flex-shrink: 1; min-width: 0px;"
+                >
+                  <div
+                    class="css-text-146c3p1"
+                    dir="auto"
+                    style="font-size: 17px; line-height: 20px; font-family: Basel Grotesk; font-weight: 400;"
+                  >
+                    0x​82D56A...373Fa6
+                  </div>
+                </div>
+                <div
+                  class="css-view-175oi2r"
+                  style="width: 17px; height: 17px;"
+                >
+                  <div
+                    fill="none"
+                    height="17"
+                    viewbox="0 0 24 24"
+                    width="17"
+                  >
+                    <div
+                      d="M18.375 6.25H9.625C7.448 6.25 6.25 7.448 6.25 9.625V18.375C6.25 20.552 7.448 21.75 9.625 21.75H18.375C20.552 21.75 21.75 20.552 21.75 18.375V9.625C21.75 7.448 20.552 6.25 18.375 6.25ZM20.25 18.375C20.25 19.707 19.707 20.25 18.375 20.25H9.625C8.293 20.25 7.75 19.707 7.75 18.375V9.625C7.75 8.293 8.293 7.75 9.625 7.75H18.375C19.707 7.75 20.25 8.293 20.25 9.625V18.375ZM3.75 5.62V14.38C3.75 15.578 4.23309 15.873 4.39209 15.971C4.74609 16.187 4.85589 16.649 4.63989 17.002C4.49789 17.233 4.25202 17.36 3.99902 17.36C3.86602 17.36 3.72991 17.324 3.60791 17.25C2.70691 16.698 2.25 15.733 2.25 14.38V5.62C2.25 3.478 3.47912 2.25 5.62012 2.25H14.3799C16.0649 2.25 16.87 2.98897 17.25 3.60797C17.466 3.96097 17.355 4.42298 17.002 4.63898C16.648 4.85598 16.1879 4.74399 15.9709 4.39099C15.8739 4.23199 15.5779 3.74902 14.3799 3.74902H5.62012C4.29212 3.75002 3.75 4.292 3.75 5.62Z"
+                      fill="rgba(19, 19, 19, 0.63)"
+                    />
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-view-175oi2r"
+        style="padding-right: 12px; padding-left: 12px;"
+      >
+        <button
+          accessibilitystate="[object Object]"
+          class="relative box-border flex min-h-0 min-w-0 cursor-pointer items-center justify-center border border-solid border-transparent gap-2 rounded-16 px-4 py-3 flex-row flex-1 basis-0 self-stretch bg-surface3"
+          data-testid="wallet-settings"
+          dd-action-name="account.wallet.button.manage"
+          role="button"
+          style="transform: [object Object];"
+        >
+          <div
+            class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a"
+            dir="auto"
+            style="font-family: Basel Grotesk; font-weight: 500;"
+          >
+            account.wallet.button.manage
+          </div>
+        </button>
+      </div>
+    </div>
+    <div
+      class="css-view-175oi2r"
+      style="max-height: -18px;"
+    >
+      <div
+        class="css-view-175oi2r"
+      >
+        ExpoLinearGradient
+        <div />
+        ExpoLinearGradient
+      </div>
+    </div>
+    <button
+      android_ripple="[object Object]"
+      data-testid="account-switcher-add-wallet"
+      role="button"
+      style="background-color: transparent; margin-top: 16px;"
+    >
+      <div
+        class="css-view-175oi2r"
+        style="gap: 8px; margin-left: 24px;"
+      >
+        <div
+          class="css-view-175oi2r"
+          style="box-shadow: 0px 0px 10px rgba(0,0,0,1.00); padding: 8px 8px 8px 8px; width: 32px; height: 32px; border-top-left-radius: 999999px; border-top-right-radius: 999999px; border-bottom-right-radius: 999999px; border-bottom-left-radius: 999999px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;"
+        >
+          <div
+            fill="none"
+            stroke-width="2"
+            style="width: 16px; height: 16px; color: rgba(19, 19, 19, 0.63);"
+            viewbox="0 0 24 24"
+          >
+            <div
+              d="M19 11H13V5C13 4.448 12.552 4 12 4C11.448 4 11 4.448 11 5V11H5C4.448 11 4 11.448 4 12C4 12.552 4.448 13 5 13H11V19C11 19.552 11.448 20 12 20C12.552 20 13 19.552 13 19V13H19C19.552 13 20 12.552 20 12C20 11.448 19.552 11 19 11Z"
+              fill="currentColor"
+            />
+          </div>
+        </div>
+        <div
+          class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a"
+          dir="auto"
+          style="width: 100%; font-size: 17px; line-height: 19.549999999999997px; font-family: Basel Grotesk; font-weight: 500;"
+        >
+          account.wallet.button.add
+        </div>
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
+`;

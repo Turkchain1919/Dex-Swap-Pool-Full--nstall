@@ -1,0 +1,689 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TDP Skeleton > should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 pt-[48px] w-[100%] media-xxl:px-[40px] media-lg:px-[20px]"
+  >
+    <div
+      aria-label="breadcrumb-nav"
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center gap-[4px] mb-[20px] w-[fit-content]"
+    >
+      <a
+        data-discover="true"
+        href="/explore/tokens/ethereum"
+        style="text-decoration: none;"
+      >
+        <span
+          class="box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral2)] items-center [display:flex] [transition:var(--c-t)] hover:[color:var(--ch-col)] [text-decoration:none]"
+          style="--c-t: color 100ms cubic-bezier(0.17, 0.67, 0.45, 1); --ch-col: var(--stext-neutral2Hovered);"
+        >
+          Tokens 
+          <div
+            class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center rounded-[999999px] [transform:var(--c-tr)] [transition:var(--c-t)]"
+            style="--c-tr: rotate(180deg); --c-t: transform 100ms cubic-bezier(0.17, 0.67, 0.45, 1);"
+          >
+            <svg
+              fill="none"
+              stroke-width="8"
+              style="width: 16px; height: 16px; color: rgb(155, 155, 155);"
+              viewBox="0 0 24 24"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3166 19.0976 14.6834 19.0976 14.2929 18.7071L8.2929 12.7071C7.9024 12.3166 7.9024 11.6834 8.2929 11.2929L14.2929 5.29289C14.6834 4.90237 15.3166 4.90237 15.7071 5.29289Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </span>
+      </a>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+        style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+          style="--c-w: 169px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 self-center px-[0px] w-[100%] bg-surface1 z-[var(--c-z)] [transition:var(--c-t)] sticky top-[var(--c-top)] media-xxl:px-[var(--cB-px)] media-lg:px-[var(--cD-px)]"
+    style="--c-z: 980; --c-t: opacity 0.2s ease, transform 0.2s ease, width 0.2s ease, height 0.2s ease, gap 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease, font-size 0.2s ease, line-height 0.2s ease; --c-top: 72px; --cB-px: 40px; --cD-px: 20px;"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 py-[20px] w-[100%] border-surface3 border-b-[1px] [transition:var(--c-t)]"
+      style="--c-t: opacity 0.2s ease, transform 0.2s ease, width 0.2s ease, height 0.2s ease, gap 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease, font-size 0.2s ease, line-height 0.2s ease;"
+    >
+      <div
+        class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between w-[100%] z-default"
+      >
+        <div
+          class="flex basis-auto box-border relative min-h-[0px] flex-row items-center gap-[12px] grow-[1] shrink min-w-[32px]"
+        >
+          <div
+            class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%] max-w-[var(--c-max-w)]"
+            style="--c-max-w: 56px; animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+          >
+            <div
+              class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] rounded-[999999px] [background:var(--c-b)]"
+              style="--c-w: 56px; --c-h: 56px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+            />
+          </div>
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[8px]"
+          >
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-end gap-[8px] media-sm:w-[var(--cF-w)]"
+              style="--cF-w: 100%;"
+            >
+              <div
+                class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[max-content]"
+                style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+              >
+                <div
+                  class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[28px] rounded-[12px] [background:var(--c-b)]"
+                  style="--c-w: 136px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+                />
+              </div>
+            </div>
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+                style="--c-w: 120px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row justify-center gap-[8px]"
+        >
+          <div
+            class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%] max-w-[var(--c-max-w)]"
+            style="--c-max-w: 42px; animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+          >
+            <div
+              class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] rounded-[999999px] [background:var(--c-b)]"
+              style="--c-w: 42px; --c-h: 34px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+            />
+          </div>
+          <div
+            class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%] max-w-[var(--c-max-w)]"
+            style="--c-max-w: 42px; animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+          >
+            <div
+              class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[var(--c-h)] rounded-[999999px] [background:var(--c-b)]"
+              style="--c-w: 42px; --c-h: 34px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row justify-center gap-[80px] mt-[32px] pb-[48px] w-[100%] media-xxl:px-[40px] media-xl:flex-col media-xl:items-center media-xl:gap-[0px] media-lg:px-[20px] media-lg:pt-[0px] media-lg:pb-[52px]"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] grow-[1] shrink-[1] gap-[40px] w-[100%] media-lg:gap-[32px]"
+    >
+      <div
+        class="flex basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 flex-row items-center w-[100%] relative"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink"
+          style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0"
+          >
+            <div
+              class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 top-[0px] right-[0px] bottom-[0px] left-[0px] w-[var(--c-w)] absolute"
+              style="--c-w: 94%;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[100%] h-[var(--c-h)] overflow-hidden"
+                style="--c-h: 356px;"
+              >
+                <div
+                  class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[var(--c-w)] h-[100%] wave-loader-scroll"
+                  style="--c-w: 1664px; animation-name: wave-loader-scroll; animation-duration: 2000ms; animation-timing-function: ease-in-out; animation-iteration-count: infinite;"
+                >
+                  <svg
+                    height="356"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 416 180"
+                    width="416"
+                  >
+                    <path
+                      d="M 0 80 Q 104 10, 208 80 T 416 80"
+                      fill="transparent"
+                      stroke="rgb(19, 19, 19)"
+                      stroke-opacity="0.35"
+                      stroke-width="2"
+                      vector-effect="nonScalingStroke"
+                    />
+                  </svg>
+                  <svg
+                    height="356"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 416 180"
+                    width="416"
+                  >
+                    <path
+                      d="M 0 80 Q 104 10, 208 80 T 416 80"
+                      fill="transparent"
+                      stroke="rgb(19, 19, 19)"
+                      stroke-opacity="0.35"
+                      stroke-width="2"
+                      vector-effect="nonScalingStroke"
+                    />
+                  </svg>
+                  <svg
+                    height="356"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 416 180"
+                    width="416"
+                  >
+                    <path
+                      d="M 0 80 Q 104 10, 208 80 T 416 80"
+                      fill="transparent"
+                      stroke="rgb(19, 19, 19)"
+                      stroke-opacity="0.35"
+                      stroke-width="2"
+                      vector-effect="nonScalingStroke"
+                    />
+                  </svg>
+                  <svg
+                    height="356"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 416 180"
+                    width="416"
+                  >
+                    <path
+                      d="M 0 80 Q 104 10, 208 80 T 416 80"
+                      fill="transparent"
+                      stroke="rgb(19, 19, 19)"
+                      stroke-opacity="0.35"
+                      stroke-width="2"
+                      vector-effect="nonScalingStroke"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <svg
+              fill="none"
+              height="356"
+              preserveAspectRatio="none"
+              viewBox="0 0 726 356"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <rect
+                  fill="rgba(19, 19, 19, 0.35)"
+                  height="32"
+                  rx="4"
+                  width="180"
+                  y="0"
+                />
+                <rect
+                  fill="rgba(19, 19, 19, 0.35)"
+                  height="13"
+                  rx="4"
+                  width="80"
+                  y="48"
+                />
+                <g
+                  transform="translate(0, 342)"
+                >
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="7%"
+                    x="10%"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="7%"
+                    x="28.25%"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="7%"
+                    x="46.5%"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="7%"
+                    x="64.75%"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="7%"
+                    x="83%"
+                  />
+                </g>
+                <g
+                  transform="translate(0, 10)"
+                >
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="24"
+                    x="96%"
+                    y="0"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="24"
+                    x="96%"
+                    y="71.2"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="24"
+                    x="96%"
+                    y="142.4"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="24"
+                    x="96%"
+                    y="213.6"
+                  />
+                  <rect
+                    fill="rgba(19, 19, 19, 0.35)"
+                    height="6"
+                    rx="3"
+                    width="24"
+                    x="96%"
+                    y="284.8"
+                  />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 h-[40px]"
+      />
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[20px] animate-spore-enter-fade-in opacity-[1]"
+        data-testid="token-details-stats-loading"
+        style="animation-duration: 200ms; animation-timing-function: ease-in-out;"
+      >
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+          style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+            style="--c-w: 120px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+          />
+        </div>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row flex-wrap gap-y-[24px] w-[100%]"
+        >
+          <div
+            class="flex flex-col items-stretch box-border relative min-h-[0px] min-w-[0px] basis-[var(--c-basis)] grow-[0] shrink-[0] pr-[12px] media-sm:basis-[var(--cF-basis)]"
+            style="--c-basis: 33.33%; --cF-basis: 50%;"
+          >
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[4px] w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+                style="--c-w: 80px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+                style="--c-w: 116px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch box-border relative min-h-[0px] min-w-[0px] basis-[var(--c-basis)] grow-[0] shrink-[0] pr-[12px] media-sm:basis-[var(--cF-basis)]"
+            style="--c-basis: 33.33%; --cF-basis: 50%;"
+          >
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[4px] w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+                style="--c-w: 80px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+                style="--c-w: 116px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch box-border relative min-h-[0px] min-w-[0px] basis-[var(--c-basis)] grow-[0] shrink-[0] pr-[12px] media-sm:basis-[var(--cF-basis)]"
+            style="--c-basis: 33.33%; --cF-basis: 50%;"
+          >
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[4px] w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+                style="--c-w: 80px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+                style="--c-w: 116px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch box-border relative min-h-[0px] min-w-[0px] basis-[var(--c-basis)] grow-[0] shrink-[0] pr-[12px] media-sm:basis-[var(--cF-basis)]"
+            style="--c-basis: 33.33%; --cF-basis: 50%;"
+          >
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[4px] w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+                style="--c-w: 80px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+                style="--c-w: 116px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch box-border relative min-h-[0px] min-w-[0px] basis-[var(--c-basis)] grow-[0] shrink-[0] pr-[12px] media-sm:basis-[var(--cF-basis)]"
+            style="--c-basis: 33.33%; --cF-basis: 50%;"
+          >
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[4px] w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+                style="--c-w: 80px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+                style="--c-w: 116px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-stretch box-border relative min-h-[0px] min-w-[0px] basis-[var(--c-basis)] grow-[0] shrink-[0] pr-[12px] media-sm:basis-[var(--cF-basis)]"
+            style="--c-basis: 33.33%; --cF-basis: 50%;"
+          >
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[4px] w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+                style="--c-w: 80px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+            <div
+              class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+              style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+                style="--c-w: 116px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 h-[40px]"
+      />
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[16px] py-[24px]"
+      >
+        <h2
+          class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[36px] [line-height:40px] [font-weight:485] [color:var(--stext-neutral1)]"
+        >
+          <div
+            class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row w-[100%]"
+            style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+          >
+            <div
+              class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[32px] rounded-[8px] [background:var(--c-b)]"
+              style="--c-w: 120px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+            />
+          </div>
+        </h2>
+      </div>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[6px] w-[100%]"
+        style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[100%] h-[16px] rounded-[12px] [background:var(--c-b)]"
+          style="--c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+        />
+      </div>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[6px] w-[100%]"
+        style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[100%] h-[16px] rounded-[12px] [background:var(--c-b)]"
+          style="--c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+        />
+      </div>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[24px] w-[100%]"
+        style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+          style="--c-w: 50%; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+        />
+      </div>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row pt-[24px]"
+      >
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[6px] w-[100%]"
+          style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+            style="--c-w: 120px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+          />
+        </div>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[6px] w-[100%]"
+          style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+            style="--c-w: 50%; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+          />
+        </div>
+      </div>
+      <div
+        class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row pt-[24px]"
+      >
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[6px] w-[100%]"
+          style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+            style="--c-w: 120px; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+          />
+        </div>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row mb-[6px] w-[100%]"
+          style="animation-name: shine; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite;"
+        >
+          <div
+            class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[16px] rounded-[12px] [background:var(--c-b)]"
+            style="--c-w: 50%; --c-b: linear-gradient(to left, rgba(19, 19, 19, 0.08) 25%, rgba(38,38,38,0.08) 50%, rgba(19, 19, 19, 0.08) 75%);"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[40px] w-[360px] media-xl:py-[40px] media-xl:w-[100%] media-xl:max-w-[780px]"
+    >
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 justify-between gap-[4px] p-[8px] bg-surface1 border-surface3 border-[1px] rounded-[16px] [border-style:solid]"
+      >
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 p-[8px]"
+        >
+          <span
+            class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[18px] [line-height:24px] [font-weight:485] [color:var(--stext-neutral1)]"
+          >
+            Swap
+          </span>
+        </div>
+        <div
+          class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-col gap-[var(--c-gap)] px-[12px] py-[48px] bg-surface2 rounded-[16px]"
+          style="--c-gap: 30px;"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between"
+          >
+            <div
+              class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[60px] h-[36px] bg-surface3 rounded-[4px]"
+            />
+            <div
+              class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[36px] bg-surface3 rounded-[16px]"
+              style="--c-w: 100px;"
+            />
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 relative"
+        >
+          <div
+            class="flex-col items-stretch basis-auto box-border min-h-[0px] min-w-[0px] shrink-0 flex mt-[var(--c-mt)] mb-[var(--c-mb)] ml-[auto] mr-[auto] w-[40px] h-[40px] bg-surface2 border-surface1 border-[length:var(--c-border)] rounded-[12px] relative z-[var(--c-z)] [border-style:solid]"
+            style="--c-mt: -18px; --c-mb: -18px; --c-border: 4px; --c-z: 2;"
+          >
+            <div
+              class="flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center inline-flex w-[100%] h-[100%]"
+            >
+              <svg
+                fill="none"
+                stroke-width="8"
+                style="width: 16px; height: 16px; color: rgba(19, 19, 19, 0.35);"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 5V19"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+                <path
+                  d="M19 12L12 19L5 12"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="flex items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-col gap-[var(--c-gap)] px-[12px] py-[48px] bg-surface2 rounded-[16px]"
+            style="--c-gap: 30px;"
+          >
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between"
+            >
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[60px] h-[36px] bg-surface3 rounded-[4px]"
+              />
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[var(--c-w)] h-[36px] bg-surface3 rounded-[16px]"
+                style="--c-w: 100px;"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 w-[100%] h-[var(--c-h)] bg-surface2 rounded-[16px]"
+          style="--c-h: 56px;"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`getLoadingTitle > should return correct title 1`] = `
+<DocumentFragment>
+  token data for 
+  <a
+    class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[12px] [font-weight:var(--c-fowe)] [line-height:16px] [color:var(--stext-neutral3)] [cursor:pointer] hover:opacity-[var(--ch-opacity)] active:opacity-[var(--ca-opacity)] [text-decoration:none]"
+    href="https://etherscan.io/token/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+    rel="noopener noreferrer"
+    role="link"
+    style="--c-fowe: 500; --ch-opacity: 0.8; --ca-opacity: 0.6; transition: 100ms;"
+    target="_blank"
+  >
+    USD Coin (USDC)
+  </a>
+   on Ethereum
+</DocumentFragment>
+`;

@@ -1,0 +1,44 @@
+{
+  "points": [
+    {
+      "timestamp": "1756512000",
+      "value": 37254880.25
+    },
+    {
+      "timestamp": "1756598400",
+      "value": 38676499.9
+    }
+  ],
+  "beginAt": "1756512000",
+  "endAt": "1756598400",
+  "tokens": [
+    {
+      "timestamp": "1756512000",
+      "value": 37254880.25
+    },
+    {
+      "timestamp": "1756598400",
+      "value": 38676499.9
+    }
+  ],
+  "pools": [
+    {
+      "timestamp": "1756512000",
+      "value": 0
+    },
+    {
+      "timestamp": "1756598400",
+      "value": 0
+    }
+  ],
+  "earn": [
+    {
+      "timestamp": "1756512000",
+      "value": 0
+    },
+    {
+      "timestamp": "1756598400",
+      "value": 0
+    }
+  ]
+}

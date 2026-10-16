@@ -1,0 +1,182 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StorageSettingsContent > renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] grow shrink justify-between gap-[12px]"
+  >
+    <div
+      class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[12px]"
+    >
+      <div
+        class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 gap-[12px]"
+      >
+        <div
+          class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] [cursor:pointer] bg-transparent p-[12px] border-surface3 border-[1px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] hover:bg-[color:var(--ch-bg)] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+          role="button"
+          style="--ch-bg: var(--surface2);"
+          tabindex="0"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between"
+          >
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row items-center gap-[12px] grow-[1] shrink"
+            >
+              <div
+                class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center"
+              >
+                <svg
+                  fill="none"
+                  stroke-width="8"
+                  style="color: rgba(255, 255, 255, 0.65); width: 24px; height: 24px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.66643 5.33325V7.72388L9.80445 8.8619C10.0651 9.12256 10.0651 9.54394 9.80445 9.80461C9.67445 9.93461 9.50376 9.99992 9.3331 9.99992C9.16243 9.99992 8.99174 9.93461 8.86174 9.80461L7.52841 8.47127C7.40307 8.34594 7.3331 8.17659 7.3331 7.99992V5.33325C7.3331 4.96525 7.6311 4.66659 7.99976 4.66659C8.36843 4.66659 8.66643 4.96525 8.66643 5.33325ZM8.01701 1.33325C6.23701 1.33325 4.56576 2.05187 3.33309 3.28654V1.99992C3.33309 1.63192 3.03509 1.33325 2.66643 1.33325C2.29776 1.33325 1.99976 1.63192 1.99976 1.99992L1.99976 4.66659C1.99976 5.03459 2.29776 5.33325 2.66643 5.33325L5.3331 5.33325C5.70176 5.33325 5.99976 5.03459 5.99976 4.66659C5.99976 4.29859 5.70176 3.99992 5.3331 3.99992H4.50709C5.46575 3.15125 6.70635 2.66659 8.01701 2.66659C10.9477 2.66659 13.3331 5.05925 13.3331 7.99992C13.3331 10.9406 10.9483 13.3333 8.01701 13.3333C5.98035 13.3333 4.15974 12.1993 3.26441 10.3733C3.10308 10.0426 2.70382 9.90529 2.37248 10.068C2.04182 10.23 1.9058 10.6292 2.0678 10.9599C3.18846 13.2465 5.46835 14.6666 8.01701 14.6666C11.683 14.6666 14.6664 11.6759 14.6664 7.99992C14.6664 4.32392 11.683 1.33325 8.01701 1.33325Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] gap-[4px] grow-[1] shrink"
+              >
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)]"
+                >
+                  Clear account history
+                </span>
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+                >
+                  Clear your account history
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] [cursor:pointer] bg-transparent p-[12px] border-surface3 border-[1px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] hover:bg-[color:var(--ch-bg)] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+          role="button"
+          style="--ch-bg: var(--surface2);"
+          tabindex="0"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between"
+          >
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row items-center gap-[12px] grow-[1] shrink"
+            >
+              <div
+                class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center"
+              >
+                <svg
+                  fill="none"
+                  stroke-width="8"
+                  style="color: rgba(255, 255, 255, 0.65); width: 24px; height: 24px;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M8.00903 6.5C8.00903 4.294 9.80303 2.5 12.009 2.5C14.215 2.5 16.009 4.294 16.009 6.5C16.009 8.706 14.215 10.5 12.009 10.5C9.80303 10.5 8.00903 8.706 8.00903 6.5ZM14 12.5H10C5.94 12.5 4.5 15.473 4.5 18.019C4.5 20.296 5.71105 21.5 8.00305 21.5H15.9969C18.2889 21.5 19.5 20.296 19.5 18.019C19.5 15.473 18.06 12.5 14 12.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] gap-[4px] grow-[1] shrink"
+              >
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)]"
+                >
+                  Clear preferences
+                </span>
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+                >
+                  Clear your preferences
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="[container-name:true] flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 [container-type:normal] [cursor:pointer] bg-transparent p-[12px] border-surface3 border-[1px] rounded-[16px] [transition:transform_80ms_ease-in-out,_opacity_80ms_ease-in-out] hover:bg-[color:var(--ch-bg)] active:opacity-[0.75] active:[transform:scale(0.98)] focus-visible:[transform:scaleX(0.98)_scaleY(0.98)] focus-visible:[outline-offset:1px] focus-visible:[outline-style:solid] focus-visible:[outline-width:1px] focus-visible:[outline-color:var(--neutral3)] group"
+          role="button"
+          style="--ch-bg: var(--surface2);"
+          tabindex="0"
+        >
+          <div
+            class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-between"
+          >
+            <div
+              class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] flex-row items-center gap-[12px] grow-[1] shrink"
+            >
+              <div
+                class="flex flex-col basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 items-center justify-center"
+              >
+                <svg
+                  fill="none"
+                  stroke-width="8"
+                  style="color: rgba(255, 255, 255, 0.65); width: 24px; height: 24px;"
+                  viewBox="0 0 25 24"
+                >
+                  <path
+                    d="M20.9341 17.59L14.3441 20.65C13.3341 21.12 12.1541 21.12 11.1441 20.65L4.55414 17.59C3.47414 17.09 3.47414 15.55 4.55414 15.05L4.69416 14.99L10.5141 17.68C11.2141 18.01 11.9641 18.18 12.7441 18.18C13.5241 18.18 14.2742 18.01 14.9742 17.68L20.7941 14.99L20.9341 15.05C22.0141 15.55 22.0141 17.09 20.9341 17.59ZM20.9341 10.72L20.8041 10.66L16.1441 12.83L14.9742 13.37C14.2742 13.69 13.5241 13.86 12.7441 13.86C11.9641 13.86 11.2141 13.69 10.5141 13.37L9.34415 12.83L4.68415 10.66L4.55414 10.72C3.47414 11.23 3.47414 12.77 4.55414 13.27L6.47415 14.16L11.1441 16.32C11.6541 16.56 12.1941 16.68 12.7441 16.68C13.2941 16.68 13.8341 16.56 14.3441 16.32L19.0141 14.16L20.9341 13.27C22.0141 12.77 22.0141 11.23 20.9341 10.72ZM20.9341 6.41L14.3441 3.35001C13.8341 3.12001 13.2941 3 12.7441 3C12.1941 3 11.6541 3.12001 11.1441 3.35001L4.55414 6.41C3.47414 6.91 3.47414 8.45001 4.55414 8.95001L4.68415 9.01001L5.57413 9.42001L6.46414 9.84L11.1441 12.01C11.6541 12.24 12.1941 12.36 12.7441 12.36C13.2941 12.36 13.8341 12.24 14.3441 12.01L19.0241 9.84L19.9142 9.42001L20.8041 9.01001L20.9341 8.95001C22.0141 8.45001 22.0141 6.91 20.9341 6.41Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="flex flex-col items-stretch basis-auto box-border relative min-h-[0px] min-w-[0px] gap-[4px] grow-[1] shrink"
+              >
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[16px] [line-height:22px] [font-weight:485] [color:var(--stext-neutral1)]"
+                >
+                  Clear cache
+                </span>
+                <span
+                  class="[display:inline] box-border m-0 [word-wrap:break-word] whitespace-pre-wrap [font-family:var(--stext-font-book)] text-[14px] [line-height:18px] [font-weight:485] [color:var(--stext-neutral2)]"
+                >
+                  Clear cached data
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex basis-auto box-border relative min-h-[0px] min-w-[0px] shrink-0 flex-row items-center justify-center pb-[4px]"
+    >
+      <button
+        class="group/sbtn relative box-border flex min-h-0 min-w-0 cursor-pointer items-center justify-center border border-solid border-transparent select-none [transition:transform_100ms_cubic-bezier(0.17,0.67,0.45,1),filter_100ms_cubic-bezier(0.17,0.67,0.45,1)] active:scale-[0.98] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-solid gap-3 rounded-20 px-5 py-4 flex-row flex-1 basis-0 self-stretch focus-visible:scale-x-[0.98] focus-visible:scale-y-[0.905] bg-surface3 hover:bg-surface3-hovered active:bg-surface3-hovered focus-visible:bg-surface3-hovered focus-visible:outline-neutral3-hovered"
+        dd-action-name="Clear all data"
+        type="button"
+      >
+        <span
+          class="inline-flex shrink-0 items-center justify-center [&_svg]:shrink-0 [&_svg]:size-[20.7px] text-neutral1 group-hover/sbtn:text-neutral1-hovered"
+        >
+          <svg
+            fill="none"
+            stroke-width="8"
+            style="color: rgb(255, 255, 255); width: 20.7px; height: 20.7px;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8.214 5.75H8.52001L8.65924 5.47751C8.77151 5.25781 8.85397 5.01821 8.93013 4.79074L8.93041 4.78989L9.13235 4.18311C9.26824 3.77544 9.65004 3.5 10.081 3.5H13.919C14.35 3.5 14.7318 3.77544 14.8677 4.18311L15.0696 4.78989L15.0699 4.79074C15.146 5.01821 15.2285 5.25781 15.3408 5.47751L15.48 5.75H15.786H20C20.1379 5.75 20.25 5.86214 20.25 6C20.25 6.13786 20.1379 6.25 20 6.25H4C3.86214 6.25 3.75 6.13786 3.75 6C3.75 5.86214 3.86214 5.75 4 5.75H8.214ZM5.65398 8.25H18.346L17.6912 18.1653C17.6912 18.1655 17.6912 18.1658 17.6912 18.166C17.641 18.8842 17.4313 19.4571 17.0592 19.8476C16.696 20.2289 16.1172 20.5 15.19 20.5H8.81C7.88279 20.5 7.30399 20.2289 6.94075 19.8476C6.56874 19.4571 6.35899 18.8843 6.30885 18.1662C6.30883 18.1659 6.30881 18.1656 6.30879 18.1653L5.65398 8.25ZM11.25 11C11.25 10.3139 10.6861 9.75 10 9.75C9.31386 9.75 8.75 10.3139 8.75 11V16C8.75 16.6861 9.31386 17.25 10 17.25C10.6861 17.25 11.25 16.6861 11.25 16V11ZM15.25 11C15.25 10.3139 14.6861 9.75 14 9.75C13.3139 9.75 12.75 10.3139 12.75 11V16C12.75 16.6861 13.3139 17.25 14 17.25C14.6861 17.25 15.25 16.6861 15.25 16V11Z"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+          </svg>
+        </span>
+        <span
+          class="text-center font-medium whitespace-nowrap [font-family:var(--sbtn-font-button)] [transition:color_100ms_cubic-bezier(0.17,0.67,0.45,1)] text-[18px] leading-[20.7px] text-neutral1 group-hover/sbtn:text-neutral1-hovered"
+        >
+          Clear all data
+        </span>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

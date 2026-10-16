@@ -1,0 +1,89 @@
+/**
+ * Models for activity table presentation layer.
+ * These types describe table-ready data from transaction parsers, without formatting or i18n.
+ * Each adapter returns raw IDs, amounts, addresses, and translation keys.
+ */
+
+import { ActivityFilterType } from '~/pages/Portfolio/Activity/Filters/activityFilterTypes'
+
+export type ActivityCellVariant = 'full' | 'compact'
+
+/**
+ * Represents the amount/token data for different transaction types
+ */
+export type ActivityAmountModel =
+  | {
+      kind: 'pair'
+      inputCurrencyId: string
+      outputCurrencyId: string
+      inputAmountRaw?: string
+      outputAmountRaw?: string
+    }
+  | {
+      kind: 'single'
+      currencyId?: string
+      amountRaw?: string
+    }
+  | {
+      // An arbitrary number of currencies with no per-currency amount, for transactions that
+      // settle several tokens at once (e.g. collecting LP-incentive rewards across denominations).
+      kind: 'multi-token'
+      currencyIds: string[]
+    }
+  | {
+      kind: 'approve'
+      currencyId?: string
+      approvalAmount?: string | 'INF'
+    }
+  | {
+      kind: 'wrap'
+      unwrapped: boolean
+      amountRaw?: string
+    }
+  | {
+      kind: 'liquidity-pair'
+      currency0Id: string
+      currency1Id: string
+      currency0AmountRaw: string
+      currency1AmountRaw?: string
+    }
+  | {
+      kind: 'nft'
+      nftImageUrl?: string
+      nftName: string
+      nftCollectionName?: string
+      purchaseCurrencyId?: string
+      purchaseAmountRaw?: string
+    }
+
+/**
+ * Represents the type label and grouping for a transaction
+ */
+interface ActivityTypeLabel {
+  /** Base group for filtering and icon mapping */
+  baseGroup: ActivityFilterType | null
+  /** Optional override translation key for custom labels (e.g., "Wrapped"/"Unwrapped") */
+  overrideLabelKey?: string
+}
+
+/**
+ * Protocol/Dapp information for display
+ */
+export interface ActivityProtocolInfo {
+  name: string
+  logoUrl?: string
+}
+
+/**
+ * Complete row data fragments for a single transaction in the activity table
+ */
+export interface ActivityRowFragments {
+  /** Amount/token data for the transaction */
+  amount?: ActivityAmountModel | null
+  /** Counterparty address (sender/recipient/spender) */
+  counterparty?: Address | null
+  /** Type label and grouping information */
+  typeLabel?: ActivityTypeLabel | null
+  /** Protocol/Dapp information */
+  protocolInfo?: ActivityProtocolInfo | null
+}

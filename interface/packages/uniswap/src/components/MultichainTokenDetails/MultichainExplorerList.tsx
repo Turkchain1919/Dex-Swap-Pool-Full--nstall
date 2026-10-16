@@ -1,0 +1,61 @@
+import type { UniverseChainId } from '@universe/chains'
+import { Flex, iconSizes, Text } from '@universe/mycelium'
+import { TestID } from '@universe/test'
+import { useCallback } from 'react'
+import { ExternalLink } from 'ui/src/components/icons/ExternalLink'
+import { MultichainOptionRow } from 'uniswap/src/components/MultichainTokenDetails/MultichainOptionRow'
+import { MultichainScrollableList } from 'uniswap/src/components/MultichainTokenDetails/MultichainScrollableList'
+import type { MultichainTokenEntry } from 'uniswap/src/components/MultichainTokenDetails/useOrderedMultichainEntries'
+import { getChainInfo } from 'uniswap/src/features/chains/chainInfo'
+import { ExplorerDataType, getExplorerLink } from 'uniswap/src/utils/linking'
+
+interface MultichainExplorerListProps {
+  chains: MultichainTokenEntry[]
+  onExplorerPress?: (url: string, chainId: UniverseChainId) => void
+  /** Pass true when rendered inside a Modal to enable BottomSheetScrollView on native. */
+  renderedInModal?: boolean
+}
+
+/**
+ * Scrollable list of per-chain block explorer links.
+ * Each row shows chain logo, chain name, and a linked explorer name.
+ */
+export function MultichainExplorerList({
+  chains,
+  onExplorerPress,
+  renderedInModal,
+}: MultichainExplorerListProps): JSX.Element {
+  const renderExplorerRow = useCallback(
+    (entry: MultichainTokenEntry) => {
+      const explorerName = getChainInfo(entry.chainId).explorer.name
+      const explorerUrl = getExplorerLink({
+        chainId: entry.chainId,
+        data: entry.address,
+        type: entry.isNative ? ExplorerDataType.NATIVE : ExplorerDataType.TOKEN,
+      })
+
+      return (
+        <MultichainOptionRow
+          chainId={entry.chainId}
+          href={explorerUrl}
+          rel="noopener noreferrer"
+          tag="a"
+          target="_blank"
+          testID={TestID.MultichainExplorerLink}
+          rightContent={
+            <Flex row alignItems="center" gap="$spacing8">
+              <Text color="$neutral2" variant="buttonLabel3">
+                {explorerName}
+              </Text>
+              <ExternalLink color="$neutral2" size={iconSizes.icon16} />
+            </Flex>
+          }
+          onPress={onExplorerPress ? (): void => onExplorerPress(explorerUrl, entry.chainId) : undefined}
+        />
+      )
+    },
+    [onExplorerPress],
+  )
+
+  return <MultichainScrollableList data={chains} renderItem={renderExplorerRow} renderedInModal={renderedInModal} />
+}

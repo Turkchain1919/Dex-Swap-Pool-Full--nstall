@@ -1,0 +1,26 @@
+{
+  "balance": {
+    "total": {
+      "valueUsd": 38676499.9,
+      "absoluteChange1d": 1421619.65,
+      "percentChange1d": 3.69
+    },
+    "tokens": {
+      "valueUsd": 38676499.9,
+      "absoluteChange1d": 1421619.65,
+      "percentChange1d": 3.69
+    },
+    "pools": {
+      "valueUsd": 0,
+      "absoluteChange1d": 0,
+      "percentChange1d": 0,
+      "count": 0
+    },
+    "earn": {
+      "valueUsd": 0,
+      "absoluteChange1d": 0,
+      "percentChange1d": 0
+    },
+    "failedChainIds": []
+  }
+}

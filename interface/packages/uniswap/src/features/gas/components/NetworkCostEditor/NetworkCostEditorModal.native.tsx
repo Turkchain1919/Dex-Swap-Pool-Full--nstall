@@ -1,0 +1,20 @@
+import { Modal } from 'uniswap/src/components/modals/Modal'
+import { NetworkCostEditor } from 'uniswap/src/features/gas/components/NetworkCostEditor/NetworkCostEditor'
+import type { NetworkCostEditorModalProps } from 'uniswap/src/features/gas/components/NetworkCostEditor/NetworkCostEditorModal'
+import { ModalName } from 'uniswap/src/features/telemetry/constants'
+
+export function NetworkCostEditorModal({ isOpen, ...editorProps }: NetworkCostEditorModalProps): JSX.Element {
+  return (
+    <Modal
+      enableBlurKeyboardOnGesture
+      hideKeyboardOnDismiss
+      hideKeyboardOnSwipeDown
+      isModalOpen={isOpen}
+      keyboardBlurBehavior="restore"
+      name={ModalName.NetworkCostEditor}
+      onClose={editorProps.onCancel}
+    >
+      <NetworkCostEditor {...editorProps} />
+    </Modal>
+  )
+}

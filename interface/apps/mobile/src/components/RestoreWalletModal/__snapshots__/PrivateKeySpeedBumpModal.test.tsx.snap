@@ -1,0 +1,125 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PrivateKeySpeedBumpModal > renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    data-testid="modal"
+  >
+    <div
+      class="css-view-175oi2r"
+      style="padding-right: 24px; padding-left: 24px; padding-top: 8px;"
+    >
+      <div
+        class="css-view-175oi2r"
+      >
+        <button
+          accessibilitystate="[object Object]"
+          class="relative box-border flex min-h-0 min-w-0 cursor-pointer items-center justify-center border border-solid border-transparent gap-2 flex-row shrink-0 bg-surface3 p-[12px] rounded-[16px]"
+          role="button"
+          style="padding: 12px; border-radius: 16px; transform: [object Object];"
+        >
+          <div
+            class="css-view-175oi2r"
+            style="width: 24px; height: 24px; align-items: center; justify-content: center;"
+          >
+            <div
+              fill="none"
+              stroke-width="8"
+              style="width: 24px; height: 24px;"
+              viewbox="0 0 24 24"
+            >
+              <div
+                d="M15 3C11.69 3 9 5.69 9 9C9 9.61 9.09001 10.19 9.26001 10.74L3 17V21H7V18H10L13.26 14.74C13.81 14.91 14.39 15 15 15C18.31 15 21 12.31 21 9C21 5.69 18.31 3 15 3ZM16.02 9.25C15.331 9.25 14.7649 8.69 14.7649 8C14.7649 7.31 15.32 6.75 16.01 6.75H16.02C16.71 6.75 17.27 7.31 17.27 8C17.27 8.69 16.71 9.25 16.02 9.25Z"
+                fill="currentColor"
+              />
+            </div>
+          </div>
+        </button>
+      </div>
+      <div
+        class="css-text-146c3p1"
+        dir="auto"
+        style="padding-top: 24px; font-size: 19px; line-height: 24px; font-family: Basel Grotesk; font-weight: 400;"
+      >
+        privateKeys.export.modal.title
+      </div>
+      <div
+        class="css-text-146c3p1"
+        dir="auto"
+        style="padding-top: 8px; font-size: 15px; line-height: 18px; font-family: Basel Grotesk; font-weight: 400;"
+      >
+        privateKeys.export.modal.subtitle
+        <span
+          class="css-textHasAncestor-1jxf684 r-cursor-1loqt21"
+          style="margin-left: 4px; font-size: 15px; line-height: 17.25px; font-family: Basel Grotesk; font-weight: 500;"
+        >
+           Learn more
+        </span>
+      </div>
+      <div
+        class="css-view-175oi2r"
+        style="padding-top: 16px;"
+      >
+        <div
+          class="css-view-175oi2r"
+          style="gap: 12px; padding: 12px 12px 12px 12px; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px;"
+        >
+          <div
+            class="css-view-175oi2r"
+          >
+            <div
+              fill="currentColor"
+              stroke-width="8"
+              style="color: rgba(19, 19, 19, 0.63); width: 20px; height: 20px;"
+              viewbox="0 0 24 24"
+            >
+              <div
+                d="M21.6074 17.1522L15.0004 4.79599C13.7204 2.40199 10.2814 2.40199 9.00042 4.79599L2.39349 17.1522C1.21949 19.3482 2.81353 22.0001 5.30853 22.0001H18.6923C21.1863 22.0001 22.7814 19.3472 21.6074 17.1522ZM11.2504 10.0001C11.2504 9.58609 11.5864 9.25009 12.0004 9.25009C12.4144 9.25009 12.7504 9.58609 12.7504 10.0001V14.0001C12.7504 14.4141 12.4144 14.7501 12.0004 14.7501C11.5864 14.7501 11.2504 14.4141 11.2504 14.0001V10.0001ZM12.0204 18.0001C11.4684 18.0001 11.0153 17.5521 11.0153 17.0001C11.0153 16.4481 11.4584 16.0001 12.0104 16.0001H12.0204C12.5734 16.0001 13.0204 16.4481 13.0204 17.0001C13.0204 17.5521 12.5724 18.0001 12.0204 18.0001Z"
+                fill="currentColor"
+              />
+            </div>
+          </div>
+          <div
+            class="css-view-175oi2r"
+            style="gap: 4px;"
+          >
+            <div
+              class="css-view-175oi2r"
+              style="gap: 2px;"
+            >
+              <div
+                class="css-text-146c3p1"
+                dir="auto"
+                style="font-size: 13px; line-height: 16px; font-family: Basel Grotesk; font-weight: 400;"
+              >
+                privateKeys.export.modal.warning
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-view-175oi2r"
+        style="padding-top: 24px; padding-bottom: 24px;"
+      >
+        <button
+          accessibilitystate="[object Object]"
+          class="relative box-border flex min-h-0 min-w-0 cursor-pointer items-center justify-center border border-solid border-transparent gap-2 rounded-16 px-4 py-3 flex-row flex-1 basis-0 self-stretch bg-accent1"
+          data-testid="continue"
+          dd-action-name="common.button.continue"
+          role="button"
+          style="transform: [object Object];"
+        >
+          <div
+            class="css-text-146c3p1 r-maxWidth-dnmrzs r-overflow-1udh08x r-textOverflow-1udbk01 r-whiteSpace-3s2u2q r-wordWrap-1iln25a"
+            dir="auto"
+            style="font-family: Basel Grotesk; font-weight: 500;"
+          >
+            common.button.continue
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

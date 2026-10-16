@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LongText > renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="css-view-175oi2r"
+    style="gap: 8px;"
+  >
+    <div
+      class="css-text-146c3p1"
+      dir="auto"
+      style="font-size: 17px; line-height: 22px; font-family: Basel Grotesk; font-weight: 400; color: rgb(19, 19, 19);"
+    >
+      Some very long text
+    </div>
+  </div>
+</DocumentFragment>
+`;

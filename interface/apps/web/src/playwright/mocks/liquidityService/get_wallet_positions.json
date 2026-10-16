@@ -1,0 +1,79 @@
+{
+  "positions": [
+    {
+      "version": "V4",
+      "chainId": 1,
+      "owner": "0x50EC05ADe8280758E2077fcBC08D878D4aef79C3",
+      "tokenId": "13281",
+      "poolAddressOrId": "0x72331fcb696b0151904c03584b66dc8365bc63f8a144d89a773384e3a579ca73",
+      "feeTier": 500,
+      "tickLower": -887270,
+      "tickUpper": 887270,
+      "liquidity": "49387053232",
+      "status": "POSITION_STATUS_OPEN",
+      "token0Address": "0x0000000000000000000000000000000000000000",
+      "token0Metadata": {
+        "symbol": "ETH",
+        "name": "Ethereum",
+        "decimals": 18
+      },
+      "token1Address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "token1Metadata": {
+        "symbol": "USDT",
+        "name": "Tether USD",
+        "decimals": 6
+      },
+      "hookAddress": "0x0000000000000000000000000000000000000000",
+      "tickSpacing": 10,
+      "currentTick": -202299,
+      "sqrtPriceX96": "3207989918599918700969750",
+      "poolLiquidity": "20745140031091761",
+      "token0PriceUsd": "3000",
+      "token1PriceUsd": "1",
+      "amount0": "1219718758116679",
+      "amount1": "1999707",
+      "token0UncollectedFees": "12000000000000000",
+      "token1UncollectedFees": "41500000",
+      "totalApr": 18.464362134720783,
+      "valueUsd": 5.66,
+      "uncollectedFeesUsd": 77.5
+    },
+    {
+      "version": "V3",
+      "chainId": 1,
+      "owner": "0x50EC05ADe8280758E2077fcBC08D878D4aef79C3",
+      "tokenId": "1028438",
+      "poolAddressOrId": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640",
+      "feeTier": 500,
+      "tickLower": 195000,
+      "tickUpper": 196000,
+      "liquidity": "4812339485720931",
+      "status": "POSITION_STATUS_OPEN",
+      "token0Address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "token0Metadata": {
+        "symbol": "USDC",
+        "name": "USD Coin",
+        "decimals": 6
+      },
+      "token1Address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "token1Metadata": {
+        "symbol": "WETH",
+        "name": "Wrapped Ether",
+        "decimals": 18
+      },
+      "tickSpacing": 10,
+      "currentTick": 200000,
+      "sqrtPriceX96": "1744250000000000000000000000000000",
+      "poolLiquidity": "18349217342875123456",
+      "token0PriceUsd": "1",
+      "token1PriceUsd": "3000",
+      "amount0": "0",
+      "amount1": "1884143000000000000",
+      "token0UncollectedFees": "0",
+      "token1UncollectedFees": "0",
+      "totalApr": 0,
+      "valueUsd": 5652.43,
+      "uncollectedFeesUsd": 0
+    }
+  ]
+}

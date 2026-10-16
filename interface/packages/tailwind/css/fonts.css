@@ -1,0 +1,55 @@
+/* Basel Grotesk Font Faces */
+
+@font-face {
+  font-family: "Basel Grotesk";
+  src:
+    url("../fonts/Basel-Grotesk-Book.woff2") format("woff2"),
+    url("../fonts/Basel-Grotesk-Book.woff") format("woff");
+  font-weight: 485;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basel Grotesk";
+  src:
+    url("../fonts/Basel-Grotesk-Medium.woff2") format("woff2"),
+    url("../fonts/Basel-Grotesk-Medium.woff") format("woff");
+  font-weight: 535;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Legacy family alias: apps/web/index.html declares these same cuts under the
+ * family name "Basel" (Book 485 / Medium 535), and the legacy theme/fonts.ts
+ * stack — pinned by the mycelium compat components (`--sbtn-font-button`) —
+ * asks for `Basel, -apple-system, ...`. Without this alias, any consumer other
+ * than apps/web resolves that stack to the system font, and weight 535 (> 500)
+ * matches a Semibold/Bold system cut — visibly heavier than Basel Grotesk
+ * Medium in prod. `font-display: block` mirrors apps/web/index.html so there is
+ * no heavier-fallback flash. apps/web itself intentionally omits this file.
+ */
+@font-face {
+  font-family: "Basel";
+  src:
+    url("../fonts/Basel-Grotesk-Book.woff2") format("woff2"),
+    url("../fonts/Basel-Grotesk-Book.woff") format("woff");
+  font-weight: 485;
+  font-style: normal;
+  font-display: block;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Basel";
+  src:
+    url("../fonts/Basel-Grotesk-Medium.woff2") format("woff2"),
+    url("../fonts/Basel-Grotesk-Medium.woff") format("woff");
+  font-weight: 535;
+  font-style: normal;
+  font-display: block;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

@@ -1,0 +1,948 @@
+/* oxlint-disable max-lines */
+import { AnyAction } from '@reduxjs/toolkit'
+import { WalletKitTypes } from '@reown/walletkit'
+import { UniverseChainId, Platform, areAddressesEqual } from '@universe/chains'
+import { FeatureFlags, getFeatureFlag } from '@universe/gating'
+import { PendingRequestTypes, ProposalTypes, SessionTypes, SignClientTypes, Verify } from '@walletconnect/types'
+import { buildApprovedNamespaces, getInternalError, getSdkError, populateAuthPayload } from '@walletconnect/utils'
+import { Alert } from 'react-native'
+import { EventChannel, eventChannel } from 'redux-saga'
+import { MobileState } from 'src/app/mobileReducer'
+import {
+  handleGetCallsStatus,
+  handleGetCapabilities,
+  handleSendCalls,
+} from 'src/features/walletConnect/batchedTransactionSaga'
+import { fetchDappDetails } from 'src/features/walletConnect/fetchDappDetails'
+import { selectAllSessions } from 'src/features/walletConnect/selectors'
+import {
+  getAccountAddressFromEIP155String,
+  getChainIdFromEIP155String,
+  getSupportedWalletConnectChains,
+  getTypedDataDomainChainId,
+  parseGetCallsStatusRequest,
+  parseGetCapabilitiesRequest,
+  parseSendCallsRequest,
+  parseSignRequest,
+  parseTransactionRequest,
+  parseVerifyStatus,
+} from 'src/features/walletConnect/utils'
+import { initializeWeb3Wallet, wcWeb3Wallet } from 'src/features/walletConnect/walletConnectClient'
+import {
+  addPendingSession,
+  addRequest,
+  addSession,
+  removeSession,
+  replaceSession,
+  SignRequest,
+  setHasPendingSessionError,
+  TransactionRequest,
+  WalletSendCallsRequest,
+} from 'src/features/walletConnect/walletConnectSlice'
+import { call, fork, put, select, take } from 'typed-redux-saga'
+import { getChainLabel } from 'uniswap/src/features/chains/utils'
+import { EthMethod, type EthSignMethod } from 'uniswap/src/features/dappRequests/types'
+import { isSelfCallWithData, isSignTypedDataMethod } from 'uniswap/src/features/dappRequests/utils'
+import { pushNotification } from 'uniswap/src/features/notifications/slice/slice'
+import { AppNotificationType } from 'uniswap/src/features/notifications/slice/types'
+import { getEnabledChainIdsSaga } from 'uniswap/src/features/settings/saga'
+import { MobileEventName } from 'uniswap/src/features/telemetry/constants'
+import { sendAnalyticsEvent } from 'uniswap/src/features/telemetry/send'
+import i18n from 'uniswap/src/i18n'
+import { DappRequestType, EthEvent, WalletConnectEvent } from 'uniswap/src/types/walletConnect'
+import { logger } from 'utilities/src/logger/logger'
+import { ONE_SECOND_MS } from 'utilities/src/time/time'
+import { InvalidSendCallsRequestError } from 'wallet/src/features/batchedTransactions/normalizeSendCalls'
+import {
+  selectAccounts,
+  selectActiveAccountAddress,
+  selectSignerMnemonicAccounts,
+} from 'wallet/src/features/wallet/selectors'
+import { removeAccounts as removeAccountsAction, setAccountAsActive } from 'wallet/src/features/wallet/slice'
+
+const WC_SUPPORTED_METHODS = [
+  EthMethod.EthSign,
+  EthMethod.EthSendTransaction,
+  EthMethod.PersonalSign,
+  EthMethod.SignTypedData,
+  EthMethod.SignTypedDataV4,
+  EthMethod.WalletGetCapabilities,
+  EthMethod.WalletSendCalls,
+  EthMethod.WalletGetCallsStatus,
+]
+
+function createWalletConnectChannel(): EventChannel<AnyAction> {
+  return eventChannel<AnyAction>((emit) => {
+    /*
+     * Handle incoming `session_proposal` events that contain the dapp attempting to pair
+     * and the proposal namespaces (chains, methods, events)
+     */
+    const sessionProposalHandler = async (proposalEvent: WalletKitTypes.SessionProposal): Promise<void> => {
+      const { params: proposal, verifyContext } = proposalEvent
+      emit({ type: 'session_proposal', proposal: { ...proposal, verifyContext } })
+    }
+
+    const sessionRequestHandler = async (request: WalletKitTypes.SessionRequest): Promise<void> => {
+      emit({ type: 'session_request', request })
+    }
+
+    const sessionDeleteHandler = async (session: WalletKitTypes.SessionDelete): Promise<void> => {
+      emit({ type: 'session_delete', session })
+    }
+
+    const sessionAuthenticateHandler = async (authenticate: WalletKitTypes.SessionAuthenticate): Promise<void> => {
+      emit({ type: 'session_authenticate', authenticate })
+    }
+
+    wcWeb3Wallet.on('session_proposal', sessionProposalHandler)
+    wcWeb3Wallet.on('session_request', sessionRequestHandler)
+    wcWeb3Wallet.on('session_delete', sessionDeleteHandler)
+    wcWeb3Wallet.on('session_authenticate', sessionAuthenticateHandler)
+
+    const unsubscribe = (): void => {
+      wcWeb3Wallet.off('session_proposal', sessionProposalHandler)
+      wcWeb3Wallet.off('session_request', sessionRequestHandler)
+      wcWeb3Wallet.off('session_delete', sessionDeleteHandler)
+      wcWeb3Wallet.off('session_authenticate', sessionAuthenticateHandler)
+    }
+
+    return unsubscribe
+  })
+}
+
+function* watchWalletConnectEvents() {
+  const wcChannel = yield* call(createWalletConnectChannel)
+
+  while (true) {
+    try {
+      const event = yield* take(wcChannel)
+      if (event.type === 'session_proposal') {
+        yield* call(handleSessionProposal, event['proposal'])
+      } else if (event.type === 'session_request') {
+        yield* call(handleSessionRequest, event['request'])
+      } else if (event.type === 'session_authenticate') {
+        yield* call(handleSessionAuthenticate, event['authenticate'])
+      } else if (event.type === 'session_delete') {
+        yield* call(handleSessionDelete, event['session'])
+      }
+    } catch (error) {
+      logger.error(error, {
+        tags: { file: 'walletConnect/saga', function: 'watchWalletConnectEvents' },
+      })
+    }
+  }
+}
+
+function showAlert(title: string, message: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    Alert.alert(title, message, [
+      {
+        text: 'OK',
+        onPress: () => resolve(true),
+      },
+    ])
+  })
+}
+
+function* cancelErrorSession({
+  dappName,
+  chainLabels,
+  proposalId,
+}: {
+  dappName: string
+  chainLabels: string
+  proposalId: number
+}) {
+  yield* call([wcWeb3Wallet, wcWeb3Wallet.rejectSession], {
+    id: proposalId,
+    reason: getSdkError('UNSUPPORTED_CHAINS'),
+  })
+
+  yield* call(
+    showAlert,
+    i18n.t('walletConnect.error.connection.title'),
+    i18n.t('walletConnect.error.connection.message', {
+      chainNames: chainLabels,
+      dappName,
+    }),
+  )
+
+  // Set error state to cancel loading state in WalletConnectModal UI
+  yield* put(setHasPendingSessionError(true))
+
+  // Allow users to rescan again
+  yield* put(setHasPendingSessionError(false))
+}
+
+export function* handleSessionProposal(proposal: ProposalTypes.Struct & { verifyContext?: Verify.Context }) {
+  const {
+    id,
+    proposer: { metadata: dapp },
+  } = proposal
+
+  const { chains: enabledChainIds } = yield* call(getEnabledChainIdsSaga, Platform.EVM)
+
+  const namespaceCheck = proposal.optionalNamespaces
+  const firstNamespace = Object.keys(namespaceCheck)[0]
+
+  if (firstNamespace && firstNamespace !== 'eip155') {
+    const chainLabels = enabledChainIds.map(getChainLabel).join(', ')
+    yield* cancelErrorSession({ dappName: dapp.name, chainLabels, proposalId: proposal.id })
+    return
+  }
+
+  const activeSignerAccounts = yield* select(selectSignerMnemonicAccounts)
+  const activeSignerAccountAddresses = activeSignerAccounts.map((account) => account.address)
+
+  try {
+    const supportedEip155Chains = enabledChainIds.map((chainId) => `eip155:${chainId}`)
+
+    const accounts = supportedEip155Chains.flatMap((chain) =>
+      activeSignerAccountAddresses.map((account) => `${chain}:${account}`),
+    )
+
+    const namespaces = buildApprovedNamespaces({
+      proposal,
+      supportedNamespaces: {
+        eip155: {
+          chains: supportedEip155Chains,
+          methods: WC_SUPPORTED_METHODS,
+          events: [EthEvent.AccountsChanged, EthEvent.ChainChanged],
+          accounts,
+        },
+      },
+    })
+
+    // If the dapp only requested unsupported chains in optionalNamespaces (with no requiredNamespaces),
+    // buildApprovedNamespaces returns empty namespaces. Reject and show an error.
+    if (Object.keys(namespaces).length === 0) {
+      throw new Error('Dapp requested only unsupported chains')
+    }
+
+    // Extract chains from approved namespaces to show in UI for pending session
+    const proposalChainIds: UniverseChainId[] = []
+    Object.entries(namespaces).forEach(([key, namespace]) => {
+      const { chains } = namespace
+      // EVM chain(s) are specified in either `eip155:CHAIN` or chains array
+      const eip155Chains = key.includes(':') ? [key] : chains
+      proposalChainIds.push(...(getSupportedWalletConnectChains(eip155Chains) ?? []))
+    })
+
+    const verifyStatus = parseVerifyStatus(proposal.verifyContext)
+    const trustedOriginUrl = proposal.verifyContext?.verified.origin
+
+    yield* put(
+      addPendingSession({
+        wcSession: {
+          id: id.toString(),
+          proposalNamespaces: namespaces,
+          chains: proposalChainIds,
+          verifyStatus,
+          trustedOriginUrl,
+          dappRequestInfo: {
+            name: dapp.name,
+            url: trustedOriginUrl ?? dapp.url,
+            icon: dapp.icons[0] ?? null,
+            requestType: DappRequestType.WalletConnectSessionRequest,
+          },
+        },
+      }),
+    )
+  } catch (e) {
+    const chainLabels = enabledChainIds.map(getChainLabel).join(', ')
+
+    yield* cancelErrorSession({ dappName: dapp.name, chainLabels, proposalId: proposal.id })
+
+    logger.debug(
+      'WalletConnectSaga',
+      'sessionProposalHandler',
+      'Rejected session proposal due to invalid proposal namespaces: ',
+      e,
+    )
+  }
+}
+
+function getAccountAddressFromWCSession(requestSession: SessionTypes.Struct) {
+  const namespaces = Object.values(requestSession.namespaces)
+  const eip155Account = namespaces[0]?.accounts[0]
+  return eip155Account ? getAccountAddressFromEIP155String(eip155Account) : undefined
+}
+
+/**
+ * Verifies an `account` is approved for a `chainId` in a session's namespace.
+ * signer/from address, should be cross-checked against the approved set.
+ */
+function isAccountInSessionNamespace({
+  session,
+  chainId,
+  account,
+}: {
+  session: SessionTypes.Struct
+  chainId: UniverseChainId
+  account: Address
+}): boolean {
+  const eip155Chain = `eip155:${chainId}`
+
+  for (const [namespaceKey, namespace] of Object.entries(session.namespaces)) {
+    const namespaceChains = namespaceKey.includes(':') ? [namespaceKey] : (namespace.chains ?? [])
+    if (!namespaceChains.includes(eip155Chain)) {
+      continue
+    }
+
+    for (const eip155Account of namespace.accounts) {
+      const parts = eip155Account.split(':')
+      // Strict per-account chain check, must match the request's chain
+      if (parts.length === 3 && parts[0] === 'eip155' && Number(parts[1]) !== chainId) {
+        continue
+      }
+      const approvedAddress = getAccountAddressFromEIP155String(eip155Account)
+      if (!approvedAddress) {
+        continue
+      }
+      if (
+        areAddressesEqual({
+          addressInput1: { address: approvedAddress, platform: Platform.EVM },
+          addressInput2: { address: account, platform: Platform.EVM },
+        })
+      ) {
+        return true
+      }
+    }
+  }
+
+  return false
+}
+
+/**
+ * Refuses typed data whose EIP-712 domain names a different chain than the envelope it arrived in.
+ * The sheet and Blockaid scan use the envelope chain while the signature commits to
+ * `domain.chainId`, so divergence lets a session sign outside its scope. Rejecting before queueing
+ * keeps it off the sheet. The analytics event measures how often this is legitimate.
+ */
+function* respondTypedDataChainMismatch({
+  topic,
+  id,
+  method,
+  dapp,
+  session,
+  account,
+  envelopeChainId,
+  domainChainId,
+}: {
+  topic: string
+  id: number
+  method: EthSignMethod
+  dapp: SignClientTypes.Metadata
+  session: SessionTypes.Struct
+  account: Address
+  envelopeChainId: UniverseChainId
+  domainChainId: UniverseChainId | null
+}) {
+  yield* call(sendAnalyticsEvent, MobileEventName.WalletConnectChainMismatchRejected, {
+    dapp_url: dapp.url,
+    dapp_name: dapp.name,
+    eth_method: method,
+    envelope_chain_id: envelopeChainId,
+    domain_chain_id: domainChainId ?? undefined,
+    domain_chain_in_namespace: domainChainId
+      ? isAccountInSessionNamespace({ session, chainId: domainChainId, account })
+      : false,
+  })
+
+  yield* call([wcWeb3Wallet, wcWeb3Wallet.respondSessionRequest], {
+    topic,
+    response: {
+      id,
+      jsonrpc: '2.0',
+      error: getSdkError('USER_REJECTED', 'Typed data domain chain does not match the chain this request was sent on'),
+    },
+  })
+}
+
+/**
+ * Responds with unauthorized account access
+ */
+function* respondUnauthorizedAccount({ topic, id }: { topic: string; id: number }) {
+  yield* call([wcWeb3Wallet, wcWeb3Wallet.respondSessionRequest], {
+    topic,
+    response: {
+      id,
+      jsonrpc: '2.0',
+      error: getSdkError('USER_REJECTED', 'Requested account is not approved for this session'),
+    },
+  })
+}
+
+function* respondInvalidSessionRequest({
+  topic,
+  id,
+  method,
+  error,
+}: {
+  topic: string
+  id: number
+  method: string
+  error: unknown
+}) {
+  const errorReason =
+    error instanceof InvalidSendCallsRequestError ? error.message : error instanceof Error ? error.name : typeof error
+  logger.warn(
+    'walletConnect/saga.ts',
+    'respondInvalidSessionRequest',
+    `Rejected invalid ${method} request (${errorReason})`,
+  )
+  try {
+    yield* call([wcWeb3Wallet, wcWeb3Wallet.respondSessionRequest], {
+      topic,
+      response: {
+        id,
+        jsonrpc: '2.0',
+        error: getInternalError('MISSING_OR_INVALID', 'Request parameters could not be parsed.'),
+      },
+    })
+  } catch (responseError) {
+    // A relay failure must not terminate cold-start replay or the live WalletConnect watcher.
+    logger.error(responseError, {
+      tags: { file: 'walletConnect/saga', function: 'respondInvalidSessionRequest' },
+      extra: { method },
+    })
+  }
+}
+
+function* handleSignSessionRequest({
+  method,
+  topic,
+  id,
+  chainId,
+  dapp,
+  requestParams,
+  requestSession,
+  verifyContext,
+}: {
+  method: EthSignMethod
+  topic: string
+  id: number
+  chainId: UniverseChainId
+  dapp: SignClientTypes.Metadata
+  requestParams: WalletKitTypes.SessionRequest['params']['request']['params']
+  requestSession: SessionTypes.Struct
+  verifyContext?: Verify.Context
+}) {
+  let request: SignRequest
+  try {
+    request = {
+      ...parseSignRequest({ method, topic, internalId: id, chainId, dapp, requestParams }),
+      verifyStatus: parseVerifyStatus(verifyContext),
+      trustedOriginUrl: verifyContext?.verified.origin,
+    }
+  } catch (error) {
+    yield* call(respondInvalidSessionRequest, { topic, id, method, error })
+    return
+  }
+
+  if (!isAccountInSessionNamespace({ session: requestSession, chainId, account: request.account })) {
+    yield* call(respondUnauthorizedAccount, { topic, id })
+    return
+  }
+
+  if (isSignTypedDataMethod(method)) {
+    const domainChainId = getTypedDataDomainChainId(request.rawMessage)
+    if (domainChainId !== chainId) {
+      yield* call(respondTypedDataChainMismatch, {
+        topic,
+        id,
+        method,
+        dapp,
+        session: requestSession,
+        account: request.account,
+        envelopeChainId: chainId,
+        domainChainId,
+      })
+      return
+    }
+  }
+
+  yield* put(addRequest(request))
+}
+
+const eip5792Methods = [EthMethod.WalletGetCallsStatus, EthMethod.WalletSendCalls, EthMethod.WalletGetCapabilities].map(
+  (m) => m.valueOf(),
+)
+
+/**
+ * Handles WalletConnect authentication requests, which are used for one-click sign in
+ * via WalletConnect's implementation of SIWE and ReCaps.
+ *
+ * @see https://docs.reown.com/walletkit/android/one-click-auth
+ *
+ * We only sign and broadcast a single signature for the first chain — the minimum required for a valid authenticated session.
+ * If a dapp wants to authenticate across multiple chains, it must request additional signatures separately.
+ * This tradeoff simplifies the user experience and remains aligned with the WalletConnect specification.
+ */
+export function* handleSessionAuthenticate(authenticate: WalletKitTypes.SessionAuthenticate) {
+  const { chains: enabledChainIds } = yield* call(getEnabledChainIdsSaga, Platform.EVM)
+
+  // Filter non wallet supported chains from auth payload, in eip155 format
+  const formattedEip155Chains = authenticate.params.authPayload.chains.filter((chain) =>
+    enabledChainIds.some((id) => chain === `eip155:${id}`),
+  )
+
+  const authPayload = populateAuthPayload({
+    authPayload: authenticate.params.authPayload,
+    chains: formattedEip155Chains,
+    methods: WC_SUPPORTED_METHODS,
+  })
+
+  const activeAccountAddress = yield* select(selectActiveAccountAddress)
+
+  if (!activeAccountAddress) {
+    throw new Error('WalletConnect 1-Click Auth request has no active account')
+  }
+
+  // To avoid multiple signature modals, we only sign for the first supported chain.
+  // If a dapp wants to authenticate across multiple chains, it must request additional signatures separately.
+  const chainForSigning = formattedEip155Chains[0] ? getChainIdFromEIP155String(formattedEip155Chains[0]) : undefined
+
+  if (!chainForSigning) {
+    throw new Error('WalletConnect 1-Click Auth request has invalid supported chain: ' + formattedEip155Chains[0])
+  }
+
+  const message = wcWeb3Wallet.formatAuthMessage({
+    request: authPayload,
+    iss: `eip155:${chainForSigning}:${activeAccountAddress}`,
+  })
+
+  const request: SignRequest = {
+    type: EthMethod.EthSign,
+    message,
+    rawMessage: message,
+    sessionId: authenticate.id.toString(),
+    internalId: `${chainForSigning}:${authenticate.id.toString()}`,
+    chainId: chainForSigning,
+    account: activeAccountAddress,
+    dappRequestInfo: {
+      name: authenticate.params.requester.metadata.name,
+      url: authenticate.params.requester.metadata.url,
+      icon: authenticate.params.requester.metadata.icons[0] ?? null,
+      requestType: DappRequestType.WalletConnectAuthenticationRequest,
+      authPayload,
+    },
+  }
+
+  yield* put(addRequest(request))
+}
+
+// `@walletconnect/types` declares `verifyContext` as required on pending requests, but
+// requests restored via `getPendingSessionRequests` can lack it at runtime — treat it as optional.
+export function* handleSessionRequest(
+  sessionRequest: Omit<PendingRequestTypes.Struct, 'verifyContext'> & { verifyContext?: Verify.Context },
+) {
+  const { topic, params, id } = sessionRequest
+  const { request: wcRequest, chainId: wcChainId } = params
+  const { method, params: requestParams } = wcRequest
+
+  const chainId = getChainIdFromEIP155String(wcChainId)
+  const requestSession = wcWeb3Wallet.engine.signClient.session.get(topic)
+  const accountAddress = getAccountAddressFromWCSession(requestSession)
+  const dapp = requestSession.peer.metadata
+
+  if (!chainId) {
+    throw new Error('WalletConnect 2.0 session request has invalid chainId')
+  }
+
+  if (!accountAddress) {
+    throw new Error('WalletConnect 2.0 session has no eip155 account')
+  }
+
+  if (eip5792Methods.includes(method)) {
+    const eip5792MethodsEnabled = getFeatureFlag(FeatureFlags.Eip5792Methods)
+    if (!eip5792MethodsEnabled) {
+      yield* call([wcWeb3Wallet, wcWeb3Wallet.respondSessionRequest], {
+        topic,
+        response: {
+          id,
+          jsonrpc: '2.0',
+          error: getSdkError('WC_METHOD_UNSUPPORTED'),
+        },
+      })
+      return
+    }
+  }
+
+  switch (method) {
+    case EthMethod.EthSign:
+    case EthMethod.PersonalSign:
+    case EthMethod.SignTypedData:
+    case EthMethod.SignTypedDataV4: {
+      yield* call(handleSignSessionRequest, {
+        method,
+        topic,
+        id,
+        chainId,
+        dapp,
+        requestParams,
+        requestSession,
+        verifyContext: sessionRequest.verifyContext,
+      })
+      break
+    }
+    case EthMethod.EthSendTransaction: {
+      let request: TransactionRequest
+      try {
+        request = {
+          ...parseTransactionRequest({
+            method,
+            topic,
+            internalId: id,
+            chainId,
+            dapp,
+            requestParams,
+          }),
+          verifyStatus: parseVerifyStatus(sessionRequest.verifyContext),
+          trustedOriginUrl: sessionRequest.verifyContext?.verified.origin,
+        }
+      } catch (error) {
+        yield* call(respondInvalidSessionRequest, { topic, id, method, error })
+        return
+      }
+      if (!isAccountInSessionNamespace({ session: requestSession, chainId, account: request.account })) {
+        yield* call(respondUnauthorizedAccount, { topic, id })
+        return
+      }
+      // Validate for self-call with data
+      if (
+        isSelfCallWithData({
+          from: request.transaction.from,
+          to: request.transaction.to,
+          data: request.transaction.data,
+        })
+      ) {
+        yield* call([wcWeb3Wallet, wcWeb3Wallet.respondSessionRequest], {
+          topic,
+          response: {
+            id,
+            jsonrpc: '2.0',
+            error: getSdkError('USER_REJECTED', 'Self-calls with data are not supported'),
+          },
+        })
+        return
+      }
+      yield* put(addRequest(request))
+      break
+    }
+    case EthMethod.WalletSendCalls: {
+      let request: WalletSendCallsRequest
+      try {
+        request = {
+          ...parseSendCallsRequest({
+            topic,
+            internalId: id,
+            chainId,
+            dapp,
+            requestParams,
+            account: accountAddress,
+          }),
+          verifyStatus: parseVerifyStatus(sessionRequest.verifyContext),
+          trustedOriginUrl: sessionRequest.verifyContext?.verified.origin,
+        }
+      } catch (error) {
+        yield* call(respondInvalidSessionRequest, { topic, id, method, error })
+        return
+      }
+      if (!isAccountInSessionNamespace({ session: requestSession, chainId, account: request.account })) {
+        yield* call(respondUnauthorizedAccount, { topic, id })
+        return
+      }
+      // Validate for self-call with data in any of the calls
+      const hasSelfCall = request.calls.some((batchCall) =>
+        isSelfCallWithData({ from: request.account, to: batchCall.to, data: batchCall.data }),
+      )
+      if (hasSelfCall) {
+        yield* call([wcWeb3Wallet, wcWeb3Wallet.respondSessionRequest], {
+          topic,
+          response: {
+            id,
+            jsonrpc: '2.0',
+            error: getSdkError('USER_REJECTED', 'Self-calls with data are not supported'),
+          },
+        })
+        return
+      }
+      yield* call(handleSendCalls, { topic, requestId: id, request })
+      break
+    }
+    case EthMethod.WalletGetCallsStatus: {
+      const { id: batchId } = parseGetCallsStatusRequest({
+        topic,
+        internalId: id,
+        chainId,
+        dapp,
+        requestParams,
+        account: accountAddress,
+      })
+      yield* call(handleGetCallsStatus, { topic, requestId: id, batchId, accountAddress })
+      break
+    }
+    case EthMethod.WalletGetCapabilities: {
+      const {
+        account,
+        chainIds,
+        dappRequestInfo: { url: dappUrl },
+      } = parseGetCapabilitiesRequest({ method, topic, internalId: id, dapp, requestParams })
+      if (!isAccountInSessionNamespace({ session: requestSession, chainId, account })) {
+        yield* call(respondUnauthorizedAccount, { topic, id })
+        return
+      }
+      yield* call(handleGetCapabilities, {
+        topic,
+        requestId: id,
+        accountAddress,
+        requestedAccount: account,
+        chainIdsFromRequest: chainIds,
+        dappName: dapp.name,
+        dappUrl,
+        dappIconUrl: dapp.icons[0],
+      })
+      break
+    }
+    default:
+      // Reject request for an invalid method
+      logger.warn('WalletConnectSaga', 'sessionRequestHandler', `Session request method is unsupported: ${method}`)
+      yield* call([wcWeb3Wallet, wcWeb3Wallet.respondSessionRequest], {
+        topic,
+        response: {
+          id,
+          jsonrpc: '2.0',
+          error: getSdkError('WC_METHOD_UNSUPPORTED'),
+        },
+      })
+  }
+}
+
+function* handleSessionDelete(event: WalletKitTypes.SessionDelete) {
+  const { topic } = event
+
+  const currentState = yield* select((state: MobileState) => state.walletConnect)
+
+  const { dappName, dappIcon } = fetchDappDetails(topic, currentState)
+
+  yield* put(
+    pushNotification({
+      type: AppNotificationType.WalletConnect,
+      event: WalletConnectEvent.Disconnected,
+      dappName,
+      imageUrl: dappIcon,
+      hideDelay: 3 * ONE_SECOND_MS,
+    }),
+  )
+
+  yield* put(removeSession({ sessionId: topic }))
+}
+
+function* disconnectSessionWithReason({
+  topic,
+  caller,
+  reason,
+}: {
+  topic: string
+  caller: string
+  reason: string
+}): Generator {
+  try {
+    yield* call([wcWeb3Wallet, wcWeb3Wallet.disconnectSession], {
+      topic,
+      reason: getSdkError('USER_DISCONNECTED'),
+    })
+    logger.debug('WalletConnectSaga', caller, `Disconnected session ${topic}: ${reason}`)
+  } catch (e) {
+    logger.error(e, {
+      tags: { file: 'walletConnect/saga', function: caller },
+      extra: { topic, reason },
+    })
+  }
+}
+
+export function* populateActiveSessions() {
+  // Fetch all active sessions and add to store
+  const sessions = wcWeb3Wallet.getActiveSessions()
+
+  const accounts = yield* select(selectAccounts)
+  const nowSeconds = Math.floor(Date.now() / 1000)
+
+  for (const session of Object.values(sessions)) {
+    // Disconnect expired sessions from the relay instead of restoring them
+    if (session.expiry && session.expiry < nowSeconds) {
+      yield* call(disconnectSessionWithReason, {
+        topic: session.topic,
+        caller: 'populateActiveSessions',
+        reason: 'expired',
+      })
+      continue
+    }
+
+    // Get account address connected to the session from first namespace
+    const namespaces = Object.values(session.namespaces)
+    const eip155Account = namespaces[0]?.accounts[0]
+    if (!eip155Account) {
+      continue
+    }
+
+    const accountAddress = getAccountAddressFromEIP155String(eip155Account)
+
+    if (!accountAddress) {
+      continue
+    }
+
+    // Disconnect orphaned sessions whose accounts no longer exist in the wallet
+    const matchingAccount = Object.values(accounts).find((account) =>
+      areAddressesEqual({
+        addressInput1: { address: account.address, platform: Platform.EVM },
+        addressInput2: { address: accountAddress, platform: Platform.EVM },
+      }),
+    )
+    if (!matchingAccount) {
+      yield* call(disconnectSessionWithReason, {
+        topic: session.topic,
+        caller: 'populateActiveSessions',
+        reason: 'orphaned',
+      })
+      continue
+    }
+
+    // Get all chains for session namespaces, supporting `eip155:CHAIN_ID` and `eip155` namespace formats
+    const chains: UniverseChainId[] = []
+    Object.entries(session.namespaces).forEach(([key, namespace]) => {
+      const eip155Chains = key.includes(':') ? [key] : namespace.chains
+      chains.push(...(getSupportedWalletConnectChains(eip155Chains) ?? []))
+    })
+
+    yield* put(
+      addSession({
+        wcSession: {
+          id: session.topic,
+          dappRequestInfo: {
+            name: session.peer.metadata.name,
+            url: session.peer.metadata.url,
+            icon: session.peer.metadata.icons[0] ?? null,
+            requestType: DappRequestType.WalletConnectSessionRequest,
+          },
+          chains,
+          namespaces: session.namespaces,
+          activeAccount: accountAddress,
+        },
+      }),
+    )
+  }
+}
+
+// Load any existing pending session proposals from the WC connection
+function* fetchPendingSessionProposals() {
+  const pendingSessionProposals = wcWeb3Wallet.getPendingSessionProposals()
+  for (const proposal of Object.values(pendingSessionProposals)) {
+    yield* call(handleSessionProposal, proposal)
+  }
+}
+
+// Load any existing pending session requests from the WC connection
+export function* fetchPendingSessionRequests() {
+  const pendingSessionRequests = wcWeb3Wallet.getPendingSessionRequests()
+  for (const sessionRequest of Object.values(pendingSessionRequests)) {
+    yield* call(handleSessionRequest, sessionRequest)
+  }
+}
+
+/**
+ * Monitor wallet account changes and update WC sessions accordingly for sessions that are approved with multiple accounts.
+ *
+ * This allows connected Dapps to stay in sync with the currently active wallet account across all supported chains.
+ *
+ * Account approvals are per chain, and included as part of the wc session namespaces.
+ */
+function* monitorAccountChanges() {
+  while (true) {
+    const action = yield* take(setAccountAsActive)
+    const newActiveAccountAddress = action.payload
+
+    const allSessions = yield* select(selectAllSessions)
+
+    for (const session of Object.values(allSessions)) {
+      const accounts = session.namespaces['eip155']?.accounts
+
+      // Update all sessions if new active account is included in the session namespacess
+      const isNewAccountApprovedInNamespace = accounts?.some((eip155String) => {
+        const parsedAddress = getAccountAddressFromEIP155String(eip155String)
+        // TODO(WALL-7065): Update to support solana
+        return areAddressesEqual({
+          addressInput1: { address: parsedAddress, platform: Platform.EVM },
+          addressInput2: { address: newActiveAccountAddress, platform: Platform.EVM },
+        })
+      })
+
+      if (!isNewAccountApprovedInNamespace) {
+        continue
+      }
+
+      // Update WC sessions across all supported chains with the new active account
+      const chains = session.namespaces['eip155']?.chains ?? []
+      yield* call(function* () {
+        for (const chainId of chains) {
+          yield* call([wcWeb3Wallet, wcWeb3Wallet.emitSessionEvent], {
+            topic: session.id,
+            chainId,
+            event: {
+              name: EthEvent.AccountsChanged,
+              data: [newActiveAccountAddress],
+            },
+          })
+        }
+      })
+
+      // Update the active account in store
+      yield* put(replaceSession({ wcSession: { ...session, activeAccount: newActiveAccountAddress } }))
+    }
+  }
+}
+
+/**
+ * Disconnect WalletConnect sessions associated with removed accounts to prevent
+ * orphaned relay subscriptions that consume capacity indefinitely.
+ */
+export function* disconnectSessionsForRemovedAccounts() {
+  while (true) {
+    const action = yield* take(removeAccountsAction)
+    const removedAddresses = action.payload
+
+    const allSessions = yield* select(selectAllSessions)
+
+    for (const session of Object.values(allSessions)) {
+      const isOrphaned = removedAddresses.some(
+        (removed) =>
+          session.activeAccount &&
+          areAddressesEqual({
+            addressInput1: { address: session.activeAccount, platform: Platform.EVM },
+            addressInput2: { address: removed, platform: Platform.EVM },
+          }),
+      )
+
+      if (isOrphaned) {
+        yield* call(disconnectSessionWithReason, {
+          topic: session.id,
+          caller: 'disconnectSessionsForRemovedAccounts',
+          reason: 'orphaned',
+        })
+        // Always clean up local state — the account is gone regardless of relay success
+        yield* put(removeSession({ sessionId: session.id }))
+      }
+    }
+  }
+}
+
+export function* walletConnectSaga() {
+  yield* call(initializeWeb3Wallet)
+  yield* call(populateActiveSessions)
+  yield* fork(fetchPendingSessionProposals)
+  yield* fork(fetchPendingSessionRequests)
+  yield* fork(watchWalletConnectEvents)
+  yield* fork(monitorAccountChanges)
+  yield* fork(disconnectSessionsForRemovedAccounts)
+}

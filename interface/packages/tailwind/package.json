@@ -1,0 +1,54 @@
+{
+  "name": "@universe/tailwind",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./tailwind": "./tailwind.css",
+    "./tailwind.css": "./tailwind.css",
+    "./native": "./native.css",
+    "./native.css": "./native.css",
+    "./theme": "./css/theme.css",
+    "./fonts": "./css/fonts.css",
+    "./fonts/*": "./fonts/*",
+    "./types": "./src/types.ts",
+    "./animations": "./src/animations/curves.ts",
+    "./animations/reanimated": "./src/animations/reanimated.ts",
+    "./animations/slide-fade-presence": "./src/animations/slide-fade-presence.ts",
+    "./native-dev/class-map-miss": "./src/native-dev/class-map-miss.ts"
+  },
+  "dependencies": {
+    "@universe/environment": "workspace:^",
+    "react-native-reanimated": "4.4.3"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/node": "4.3.2",
+    "@tailwindcss/oxide": "4.3.2",
+    "@types/node": "22.19.17",
+    "@vitejs/plugin-react": "5.2.0",
+    "tailwindcss": "4.3.2",
+    "vitest": "3.2.1",
+    "vitest-presets": "workspace:^"
+  },
+  "scripts": {
+    "test": "nx test tailwind",
+    "typecheck": "nx typecheck tailwind",
+    "check": "nx check tailwind",
+    "check:fast": "nx check:fast tailwind",
+    "check:deps:usage": "nx check:deps:usage tailwind",
+    "format": "nx format tailwind",
+    "format:check": "nx format:check tailwind",
+    "lint": "nx lint tailwind",
+    "lint:fix": "nx lint:fix tailwind"
+  },
+  "nx": {
+    "includedScripts": []
+  }
+}

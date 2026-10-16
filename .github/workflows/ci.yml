@@ -1,0 +1,64 @@
+
+name: TurkDex CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-check:
+    name: Repository Security
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check tracked files
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          import sys
+
+          files = subprocess.check_output(
+              ["git", "ls-files", "-z"]
+          ).split(b"\0")
+
+          forbidden = []
+
+          for item in files:
+              if not item:
+                  continue
+
+              path = item.decode("utf-8", "replace")
+              parts = path.lower().split("/")
+              name = parts[-1]
+
+              if (
+                  name == ".env"
+                  or (
+                      name.startswith(".env.")
+                      and not name.endswith(".example")
+                  )
+                  or name.endswith((".pem", ".key", ".ppk"))
+                  or "node_modules" in parts
+              ):
+                  forbidden.append(path)
+
+          if forbidden:
+              print("Prohibited files:")
+              print("\n".join(forbidden))
+              sys.exit(1)
+
+          print("Repository file policy passed.")
+          PY
+
+      - name: Check whitespace errors
+        run: git diff --check HEAD

@@ -1,3 +1,152 @@
+# TurkDex — Open Source Decentralized Exchange
+
+**TurkDex is a community-driven decentralized exchange project for Turkchain and configurable EVM-compatible blockchain networks.**
+
+TurkDex aims to provide non-custodial token swaps, liquidity management, pool discovery, and position management through a modern Uniswap-based interface.
+
+## Network Configuration
+
+| Parameter | Value |
+|---|---|
+| Network | Turkchain Mainnet |
+| Chain ID | 1919 |
+| Native Currency | TURK |
+| Native Decimals | 18 |
+| RPC | https://rpc.turkscan.com |
+| Block Explorer | https://turkscan.com |
+| DEX | https://dex.turkscan.com |
+
+The project is designed to support environment-based network configuration.
+
+## Features and Development
+
+The project includes or targets:
+
+- Uniswap V2, V3, and V4 integrations
+- Token swapping and transaction simulation
+- ERC-20 approvals and Permit2 authorization
+- Liquidity pools and position management
+- Wallet connections
+- Gas fee estimation
+- Configurable RPC and contract addresses
+- Modular frontend, backend, API, and SDK architecture
+
+Feature availability depends on deployed contracts, network compatibility, configuration, and successful testing.
+
+## Contributing
+
+**Everyone is welcome to contribute to TurkDex.**
+
+We welcome contributions involving:
+
+- Bug fixes
+- UI/UX improvements
+- Frontend development
+- Backend and API improvements
+- SDK integrations
+- V2/V3/V4 compatibility
+- Security improvements
+- Documentation and translations
+- Automated testing
+- Performance optimizations
+
+### How to Contribute
+
+1. Open an Issue to report a bug or propose an improvement.
+2. Fork this repository.
+3. Create a new branch for your changes.
+4. Make your changes and add relevant tests.
+5. Run the available checks.
+6. Submit a Pull Request to the `main` branch.
+7. Complete the Pull Request checklist.
+8. Wait for automated checks and maintainer review.
+
+All contributors must follow the project's contribution and security guidelines.
+
+### Pull Request Requirements
+
+Every Pull Request should include:
+
+- Description of the proposed changes
+- Reason for the changes
+- Related Issue, if applicable
+- Files and components affected
+- Tests performed
+- Security considerations
+- Screenshots for UI changes
+- Confirmation that no secrets are included
+
+### Code Review and Verification
+
+Pull Requests are evaluated through automated and manual verification.
+
+Checks may include:
+
+- Code formatting and linting
+- TypeScript type checking
+- Unit and integration tests
+- Production build verification
+- Dependency security checks
+- Secret scanning
+- Smart contract integration checks
+- Maintainer review
+
+**Passing automated tests does not automatically authorize a merge or production deployment.**
+
+Maintainers retain responsibility for approving changes.
+
+### Blockchain Security
+
+Contributions must not:
+
+- Introduce unauthorized fund transfers
+- Bypass transaction simulation
+- Bypass contract authorization checks
+- Expose private keys or secrets
+- Silently replace verified contract addresses
+- Introduce unapproved privileged operations
+- Remove important security checks
+
+Contract addresses and chain-specific settings must be managed through the project's configuration system.
+
+### Development and Testing
+
+All changes should be tested in an isolated development environment before production deployment.
+
+Contributors must not use real user funds for testing.
+
+Production deployments are restricted to authorized maintainers.
+
+## Security
+
+Please do not disclose exploitable security vulnerabilities in public Issues.
+
+Follow the instructions in `SECURITY.md` to report vulnerabilities privately.
+
+## Community
+
+Contributions are welcome from developers worldwide.
+
+Respectful technical discussion, code reviews, and constructive feedback are encouraged.
+
+## Useful Links
+
+- Website: https://dex.turkscan.com
+- Explorer: https://turkscan.com
+- Repository: https://github.com/Turkchain1919/Dex-Swap-Pool-Full--nstall
+- Issues: https://github.com/Turkchain1919/Dex-Swap-Pool-Full--nstall/issues
+- Pull Requests: https://github.com/Turkchain1919/Dex-Swap-Pool-Full--nstall/pulls
+
+## License
+
+See the repository's `LICENSE` file for the applicable license terms.
+
+This project may include components derived from Uniswap repositories. Their applicable licenses and attribution requirements must be preserved.
+
+---
+
+**Build openly. Review carefully. Deploy securely.**
+
 # TurkDex — ilk kurulum kılavuzu
 
 Bu paket TurkDex’in tek zincirli kurulum taslağıdır. Turkchain için örnek profil Chain ID `1919` ile gelir. Ayrı bir sunucuya başka bir EVM ağı kurulacaksa o kurulumun kendi `.env` dosyası, RPC/API/explorer adresleri ve o ağda gerçekten dağıtılmış sözleşme adresleri girilmelidir. Zincir seçimi uygulama içinden yapılmaz.
